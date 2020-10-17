@@ -8,9 +8,7 @@ from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.support.ui import Select
 
 
-def main():
-    driver = webdriver.Chrome()
-    driver.get("https://novelkeys.xyz/collections/switches")
+def scrape_page(driver):
     cards = driver.find_elements_by_class_name("grid-view-item__link")
     i = 0
     while i < len(cards) - 1:
@@ -36,6 +34,22 @@ def main():
             print(name)
         i += 1
         driver.back()
+
+def main():
+    driver = webdriver.Chrome()
+    driver.get("https://novelkeys.xyz/collections/switches")
+    pagination = driver.find_element_by_class_name("pagination")
+    pages = pagination.find_element_by_class_name("pagination__text").text
+    page_nums = re.findall(r"\d+", pages)
+    while page_nums[0] != page_nums[-1]:
+        print(page_nums[0], page_nums[-1])
+        scrape_page(driver)
+        pagination = driver.find_element_by_class_name("pagination")
+        pagination.find_element_by_css_selector("a").click()
+        pagination = driver.find_element_by_class_name("pagination")
+        pages = pagination.find_element_by_class_name("pagination__text").text
+        page_nums = re.findall(r"\d+", pages)
+    scrape_page(driver)
     driver.close()
 
 
