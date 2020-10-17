@@ -1,5 +1,6 @@
 import React from 'react'
-
+import './Search.css'
+  
 interface SearchProps {
   category: string
   theme: string
@@ -8,7 +9,7 @@ interface SearchProps {
 const Search = ({ theme, category }:SearchProps) => {
   return (
     <div className="Search">
-      <input type="text" defaultValue={`Search for ${category}`}/>
+      <input className="Search__seach-input" type="text" placeholder={`Search for ${category}`}/>
       <p>this should be the theme: {theme}</p>
     </div>
   )

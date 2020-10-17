@@ -1,3 +1,18 @@
-.App-categories-button {
-  margin-right: 15px;
+.App-categories {
+  margin-bottom: var(--margin-bottom);
 }
+
+.App-categories-button:not(:last-child) {
+  margin-right: var(--margin-right);
+}
+
+/*** TESTING MEDIA QUERY 
+****
+
+@media (max-width: 30rem) {
+  .App-categories {
+    margin-bottom: 300px;
+  }
+} 
+
+****/
