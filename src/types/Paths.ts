@@ -2,7 +2,7 @@ enum Paths {
   main = '/' ,
   switches = '/switches',
   cases = '/cases',
-  pcb = '/pcv',
+  pcb = '/pcb',
   plates = '/plates',
   stabilizers = '/stabilizers',
   keycaps = '/keycaps'
