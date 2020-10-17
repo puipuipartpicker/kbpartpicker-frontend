@@ -8,13 +8,15 @@ from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.support.ui import Select
 
 
+BAD_WORDS = ['Sample', 'Big']
+
 def scrape_page(driver):
     cards = driver.find_elements_by_class_name("grid-view-item__link")
     i = 0
     while i < len(cards) - 1:
         card = driver.find_elements_by_class_name("grid-view-item__link")[i]
         product = card.find_element_by_class_name("visually-hidden").text
-        if 'Sample' in product or 'Big' in product:
+        if set(BAD_WORDS) & set(product.split(' ')):
             i += 1
             continue
         card.click()
