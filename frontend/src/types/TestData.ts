@@ -1,6 +1,7 @@
 interface Product {
     id: number,
     name: string,
+    productURL: string,
     imgURL: string, 
     stock: boolean,
     price: string,

@@ -10,6 +10,7 @@ function App() {
     <div className={`App ${theme}`}>
       <h1>So many parts to pick from</h1>
       <div className="App-categories">
+        //@ts-ignore
         <button className="App-categories-button" onClick={useState('theme1')}><Link to={Paths.cases}>Cases</Link></button>
         <button className="App-categories-button"><Link to={Paths.pcb}>PCB</Link></button>
         <button className="App-categories-button"><Link to={Paths.plates}>Plates</Link></button>
