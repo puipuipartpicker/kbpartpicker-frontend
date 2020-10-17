@@ -35,20 +35,25 @@ def scrape_page(driver):
         i += 1
         driver.back()
 
+    
+def get_page_nums(driver):
+    pagination = driver.find_element_by_class_name("pagination")
+    pages = pagination.find_element_by_class_name("pagination__text").text
+    return re.findall(r"\d+", pages)
+
+
 def main():
     driver = webdriver.Chrome()
     driver.get("https://novelkeys.xyz/collections/switches")
-    pagination = driver.find_element_by_class_name("pagination")
-    pages = pagination.find_element_by_class_name("pagination__text").text
-    page_nums = re.findall(r"\d+", pages)
+    page_nums = get_page_nums(driver)
+
     while page_nums[0] != page_nums[-1]:
-        print(page_nums[0], page_nums[-1])
         scrape_page(driver)
-        pagination = driver.find_element_by_class_name("pagination")
-        pagination.find_element_by_css_selector("a").click()
-        pagination = driver.find_element_by_class_name("pagination")
-        pages = pagination.find_element_by_class_name("pagination__text").text
-        page_nums = re.findall(r"\d+", pages)
+        (driver
+            .find_element_by_class_name("pagination")
+            .find_element_by_css_selector("a")
+            .click())
+        page_nums = get_page_nums(driver)
     scrape_page(driver)
     driver.close()
 
