@@ -1,2 +1,0 @@
-# kbpartpicker
-keyboard parts aggregator
