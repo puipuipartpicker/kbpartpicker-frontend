@@ -28,12 +28,10 @@ def scrape_page(driver):
                 if j == 0:
                     continue
                 else:
-                    print(f"{name} {o.text}")
-
+                    name = f"{name} {o.text}"
         except:
             name = driver.find_element_by_class_name("product-single__title").text
             name = re.sub(r' Switches', '', name)
-            print(name)
         i += 1
         driver.back()
 
