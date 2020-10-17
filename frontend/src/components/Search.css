@@ -1,0 +1,8 @@
+.Search{
+  background-color: var(--testing-var);
+  margin-bottom: var(--margin-bottom);
+}
+
+.Search__seach-input::placeholder {
+   font-style: italic;
+}

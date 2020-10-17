@@ -1,15 +1,17 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './App.css';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 import Paths from './types/Paths'
 import Search from './components/Search'
 
 function App() {
+  const [theme, setTheme] = useState<'theme1'|'theme2'|'theme3'|'theme4'|'theme5'|'theme6'|''>('')
   return (
-    <div className="App">
+    <div className={`App ${theme}`}>
       <h1>So many parts to pick from</h1>
       <div className="App-categories">
-        <button className="App-categories-button"><Link to={Paths.cases}>Cases</Link></button>
+        //@ts-ignore
+        <button className="App-categories-button" onClick={useState('theme1')}><Link to={Paths.cases}>Cases</Link></button>
         <button className="App-categories-button"><Link to={Paths.pcb}>PCB</Link></button>
         <button className="App-categories-button"><Link to={Paths.plates}>Plates</Link></button>
         <button className="App-categories-button"><Link to={Paths.stabilizers}>Stabilizers</Link></button>
