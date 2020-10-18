@@ -25,3 +25,6 @@ yarn-error.log*
 
 # python
 */.pytest_*
+
+# vscode
+.vscode
