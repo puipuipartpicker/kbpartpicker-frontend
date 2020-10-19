@@ -9,7 +9,8 @@ function App() {
   const [theme, setTheme] = useState<'theme1'|'theme2'|'theme3'|'theme4'|'theme5'|'theme6'|''>('')
   console.log('useParams:',useParams())
   console.log('useHistory:', useHistory().location.pathname)
-  const urlPath = useHistory().location.pathname
+  const urlPath:string = useHistory().location.pathname.replace(/^\//, '')
+  console.log(urlPath)
   return (
     <div className={`App ${theme}`}>
       <h1>So many parts to pick from</h1>
@@ -29,7 +30,7 @@ function App() {
       <Route path={Paths.stabilizers} render={ (props) => <Search category='stabilizers' theme={theme}/> } />
       <Route path={Paths.switches} render={ (props) => <Search category='switches' theme={theme}/> } />
       <Route path={Paths.keycaps} render={ (props) => <Search category='keycaps' theme={theme}/> } />
-      {/* <Route path="/:productid" render={ (props) => <Product id={urlPath}/>} /> */}
+      {urlPath === '123' ? <Route path="/:productid" render={ (props) => <Product id={urlPath}/>} /> : null}
 
 
     </div>
