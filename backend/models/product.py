@@ -1,8 +1,11 @@
+import re
 from ._base import Base
 
 from sqlalchemy.schema import Column
-from sqlalchemy.types import Boolean, Text, Integer
+from sqlalchemy.types import Boolean, Text, Integer, Float
 from sqlalchemy_utils import ChoiceType
+from sqlalchemy.event import listen
+
 from .types import ProductType, LayoutType, SizeType
 
 class Product(Base):
@@ -13,3 +16,15 @@ class Product(Base):
     size = Column(ChoiceType(SizeType, impl=Integer()))
     layout = Column(ChoiceType(LayoutType, impl=Integer()))
     hotswap = Column(Boolean)
+    price = Column(Float)
+
+    def cleanup_name(self):
+        if self.type == ProductType.switch:
+            self.name = re.sub(r' Switches', '', self.name)
+
+
+def cleanup_name(mapper, connection, target):
+    target.cleanup_name()
+
+
+listen(Product, 'before_insert', cleanup_name)
