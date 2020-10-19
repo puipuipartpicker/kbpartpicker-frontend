@@ -1,15 +1,11 @@
-interface Product {
-    id: number,
-    name: string,
-    productURL: string,
-    imgURL: string, 
-    stock: boolean,
-    price: string,
-    vendor: {name: string, url: string, imgURL: string}
+export interface searchItem {
+  id: number,
+  name: string,
+  imgURL: string, 
+  stock: boolean,
+  priceRange: string,
+  vendor: {name: string, url: string, imgURL: string}
 }
 
-interface testResultData {
-  results: Product[]
-}
+export type searchResults = searchItem[]
 
-export default testResultData
