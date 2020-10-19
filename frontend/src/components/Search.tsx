@@ -13,12 +13,11 @@ console.log('searchResults', searchResults)
 const Search = ({ theme, category }:SearchProps) => {
   const [resultData, setResultData] = useState(false)
   return (
-    <div className="Search">
+    <div className={`Search ${theme}`}>
       <input className="Search__seach-input" type="text" placeholder={`Search for ${category}`}/>
-      {/* <button onClick={() => setResultData(true)}>search</button> */}
+      <button onClick={() => setResultData(!resultData)}>search</button>
       <p>this should be the theme: {theme}</p>
-      //@ts-ignore
-      <Results results={searchResults}/>
+      {resultData ? <Results results={searchResults}/> : null}
     </div>
   )
 }

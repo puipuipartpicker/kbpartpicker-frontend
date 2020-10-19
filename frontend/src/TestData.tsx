@@ -21,6 +21,55 @@ export const searchResults = [{
   }]
 
 
-export const Product = {
-  
+export const ProductTestData = {
+  123: {
+    name: 'test name',
+    type: 'case',
+    layout: '60',
+    imgURL: 'https://cdn.shopify.com/s/files/1/3099/8088/products/SpaceCadetII_1024x1024@2x.png?v=1601649358',
+    vendors: [{
+      id: 12345,
+      name: 'NovelKeys_',
+      vendorURL: 'https://novelkeys.xyz/',
+      productURL: 'https://novelkeys.xyz/collections/frontpage/products/gmk-space-cadet-ii-gb',
+      inStock: true,
+      price: '$120'
+    }, {
+      id: 6666,
+      name: 'KBDfans',
+      vendorURL: 'https://kbdfans.com/',
+      productURL: 'https://kbdfans.com/collections/keycaps/products/gb-epbt-skadi-1',
+      inStock: true,
+      price: '$92'
+    }, {
+      id: 2121,
+      name: 'PIMP MY KEYBOARD',
+      vendorURL: 'https://pimpmykeyboard.com/',
+      productURL: 'https://cdn10.bigcommerce.com/s-ktpi93fl/products/215/images/2068/GRANITE__46110.1571872160.1280.1280.jpg?c=2',
+      inStock: true,
+      price: '$79'
+    }]
+  } ,   
+  666: {
+    name: 'test name2',
+    type: 'pcb',
+    layout: '60',
+    hotswap: true,
+    imgURL: 'https://cdn.shopify.com/s/files/1/3099/8088/products/NK65PCB-Front_1024x1024@2x.png?v=1596543025',
+    vendors: [{
+      id: 12345,
+      name: 'NovelKeys_',
+      vendorURL: 'https://novelkeys.xyz/',
+      productURL: 'https://novelkeys.xyz/collections/diy-kits/products/nk65-pcb',
+      inStock: true,
+      price: '$50'
+    }, {
+      id: 6666,
+      name: 'KBDfans',
+      vendorURL: 'https://kbdfans.com/',
+      productURL: 'https://kbdfans.com/collections/65/products/dz68rgb-hot-swap-rgb-pcb',
+      inStock: false,
+      price: '$58'
+    }]
+  }
 }
