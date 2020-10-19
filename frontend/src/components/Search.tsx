@@ -2,8 +2,7 @@ import React, {useState} from 'react'
 import './Search.css'
 import Results from './Results'
 
-import searchResults from '../TestData'
-
+import { searchResults } from '../TestData' 
 
 interface SearchProps {
   category: string

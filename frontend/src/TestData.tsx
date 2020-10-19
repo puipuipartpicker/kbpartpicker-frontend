@@ -1,4 +1,4 @@
-const searchResults = [{
+export const searchResults = [{
     id: 123,
     name: 'test name',
     imgURL: 'https://cdn.shopify.com/s/files/1/3099/8088/products/SpaceCadetII_1080x.png?v=1601649358',
@@ -21,4 +21,6 @@ const searchResults = [{
   }]
 
 
-export default searchResults
+export const Product = {
+  
+}
