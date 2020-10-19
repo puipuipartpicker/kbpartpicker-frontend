@@ -10,9 +10,7 @@ from sqlalchemy.sql.expression import ClauseElement
 class BaseModel:
     @declared_attr
     def __tablename__(cls):
-        return pluralize(underscore(cls.__name__.lower()))
-
-    # __table_args__ = {'mysql_engine': 'InnoDB'}
+        return underscore(pluralize(cls.__name__))
 
     id = Column(BigInteger, primary_key=True)
     created_at = Column(DateTime, nullable=False, default=datetime.now())
@@ -23,7 +21,6 @@ class BaseModel:
         query = session.query(cls).filter_by(**kwargs).with_lockmode("update")
         instance = query.one_or_none()
         if instance:
-            session.begin()
             session.commit()
             return instance, False
         else:
@@ -31,7 +28,6 @@ class BaseModel:
             instance = cls(**params)
             try:
                 session.add(instance)
-                session.begin()
                 session.commit()
                 return instance, True
             except IntegrityError as e:

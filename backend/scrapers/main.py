@@ -18,6 +18,13 @@ if __name__ == "__main__":
     engine = create_engine('postgres+psycopg2://vi:password@localhost:5432/kbpartpicker')
     session = sessionmaker(bind=engine)()
     driver = webdriver.Chrome()
-    main(session, driver)
-    driver.close()
-    session.close()
+    timeout = 3
+    try:
+        element_present = EC.presence_of_element_located((By.ID, 'main'))
+        WebDriverWait(driver, timeout).until(element_present)
+    except TimeoutException:
+        print("Timed out waiting for page to load")
+    finally:
+        main(session, driver)
+        driver.close()
+        session.close()

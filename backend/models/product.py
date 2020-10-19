@@ -16,7 +16,6 @@ class Product(Base):
     size = Column(ChoiceType(SizeType, impl=Integer()))
     layout = Column(ChoiceType(LayoutType, impl=Integer()))
     hotswap = Column(Boolean)
-    price = Column(Float)
 
     def cleanup_name(self):
         if self.type == ProductType.switch:
