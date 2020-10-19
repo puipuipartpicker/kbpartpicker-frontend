@@ -10,6 +10,7 @@ function App() {
   console.log('useParams:',useParams())
   console.log('useHistory:', useHistory().location.pathname)
   const urlPath:string = useHistory().location.pathname.replace(/^\//, '')
+  const productKeys = ['123', '666', '456']
   console.log(urlPath)
   return (
     <div className={`App ${theme}`}>
@@ -30,7 +31,7 @@ function App() {
       <Route path={Paths.stabilizers} render={ (props) => <Search category='stabilizers' theme={theme}/> } />
       <Route path={Paths.switches} render={ (props) => <Search category='switches' theme={theme}/> } />
       <Route path={Paths.keycaps} render={ (props) => <Search category='keycaps' theme={theme}/> } />
-      {urlPath === '123' ? <Route path="/:productid" render={ (props) => <Product id={urlPath}/>} /> : null}
+      {productKeys.includes(urlPath) ? <Route path="/:productid" render={ (props) => <Product id={urlPath}/>} /> : null}
 
 
     </div>
