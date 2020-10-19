@@ -7,7 +7,7 @@ from selenium.webdriver.support.ui import Select
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
-from novel_keys import NovelKeys
+from .novel_keys import NovelKeys
 
 
 def main(session, driver):
@@ -15,8 +15,9 @@ def main(session, driver):
 
 
 if __name__ == "__main__":
-    engine = create_engine('postgres://vi:password@localhost:5432/kbpartpicker')
+    engine = create_engine('postgres+psycopg2://vi:password@localhost:5432/kbpartpicker')
     session = sessionmaker(bind=engine)()
     driver = webdriver.Chrome()
     main(session, driver)
     driver.close()
+    session.close()
