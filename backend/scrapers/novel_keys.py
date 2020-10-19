@@ -20,6 +20,10 @@ PRODUCT_URLS = [
     product('keycaps', ProductType.keyset, [])
 ]
 
+# TODO: Add comments for each method
+# TODO: Scrape price and stock status
+# TODO: Make a base class to share between other scrapers
+
 
 class NovelKeys():
 
@@ -39,17 +43,49 @@ class NovelKeys():
         page_nums = self._get_pagination()
         if page_nums:
             while page_nums[0] != page_nums[-1]:
-                self.scrape_page(product)
+                self._scrape_each_on_page(product)
                 (self.driver
                     .find_element_by_class_name("pagination")
                     .find_element_by_css_selector("a")
                     .click())
                 page_nums = self._get_pagination()
-            self.scrape_page(product)
+            self._scrape_each_on_page(product)
         else:
-            self.scrape_page(product)
+            self._scrape_each_on_page(product)
     
-    def update_or_insert(self, price, in_stock, **kwargs):
+    def _scrape_each_on_page(self, product):
+        cards = self.driver.find_elements_by_class_name("grid-view-item__link")
+        i = 0
+        while i < len(cards) - 1:
+            card = self.driver.find_elements_by_class_name("grid-view-item__link")[i]
+            name = card.find_element_by_class_name("visually-hidden").text
+            if set(product.ignore) & set(name.split(' ')):  # ignore products containing bad words
+                i += 1
+                continue
+            card.click()
+            self._scrape_and_insert(product)
+            i += 1
+            self.driver.back()
+    
+    def _scrape_and_insert(self, product):
+        name = self.driver.find_element_by_class_name("product-single__title").text
+        price = 1.0
+        in_stock = True
+        options = self._get_options()
+        if options:
+            names = [f"{name} {o.text}" for o in options.options[1:]]
+        else:
+            names = [name]
+        for name in names:
+            self._update_or_insert(
+                price,
+                in_stock,
+                name=name,
+                img_url='',
+                type=product.type
+            )                        
+
+    def _update_or_insert(self, price, in_stock, **kwargs):
         product, is_new = Product.get_or_create(
             self.session,
             **kwargs
@@ -63,47 +99,6 @@ class NovelKeys():
         pv.in_stock = in_stock
         self.session.commit()
 
-    def scrape_page(self, product):
-        cards = self.driver.find_elements_by_class_name("grid-view-item__link")
-        i = 0
-        while i < len(cards) - 1:
-            card = self.driver.find_elements_by_class_name("grid-view-item__link")[i]
-            name = card.find_element_by_class_name("visually-hidden").text
-            if set(product.ignore) & set(name.split(' ')):  # ignore products containing bad words
-                i += 1
-                continue
-            card.click()
-            types = None
-            try:
-                types = Select(self.driver.find_element_by_id('SingleOptionSelector-0'))
-                name = self.driver.find_element_by_class_name("product-single__title").text
-                price = 1.0
-                in_stock = True
-                for j, o in enumerate(types.options):
-                    if j == 0:
-                        continue
-                    else:
-                        self.update_or_insert(
-                            price,
-                            in_stock,
-                            name=f"{name} {o.text}",
-                            img_url='',
-                            type=product.type
-                        )                        
-            except:
-                name = self.driver.find_element_by_class_name("product-single__title").text
-                price = 1.0
-                in_stock = True
-                self.update_or_insert(
-                    price,
-                    in_stock,
-                    name=name,
-                    img_url='',
-                    type=product.type
-                )                        
-            i += 1
-            self.driver.back()
-
     def _get_pagination(self):
         try:
             pagination = self.driver.find_element_by_class_name("pagination")
@@ -113,3 +108,9 @@ class NovelKeys():
         pages = pagination.find_element_by_class_name("pagination__text").text
         return re.findall(r"\d+", pages)
 
+    def _get_options(self):
+        try:
+            types = Select(self.driver.find_element_by_id('SingleOptionSelector-0'))
+        except NoSuchElementException:
+            return None
+        return types
