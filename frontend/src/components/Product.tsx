@@ -105,16 +105,15 @@ ProductTestData = {
   }
 }
 
+const getProductData = (id: number): IProductData => {
+  return ProductTestData[id]
+}
 
 interface ProductProps {
   id: string
 }
 
-const getProductData = (id: number): IProductData => {
-  return ProductTestData[id]
-}
-
-const Product = ({ id }: ProductProps) => {
+const Product = ({ id }:ProductProps) => {
   const {name, type, size, layout, hotswap, imgURL, vendors } = getProductData(+id)
   console.log('ProductTestData', ProductTestData[+id])
 
