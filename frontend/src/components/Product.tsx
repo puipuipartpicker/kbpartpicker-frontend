@@ -77,6 +77,22 @@ ProductTestData = {
       productURL: 'https://cdn10.bigcommerce.com/s-ktpi93fl/products/215/images/2068/GRANITE__46110.1571872160.1280.1280.jpg?c=2',
       inStock: true,
       price: '$79'
+    },{
+      id: 6666,
+      name: 'KBDfans',
+      logoURL: 'https://cdn.shopify.com/s/files/1/3099/8088/files/Logo_a8cf9d15-aa0b-42ab-8176-2942f169d7da_720x.png?v=1565381568',
+      vendorURL: 'https://kbdfans.com/',
+      productURL: 'https://kbdfans.com/collections/keycaps/products/gb-epbt-skadi-1',
+      inStock: true,
+      price: '$92'
+    }, {
+      id: 2121,
+      name: 'PIMP MY KEYBOARD',
+      logoURL: 'https://cdn.shopify.com/s/files/1/3099/8088/files/Logo_a8cf9d15-aa0b-42ab-8176-2942f169d7da_720x.png?v=1565381568',
+      vendorURL: 'https://pimpmykeyboard.com/',
+      productURL: 'https://cdn10.bigcommerce.com/s-ktpi93fl/products/215/images/2068/GRANITE__46110.1571872160.1280.1280.jpg?c=2',
+      inStock: true,
+      price: '$79'
     }]
   } ,   
   666: {

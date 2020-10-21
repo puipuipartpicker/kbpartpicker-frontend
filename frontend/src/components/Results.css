@@ -14,6 +14,8 @@
 .Results__product {
   max-width: 50vw;
   height: fit-content;
+  max-height: calc(100vh - 4rem);
+  overflow: overlay;
   position: sticky;
   top: 2rem;
 }
