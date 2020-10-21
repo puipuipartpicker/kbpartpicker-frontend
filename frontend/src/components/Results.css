@@ -13,6 +13,8 @@
 
 .Results__product {
   max-width: 50vw;
+  position: sticky;
+  top: 2rem;
 }
 
 .Results__product-close {
