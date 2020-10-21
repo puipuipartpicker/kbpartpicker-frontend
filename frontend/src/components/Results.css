@@ -13,6 +13,7 @@
 
 .Results__product {
   max-width: 50vw;
+  height: fit-content;
   position: sticky;
   top: 2rem;
 }
