@@ -6,7 +6,7 @@ import Search from './components/Search'
 import Product from './components/Product'
 
 function App() {
-  const [theme, setTheme] = useState<'theme1'|'theme2'|'theme3'|'theme4'|'theme5'|'theme6'|''>('')
+  const [theme, setTheme] = useState<'theme1'|'theme2'|'theme3'|'theme4'|'theme5'|'theme6'|'default'>('default')
   console.log('useParams:',useParams())
   console.log('useHistory:', useHistory().location.pathname)
   const urlPath:string = useHistory().location.pathname.replace(/^\//, '')
@@ -14,7 +14,8 @@ function App() {
   console.log(urlPath)
   return (
     <div className={`App ${theme}`}>
-      <h1>So many parts to pick from</h1>
+      <h1>KBPartPicker</h1>
+      <p>what are you looking for?</p>
       <div className="App-categories">
         <button className="App-categories-button" onClick={() => setTheme('theme1')}><Link to={Paths.cases}>Cases</Link></button>
         <button className="App-categories-button" onClick={() => setTheme('theme2')}><Link to={Paths.pcb}>PCB</Link></button>
@@ -31,7 +32,7 @@ function App() {
       <Route path={Paths.stabilizers} render={ (props) => <Search category='stabilizers' theme={theme}/> } />
       <Route path={Paths.switches} render={ (props) => <Search category='switches' theme={theme}/> } />
       <Route path={Paths.keycaps} render={ (props) => <Search category='keycaps' theme={theme}/> } />
-      {productKeys.includes(urlPath) ? <Route path="/:productid" render={ (props) => <Product id={urlPath}/>} /> : null}
+      {productKeys.includes(urlPath) ? <Route path={Paths.product} render={ (props) => <Product id={urlPath}/>} /> : null}
 
 
     </div>

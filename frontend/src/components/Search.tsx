@@ -1,4 +1,5 @@
-import React, {useState, useEffect, useRef} from 'react'
+import React, {useState, useRef} from 'react'
+import { useHistory } from 'react-router-dom'
 import './Search.css'
 import Results from './Results'
 
@@ -11,18 +12,26 @@ interface SearchProps {
 }
 console.log('searchResults', searchResults)
 
+
 const Search = ({ theme, category }:SearchProps) => {
   const [resultData, setResultData] = useState(false)
   const searchInputEl = useRef<HTMLInputElement>(null)
 
+  let history = useHistory()
+    console.log('history: ', history)
+
+  const curPath = history.location.pathname
+
+
   const getSearchResults = (e:React.FormEvent):void => {
     e.preventDefault()
-    if (searchInputEl.current!.value) {
+    if (searchInputEl.current!.value.length > 0) {
       console.log('input ref', searchInputEl.current!.value)
+      setResultData(true)
+      console.log('url to push: ', curPath.replace(/\/(.+?)\/.+/, `/$1/${searchInputEl.current!.value}`))
+      history.push(curPath.replace(/(\/[^\/]+)\/?.*/, `$1/${searchInputEl.current!.value}`))
     }
-    setResultData(true)
   } 
-
 
   return (
     <div className={`Search ${theme}`}>
@@ -36,6 +45,7 @@ const Search = ({ theme, category }:SearchProps) => {
         <button onSubmit={(e) => getSearchResults(e)}>search</button>
       </form>
       <p>this should be the theme: {theme}</p>
+      <button onClick={() => history.push('/cases')}>go to case</button>
       {resultData ? <Results results={searchResults}/> : null}
     </div>
   )
