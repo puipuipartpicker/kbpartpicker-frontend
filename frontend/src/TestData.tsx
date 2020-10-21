@@ -11,7 +11,7 @@ export const searchResults = [{
   }, {
     id: 666,
     name: 'number of the beef',
-    imgURL: 'https://cdn.shopify.com/s/files/1/3099/8088/products/SpaceCadetII_1080x.png?v=1601649358',
+    imgURL: 'https://cdn.shopify.com/s/files/1/3099/8088/products/NK65PCB-Front_1024x1024@2x.png?v=1596543025',
     stock: false,
     priceRange: '$75 ~ $110',
     vendor: {

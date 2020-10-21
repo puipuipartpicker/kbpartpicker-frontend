@@ -1,8 +1,9 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect, useRef} from 'react'
 import './Search.css'
 import Results from './Results'
 
 import { searchResults } from '../TestData' 
+import { setServers } from 'dns'
 
 interface SearchProps {
   category: string
@@ -12,10 +13,28 @@ console.log('searchResults', searchResults)
 
 const Search = ({ theme, category }:SearchProps) => {
   const [resultData, setResultData] = useState(false)
+  const searchInputEl = useRef<HTMLInputElement>(null)
+
+  const getSearchResults = (e:React.FormEvent):void => {
+    e.preventDefault()
+    if (searchInputEl.current!.value) {
+      console.log('input ref', searchInputEl.current!.value)
+    }
+    setResultData(true)
+  } 
+
+
   return (
     <div className={`Search ${theme}`}>
-      <input className="Search__seach-input" type="text" placeholder={`Search for ${category}`}/>
-      <button onClick={() => setResultData(!resultData)}>search</button>
+      <form onSubmit={(e) => getSearchResults(e)}>
+        <input 
+          className="Search__search-input" 
+          type="text" 
+          placeholder={`Search for ${category}`} 
+          ref={searchInputEl}
+        />
+        <button onSubmit={(e) => getSearchResults(e)}>search</button>
+      </form>
       <p>this should be the theme: {theme}</p>
       {resultData ? <Results results={searchResults}/> : null}
     </div>
