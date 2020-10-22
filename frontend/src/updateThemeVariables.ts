@@ -26,6 +26,7 @@ const variableValues:ThemeVariableValues = {
 const updateThemeVariables = (theme: keyof ThemeVariableValues): void => {
   console.log('ran set theme')
   document.documentElement.style.setProperty('--primary-color', variableValues[theme].primaryColor)
+  //TODO: add the rest of the variables that need to change
 }
 
 export default updateThemeVariables
