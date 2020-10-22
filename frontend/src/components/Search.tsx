@@ -45,7 +45,6 @@ const Search = ({ theme, category }:SearchProps) => {
         <button onSubmit={(e) => getSearchResults(e)}>search</button>
       </form>
       <p>this should be the theme: {theme}</p>
-      <button onClick={() => history.push('/cases')}>go to case</button>
       {resultData ? <Results results={searchResults}/> : null}
     </div>
   )

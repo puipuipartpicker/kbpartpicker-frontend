@@ -31,7 +31,7 @@ const Results = ({results} : ResultsProps) => {
     {console.log('results props', results)}
     <div className="Results__items">
     {results.map((item, i) => (
-      <div className="Results__items-container" onClick={() => handleProductDisplay(item.id)}>
+      <div className="Results__items-container" key={'result-item-' + i} onClick={() => handleProductDisplay(item.id)}>
         <ProductListItem 
           id={item.id}
           name={item.name} 
