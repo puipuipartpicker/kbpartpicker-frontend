@@ -8,7 +8,7 @@
 
 .Results__items-container {
   cursor: pointer;
-  margin-right: var(--margin-right);
+  margin-right: var(--margin-side);
 }
 
 .Results__product {

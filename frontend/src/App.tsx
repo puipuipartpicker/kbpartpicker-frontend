@@ -26,12 +26,30 @@ function App() {
       </div>
   
       <Route path="/" />
-      <Route path={Paths.cases} render={ (props) => <Search category='cases' theme={theme}/> } />
-      <Route path={Paths.pcb} render={ (props) => <Search category='PCBs' theme={theme}/> } />
-      <Route path={Paths.plates} render={ (props) => <Search category='plates' theme={theme}/> } />
-      <Route path={Paths.stabilizers} render={ (props) => <Search category='stabilizers' theme={theme}/> } />
-      <Route path={Paths.switches} render={ (props) => <Search category='switches' theme={theme}/> } />
-      <Route path={Paths.keycaps} render={ (props) => <Search category='keycaps' theme={theme}/> } />
+      <Route path={Paths.cases} render={ (props) => {
+        setTheme('theme1')
+        return <Search category='cases' theme={theme}/>
+      }}/>
+      <Route path={Paths.pcb} render={ (props) => {
+        setTheme('theme2')
+        return <Search category='PCBs' theme={theme}/>
+      }}/>
+      <Route path={Paths.plates} render={ (props) => {
+        setTheme('theme3')
+        return <Search category='plates' theme={theme}/>
+      }}/>
+      <Route path={Paths.stabilizers} render={ (props) => {
+        setTheme('theme4')
+        return <Search category='stabilizers' theme={theme}/>
+      }}/>
+      <Route path={Paths.switches} render={ (props) => {
+        setTheme('theme5')
+        return <Search category='switches' theme={theme}/>
+      }}/>
+      <Route path={Paths.keycaps} render={ (props) => {
+        setTheme('theme6') 
+        return <Search category='keycaps' theme={theme}/>
+      }}/>
       {productKeys.includes(urlPath) ? <Route path={Paths.product} render={ (props) => <Product id={urlPath}/>} /> : null}
 
 
