@@ -29,7 +29,9 @@ function App() {
         <button className="App-categories-button" onClick={() => setTheme('theme6')}><Link to={Paths.keycaps}>Keycaps</Link></button>
       </div>
 
+      {
       // TODO: see if themes can be only managed by the App component so it doesn't need to be passed down as a prop
+    }
       <Route path="/" />
       <Route path={Paths.cases} render={ (props) => {
         setTheme('theme1')
