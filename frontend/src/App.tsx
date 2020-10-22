@@ -4,17 +4,21 @@ import { BrowserRouter as Router, Route, Link, useParams, useHistory } from 'rea
 import Paths from './types/Paths'
 import Search from './components/Search'
 import Product from './components/Product'
+import { Themes, ThemeVariableValues } from './types/types'
+import updateThemeVariables from './updateThemeVariables'
+
 
 function App() {
-  const [theme, setTheme] = useState<'theme1'|'theme2'|'theme3'|'theme4'|'theme5'|'theme6'|'default'>('default')
+  const [theme, setTheme] = useState<keyof ThemeVariableValues>('theme1')
   console.log('useParams:',useParams())
   console.log('useHistory:', useHistory().location.pathname)
   const urlPath:string = useHistory().location.pathname.replace(/^\//, '')
   const productKeys = ['123', '666', '456']
   console.log(urlPath)
+  updateThemeVariables(theme)
   return (
     <div className={`App ${theme}`}>
-      <h1>KBPartPicker</h1>
+      <h1 className="App__header">KBPartPicker</h1>
       <p>what are you looking for?</p>
       <div className="App-categories">
         <button className="App-categories-button" onClick={() => setTheme('theme1')}><Link to={Paths.cases}>Cases</Link></button>
@@ -24,7 +28,8 @@ function App() {
         <button className="App-categories-button" onClick={() => setTheme('theme5')}><Link to={Paths.switches}>Switches</Link></button>
         <button className="App-categories-button" onClick={() => setTheme('theme6')}><Link to={Paths.keycaps}>Keycaps</Link></button>
       </div>
-  
+
+      // TODO: see if themes can be only managed by the App component so it doesn't need to be passed down as a prop
       <Route path="/" />
       <Route path={Paths.cases} render={ (props) => {
         setTheme('theme1')

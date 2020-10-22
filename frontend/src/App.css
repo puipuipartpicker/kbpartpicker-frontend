@@ -12,6 +12,10 @@
   margin-right: var(--margin-side);
 }
 
+.App__header {
+  color: var(--primary-color);
+}
+
 
 
 
