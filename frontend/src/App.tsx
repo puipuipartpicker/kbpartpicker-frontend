@@ -5,11 +5,19 @@ import Paths from './types/Paths'
 import Search from './components/Search'
 import Product from './components/Product'
 import { Themes, ThemeVariableValues } from './types/types'
+import { searchItem } from './types/TestData'
 import updateThemeVariables from './updateThemeVariables'
 
 
 function App() {
   const [theme, setTheme] = useState<keyof ThemeVariableValues>('theme1')
+  const [cases, setCase] = useState<searchItem[]>([])
+  const [pcbs, setPCB] = useState<searchItem[]>([])
+  const [plates, setPlate] = useState<searchItem[]>([])
+  const [stabilizers, setStabilizer] = useState<searchItem[]>([])
+  const [switchs, setSwitches] = useState<searchItem[]>([])
+  const [keycaps, setKeycaps] = useState<searchItem[]>([])
+  
   console.log('useParams:',useParams())
   console.log('useHistory:', useHistory().location.pathname)
   const urlPath:string = useHistory().location.pathname.replace(/^\//, '')
