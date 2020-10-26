@@ -1,33 +1,62 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import './App.css';
 import { BrowserRouter as Router, Route, Link, useParams, useHistory } from 'react-router-dom'
 import Paths from './types/Paths'
 import Search from './components/Search'
 import Product from './components/Product'
+import Warning from './components/Warning'
 import { Themes, ThemeVariableValues } from './types/types'
-import { searchItem } from './types/TestData'
+import { IProductData, IProductType, IProductSize, IProductLayout, IStabMount } from './types/types'
 import updateThemeVariables from './updateThemeVariables'
-
 
 function App() {
   const [theme, setTheme] = useState<keyof ThemeVariableValues>('theme1')
-  const [cases, setCase] = useState<searchItem[]>([])
-  const [pcbs, setPCB] = useState<searchItem[]>([])
-  const [plates, setPlate] = useState<searchItem[]>([])
-  const [stabilizers, setStabilizer] = useState<searchItem[]>([])
-  const [switchs, setSwitches] = useState<searchItem[]>([])
-  const [keycaps, setKeycaps] = useState<searchItem[]>([])
-  
+  const [cases, setCase] = useState<IProductData[]>([])
+  const [pcbs, setPCB] = useState<IProductData[]>([])
+  const [plates, setPlate] = useState<IProductData[]>([])
+  const [stabilizers, setStabilizer] = useState<IProductData[]>([])
+  const [switchs, setSwitches] = useState<IProductData[]>([])
+  const [keycaps, setKeycaps] = useState<IProductData[]>([])
+
+  const [warningDisp, setWarningDisp] = useState<boolean>(true)
+  const [caseSize, setCaseSize] = useState<IProductLayout[]>([])
+  const [pcbSize, setPCBSize] = useState<IProductLayout[]>([])
+  const [plateSize, setPlateSize] = useState<IProductLayout[]>([])
+  const [layoutWarning, setLayoutWarning] = useState<boolean>(true)
+  const [pcbSolder, setPCBSolder] = useState<boolean>(false)
+  const [solderWarning, setSolderWarning] = useState<boolean>(true)
+  const [stabSize, setStabSize] = useState<IProductSize[]>([])
+  const [stabSizeWarning, setStabSizeWarning] = useState<boolean>(true)
+  const [stabMount, setStabMount] = useState<IStabMount[]>([])
+  const [stabMountWarning, setStabMountWarning] = useState<boolean>(true)
+
   console.log('useParams:',useParams())
   console.log('useHistory:', useHistory().location.pathname)
   const urlPath:string = useHistory().location.pathname.replace(/^\//, '')
+  // TODO: make sure to aquire all product keys in an array from the db
   const productKeys = ['123', '666', '456']
   console.log(urlPath)
   updateThemeVariables(theme)
+
+  const checkCompatibility = () => {
+  // TODO: add logic for ProductLayout compatibility for Case, PCB, and Plate
+  }
+
+
+  useEffect(() => {
+  // TODO: checkCompatibility whenever compatibility state variables change 
+  }, [])
+
   return (
     <div className={`App ${theme}`}>
       <h1 className="App__header">KBPartPicker</h1>
       <p>what are you looking for?</p>
+      {warningDisp ? (
+        <div className="App__warning">
+          <div className="App__warning-close" onClick={() => setWarningDisp(false)}>close x</div>
+          <Warning  layoutWarning={layoutWarning} solderWarning={solderWarning} stabSizeWarning={stabSizeWarning} stabMountWarning={stabMountWarning}/>
+        </div>
+        ) : null}
       <div className="App-categories">
         <button className="App-categories-button" onClick={() => setTheme('theme1')}><Link to={Paths.cases}>Cases</Link></button>
         <button className="App-categories-button" onClick={() => setTheme('theme2')}><Link to={Paths.pcb}>PCB</Link></button>

@@ -1,36 +1,17 @@
 import React from 'react'
 import './Product.css'
 
+import { IProductType, IProductSize, IProductLayout, IProductData } from '../types/types'
+
 // import { ProductTestData } from '../TestData'
 
-type ProductType = 'case' | 'pcb' | 'plate' | 'switch' | 'stabilizers' | 'keycaps'
-type ProductSize = '7u' | '6.5u' | '2u'
-type ProductLayout = '60' | '65' | 'tkl'
-
-interface IProductData {
-  name: string 
-  type: ProductType
-  size?: ProductSize
-  layout?: ProductLayout
-  hotswap?: boolean
-  imgURL: string
-  vendors: {
-    id: number
-    name: string
-    logoURL?: string
-    vendorURL: string
-    productURL: string
-    inStock: boolean
-    price: string
-  }[]
-}
 
 interface IAllProductData {
   [id: number]: {
     name: string 
-    type: ProductType
-    size?: ProductSize
-    layout?: ProductLayout
+    type: IProductType
+    size?: IProductSize
+    layout?: IProductLayout
     hotswap?: boolean
     imgURL: string
     vendors: {
