@@ -59,9 +59,13 @@ function App() {
     <div className={`App ${theme}`}>
       <h1 className="App__header">KBPartPicker</h1>
       <p>what are you looking for?</p>
-      {warningNotification ? <div className="App__warning-notification" onClick={() => {
-        setWarningNotification(false)
-        setWarningDisp(true)}}>!</div> : null}
+      {warningNotification ? 
+        <div 
+          className="App__warning-notification" 
+          onClick={() => {
+            setWarningNotification(false)
+            setWarningDisp(true)}
+          }>!</div> : null}
       {warningDisp ? (
         <div className="App__warning">
           <div className="App__warning-close" onClick={() => {
