@@ -18,7 +18,8 @@ function App() {
   const [switchs, setSwitches] = useState<IProductData[]>([])
   const [keycaps, setKeycaps] = useState<IProductData[]>([])
 
-  const [warningDisp, setWarningDisp] = useState<boolean>(true)
+  const [warningNotification, setWarningNotification] = useState<boolean>(true)
+  const [warningDisp, setWarningDisp] = useState<boolean>(false)
   const [caseSize, setCaseSize] = useState<IProductLayout[]>([])
   const [pcbSize, setPCBSize] = useState<IProductLayout[]>([])
   const [plateSize, setPlateSize] = useState<IProductLayout[]>([])
@@ -40,6 +41,8 @@ function App() {
 
   const checkCompatibility = () => {
   // TODO: add logic for ProductLayout compatibility for Case, PCB, and Plate
+
+  // TODO: checkCompatibility on closing warning messages to see if warning notifications state needs to be set to true
   }
 
 
@@ -51,6 +54,9 @@ function App() {
     <div className={`App ${theme}`}>
       <h1 className="App__header">KBPartPicker</h1>
       <p>what are you looking for?</p>
+      {warningNotification ? <div className="App__warning-notification" onClick={() => {
+        setWarningNotification(false)
+        setWarningDisp(true)}}>!</div> : null}
       {warningDisp ? (
         <div className="App__warning">
           <div className="App__warning-close" onClick={() => setWarningDisp(false)}>close x</div>

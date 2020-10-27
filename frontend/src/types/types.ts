@@ -24,7 +24,7 @@ export interface ThemeVariableValues {
 
 export type IProductType = 'case' | 'pcb' | 'plate' | 'switch' | 'stabilizers' | 'keycaps'
 export type IProductSize = '7u' | '6.5u' | '2u'
-export type IProductLayout = '60' | '65' | 'tkl'
+export type IProductLayout = 'forty_percent' | 'sixty_percent' | 'sixtyfive_percent' | 'seventyfive_percent' | 'tenkeyless'
 export type IStabMount = 'pcb' | 'plate'
 
 export interface IProductData {
