@@ -69,11 +69,15 @@ class NovelKeys():
     
     def _scrape_and_insert(self, product):
         name = self.driver.find_element_by_class_name("product-single__title").text
-        price = 1.0
+        price = re.search(
+            r"\$\d+.\d{1,2}$",
+            self.driver.find_element_by_class_name("price-item").text
+        ).group(0)
         in_stock = True
         options = self._get_options()
         if options:
             names = [f"{name} {o.text}" for o in options.options[1:]]
+            # TODO: get price for each option
         else:
             names = [name]
         for name in names:
