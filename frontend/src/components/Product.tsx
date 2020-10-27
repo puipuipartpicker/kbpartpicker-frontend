@@ -32,7 +32,7 @@ ProductTestData = {
   123: {
     name: 'test name',
     type: 'case',
-    layout: '60',
+    layout: 'sixty_percent',
     imgURL: 'https://cdn.shopify.com/s/files/1/3099/8088/products/SpaceCadetII_1024x1024@2x.png?v=1601649358',
     vendors: [{
       id: 12345,
@@ -79,7 +79,7 @@ ProductTestData = {
   666: {
     name: 'test name2',
     type: 'pcb',
-    layout: '60',
+    layout: 'sixty_percent',
     hotswap: true,
     imgURL: 'https://cdn.shopify.com/s/files/1/3099/8088/products/NK65PCB-Front_1024x1024@2x.png?v=1596543025',
     vendors: [{

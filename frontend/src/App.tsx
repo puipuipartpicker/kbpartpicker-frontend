@@ -18,18 +18,18 @@ function App() {
   const [switchs, setSwitches] = useState<IProductData[]>([])
   const [keycaps, setKeycaps] = useState<IProductData[]>([])
 
-  const [warningNotification, setWarningNotification] = useState<boolean>(true)
+  const [warningNotification, setWarningNotification] = useState<boolean>(false)
   const [warningDisp, setWarningDisp] = useState<boolean>(false)
-  const [caseSize, setCaseSize] = useState<IProductLayout[]>([])
+  const [caseSize, setCaseSize] = useState<IProductLayout[]>(['sixty_percent'])
   const [pcbSize, setPCBSize] = useState<IProductLayout[]>([])
-  const [plateSize, setPlateSize] = useState<IProductLayout[]>([])
-  const [layoutWarning, setLayoutWarning] = useState<boolean>(true)
+  const [plateSize, setPlateSize] = useState<IProductLayout[]>(['forty_percent'])
+  const [layoutWarning, setLayoutWarning] = useState<boolean>(false)
   const [pcbSolder, setPCBSolder] = useState<boolean>(false)
-  const [solderWarning, setSolderWarning] = useState<boolean>(true)
+  const [solderWarning, setSolderWarning] = useState<boolean>(false)
   const [stabSize, setStabSize] = useState<IProductSize[]>([])
-  const [stabSizeWarning, setStabSizeWarning] = useState<boolean>(true)
+  const [stabSizeWarning, setStabSizeWarning] = useState<boolean>(false)
   const [stabMount, setStabMount] = useState<IStabMount[]>([])
-  const [stabMountWarning, setStabMountWarning] = useState<boolean>(true)
+  const [stabMountWarning, setStabMountWarning] = useState<boolean>(false)
 
   console.log('useParams:',useParams())
   console.log('useHistory:', useHistory().location.pathname)
@@ -40,14 +40,19 @@ function App() {
   updateThemeVariables(theme)
 
   const checkCompatibility = () => {
-  // TODO: add logic for ProductLayout compatibility for Case, PCB, and Plate
-
-  // TODO: checkCompatibility on closing warning messages to see if warning notifications state needs to be set to true
+    const sizeSets = [...new Set(caseSize), ...new Set(pcbSize), ...new Set(plateSize)]
+    if ([...new Set(sizeSets)].length > 1) {
+      setWarningNotification(true)
+      setLayoutWarning(true)
+    } 
+    // TODO: check if any selected PCB's are non-hotswap
+    // TODO: check if 7u stab is selected 
+    // TODO: check if plate mount stabilizer is selected 
   }
-
 
   useEffect(() => {
   // TODO: checkCompatibility whenever compatibility state variables change 
+    checkCompatibility()
   }, [])
 
   return (
@@ -59,7 +64,10 @@ function App() {
         setWarningDisp(true)}}>!</div> : null}
       {warningDisp ? (
         <div className="App__warning">
-          <div className="App__warning-close" onClick={() => setWarningDisp(false)}>close x</div>
+          <div className="App__warning-close" onClick={() => {
+            setWarningDisp(false)
+            checkCompatibility()
+            }}>close x</div>
           <Warning  layoutWarning={layoutWarning} solderWarning={solderWarning} stabSizeWarning={stabSizeWarning} stabMountWarning={stabMountWarning}/>
         </div>
         ) : null}
