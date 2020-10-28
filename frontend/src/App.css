@@ -1,10 +1,24 @@
+.App {
+  max-width: 125rem;
+  margin: auto;
+  padding-left: var(--margin-side);
+}
+
 .App-categories {
   margin-bottom: var(--margin-bottom);
 }
 
 .App-categories-button:not(:last-child) {
-  margin-right: var(--margin-right);
+  margin-right: var(--margin-side);
 }
+
+.App__header {
+  color: var(--primary-color);
+}
+
+
+
+
 
 /*** TESTING MEDIA QUERY 
 ****

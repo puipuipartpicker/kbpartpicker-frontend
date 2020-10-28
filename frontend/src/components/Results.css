@@ -1,0 +1,26 @@
+.Results {
+  display: flex;
+}
+
+.Results__items {
+  max-width: 40vw;
+}
+
+.Results__items-container {
+  cursor: pointer;
+  margin-right: var(--margin-side);
+}
+
+.Results__product {
+  border: 1px solid #ccc;
+  max-width: 50vw;
+  height: fit-content;
+  max-height: calc(100vh - 4rem);
+  overflow: overlay;
+  position: sticky;
+  top: 2rem;
+}
+
+.Results__product-close {
+  cursor: pointer;
+}

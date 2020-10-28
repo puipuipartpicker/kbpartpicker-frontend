@@ -1,5 +1,7 @@
-import React from 'react'
+import React, {useState} from 'react'
 import './Results.css'
+import Product from './Product'
+import ProductListItem from './ProductListItem'
 
 interface searchItem {
   id: number,
@@ -14,18 +16,37 @@ interface ResultsProps {
   results: searchItem[]
 }
 
-const Results = ({results} : ResultsProps) => (
+
+const Results = ({results} : ResultsProps) => {
+  const [productDisplay, setProductDisplay] = useState(false)
+  const [selectedProduct, setSelectedProduct] = useState('')
+
+  const handleProductDisplay = (id: number): void => {
+    setProductDisplay(true)
+    setSelectedProduct(`${id}`)
+  }
+  
+  return (
   <div className="Results">
     {console.log('results props', results)}
-    this is the results
-    {results.map(item => (
-      <li className="Results__item">
-        <h3>{item.name}</h3>
-        <p>instock? {item.stock ? 'yes!' : 'nope'}</p>
-        <p><a href={item.vendor.url} target="_blank"><img src={item.vendor.imgURL} alt={item.vendor.name}/></a></p>
-      </li>
-      ))}
+    <div className="Results__items">
+    {results.map((item, i) => (
+      <div className="Results__items-container" key={'result-item-' + i} onClick={() => handleProductDisplay(item.id)}>
+        <ProductListItem 
+          id={item.id}
+          name={item.name} 
+          imgURL={item.imgURL}
+          stock={item.stock}
+          priceRange={item.priceRange}
+          key={`searchItem` + i} />
+      </div>))}
+    </div>
+    {productDisplay && selectedProduct.length > 0 ? 
+    <div className="Results__product">
+      <span className="Results__product-close" onClick={() => setProductDisplay(false)}>close x</span>
+      <Product id={selectedProduct}/>
+    </div> : null}
   </div>
-)
+)}
 
 export default Results

@@ -1,0 +1,19 @@
+.Results__items-item-img {
+  width: 50px;
+}
+
+.Results__items-item-name {
+  display: inline;
+}
+
+.Results__items-item-price-stock-price {
+  display: inline;
+}
+
+.Results__items-item-price-stock-stock {
+  display: inline;
+}
+
+.Results__items-item {
+  margin-bottom: var(--margin-bottom);
+}

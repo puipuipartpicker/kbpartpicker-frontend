@@ -3,6 +3,6 @@
   margin-bottom: var(--margin-bottom);
 }
 
-.Search__seach-input::placeholder {
+.Search__search-input::placeholder {
    font-style: italic;
 }
