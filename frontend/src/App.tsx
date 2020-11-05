@@ -24,7 +24,7 @@ function App() {
   const [pcbSize, setPCBSize] = useState<IProductLayout[]>([])
   const [plateSize, setPlateSize] = useState<IProductLayout[]>(['forty_percent'])
   const [layoutWarning, setLayoutWarning] = useState<boolean>(false)
-  const [pcbSolder, setPCBSolder] = useState<boolean>(false)
+  const [hotswap, setHotwap] = useState<boolean>(false)
   const [solderWarning, setSolderWarning] = useState<boolean>(false)
   const [stabSize, setStabSize] = useState<IProductSize[]>([])
   const [stabSizeWarning, setStabSizeWarning] = useState<boolean>(false)
@@ -46,14 +46,23 @@ function App() {
       setLayoutWarning(true)
     } 
     // TODO: check if any selected PCB's are non-hotswap
+    if (!hotswap) {
+      setSolderWarning(true)
+    }
     // TODO: check if 7u stab is selected 
+    if (stabSize.includes('7u')) {
+      setStabSizeWarning(true)
+    }
     // TODO: check if plate mount stabilizer is selected 
+    if (stabMount.includes('plate')) {
+      setStabMountWarning(true)
+    }
   }
 
   useEffect(() => {
   // TODO: checkCompatibility whenever compatibility state variables change 
     checkCompatibility()
-  }, [])
+  }, [caseSize, pcbSize, plateSize, hotswap, stabSize, stabMount])
 
   return (
     <div className={`App ${theme}`}>
