@@ -37,7 +37,6 @@ function App() {
   // TODO: make sure to aquire all product keys in an array from the db
   const productKeys = ['123', '666', '456']
   console.log(urlPath)
-  updateThemeVariables(theme)
 
   const checkCompatibility = () => {
     const sizeSets = [...new Set(caseSize), ...new Set(pcbSize), ...new Set(plateSize)]
@@ -58,6 +57,10 @@ function App() {
       setStabMountWarning(true)
     }
   }
+
+  useEffect(() => {
+    updateThemeVariables(theme)
+  }, [theme])
 
   useEffect(() => {
   // TODO: checkCompatibility whenever compatibility state variables change 
