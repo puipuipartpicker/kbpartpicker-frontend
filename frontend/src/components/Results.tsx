@@ -42,7 +42,7 @@ const Results = ({results, addItem} : ResultsProps) => {
           key={`searchItem` + i} />
       </div>))}
     </div>
-    {productDisplay && selectedProduct > 0 ? 
+    {productDisplay && selectedProduct ? 
     <div className="Results__product">
       <div className="Results__product-close" onClick={() => setProductDisplay(false)}>close x</div>
       <div className="Results__product-add-select" onClick={() => addItem(selectedProduct)}>add to selected items</div>

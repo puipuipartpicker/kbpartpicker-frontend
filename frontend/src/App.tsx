@@ -8,6 +8,9 @@ import Warning from './components/Warning'
 import { Themes, ThemeVariableValues } from './types/types'
 import { IProductData, IProductType, IProductSize, IProductLayout, IStabMount } from './types/types'
 import updateThemeVariables from './updateThemeVariables'
+import { getProductData } from './dbFunctions'
+import { profile } from 'console';
+import { link } from 'fs';
 
 function App() {
   const [theme, setTheme] = useState<keyof ThemeVariableValues>('theme1')
@@ -15,14 +18,14 @@ function App() {
   const [pcbs, setPCB] = useState<IProductData[]>([])
   const [plates, setPlate] = useState<IProductData[]>([])
   const [stabilizers, setStabilizer] = useState<IProductData[]>([])
-  const [switchs, setSwitches] = useState<IProductData[]>([])
+  const [switches, setSwitches] = useState<IProductData[]>([])
   const [keycaps, setKeycaps] = useState<IProductData[]>([])
 
   const [warningNotification, setWarningNotification] = useState<boolean>(false)
   const [warningDisp, setWarningDisp] = useState<boolean>(false)
-  const [caseSize, setCaseSize] = useState<IProductLayout[]>(['sixty_percent'])
-  const [pcbSize, setPCBSize] = useState<IProductLayout[]>([])
-  const [plateSize, setPlateSize] = useState<IProductLayout[]>(['forty_percent'])
+  const [caseLayout, setCaseLayout] = useState<IProductLayout[]>([])
+  const [pcbLayout, setPcbLayout] = useState<IProductLayout[]>([])
+  const [plateLayout, setPlateLayout] = useState<IProductLayout[]>([])
   const [layoutWarning, setLayoutWarning] = useState<boolean>(false)
   const [hotswap, setHotwap] = useState<boolean>(false)
   const [solderWarning, setSolderWarning] = useState<boolean>(false)
@@ -38,23 +41,36 @@ function App() {
   const productKeys = ['123', '666', '456']
   console.log(urlPath)
 
-  const checkCompatibility = () => {
-    const sizeSets = [...new Set(caseSize), ...new Set(pcbSize), ...new Set(plateSize)]
-    if ([...new Set(sizeSets)].length > 1) {
+  const handleWarningDisplay = () => {
+    if (!warningNotification && !warningDisp) {
       setWarningNotification(true)
+    }
+    if (warningNotification && warningDisp) {
+      setWarningNotification(false)
+      setWarningDisp(true)
+    }
+  }
+
+  const checkCompatibility = () => {
+    const sizeSets = [...new Set(caseLayout), ...new Set(pcbLayout), ...new Set(plateLayout)]
+    if ([...new Set(sizeSets)].length > 1) {
       setLayoutWarning(true)
+      handleWarningDisplay()
     } 
     // TODO: check if any selected PCB's are non-hotswap
-    if (!hotswap) {
+    if (hotswap) {
       setSolderWarning(true)
+      handleWarningDisplay()
     }
     // TODO: check if 7u stab is selected 
     if (stabSize.includes('7u')) {
       setStabSizeWarning(true)
+      handleWarningDisplay()
     }
     // TODO: check if plate mount stabilizer is selected 
     if (stabMount.includes('plate')) {
       setStabMountWarning(true)
+      handleWarningDisplay()
     }
   }
 
@@ -63,12 +79,49 @@ function App() {
   }, [theme])
 
   useEffect(() => {
-  // TODO: checkCompatibility whenever compatibility state variables change 
     checkCompatibility()
-  }, [caseSize, pcbSize, plateSize, hotswap, stabSize, stabMount])
+  }, [caseLayout, pcbLayout, plateLayout, hotswap, stabSize, stabMount])
 
-  const addSelectedItem = (selectedProduct: number) => {
-    console.log('add item fired with product id: ', selectedProduct)
+  const addSelectedItem = (selectedProductID: number) => {
+    console.log('add item fired with product id: ', selectedProductID)
+    console.log(getProductData(selectedProductID))
+    const product = getProductData(selectedProductID)
+    if (product.type === 'case') {
+      setCase(prevCases => [...prevCases, product])
+      if ( 'layout' in product) {
+        setCaseLayout(prevLayout => [...prevLayout, product.layout])
+      }
+    }
+    if (product.type === 'pcb') {
+      setPCB(prevPCB => [...prevPCB, product])
+      if ('layout' in product) {
+        setPcbLayout(prevLayout => [...prevLayout, product.layout])
+      }
+      if ('hotswap' in product) {
+        if (product.hotswap) setHotwap(true)
+      }
+    }
+    if (product.type === 'plate') {
+      setPlate(prevPlates => [...prevPlates, product])
+      if ('layout' in product) {
+        setPlateLayout(prevLayout => [...prevLayout, product.layout])
+      }
+    }
+    if (product.type === 'stabilizers') {
+      setStabilizer(prevStabs => [...prevStabs, product])
+      if ('size' in product) {
+        setStabSize(prevSize => [...prevSize, product.size])
+      }
+      if ('mount' in product) {
+        setStabMount(prevMount => [...prevMount, product.mount])
+      }
+    } 
+    if (product.type === 'switch') {setSwitches(prevSwitches => [...prevSwitches, product])}
+    if (product.type === 'keycaps') {setKeycaps(prevKeys => [...prevKeys, product])}
+  }
+
+  const removeSelectedItem = () => {
+    //TODO
   }
 
   return (
@@ -86,18 +139,36 @@ function App() {
         <div className="App__warning">
           <div className="App__warning-close" onClick={() => {
             setWarningDisp(false)
-            checkCompatibility()
+            setWarningNotification(true)
             }}>close x</div>
           <Warning  layoutWarning={layoutWarning} solderWarning={solderWarning} stabSizeWarning={stabSizeWarning} stabMountWarning={stabMountWarning}/>
         </div>
         ) : null}
       <div className="App-categories">
-        <button className="App-categories-button" onClick={() => setTheme('theme1')}><Link to={Paths.cases}>Cases</Link></button>
-        <button className="App-categories-button" onClick={() => setTheme('theme2')}><Link to={Paths.pcb}>PCB</Link></button>
-        <button className="App-categories-button" onClick={() => setTheme('theme3')}><Link to={Paths.plates}>Plates</Link></button>
-        <button className="App-categories-button" onClick={() => setTheme('theme4')}><Link to={Paths.stabilizers}>Stabilizers</Link></button>
-        <button className="App-categories-button" onClick={() => setTheme('theme5')}><Link to={Paths.switches}>Switches</Link></button>
-        <button className="App-categories-button" onClick={() => setTheme('theme6')}><Link to={Paths.keycaps}>Keycaps</Link></button>
+        <div className="App-categories__button-cases">
+          {cases ? cases.map((item, i) => <li className="App-categories__button-cases-selected" key={`case-${i}`}>{item.name}</li>) : null}
+          <button className="App-categories-button" onClick={() => setTheme('theme1')}><Link to={Paths.cases}>cases</Link></button>
+        </div>
+        <div className="App-categories__button-pcb">
+          {pcbs ? pcbs.map((pcb, i) => <li className="App-categories__button-pcb-selected" key={`pcb-${i}`}>{pcb.name}</li>) : null}
+          <button className="App-categories-button" onClick={() => setTheme('theme2')}><Link to={Paths.pcb}>PCB</Link></button>
+        </div>
+        <div className="App-categories__button-plate">
+          {plates ? plates.map((plate, i) => <li className="App-categories__button-plate-selected" key={`plate-${i}`}>{plate.name}</li>) : null}
+          <button className="App-categories-button" onClick={() => setTheme('theme2')}><Link to={Paths.plates}>plates</Link></button>
+        </div>
+        <div className="App-categories__button-stabilizer">
+          {stabilizers ? stabilizers.map((stabilizer, i) => <li className="App-categories__button-stabilizer-selected" key={`stab-${i}`}>{stabilizer.name}</li>) : null}
+          <button className="App-categories-button" onClick={() => setTheme('theme2')}><Link to={Paths.stabilizers}>stabilizers</Link></button>
+        </div>
+        <div className="App-categories__button-switch">
+          {switches ? switches.map((item, i) => <li className="App-categories__button-switch-selected" key={`switch-${i}`}>{item.name}</li>) : null}
+          <button className="App-categories-button" onClick={() => setTheme('theme2')}><Link to={Paths.switches}>switches</Link></button>
+        </div>
+        <div className="App-categories__button-keycaps">
+          {keycaps ? keycaps.map((item, i) => <li className="App-categories__button-keycaps-selected" key={`keycap-${i}`}>{item.name}</li>) : null}
+          <button className="App-categories-button" onClick={() => setTheme('theme2')}><Link to={Paths.keycaps}>keycaps</Link></button>
+        </div>
       </div>
 
       {
