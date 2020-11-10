@@ -14,16 +14,17 @@ interface searchItem {
 
 interface ResultsProps {
   results: searchItem[]
+  addItem: (selectedProduct: number) => void
 }
 
 
-const Results = ({results} : ResultsProps) => {
+const Results = ({results, addItem} : ResultsProps) => {
   const [productDisplay, setProductDisplay] = useState(false)
-  const [selectedProduct, setSelectedProduct] = useState('')
+  const [selectedProduct, setSelectedProduct] = useState(0)
 
   const handleProductDisplay = (id: number): void => {
     setProductDisplay(true)
-    setSelectedProduct(`${id}`)
+    setSelectedProduct(id)
   }
   
   return (
@@ -41,9 +42,10 @@ const Results = ({results} : ResultsProps) => {
           key={`searchItem` + i} />
       </div>))}
     </div>
-    {productDisplay && selectedProduct.length > 0 ? 
+    {productDisplay && selectedProduct > 0 ? 
     <div className="Results__product">
-      <span className="Results__product-close" onClick={() => setProductDisplay(false)}>close x</span>
+      <div className="Results__product-close" onClick={() => setProductDisplay(false)}>close x</div>
+      <div className="Results__product-add-select" onClick={() => addItem(selectedProduct)}>add to selected items</div>
       <Product id={selectedProduct}/>
     </div> : null}
   </div>

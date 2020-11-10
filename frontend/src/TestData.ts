@@ -1,3 +1,5 @@
+import { IProductData, IPriductDatabase } from './types/types'
+
 export const searchResults = [{
     id: 123,
     name: 'test name',
@@ -281,15 +283,16 @@ export const searchResults = [{
   }]
 
 
-export const ProductTestData = {
+export const ProductTestData: IPriductDatabase = {
   123: {
     name: 'test name',
     type: 'case',
-    layout: '60',
+    layout: 'sixty_percent',
     imgURL: 'https://cdn.shopify.com/s/files/1/3099/8088/products/SpaceCadetII_1024x1024@2x.png?v=1601649358',
     vendors: [{
       id: 12345,
       name: 'NovelKeys_',
+      logoURL: 'https://cdn.shopify.com/s/files/1/3099/8088/files/Logo_a8cf9d15-aa0b-42ab-8176-2942f169d7da_720x.png?v=1565381568',
       vendorURL: 'https://novelkeys.xyz/',
       productURL: 'https://novelkeys.xyz/collections/frontpage/products/gmk-space-cadet-ii-gb',
       inStock: true,
@@ -297,6 +300,7 @@ export const ProductTestData = {
     }, {
       id: 6666,
       name: 'KBDfans',
+      logoURL: 'https://cdn.shopify.com/s/files/1/3099/8088/files/Logo_a8cf9d15-aa0b-42ab-8176-2942f169d7da_720x.png?v=1565381568',
       vendorURL: 'https://kbdfans.com/',
       productURL: 'https://kbdfans.com/collections/keycaps/products/gb-epbt-skadi-1',
       inStock: true,
@@ -304,6 +308,23 @@ export const ProductTestData = {
     }, {
       id: 2121,
       name: 'PIMP MY KEYBOARD',
+      logoURL: 'https://cdn.shopify.com/s/files/1/3099/8088/files/Logo_a8cf9d15-aa0b-42ab-8176-2942f169d7da_720x.png?v=1565381568',
+      vendorURL: 'https://pimpmykeyboard.com/',
+      productURL: 'https://cdn10.bigcommerce.com/s-ktpi93fl/products/215/images/2068/GRANITE__46110.1571872160.1280.1280.jpg?c=2',
+      inStock: true,
+      price: '$79'
+    },{
+      id: 6666,
+      name: 'KBDfans',
+      logoURL: 'https://cdn.shopify.com/s/files/1/3099/8088/files/Logo_a8cf9d15-aa0b-42ab-8176-2942f169d7da_720x.png?v=1565381568',
+      vendorURL: 'https://kbdfans.com/',
+      productURL: 'https://kbdfans.com/collections/keycaps/products/gb-epbt-skadi-1',
+      inStock: true,
+      price: '$92'
+    }, {
+      id: 2121,
+      name: 'PIMP MY KEYBOARD',
+      logoURL: 'https://cdn.shopify.com/s/files/1/3099/8088/files/Logo_a8cf9d15-aa0b-42ab-8176-2942f169d7da_720x.png?v=1565381568',
       vendorURL: 'https://pimpmykeyboard.com/',
       productURL: 'https://cdn10.bigcommerce.com/s-ktpi93fl/products/215/images/2068/GRANITE__46110.1571872160.1280.1280.jpg?c=2',
       inStock: true,
@@ -313,12 +334,13 @@ export const ProductTestData = {
   666: {
     name: 'test name2',
     type: 'pcb',
-    layout: '60',
+    layout: 'sixty_percent',
     hotswap: true,
     imgURL: 'https://cdn.shopify.com/s/files/1/3099/8088/products/NK65PCB-Front_1024x1024@2x.png?v=1596543025',
     vendors: [{
       id: 12345,
       name: 'NovelKeys_',
+      logoURL: 'https://cdn.shopify.com/s/files/1/3099/8088/files/Logo_a8cf9d15-aa0b-42ab-8176-2942f169d7da_720x.png?v=1565381568',
       vendorURL: 'https://novelkeys.xyz/',
       productURL: 'https://novelkeys.xyz/collections/diy-kits/products/nk65-pcb',
       inStock: true,
@@ -326,6 +348,7 @@ export const ProductTestData = {
     }, {
       id: 6666,
       name: 'KBDfans',
+      logoURL: 'https://cdn.shopify.com/s/files/1/3099/8088/files/Logo_a8cf9d15-aa0b-42ab-8176-2942f169d7da_720x.png?v=1565381568',
       vendorURL: 'https://kbdfans.com/',
       productURL: 'https://kbdfans.com/collections/65/products/dz68rgb-hot-swap-rgb-pcb',
       inStock: false,

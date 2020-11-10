@@ -9,11 +9,12 @@ import { setServers } from 'dns'
 interface SearchProps {
   category: string
   theme: string
+  addItem: (selectedProduct: number) => void
 }
 console.log('searchResults', searchResults)
 
 
-const Search = ({ theme, category }:SearchProps) => {
+const Search = ({ theme, category, addItem }:SearchProps) => {
   const [resultData, setResultData] = useState(false)
   const searchInputEl = useRef<HTMLInputElement>(null)
 
@@ -45,7 +46,7 @@ const Search = ({ theme, category }:SearchProps) => {
         <button onSubmit={(e) => getSearchResults(e)}>search</button>
       </form>
       <p>this should be the theme: {theme}</p>
-      {resultData ? <Results results={searchResults}/> : null}
+      {resultData ? <Results results={searchResults} addItem={addItem}/> : null}
     </div>
   )
 }

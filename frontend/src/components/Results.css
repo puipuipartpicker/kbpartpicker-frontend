@@ -24,3 +24,7 @@
 .Results__product-close {
   cursor: pointer;
 }
+
+.Results__product-add-select {
+  cursor: pointer;
+}

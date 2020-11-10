@@ -44,3 +44,7 @@ export interface IProductData {
     price: string
   }[]
 }
+
+export interface IPriductDatabase {
+  [key: number]: IProductData
+}

@@ -67,6 +67,10 @@ function App() {
     checkCompatibility()
   }, [caseSize, pcbSize, plateSize, hotswap, stabSize, stabMount])
 
+  const addSelectedItem = (selectedProduct: number) => {
+    console.log('add item fired with product id: ', selectedProduct)
+  }
+
   return (
     <div className={`App ${theme}`}>
       <h1 className="App__header">KBPartPicker</h1>
@@ -102,29 +106,29 @@ function App() {
       <Route path="/" />
       <Route path={Paths.cases} render={ (props) => {
         setTheme('theme1')
-        return <Search category='cases' theme={theme}/>
+        return <Search category='cases' theme={theme} addItem={addSelectedItem}/>
       }}/>
       <Route path={Paths.pcb} render={ (props) => {
         setTheme('theme2')
-        return <Search category='PCBs' theme={theme}/>
+        return <Search category='PCBs' theme={theme} addItem={addSelectedItem}/>
       }}/>
       <Route path={Paths.plates} render={ (props) => {
         setTheme('theme3')
-        return <Search category='plates' theme={theme}/>
+        return <Search category='plates' theme={theme} addItem={addSelectedItem}/>
       }}/>
       <Route path={Paths.stabilizers} render={ (props) => {
         setTheme('theme4')
-        return <Search category='stabilizers' theme={theme}/>
+        return <Search category='stabilizers' theme={theme} addItem={addSelectedItem}/>
       }}/>
       <Route path={Paths.switches} render={ (props) => {
         setTheme('theme5')
-        return <Search category='switches' theme={theme}/>
+        return <Search category='switches' theme={theme} addItem={addSelectedItem}/>
       }}/>
       <Route path={Paths.keycaps} render={ (props) => {
         setTheme('theme6') 
-        return <Search category='keycaps' theme={theme}/>
+        return <Search category='keycaps' theme={theme} addItem={addSelectedItem}/>
       }}/>
-      {productKeys.includes(urlPath) ? <Route path={Paths.product} render={ (props) => <Product id={urlPath}/>} /> : null}
+      {productKeys.includes(urlPath) ? <Route path={Paths.product} render={ (props) => <Product id={+urlPath}/>} /> : null}
 
 
     </div>
