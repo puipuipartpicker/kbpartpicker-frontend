@@ -52,22 +52,25 @@ function App() {
   }
 
   const checkCompatibility = () => {
-    const sizeSets = [...new Set(caseLayout), ...new Set(pcbLayout), ...new Set(plateLayout)]
-    if ([...new Set(sizeSets)].length > 1) {
+    const layoutSets = [...new Set(caseLayout), ...new Set(pcbLayout), ...new Set(plateLayout)]
+    console.log('LAYOUT SETS', layoutSets)
+    if ([...new Set(layoutSets)].length > 1) {
       setLayoutWarning(true)
       handleWarningDisplay()
-    } 
-    // TODO: check if any selected PCB's are non-hotswap
+    } else {
+      setLayoutWarning(false)
+    }
+
     if (hotswap) {
       setSolderWarning(true)
       handleWarningDisplay()
     }
-    // TODO: check if 7u stab is selected 
+
     if (stabSize.includes('7u')) {
       setStabSizeWarning(true)
       handleWarningDisplay()
     }
-    // TODO: check if plate mount stabilizer is selected 
+
     if (stabMount.includes('plate')) {
       setStabMountWarning(true)
       handleWarningDisplay()
@@ -120,8 +123,21 @@ function App() {
     if (product.type === 'keycaps') {setKeycaps(prevKeys => [...prevKeys, product])}
   }
 
-  const removeSelectedItem = () => {
-    //TODO
+  const removeSelectedItem = (product: IProductData): void => {
+    if(product.type === 'case') {
+      setCase(cases.filter(item => item.name !== product.name))
+      if ('layout' in product) {
+        const inxToRemove = caseLayout.findIndex(cur => cur === product.layout)
+        const removedLayout = caseLayout.splice(inxToRemove, 1)
+        setCaseLayout(removedLayout)
+      }
+    }
+    if(product.type === 'pcb') {
+      setPCB(pcbs.filter(item => item.name !== product.name))
+    }
+    console.log('CASE LAYOUT', caseLayout)
+    console.log('pcb LAYOUT', pcbLayout)
+    checkCompatibility()
   }
 
   return (
@@ -146,27 +162,27 @@ function App() {
         ) : null}
       <div className="App-categories">
         <div className="App-categories__button-cases">
-          {cases ? cases.map((item, i) => <li className="App-categories__button-cases-selected" key={`case-${i}`}>{item.name}</li>) : null}
+          {cases ? cases.map((item, i) => <li className="App-categories__button-cases-selected" key={`case-${i}`}>{item.name} <span onClick={() => removeSelectedItem(item)}>remove x</span></li>) : null}
           <button className="App-categories-button" onClick={() => setTheme('theme1')}><Link to={Paths.cases}>cases</Link></button>
         </div>
         <div className="App-categories__button-pcb">
-          {pcbs ? pcbs.map((pcb, i) => <li className="App-categories__button-pcb-selected" key={`pcb-${i}`}>{pcb.name}</li>) : null}
+          {pcbs ? pcbs.map((pcb, i) => <li className="App-categories__button-pcb-selected" key={`pcb-${i}`}>{pcb.name} <span onClick={() => removeSelectedItem(pcb)}>remove x</span></li>) : null}
           <button className="App-categories-button" onClick={() => setTheme('theme2')}><Link to={Paths.pcb}>PCB</Link></button>
         </div>
         <div className="App-categories__button-plate">
-          {plates ? plates.map((plate, i) => <li className="App-categories__button-plate-selected" key={`plate-${i}`}>{plate.name}</li>) : null}
+          {plates ? plates.map((plate, i) => <li className="App-categories__button-plate-selected" key={`plate-${i}`}>{plate.name} <span onClick={() => removeSelectedItem(plate)}>remove x</span></li>) : null}
           <button className="App-categories-button" onClick={() => setTheme('theme2')}><Link to={Paths.plates}>plates</Link></button>
         </div>
         <div className="App-categories__button-stabilizer">
-          {stabilizers ? stabilizers.map((stabilizer, i) => <li className="App-categories__button-stabilizer-selected" key={`stab-${i}`}>{stabilizer.name}</li>) : null}
+          {stabilizers ? stabilizers.map((stabilizer, i) => <li className="App-categories__button-stabilizer-selected" key={`stab-${i}`}>{stabilizer.name} <span onClick={() => removeSelectedItem(stabilizer)}>remove x</span></li>) : null}
           <button className="App-categories-button" onClick={() => setTheme('theme2')}><Link to={Paths.stabilizers}>stabilizers</Link></button>
         </div>
         <div className="App-categories__button-switch">
-          {switches ? switches.map((item, i) => <li className="App-categories__button-switch-selected" key={`switch-${i}`}>{item.name}</li>) : null}
+          {switches ? switches.map((item, i) => <li className="App-categories__button-switch-selected" key={`switch-${i}`}>{item.name} <span onClick={() => removeSelectedItem(item)}>remove x</span></li>) : null}
           <button className="App-categories-button" onClick={() => setTheme('theme2')}><Link to={Paths.switches}>switches</Link></button>
         </div>
         <div className="App-categories__button-keycaps">
-          {keycaps ? keycaps.map((item, i) => <li className="App-categories__button-keycaps-selected" key={`keycap-${i}`}>{item.name}</li>) : null}
+          {keycaps ? keycaps.map((item, i) => <li className="App-categories__button-keycaps-selected" key={`keycap-${i}`}>{item.name} <span onClick={() => removeSelectedItem(item)}>remove x</span></li>) : null}
           <button className="App-categories-button" onClick={() => setTheme('theme2')}><Link to={Paths.keycaps}>keycaps</Link></button>
         </div>
       </div>

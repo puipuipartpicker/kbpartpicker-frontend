@@ -1,0 +1,11 @@
+[class*="Warning__message-"] {
+  margin-bottom: var(--margin-bottom);
+}
+
+.--critical {
+  border: 1px solid red;
+}
+
+.--moderate {
+  border: 1px solid orange
+}
