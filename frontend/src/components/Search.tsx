@@ -11,7 +11,7 @@ interface SearchProps {
   theme: string
   addItem: (selectedProduct: number) => void
 }
-console.log('searchResults', searchResults)
+// console.log('searchResults', searchResults)
 
 
 const Search = ({ theme, category, addItem }:SearchProps) => {
@@ -19,7 +19,7 @@ const Search = ({ theme, category, addItem }:SearchProps) => {
   const searchInputEl = useRef<HTMLInputElement>(null)
 
   let history = useHistory()
-    console.log('history: ', history)
+    // console.log('history: ', history)
 
   const curPath = history.location.pathname
 
@@ -27,9 +27,9 @@ const Search = ({ theme, category, addItem }:SearchProps) => {
   const getSearchResults = (e:React.FormEvent):void => {
     e.preventDefault()
     if (searchInputEl.current!.value.length > 0) {
-      console.log('input ref', searchInputEl.current!.value)
+      // console.log('input ref', searchInputEl.current!.value)
       setResultData(true)
-      console.log('url to push: ', curPath.replace(/\/(.+?)\/.+/, `/$1/${searchInputEl.current!.value}`))
+      // console.log('url to push: ', curPath.replace(/\/(.+?)\/.+/, `/$1/${searchInputEl.current!.value}`))
       history.push(curPath.replace(/(\/[^\/]+)\/?.*/, `$1/${searchInputEl.current!.value}`))
     }
   } 

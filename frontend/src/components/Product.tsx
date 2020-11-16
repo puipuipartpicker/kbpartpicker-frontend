@@ -13,7 +13,6 @@ interface ProductProps {
 const Product = ({ id }:ProductProps) => {
   
   const {name, type, size, layout, hotswap, imgURL, vendors } = getProductData(id)
-  console.log('ProductTestData', ProductTestData[+id])
 
   return (
   <div className="Product">
