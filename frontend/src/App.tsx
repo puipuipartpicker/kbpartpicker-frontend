@@ -103,9 +103,6 @@ function App() {
   useEffect(() => {
     console.log('handle warning display from useEffect')
     handleWarningDisplay()
-    // if (warningNotification && warningDisp) {
-    //   setWarningNotification(false)
-    // }
   }, [stabMountWarning, stabSizeWarning, solderWarning, layoutWarning])
 
   const checkAdded = (product:IProductData):boolean => {
