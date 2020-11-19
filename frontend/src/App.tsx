@@ -215,26 +215,39 @@ function App() {
   }
 
   const removeSelectedItem = (product: IProductData): void => {
+    // case, pcb, plate, stabilizer, 
     if(product.type === 'case') {
       setCase(cases.filter(item => item.name !== product.name))
       if ('layout' in product) {
-        const inxToRemove = caseLayout.findIndex(cur => cur === product.layout)
-        setCaseLayout(prevCaseLayout => prevCaseLayout.splice(inxToRemove, 1))
+        const indexToRemove = caseLayout.findIndex(cur => cur === product.layout)
+        setCaseLayout(prevCaseLayout => prevCaseLayout.splice(indexToRemove, 1))
       }
     }
     if(product.type === 'pcb') {
       setPCB(pcbs.filter(item => item.name !== product.name))
       if ('layout' in product) {
-        const inxToRemove = pcbLayout.findIndex( layout => layout === product.layout)
-        setPcbLayout(prevLayout => prevLayout.splice(inxToRemove, 1))
+        const indexToRemove = pcbLayout.findIndex( layout => layout === product.layout)
+        setPcbLayout(prevLayout => prevLayout.splice(indexToRemove, 1))
       }
       if ('hotswap' in product) {
         if (product.hotswap === (true || false)) {
           if (hotswap.includes(product.hotswap)) {
-            const inxToRemove = hotswap.indexOf(product.hotswap)
-            setHotwap(prevHotswap => prevHotswap.splice(inxToRemove, 1))
+            const indexToRemove = hotswap.indexOf(product.hotswap)
+            setHotwap(prevHotswap => prevHotswap.splice(indexToRemove, 1))
           }
         }
+      }
+    }
+    if (product.type === 'plate') {
+      console.log('tried to remove plate')
+      const indexToRemove = plates.findIndex(cur => cur.name === product.name)
+      console.log('plate index', indexToRemove)
+      setPlate(plates.filter(cur => cur.name !== product.name))
+      if ('layout' in product) {
+        setPlateLayout(prevPlateLayout => {
+          prevPlateLayout.splice(indexToRemove, 1)
+          return prevPlateLayout
+        })
       }
     }
     console.log('CASE LAYOUT', caseLayout)
@@ -250,6 +263,13 @@ function App() {
         const indexToRemove = stabMount.indexOf(product.mount)
         setStabMount(prevStabMount => prevStabMount.splice(indexToRemove, 1))
       }
+    }
+    if(product.type === 'switch') {
+      setSwitches(switches.filter(cur => cur.name !== product.name))
+    }
+    if (product.type === 'keycaps') {
+      const indexToRemove = keycaps.findIndex(cur => cur.name === product.name)
+      setKeycaps(keycaps.filter(cur => cur.name !== product.name))
     }
     checkCompatibility()
   }
@@ -309,27 +329,27 @@ function App() {
       <Route path="/" />
       <Route path={Paths.cases} render={ (props) => {
         setTheme('theme1')
-        return <Search category='cases' theme={theme} addItem={addSelectedItem}/>
+        return <Search category='cases' addItem={addSelectedItem}/>
       }}/>
       <Route path={Paths.pcb} render={ (props) => {
         setTheme('theme2')
-        return <Search category='PCBs' theme={theme} addItem={addSelectedItem}/>
+        return <Search category='PCBs' addItem={addSelectedItem}/>
       }}/>
       <Route path={Paths.plates} render={ (props) => {
         setTheme('theme3')
-        return <Search category='plates' theme={theme} addItem={addSelectedItem}/>
+        return <Search category='plates' addItem={addSelectedItem}/>
       }}/>
       <Route path={Paths.stabilizers} render={ (props) => {
         setTheme('theme4')
-        return <Search category='stabilizers' theme={theme} addItem={addSelectedItem}/>
+        return <Search category='stabilizers' addItem={addSelectedItem}/>
       }}/>
       <Route path={Paths.switches} render={ (props) => {
         setTheme('theme5')
-        return <Search category='switches' theme={theme} addItem={addSelectedItem}/>
+        return <Search category='switches' addItem={addSelectedItem}/>
       }}/>
       <Route path={Paths.keycaps} render={ (props) => {
         setTheme('theme6') 
-        return <Search category='keycaps' theme={theme} addItem={addSelectedItem}/>
+        return <Search category='keycaps' addItem={addSelectedItem}/>
       }}/>
       {productKeys.includes(urlPath) ? <Route path={Paths.product} render={ (props) => <Product id={+urlPath}/>} /> : null}
 

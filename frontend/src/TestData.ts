@@ -41,7 +41,7 @@ export const searchResults = [{
       url: 'https://kbdfans.com/', 
       imgURL: 'https://cdn.shopify.com/s/files/1/1473/3902/files/new-logo_02851fbb-7bd7-46f4-a6ba-86485d041224_200x@2x.png?v=1581588430'}
   },{
-    id: 123,
+    id: 999,
     name: 'test name',
     imgURL: 'https://cdn.shopify.com/s/files/1/3099/8088/products/SpaceCadetII_1080x.png?v=1601649358',
     stock: true,
@@ -51,7 +51,7 @@ export const searchResults = [{
       url: 'https://novelkeys.xyz/', 
       imgURL: 'https://cdn.shopify.com/s/files/1/3099/8088/files/Logo_a8cf9d15-aa0b-42ab-8176-2942f169d7da_720x.png?v=1565381568'}
   }, {
-    id: 666,
+    id: 333,
     name: 'number of the beef',
     imgURL: 'https://cdn.shopify.com/s/files/1/3099/8088/products/NK65PCB-Front_1024x1024@2x.png?v=1596543025',
     stock: false,
@@ -401,5 +401,42 @@ export const ProductTestData: IProductDatabase = {
       inStock: false,
       price: '$42.00'
     }]
+  },
+  999: {
+    name: 'The Dry Series',
+    type: 'switch',
+    imgURL: 'https://cdn.shopify.com/s/files/1/3099/8088/products/TheDrySeries-FamilyPhoto_1024x1024@2x.jpg?v=1595264827',
+    vendors: [{
+      id: 12345,
+      name: 'NovelKeys_',
+      logoURL: 'https://cdn.shopify.com/s/files/1/3099/8088/files/Logo_a8cf9d15-aa0b-42ab-8176-2942f169d7da_720x.png?v=1565381568',
+      vendorURL: 'https://novelkeys.xyz/',
+      productURL: 'https://novelkeys.xyz/collections/switches/products/the-dry-series',
+      inStock: true,
+      price: '$5.50'
+    }]
+  },
+  333: {
+    name: 'Cherry PBT Vaporwave',
+    type: 'keycaps',
+    imgURL: 'https://cdn.shopify.com/s/files/1/3099/8088/products/PBTVaporwave_1024x1024@2x.png?v=1594660758',
+    vendors: [{
+      id: 12345,
+      name: 'NovelKeys_',
+      logoURL: 'https://cdn.shopify.com/s/files/1/3099/8088/files/Logo_a8cf9d15-aa0b-42ab-8176-2942f169d7da_720x.png?v=1565381568',
+      vendorURL: 'https://novelkeys.xyz/',
+      productURL: 'https://novelkeys.xyz/collections/keycaps/products/cherry-pbt-vaporwave',
+      inStock: true,
+      price: '$55.55'
+    }, {
+      id: 6666,
+      name: 'KBDfans',
+      logoURL: 'https://cdn.shopify.com/s/files/1/3099/8088/files/Logo_a8cf9d15-aa0b-42ab-8176-2942f169d7da_720x.png?v=1565381568',
+      vendorURL: 'https://kbdfans.com/',
+      productURL: 'https://kbdfans.com/collections/65/products/dz68rgb-hot-swap-rgb-pcb',
+      inStock: false,
+      price: '$42.00'
+    }]
   }
+
 }
