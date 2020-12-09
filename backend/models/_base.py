@@ -1,3 +1,4 @@
+import sys
 from datetime import datetime
 from inflection import underscore, pluralize
 from sqlalchemy.ext.declarative import declared_attr, declarative_base
@@ -14,7 +15,10 @@ class BaseModel:
 
     id = Column(BigInteger, primary_key=True)
     created_at = Column(DateTime, nullable=False, default=datetime.now())
-    updated_at = Column(DateTime, nullable=False, default=datetime.now(), onupdate=datetime.now())
+    updated_at = Column(
+        DateTime, nullable=False, default=datetime.now(),
+        onupdate=datetime.now()
+    )
 
     @classmethod
     def get_or_create(cls, session, **kwargs):
@@ -24,7 +28,10 @@ class BaseModel:
             session.commit()
             return instance, False
         else:
-            params = dict((k, v) for k, v in kwargs.items() if not isinstance(v, ClauseElement))
+            params = dict(
+                (k, v) for k, v in kwargs.items()
+                if not isinstance(v, ClauseElement)
+            )
             instance = cls(**params)
             try:
                 session.add(instance)

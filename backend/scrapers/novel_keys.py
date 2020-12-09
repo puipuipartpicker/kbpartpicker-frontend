@@ -69,27 +69,34 @@ class NovelKeys():
     
     def _scrape_and_insert(self, product):
         name = self.driver.find_element_by_class_name("product-single__title").text
-        price = re.search(
-            r"\$\d+.\d{1,2}$",
-            self.driver.find_element_by_class_name("price-item").text
-        ).group(0)
-        in_stock = True
         options = self._get_options()
+        items = []
         if options:
-            names = [f"{name} {o.text}" for o in options.options[1:]]
-            # TODO: get price for each option
+            for o in options.options[1:]:
+                o.click()    
+                name = f"{name} {o.text}"
+                items.append(self._get_details(name))
         else:
-            names = [name]
-        for name in names:
+            items = [self._get_details(name)]
+        for item in items:
             self._update_or_insert(
-                price,
-                in_stock,
-                name=name,
+                item['price'],
+                item['in_stock'],
+                name=item['name'],
                 img_url='',
                 type=product.type
             )                        
+    
+    def _get_details(self, name):
+        # TODO add img_url field    
+        return dict(
+            name=name,
+            price=self._get_price(),
+            in_stock=True
+        )
 
     def _update_or_insert(self, price, in_stock, **kwargs):
+        print(price, in_stock, kwargs)    
         product, is_new = Product.get_or_create(
             self.session,
             **kwargs
@@ -118,3 +125,15 @@ class NovelKeys():
         except NoSuchElementException:
             return None
         return types
+    
+    def _get_price(self):
+        try:
+            price = float(re.search(
+                r"\d+.\d{1,2}$",
+                self.driver.find_element_by_class_name("price-item").text
+            ).group(0))
+        except NoSuchElementException:
+            return None
+        except AttributeError:
+            return None
+        return price
