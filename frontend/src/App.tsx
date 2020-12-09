@@ -35,7 +35,6 @@ function App() {
   const [stabMount, setStabMount] = useState<IStabMount[]>([])
   const [stabMountWarning, setStabMountWarning] = useState<boolean>(false)
 
-  const [productPaneHieght, setProductPaneHeight] = useState('')
 
   const urlPath:string = useHistory().location.pathname.replace(/^\//, '')
   // TODO: make sure to aquire all product keys in an array from the db
@@ -275,10 +274,6 @@ function App() {
     console.log('handle warning display from useEffect')
     handleWarningDisplay()
   }, [stabMountWarning, stabSizeWarning, solderWarning, layoutWarning])
-
-  useEffect(() => {
-    window.addEventListener('scroll', (event) => console.log(event))
-  }, [])
 
   return (
     <div className={`App ${theme}`}>

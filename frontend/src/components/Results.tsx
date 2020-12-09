@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import './Results.css'
 import Product from './Product'
 import ProductListItem from './ProductListItem'
@@ -17,10 +17,33 @@ interface ResultsProps {
   addItem: (selectedProduct: number) => void
 }
 
-
 const Results = ({results, addItem} : ResultsProps) => {
   const [productDisplay, setProductDisplay] = useState(false)
   const [selectedProduct, setSelectedProduct] = useState(0)
+  const [productPaneHeight, setProductPaneHeight] = useState('')
+
+  const handlePaneHeight = () => {
+    const topAreaRect = document.querySelector('.App__top-container')?.getBoundingClientRect()
+    const viewPortHeight = window.innerHeight
+    if (topAreaRect?.height && topAreaRect.top && viewPortHeight) {
+      if ((viewPortHeight - 40) - (topAreaRect?.height + topAreaRect.top) <= viewPortHeight - 60) {
+        setProductPaneHeight(`${(viewPortHeight - 60) - (topAreaRect?.height + topAreaRect.top)}px`)
+        console.log(productPaneHeight)
+        console.log(`${(viewPortHeight - 60) - (topAreaRect?.height + topAreaRect.top)}px`)
+      } else {
+        setProductPaneHeight('calc(100vh - 4rem)')
+      }
+    } 
+  }
+
+  useEffect(() => {
+    handlePaneHeight()
+    window.addEventListener('scroll', (event) => {
+      console.log(event)
+      handlePaneHeight()
+    })
+  }, [])
+
 
   const handleProductDisplay = (id: number): void => {
     setProductDisplay(true)
@@ -42,7 +65,7 @@ const Results = ({results, addItem} : ResultsProps) => {
       </div>))}
     </div>
     {productDisplay && selectedProduct ? 
-    <div className="Results__product">
+    <div className="Results__product" style={{maxHeight: productPaneHeight}}>
       <div className="Results__product-close" onClick={() => setProductDisplay(false)}>close x</div>
       <div className="Results__product-add-select" onClick={() => addItem(selectedProduct)}>add to selected items</div>
       <Product id={selectedProduct}/>
