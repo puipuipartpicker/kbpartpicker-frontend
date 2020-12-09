@@ -35,6 +35,8 @@ function App() {
   const [stabMount, setStabMount] = useState<IStabMount[]>([])
   const [stabMountWarning, setStabMountWarning] = useState<boolean>(false)
 
+  const [productPaneHieght, setProductPaneHeight] = useState('')
+
   const urlPath:string = useHistory().location.pathname.replace(/^\//, '')
   // TODO: make sure to aquire all product keys in an array from the db
   const productKeys = ['123', '666', '456']
@@ -90,20 +92,6 @@ function App() {
       setStabMountWarning(false)
     }
   }
-
-  useEffect(() => {
-    updateThemeVariables(theme)
-  }, [theme])
-
-  useEffect(() => {
-    console.log('check compat from useEffect')
-    checkCompatibility()
-  }, [caseLayout, pcbLayout, plateLayout, hotswap, stabSize, stabMount])
-
-  useEffect(() => {
-    console.log('handle warning display from useEffect')
-    handleWarningDisplay()
-  }, [stabMountWarning, stabSizeWarning, solderWarning, layoutWarning])
 
   const checkAdded = (product:IProductData):boolean => {
     let alreadyAdded:boolean = false
@@ -274,55 +262,74 @@ function App() {
     checkCompatibility()
   }
 
+  useEffect(() => {
+    updateThemeVariables(theme)
+  }, [theme])
+
+  useEffect(() => {
+    console.log('check compat from useEffect')
+    checkCompatibility()
+  }, [caseLayout, pcbLayout, plateLayout, hotswap, stabSize, stabMount])
+
+  useEffect(() => {
+    console.log('handle warning display from useEffect')
+    handleWarningDisplay()
+  }, [stabMountWarning, stabSizeWarning, solderWarning, layoutWarning])
+
+  useEffect(() => {
+    window.addEventListener('scroll', (event) => console.log(event))
+  }, [])
+
   return (
     <div className={`App ${theme}`}>
-      <h1 className="App__header">KBPartPicker</h1>
-      <p>what are you looking for?</p>
-      {warningNotification ? 
-        <div 
-          className="App__warning-notification" 
-          onClick={() => {
-            setWarningNotification(false)
-            setWarningDisp(true)}
-          }>!</div> : null}
-      {warningDisp ? (
-        <div className="App__warning">
-          <div className="App__warning-close" onClick={() => {
-            setWarningDisp(false)
-            if (stabMountWarning || stabSizeWarning || solderWarning || layoutWarning) {
-              setWarningNotification(true)
-            }
-            }}>close x</div>
-          <Warning  layoutWarning={layoutWarning} solderWarning={solderWarning} stabSizeWarning={stabSizeWarning} stabMountWarning={stabMountWarning}/>
-        </div>
-        ) : null}
-      <div className="App-categories">
-        <div className="App-categories__button-cases">
-          {cases ? cases.map((item, i) => <li className="App-categories__button-cases-selected" key={`case-${i}`}>{item.name} <span onClick={() => removeSelectedItem(item)}>remove x</span></li>) : null}
-          <button className="App-categories-button" onClick={() => setTheme('theme1')}><Link to={Paths.cases}>cases</Link></button>
-        </div>
-        <div className="App-categories__button-pcb">
-          {pcbs ? pcbs.map((pcb, i) => <li className="App-categories__button-pcb-selected" key={`pcb-${i}`}>{pcb.name} <span onClick={() => removeSelectedItem(pcb)}>remove x</span></li>) : null}
-          <button className="App-categories-button" onClick={() => setTheme('theme2')}><Link to={Paths.pcb}>PCB</Link></button>
-        </div>
-        <div className="App-categories__button-plate">
-          {plates ? plates.map((plate, i) => <li className="App-categories__button-plate-selected" key={`plate-${i}`}>{plate.name} <span onClick={() => removeSelectedItem(plate)}>remove x</span></li>) : null}
-          <button className="App-categories-button" onClick={() => setTheme('theme2')}><Link to={Paths.plates}>plates</Link></button>
-        </div>
-        <div className="App-categories__button-stabilizer">
-          {stabilizers ? stabilizers.map((stabilizer, i) => <li className="App-categories__button-stabilizer-selected" key={`stab-${i}`}>{stabilizer.name} <span onClick={() => removeSelectedItem(stabilizer)}>remove x</span></li>) : null}
-          <button className="App-categories-button" onClick={() => setTheme('theme2')}><Link to={Paths.stabilizers}>stabilizers</Link></button>
-        </div>
-        <div className="App-categories__button-switch">
-          {switches ? switches.map((item, i) => <li className="App-categories__button-switch-selected" key={`switch-${i}`}>{item.name} <span onClick={() => removeSelectedItem(item)}>remove x</span></li>) : null}
-          <button className="App-categories-button" onClick={() => setTheme('theme2')}><Link to={Paths.switches}>switches</Link></button>
-        </div>
-        <div className="App-categories__button-keycaps">
-          {keycaps ? keycaps.map((item, i) => <li className="App-categories__button-keycaps-selected" key={`keycap-${i}`}>{item.name} <span onClick={() => removeSelectedItem(item)}>remove x</span></li>) : null}
-          <button className="App-categories-button" onClick={() => setTheme('theme2')}><Link to={Paths.keycaps}>keycaps</Link></button>
+      <div className="App__top-container">
+        <h1 className="App__header">KBPartPicker</h1>
+        <p>what are you looking for?</p>
+        {warningNotification ? 
+          <div 
+            className="App__warning-notification" 
+            onClick={() => {
+              setWarningNotification(false)
+              setWarningDisp(true)}
+            }>!</div> : null}
+        {warningDisp ? (
+          <div className="App__warning">
+            <div className="App__warning-close" onClick={() => {
+              setWarningDisp(false)
+              if (stabMountWarning || stabSizeWarning || solderWarning || layoutWarning) {
+                setWarningNotification(true)
+              }
+              }}>close x</div>
+            <Warning  layoutWarning={layoutWarning} solderWarning={solderWarning} stabSizeWarning={stabSizeWarning} stabMountWarning={stabMountWarning}/>
+          </div>
+          ) : null}
+        <div className="App-categories">
+          <div className="App-categories__button-cases">
+            {cases ? cases.map((item, i) => <li className="App-categories__button-cases-selected" key={`case-${i}`}>{item.name} <span onClick={() => removeSelectedItem(item)}>remove x</span></li>) : null}
+            <button className="App-categories-button" onClick={() => setTheme('theme1')}><Link to={Paths.cases}>cases</Link></button>
+          </div>
+          <div className="App-categories__button-pcb">
+            {pcbs ? pcbs.map((pcb, i) => <li className="App-categories__button-pcb-selected" key={`pcb-${i}`}>{pcb.name} <span onClick={() => removeSelectedItem(pcb)}>remove x</span></li>) : null}
+            <button className="App-categories-button" onClick={() => setTheme('theme2')}><Link to={Paths.pcb}>PCB</Link></button>
+          </div>
+          <div className="App-categories__button-plate">
+            {plates ? plates.map((plate, i) => <li className="App-categories__button-plate-selected" key={`plate-${i}`}>{plate.name} <span onClick={() => removeSelectedItem(plate)}>remove x</span></li>) : null}
+            <button className="App-categories-button" onClick={() => setTheme('theme2')}><Link to={Paths.plates}>plates</Link></button>
+          </div>
+          <div className="App-categories__button-stabilizer">
+            {stabilizers ? stabilizers.map((stabilizer, i) => <li className="App-categories__button-stabilizer-selected" key={`stab-${i}`}>{stabilizer.name} <span onClick={() => removeSelectedItem(stabilizer)}>remove x</span></li>) : null}
+            <button className="App-categories-button" onClick={() => setTheme('theme2')}><Link to={Paths.stabilizers}>stabilizers</Link></button>
+          </div>
+          <div className="App-categories__button-switch">
+            {switches ? switches.map((item, i) => <li className="App-categories__button-switch-selected" key={`switch-${i}`}>{item.name} <span onClick={() => removeSelectedItem(item)}>remove x</span></li>) : null}
+            <button className="App-categories-button" onClick={() => setTheme('theme2')}><Link to={Paths.switches}>switches</Link></button>
+          </div>
+          <div className="App-categories__button-keycaps">
+            {keycaps ? keycaps.map((item, i) => <li className="App-categories__button-keycaps-selected" key={`keycap-${i}`}>{item.name} <span onClick={() => removeSelectedItem(item)}>remove x</span></li>) : null}
+            <button className="App-categories-button" onClick={() => setTheme('theme2')}><Link to={Paths.keycaps}>keycaps</Link></button>
+          </div>
         </div>
       </div>
-
       {
       // TODO: see if themes can be only managed by the App component so it doesn't need to be passed down as a prop
     }
