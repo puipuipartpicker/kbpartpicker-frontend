@@ -8,3 +8,10 @@
 #     "VendorProductAssociation",
 #     "Product"
 # ]
+__all__ = [
+    "_base",
+    "product",
+    "vendor_product_association",
+    "vendor",
+    "types"
+]
