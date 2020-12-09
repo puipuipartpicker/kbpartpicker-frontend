@@ -20,3 +20,32 @@ export interface ThemeVariableValues {
     primaryColor: string
   }
 }
+
+
+export type IProductType = 'case' | 'pcb' | 'plate' | 'switch' | 'stabilizers' | 'keycaps'
+export type IProductSize = '7u' | '6.5u' | '2u' | undefined
+export type IProductLayout = 'forty_percent' | 'sixty_percent' | 'sixtyfive_percent' | 'seventyfive_percent' | 'tenkeyless' | undefined
+export type IStabMount = 'pcb' | 'plate' | undefined
+
+export interface IProductData {
+  name: string 
+  type: IProductType
+  size?: IProductSize
+  layout?: IProductLayout
+  hotswap?: boolean
+  mount?: IStabMount
+  imgURL: string
+  vendors: {
+    id: number
+    name: string
+    logoURL?: string
+    vendorURL: string
+    productURL: string
+    inStock: boolean
+    price: string
+  }[]
+}
+
+export interface IProductDatabase {
+  [key: number]: IProductData
+}

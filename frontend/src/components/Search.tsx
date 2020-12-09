@@ -8,17 +8,17 @@ import { setServers } from 'dns'
 
 interface SearchProps {
   category: string
-  theme: string
+  addItem: (selectedProduct: number) => void
 }
-console.log('searchResults', searchResults)
+// console.log('searchResults', searchResults)
 
 
-const Search = ({ theme, category }:SearchProps) => {
+const Search = ({ category, addItem }:SearchProps) => {
   const [resultData, setResultData] = useState(false)
   const searchInputEl = useRef<HTMLInputElement>(null)
 
   let history = useHistory()
-    console.log('history: ', history)
+    // console.log('history: ', history)
 
   const curPath = history.location.pathname
 
@@ -26,15 +26,15 @@ const Search = ({ theme, category }:SearchProps) => {
   const getSearchResults = (e:React.FormEvent):void => {
     e.preventDefault()
     if (searchInputEl.current!.value.length > 0) {
-      console.log('input ref', searchInputEl.current!.value)
+      // console.log('input ref', searchInputEl.current!.value)
       setResultData(true)
-      console.log('url to push: ', curPath.replace(/\/(.+?)\/.+/, `/$1/${searchInputEl.current!.value}`))
+      // console.log('url to push: ', curPath.replace(/\/(.+?)\/.+/, `/$1/${searchInputEl.current!.value}`))
       history.push(curPath.replace(/(\/[^\/]+)\/?.*/, `$1/${searchInputEl.current!.value}`))
     }
   } 
 
   return (
-    <div className={`Search ${theme}`}>
+    <div className="Search">
       <form onSubmit={(e) => getSearchResults(e)}>
         <input 
           className="Search__search-input" 
@@ -44,8 +44,7 @@ const Search = ({ theme, category }:SearchProps) => {
         />
         <button onSubmit={(e) => getSearchResults(e)}>search</button>
       </form>
-      <p>this should be the theme: {theme}</p>
-      {resultData ? <Results results={searchResults}/> : null}
+      {resultData ? <Results results={searchResults} addItem={addItem}/> : null}
     </div>
   )
 }
