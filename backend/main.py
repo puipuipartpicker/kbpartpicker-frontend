@@ -8,7 +8,7 @@ from selenium.webdriver.support.ui import Select
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
-from .scrapers.novel_keys import NovelKeys
+from scrapers.novel_keys import NovelKeys
 
 
 def main(session, driver):
