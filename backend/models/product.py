@@ -1,5 +1,5 @@
 import re
-from models._base import Base
+from ._base import Base
 
 from sqlalchemy.schema import Column
 from sqlalchemy.types import Boolean, Text, Integer, Float
