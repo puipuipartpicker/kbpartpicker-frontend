@@ -8,10 +8,10 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException, NoSuchElementException
 from selenium.webdriver.support.ui import Select
 
-from ..models.product import Product
-from ..models.vendor import Vendor
-from ..models.vendor_product_association import VendorProductAssociation
-from ..models.types import ProductType, LayoutType, SizeType
+from models import Product
+from models import Vendor
+from models import VendorProductAssociation
+from models.types import ProductType, LayoutType, SizeType
 
 
 product = namedtuple('product', 'url type ignore')
