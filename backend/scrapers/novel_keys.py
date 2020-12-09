@@ -33,41 +33,43 @@ class NovelKeys():
         self.vendor_url = "https://novelkeys.xyz/collections/" 
         self.vendor, _ = Vendor.get_or_create(self.session, name='NovelKeys', url=self.vendor_url)
         self.results = []
+        self.product = None
 
     def run(self):
         for product in PRODUCT_URLS:
             self.driver.get(f"{self.vendor_url}{product.url}")
-            self._run(product)
+            self.product = product
+            self._run()
 
-    def _run(self, product):
+    def _run(self):
         page_nums = self._get_pagination()
         if page_nums:
             while page_nums[0] != page_nums[-1]:
-                self._scrape_each_on_page(product)
+                self._scrape_each_on_page()
                 (self.driver
                     .find_element_by_class_name("pagination")
                     .find_element_by_css_selector("a")
                     .click())
                 page_nums = self._get_pagination()
-            self._scrape_each_on_page(product)
+            self._scrape_each_on_page()
         else:
-            self._scrape_each_on_page(product)
+            self._scrape_each_on_page()
     
-    def _scrape_each_on_page(self, product):
+    def _scrape_each_on_page(self):
         cards = self.driver.find_elements_by_class_name("grid-view-item__link")
         i = 0
         while i < len(cards) - 1:
             card = self.driver.find_elements_by_class_name("grid-view-item__link")[i]
             name = card.find_element_by_class_name("visually-hidden").text
-            if set(product.ignore) & set(name.split(' ')):  # ignore products containing bad words
+            if set(self.product.ignore) & set(name.split(' ')):  # ignore products containing bad words
                 i += 1
                 continue
             card.click()
-            self._scrape_and_insert(product)
+            self._scrape_and_insert()
             i += 1
             self.driver.back()
     
-    def _scrape_and_insert(self, product):
+    def _scrape_and_insert(self):
         name = self.driver.find_element_by_class_name("product-single__title").text
         options = self._get_options()
         items = []
@@ -79,27 +81,22 @@ class NovelKeys():
         else:
             items = [self._get_details(name)]
         for item in items:
-            self._update_or_insert(
-                item['price'],
-                item['in_stock'],
-                name=item['name'],
-                img_url='',
-                type=product.type
-            )                        
+            self._update_or_insert(**item)
     
     def _get_details(self, name):
-        # TODO add img_url field    
         return dict(
             name=name,
+            img_url='',
             price=self._get_price(),
             in_stock=True
         )
 
-    def _update_or_insert(self, price, in_stock, **kwargs):
-        print(price, in_stock, kwargs)    
+    def _update_or_insert(self, name, img_url, price, in_stock):
         product, is_new = Product.get_or_create(
             self.session,
-            **kwargs
+            name=name,
+            img_url=img_url,
+            type=self.product.type
         )
         pv, is_new = VendorProductAssociation.get_or_create(
             self.session,
