@@ -1,3 +1,4 @@
+import os
 from selenium import webdriver 
 from selenium.webdriver.common.by import By 
 from selenium.webdriver.support.ui import WebDriverWait 
@@ -15,9 +16,22 @@ def main(session, driver):
 
 
 if __name__ == "__main__":
-    engine = create_engine('postgres+psycopg2://vi:password@localhost:5432/kbpartpicker')
-    session = sessionmaker(bind=engine)()
-    driver = webdriver.Chrome()
+    prd = os.environ.get('DATABASE_URL')    
+    if prd:
+        engine = create_engine(prd)
+        session = sessionmaker(bind=engine)()
+        chrome_options = webdriver.ChromeOptions()
+        chrome_options.add_argument("--headless")
+        chrome_options.add_argument("--disable-dev-shm-usage")
+        chrome_options.add_argument("--no-sandbox")
+        chrome_options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
+        driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), chrome_options=chrome_options)
+    else:
+        engine = create_engine('postgres+psycopg2://vi:password@localhost:5432/kbpartpicker')
+        session = sessionmaker(bind=engine)()
+        chrome_options = webdriver.ChromeOptions()
+        chrome_options.add_argument("--headless")
+        driver = webdriver.Chrome()
     timeout = 3
     try:
         element_present = EC.presence_of_element_located((By.ID, 'main'))
