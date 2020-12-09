@@ -6,7 +6,7 @@ from sqlalchemy.types import Boolean, Text, Integer, Float
 from sqlalchemy_utils import ChoiceType
 from sqlalchemy.event import listen
 
-from models.types import ProductType, LayoutType, SizeType
+from . import ProductType, LayoutType, SizeType
 
 class Product(Base):
 
