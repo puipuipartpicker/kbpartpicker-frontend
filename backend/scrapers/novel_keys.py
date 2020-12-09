@@ -20,8 +20,6 @@ PRODUCT_URLS = [
     product('keycaps', ProductType.keyset, [])
 ]
 
-# TODO: Add comments for each method
-# TODO: Scrape price and stock status
 # TODO: Make a base class to share between other scrapers
 
 
@@ -76,8 +74,8 @@ class NovelKeys():
         if options:
             for o in options.options[1:]:
                 o.click()    
-                name = f"{name} {o.text}"
-                items.append(self._get_details(name))
+                name_option = f"{name} {o.text}"
+                items.append(self._get_details(name_option))
         else:
             items = [self._get_details(name)]
         for item in items:
@@ -86,12 +84,13 @@ class NovelKeys():
     def _get_details(self, name):
         return dict(
             name=name,
-            img_url='',
+            img_url=self._get_img_url(),
             price=self._get_price(),
-            in_stock=True
+            in_stock=self._get_availability(),
         )
 
     def _update_or_insert(self, name, img_url, price, in_stock):
+        print(name, price, img_url)    
         product, is_new = Product.get_or_create(
             self.session,
             name=name,
@@ -134,3 +133,23 @@ class NovelKeys():
         except AttributeError:
             return None
         return price
+    
+    def _get_availability(self):
+        try:
+            availability = self.driver.find_element_by_id('AddToCartText-product-template').text
+        except NoSuchElementException:
+            return False
+        if availability == "UNAVAILABLE" or availability == "SOLD OUT":
+            return False
+        elif availability == "ADD TO CART":
+            return True
+        else:
+            return False
+    
+    def _get_img_url(self):
+        try:
+            img = self.driver.find_element_by_class_name("zoomImg")
+        except NoSuchElementException:
+            return None
+        else:
+            return img.get_attribute("src")
