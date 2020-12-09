@@ -8,4 +8,4 @@
 #     "ProductType",
 #     "SizeType"
 # ]
-import *
+from . import *
