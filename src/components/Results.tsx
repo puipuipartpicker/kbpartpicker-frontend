@@ -28,8 +28,6 @@ const Results = ({results, addItem} : ResultsProps) => {
     if (topAreaRect?.height && topAreaRect.top && viewPortHeight) {
       if ((viewPortHeight - 40) - (topAreaRect?.height + topAreaRect.top) <= viewPortHeight - 60) {
         setProductPaneHeight(`${(viewPortHeight - 60) - (topAreaRect?.height + topAreaRect.top)}px`)
-        console.log(productPaneHeight)
-        console.log(`${(viewPortHeight - 60) - (topAreaRect?.height + topAreaRect.top)}px`)
       } else {
         setProductPaneHeight('calc(100vh - 4rem)')
       }
