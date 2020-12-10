@@ -1,1 +1,2 @@
-worker: python -m backend.main
+release: python -m backend.main
+

@@ -8,9 +8,9 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException, NoSuchElementException
 from selenium.webdriver.support.ui import Select
 
-from ..models.types.product_type import ProductType
-from ..models.types.layout_type import LayoutType
-from ..models.types.size_type import SizeType
+from ..models.types.product_type import ProductType, LayoutType, SizeType
+from ..models.types.layout_type import ProductType, LayoutType, SizeType
+from ..models.types.size_type import ProductType, LayoutType, SizeType
 from ..models.product import Product
 from ..models.vendor import Vendor
 from ..models.vendor_product_association import VendorProductAssociation
