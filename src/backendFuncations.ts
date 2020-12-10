@@ -2,7 +2,7 @@ import axios from 'axios'
 import {IProductType} from './types/types'
 
 export const sendQuery = (query: string | undefined, category: IProductType):void => {
-  axios.post('/search', {category: category, query: query})
+  axios.post(`process.env.API_URL`+'/search', {category: category, query: query})
   .then(response => {
     console.log('got response for query from backends: \n', response)
     console.log('response data: \n', response.data)
