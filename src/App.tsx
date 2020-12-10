@@ -331,15 +331,15 @@ function App() {
       <Route path="/" />
       <Route path={Paths.cases} render={ (props) => {
         setTheme('theme1')
-        return <Search category='cases' addItem={addSelectedItem}/>
+        return <Search category='case' addItem={addSelectedItem}/>
       }}/>
       <Route path={Paths.pcb} render={ (props) => {
         setTheme('theme2')
-        return <Search category='PCBs' addItem={addSelectedItem}/>
+        return <Search category='pcb' addItem={addSelectedItem}/>
       }}/>
       <Route path={Paths.plates} render={ (props) => {
         setTheme('theme3')
-        return <Search category='plates' addItem={addSelectedItem}/>
+        return <Search category='plate' addItem={addSelectedItem}/>
       }}/>
       <Route path={Paths.stabilizers} render={ (props) => {
         setTheme('theme4')
@@ -347,7 +347,7 @@ function App() {
       }}/>
       <Route path={Paths.switches} render={ (props) => {
         setTheme('theme5')
-        return <Search category='switches' addItem={addSelectedItem}/>
+        return <Search category='switch' addItem={addSelectedItem}/>
       }}/>
       <Route path={Paths.keycaps} render={ (props) => {
         setTheme('theme6') 
