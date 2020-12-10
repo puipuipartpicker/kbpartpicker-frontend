@@ -1,12 +1,14 @@
 import re
-from models._base import Base
+from ._base import Base
 
 from sqlalchemy.schema import Column
 from sqlalchemy.types import Boolean, Text, Integer, Float
 from sqlalchemy_utils import ChoiceType
 from sqlalchemy.event import listen
 
-from models.types import ProductType, LayoutType, SizeType
+from .types.product_type import ProductType
+from .types.layout_type import LayoutType
+from .types.size_type import SizeType
 
 class Product(Base):
 
