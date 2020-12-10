@@ -1,3 +1,3 @@
-release: python -m backend.main
+release: python -m scraper.main
 web: yarn start
 

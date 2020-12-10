@@ -14,7 +14,7 @@ from .scrapers.novel_keys import NovelKeys
 def main(session, driver):
     NovelKeys(session, driver).run()
 
-prd = os.environ.get('DATABASE_URL')    
+prd = os.environ.get('DATABASE_URL')
 if prd:
     engine = create_engine(prd)
     session = sessionmaker(bind=engine)()
