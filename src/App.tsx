@@ -279,7 +279,7 @@ function App() {
     <div className={`App ${theme}`}>
       <div className="App__top-container">
         <h1 className="App__header">KBPartPicker</h1>
-        <p>what are you looking for?</p>
+        <p>select a category: </p>
         {warningNotification ? 
           <div 
             className="App__warning-notification" 

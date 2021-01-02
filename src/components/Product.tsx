@@ -1,18 +1,26 @@
 import React from 'react'
 import './Product.css'
+import axios from 'axios' 
 
 import { IProductType, IProductSize, IProductLayout, IProductData } from '../types/types'
 
 import { ProductTestData } from '../TestData'
-import { getProductData } from '../dbFunctions'
+// import { getProductData } from '../dbFunctions'
 
 interface ProductProps {
-  id: number
+  id: string
 }
 
 const Product = ({ id }:ProductProps) => {
+
+  const getProductData = (id:string): any => {
+    axios.get(`${process.env.REACT_APP_API_URL}/search`, {params: {id:id}})
+    .then(response => response)
+    .catch(error => console.log(error))
+  }
   
   const {name, type, size, layout, hotswap, imgURL, vendors } = getProductData(id)
+
 
   return (
   <div className="Product">
