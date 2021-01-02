@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom'
 import './Search.css'
 import Results from './Results'
 import { IProductType } from '../types/types'
-import { sendQuery } from '../backendFuncations'
+import { sendQuery } from '../backendFunctions'
 
 import { searchResults } from '../TestData' 
 import { setServers } from 'dns'
