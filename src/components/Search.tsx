@@ -3,7 +3,8 @@ import { useHistory } from 'react-router-dom'
 import './Search.css'
 import Results from './Results'
 import { IProductType } from '../types/types'
-import { sendQuery } from '../backendFunctions'
+// import { sendQuery } from '../backendFunctions'
+import axios from 'axios'
 
 import { searchResults } from '../TestData' 
 import { setServers } from 'dns'
@@ -25,15 +26,32 @@ const Search = ({ category, addItem }:SearchProps) => {
 
   const curPath = history.location.pathname
 
-
-  const getSearchResults = (e:React.FormEvent):void => {
-    e.preventDefault()
-    if (searchInputEl.current!.value.length) {
-      setLoading(true)
-      // console.log('input ref', searchInputEl.current!.value)
-      sendQuery(searchInputEl.current?.value, category)
+  const sendQuery = (query: string | undefined, category: IProductType):void => {
+    setLoading(true)
+    console.log("env", process.env.REACT_APP_API_URL)
+    axios.post(`${process.env.REACT_APP_API_URL}/search`, {category: category, query: query})
+    .then(response => {
+      console.log('got response for query from backends: \n', response)
+      console.log('response data: \n', response.data)
+      return response
+    })
+    .then( () => {
       setResultData(true)
       setLoading(false)
+    })
+    .catch(error => {
+      setLoading(false)
+      console.log('there was an error returning query results from backend: \n', error)
+    })
+  }
+
+
+  const handleSearchRequest = (e:React.FormEvent):void => {
+    e.preventDefault()
+    if (searchInputEl.current!.value.length) {
+      // console.log('input ref', searchInputEl.current!.value)
+      sendQuery(searchInputEl.current?.value, category)
+
       // console.log('url to push: ', curPath.replace(/\/(.+?)\/.+/, `/$1/${searchInputEl.current!.value}`))
       history.push(curPath.replace(/(\/[^\/]+)\/?.*/, `$1/${searchInputEl.current!.value}`))
     }
@@ -41,14 +59,14 @@ const Search = ({ category, addItem }:SearchProps) => {
 
   return (
     <div className="Search">
-      <form onSubmit={(e) => getSearchResults(e)}>
+      <form onSubmit={(e) => handleSearchRequest(e)}>
         <input 
           className="Search__search-input" 
           type="text" 
           placeholder={`Search for ${category}`} 
           ref={searchInputEl}
         />
-        <button onSubmit={(e) => getSearchResults(e)}>search</button>
+        <button onSubmit={(e) => handleSearchRequest(e)}>search</button>
       </form>
       {loading ? <div>searching...</div> : null}
       {resultData ? <Results results={searchResults} addItem={addItem}/> : null}
