@@ -37,7 +37,6 @@ const Results = ({results, addItem} : ResultsProps) => {
   useEffect(() => {
     handlePaneHeight()
     window.addEventListener('scroll', (event) => {
-      console.log(event)
       handlePaneHeight()
     })
   }, [])
