@@ -17,6 +17,7 @@ interface SearchProps {
 
 const Search = ({ category, addItem }:SearchProps) => {
   const [resultData, setResultData] = useState(false)
+  const [loading, setLoading] = useState(false)
   const searchInputEl = useRef<HTMLInputElement>(null)
 
   let history = useHistory()
@@ -28,9 +29,11 @@ const Search = ({ category, addItem }:SearchProps) => {
   const getSearchResults = (e:React.FormEvent):void => {
     e.preventDefault()
     if (searchInputEl.current!.value.length) {
+      setLoading(true)
       // console.log('input ref', searchInputEl.current!.value)
       sendQuery(searchInputEl.current?.value, category)
       setResultData(true)
+      setLoading(false)
       // console.log('url to push: ', curPath.replace(/\/(.+?)\/.+/, `/$1/${searchInputEl.current!.value}`))
       history.push(curPath.replace(/(\/[^\/]+)\/?.*/, `$1/${searchInputEl.current!.value}`))
     }
@@ -47,6 +50,7 @@ const Search = ({ category, addItem }:SearchProps) => {
         />
         <button onSubmit={(e) => getSearchResults(e)}>search</button>
       </form>
+      {loading ? <div>searching...</div> : null}
       {resultData ? <Results results={searchResults} addItem={addItem}/> : null}
     </div>
   )
