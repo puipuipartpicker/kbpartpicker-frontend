@@ -6,19 +6,19 @@ import { IProductType } from '../types/types'
 // import { sendQuery } from '../backendFunctions'
 import axios from 'axios'
 
-import { searchResults } from '../TestData' 
+// import { searchResults } from '../TestData' 
 import { setServers } from 'dns'
 
 interface SearchProps {
   category: IProductType
   addItem: (selectedProduct: number) => void
 }
-// console.log('searchResults', searchResults)
-
 
 const Search = ({ category, addItem }:SearchProps) => {
-  const [resultData, setResultData] = useState(false)
+  const [resultDisplay, setResultDisplay] = useState(false)
   const [loading, setLoading] = useState(false)
+  const [searchResults, setSearchResults] = useState([])
+  const [noResults, setNoResults] = useState(false)
   const searchInputEl = useRef<HTMLInputElement>(null)
 
   let history = useHistory()
@@ -29,14 +29,22 @@ const Search = ({ category, addItem }:SearchProps) => {
   const sendQuery = (query: string | undefined, category: IProductType):void => {
     setLoading(true)
     console.log("env", process.env.REACT_APP_API_URL)
-    axios.post(`${process.env.REACT_APP_API_URL}/search`, {category: category, query: query})
+    axios.get(`${process.env.REACT_APP_API_URL}/search`, {params: {category: category, query: query}})
     .then(response => {
       console.log('got response for query from backends: \n', response)
       console.log('response data: \n', response.data)
+      console.log(response.data.data)
+      if (response.data.data.length === 0) { 
+        setResultDisplay(false)
+        setNoResults(true)
+        setSearchResults([])
+      } else {
+        setSearchResults(response.data.data) 
+      }
       return response
     })
     .then( () => {
-      setResultData(true)
+      setResultDisplay(true)
       setLoading(false)
     })
     .catch(error => {
@@ -49,6 +57,7 @@ const Search = ({ category, addItem }:SearchProps) => {
   const handleSearchRequest = (e:React.FormEvent):void => {
     e.preventDefault()
     if (searchInputEl.current!.value.length) {
+      setNoResults(false)
       // console.log('input ref', searchInputEl.current!.value)
       sendQuery(searchInputEl.current?.value, category)
 
@@ -69,7 +78,8 @@ const Search = ({ category, addItem }:SearchProps) => {
         <button onSubmit={(e) => handleSearchRequest(e)}>search</button>
       </form>
       {loading ? <div>searching...</div> : null}
-      {resultData ? <Results results={searchResults} addItem={addItem}/> : null}
+      {noResults ? <div>we found no results</div> : null}
+      {resultDisplay ? <Results results={searchResults} addItem={addItem}/> : null}
     </div>
   )
 }
