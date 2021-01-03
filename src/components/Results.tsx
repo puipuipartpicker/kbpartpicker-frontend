@@ -4,7 +4,7 @@ import Product from './Product'
 import ProductListItem from './ProductListItem'
 
 interface searchItem {
-  id: number
+  id: string
   img_url: string
   in_stock: boolean
   name: string
@@ -14,12 +14,12 @@ interface searchItem {
 
 interface ResultsProps {
   results: searchItem[]
-  addItem: (selectedProduct: number) => void
+  addItem: (selectedProduct: string) => void
 }
 
 const Results = ({results, addItem} : ResultsProps) => {
   const [productDisplay, setProductDisplay] = useState(false)
-  const [selectedProduct, setSelectedProduct] = useState(0)
+  const [selectedProduct, setSelectedProduct] = useState('')
   const [productPaneHeight, setProductPaneHeight] = useState('')
 
   const handlePaneHeight = () => {
@@ -42,7 +42,7 @@ const Results = ({results, addItem} : ResultsProps) => {
   }, [])
 
 
-  const handleProductDisplay = (id: number): void => {
+  const handleProductDisplay = (id: string): void => {
     setProductDisplay(true)
     setSelectedProduct(id)
   }

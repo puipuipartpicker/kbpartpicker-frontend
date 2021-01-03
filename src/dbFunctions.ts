@@ -1,6 +1,6 @@
 import { IProductData } from './types/types'
 import { ProductTestData } from './TestData'
 
-export const getProductData = (id: number): IProductData => {
-  return ProductTestData[id]
-}
+// export const getProductData = (id: string): IProductData => {
+//   return ProductTestData[id]
+// }
