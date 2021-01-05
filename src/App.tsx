@@ -323,7 +323,7 @@ function App() {
           </div>
           <div className="App-categories__button-switch">
             {switches ? switches.map((item, i) => <li className="App-categories__button-switch-selected" key={`switch-${i}`}>{item.name} <span onClick={() => removeSelectedItem(item)}>remove x</span></li>) : null}
-            <button className="App-categories-button" onClick={() => setTheme('theme2')}><Link to={Paths.switches}>switches</Link></button>
+            <button className="App-categories-button" onClick={() => setTheme('theme2')}><Link to={Paths.switch}>switches</Link></button>
           </div>
           <div className="App-categories__button-keycaps">
             {keycaps ? keycaps.map((item, i) => <li className="App-categories__button-keycaps-selected" key={`keycap-${i}`}>{item.name} <span onClick={() => removeSelectedItem(item)}>remove x</span></li>) : null}
@@ -351,7 +351,7 @@ function App() {
         setTheme('theme4')
         return <Search category='stabilizers' addItem={addSelectedItem}/>
       }}/>
-      <Route path={Paths.switches} render={ (props) => {
+      <Route path={Paths.switch} render={ (props) => {
         setTheme('theme5')
         return <Search category='switch' addItem={addSelectedItem}/>
       }}/>

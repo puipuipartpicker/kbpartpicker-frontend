@@ -1,6 +1,6 @@
 enum Paths {
   main = '/' ,
-  switches = '/switches',
+  switch = '/switch',
   cases = '/cases',
   pcb = '/pcb',
   plates = '/plates',

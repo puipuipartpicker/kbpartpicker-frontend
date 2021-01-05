@@ -1,4 +1,4 @@
-import React, {useState, useRef} from 'react'
+import React, {useState, useRef, useEffect} from 'react'
 import { useHistory } from 'react-router-dom'
 import './Search.css'
 import Results from './Results'
@@ -20,10 +20,7 @@ const Search = ({ category, addItem }:SearchProps) => {
   const [searchResults, setSearchResults] = useState([])
   const [noResults, setNoResults] = useState(false)
   const searchInputEl = useRef<HTMLInputElement>(null)
-
   let history = useHistory()
-    // console.log('history: ', history)
-
   const curPath = history.location.pathname
 
   const sendQuery = (query: string | undefined, category: IProductType):void => {
@@ -43,7 +40,7 @@ const Search = ({ category, addItem }:SearchProps) => {
       }
       return response
     })
-    .then( () => {
+    .then(() => {
       setResultDisplay(true)
       setLoading(false)
     })
@@ -52,7 +49,6 @@ const Search = ({ category, addItem }:SearchProps) => {
       console.log('there was an error returning query results from backend: \n', error)
     })
   }
-
 
   const handleSearchRequest = (e:React.FormEvent):void => {
     e.preventDefault()
@@ -65,6 +61,20 @@ const Search = ({ category, addItem }:SearchProps) => {
       history.push(curPath.replace(/(\/[^\/]+)\/?.*/, `$1/${searchInputEl.current!.value}`))
     }
   } 
+
+  useEffect(() => {
+    console.log('HISTORY', curPath)
+    const pathRegex = new RegExp(`\/${category}\/(.+)`, 'i')
+    console.log('PATH REGEX', pathRegex)
+    console.log(pathRegex.test(curPath))
+    if(pathRegex.test(curPath)) {
+      const queryValue = curPath.match(pathRegex)
+      console.log('QUERY VALUE', queryValue)
+      if(queryValue![1]) {
+        sendQuery(queryValue![1], category)
+      }
+    }
+  }, [])
 
   return (
     <div className="Search">
