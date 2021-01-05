@@ -8,7 +8,8 @@ import Warning from './components/Warning'
 import { Themes, ThemeVariableValues } from './types/types'
 import { IProductData, IProductType, IProductSize, IProductLayout, IStabMount } from './types/types'
 import updateThemeVariables from './updateThemeVariables'
-import { getProductData } from './dbFunctions'
+// import { getProductData } from './dbFunctions'
+import axios from 'axios' 
 import { profile } from 'console';
 import { link } from 'fs';
 import { privateDecrypt } from 'crypto';
@@ -38,7 +39,7 @@ function App() {
 
   const urlPath:string = useHistory().location.pathname.replace(/^\//, '')
   // TODO: make sure to aquire all product keys in an array from the db
-  const productKeys = ['123', '666', '456']
+  const productKeys = ['123', '666', '456', '90']
 
   const handleWarningDisplay = () => {
     if (stabMountWarning || stabSizeWarning || solderWarning || layoutWarning) {
@@ -145,9 +146,14 @@ function App() {
     return alreadyAdded
   }
 
-  const addSelectedItem = (selectedProductID: number) => {
+  const addSelectedItem = (selectedProductID: string) => {
     // console.log('add item fired with product id: ', selectedProductID)
     // console.log(getProductData(selectedProductID))
+    const getProductData = (id:string): any => {
+      axios.get(`${process.env.REACT_APP_API_URL}/get`, {params: {id:id}})
+      .then(response => console.log(response))
+      .catch(error => console.log(error))
+    }
     const product = getProductData(selectedProductID)
     if (product.type === 'case') {
       if (!checkAdded(product)) {
@@ -353,7 +359,7 @@ function App() {
         setTheme('theme6') 
         return <Search category='keycaps' addItem={addSelectedItem}/>
       }}/>
-      {productKeys.includes(urlPath) ? <Route path={Paths.product} render={ (props) => <Product id={+urlPath}/>} /> : null}
+      {productKeys.includes(urlPath) ? <Route path={Paths.product} render={ (props) => <Product id={urlPath}/>} /> : null}
 
 
     </div>

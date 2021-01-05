@@ -11,7 +11,7 @@ import { setServers } from 'dns'
 
 interface SearchProps {
   category: IProductType
-  addItem: (selectedProduct: number) => void
+  addItem: (selectedProduct: string) => void
 }
 
 const Search = ({ category, addItem }:SearchProps) => {
@@ -33,13 +33,13 @@ const Search = ({ category, addItem }:SearchProps) => {
     .then(response => {
       console.log('got response for query from backends: \n', response)
       console.log('response data: \n', response.data)
-      console.log(response.data.data)
-      if (response.data.data.length === 0) { 
+      console.log(response.data)
+      if (response.data.length === 0) { 
         setResultDisplay(false)
         setNoResults(true)
         setSearchResults([])
       } else {
-        setSearchResults(response.data.data) 
+        setSearchResults(response.data) 
       }
       return response
     })
