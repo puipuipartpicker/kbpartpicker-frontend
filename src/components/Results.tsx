@@ -43,6 +43,7 @@ const Results = ({results, addItem} : ResultsProps) => {
 
 
   const handleProductDisplay = (id: string): void => {
+    console.log('ran handleProductDisplay')
     setProductDisplay(true)
     setSelectedProduct(id)
   }

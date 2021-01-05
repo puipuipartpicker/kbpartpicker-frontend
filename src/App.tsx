@@ -39,7 +39,7 @@ function App() {
 
   const urlPath:string = useHistory().location.pathname.replace(/^\//, '')
   // TODO: make sure to aquire all product keys in an array from the db
-  const productKeys = ['123', '666', '456']
+  const productKeys = ['123', '666', '456', '90']
 
   const handleWarningDisplay = () => {
     if (stabMountWarning || stabSizeWarning || solderWarning || layoutWarning) {
@@ -359,7 +359,7 @@ function App() {
         setTheme('theme6') 
         return <Search category='keycaps' addItem={addSelectedItem}/>
       }}/>
-      {/* {productKeys.includes(urlPath) ? <Route path={Paths.product} render={ (props) => <Product id={+urlPath}/>} /> : null} */}
+      {productKeys.includes(urlPath) ? <Route path={Paths.product} render={ (props) => <Product id={urlPath}/>} /> : null}
 
 
     </div>

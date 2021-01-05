@@ -285,6 +285,7 @@ export const searchResults = [{
 
 export const ProductTestData: IProductDatabase = {
   123: {
+    id: '123',
     name: 'test name',
     type: 'case',
     layout: 'sixtyfive_percent',
@@ -332,6 +333,7 @@ export const ProductTestData: IProductDatabase = {
     }]
   } ,   
   666: {
+    id: '666',
     name: 'test name2',
     type: 'pcb',
     layout: 'sixty_percent',
@@ -356,6 +358,7 @@ export const ProductTestData: IProductDatabase = {
     }]
   } ,
   485: {
+    id: '485',
     name: 'GATERON PRE-LUBED PLATE MOUNTED STABILIZERS',
     type: 'stabilizers',
     size: '7u',
@@ -380,6 +383,7 @@ export const ProductTestData: IProductDatabase = {
     }]
   }, 
   777: {
+    id: '777',
     name: 'KBD75V1 V2 BRASS PLATE',
     type: 'plate',
     layout: 'seventyfive_percent',
@@ -403,6 +407,7 @@ export const ProductTestData: IProductDatabase = {
     }]
   },
   999: {
+    id: '999',
     name: 'The Dry Series',
     type: 'switch',
     imgURL: 'https://cdn.shopify.com/s/files/1/3099/8088/products/TheDrySeries-FamilyPhoto_1024x1024@2x.jpg?v=1595264827',
@@ -417,6 +422,7 @@ export const ProductTestData: IProductDatabase = {
     }]
   },
   333: {
+    id: '333',
     name: 'Cherry PBT Vaporwave',
     type: 'keycaps',
     imgURL: 'https://cdn.shopify.com/s/files/1/3099/8088/products/PBTVaporwave_1024x1024@2x.png?v=1594660758',

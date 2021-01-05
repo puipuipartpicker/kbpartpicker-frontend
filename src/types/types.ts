@@ -28,6 +28,7 @@ export type IProductLayout = 'forty_percent' | 'sixty_percent' | 'sixtyfive_perc
 export type IStabMount = 'pcb' | 'plate' | undefined
 
 export interface IProductData {
+  id: string
   name: string 
   type: IProductType
   size?: IProductSize
@@ -44,6 +45,14 @@ export interface IProductData {
     inStock: boolean
     price: string
   }[]
+}
+
+export interface IVendor {
+  in_stock: boolean
+  name: string
+  price: number
+  product_url: string
+  vendor_url: string
 }
 
 export interface IProductDatabase {
