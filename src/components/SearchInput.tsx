@@ -32,7 +32,13 @@ const SearchInput = () => {
   return (
     <div className="SearchInput">
       <div className="SearchInput__inner">
-      <div className="testing" contentEditable="true">{inputText}</div>
+        {/** TODO: 
+         * consider using contentEditable instead of text input
+        */}
+        <div className="testing" contentEditable="true">
+          {inputText}
+          <span>Test</span>
+        </div>
         <div className="SearchInput__input-letters --text">
           {inputText.replace(/.$/, '')}
           <span className="SearchInput__input-letters_last-letter">
