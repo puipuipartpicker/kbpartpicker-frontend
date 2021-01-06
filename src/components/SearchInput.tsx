@@ -4,6 +4,7 @@ import './SearchInput.css'
 const SearchInput = () => {
   const [inputText, setInputText] = useState('')
   const [lastLetter, setLastLetter] = useState('')
+  const [letterWidth, setLetterWidth] = useState(0)
   const searchInputEl = useRef<HTMLInputElement>(null)
 
   useEffect(() => {
@@ -13,6 +14,16 @@ const SearchInput = () => {
       setLastLetter('')
     }
   }, [inputText])
+
+  useEffect(() => {
+    if (document.querySelector('.SearchInput__input-letters_last-letter')) {
+      const lastLetterEl = document.querySelector('.SearchInput__input-letters_last-letter') 
+      //@ts-ignore
+      setLetterWidth(lastLetterEl.offsetWidth)
+    }
+    console.log(lastLetter)
+    console.log(letterWidth)
+  }, [lastLetter])
 
   return (
     <div className="SearchInput">
