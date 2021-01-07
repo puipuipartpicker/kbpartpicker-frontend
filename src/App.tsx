@@ -103,7 +103,7 @@ function App() {
         }
       })
     }
-    if (product.type === 'keycaps') {
+    if (product.type === 'keyset') {
       keycaps.forEach(item => {
         if (item.name === product.name) {
           alreadyAdded = true
@@ -127,7 +127,7 @@ function App() {
         }
       })
     }
-    if (product.type === 'stabilizers') {
+    if (product.type === 'stabilizer') {
       stabilizers.forEach(item => {
         if (item.name === product.name) {
           alreadyAdded = true
@@ -245,7 +245,7 @@ function App() {
     }
     console.log('CASE LAYOUT', caseLayout)
     console.log('pcb LAYOUT', pcbLayout)
-    if(product.type === 'stabilizers') {
+    if(product.type === 'stabilizer') {
       setStabilizer(stabilizers.filter(item => item.name !== product.name))
       if (stabSize.includes(product.size)) {
         const indexToRemove = stabSize.indexOf(product.size)
@@ -260,7 +260,7 @@ function App() {
     if(product.type === 'switch') {
       setSwitches(switches.filter(cur => cur.name !== product.name))
     }
-    if (product.type === 'keycaps') {
+    if (product.type === 'keyset') {
       const indexToRemove = keycaps.findIndex(cur => cur.name === product.name)
       setKeycaps(keycaps.filter(cur => cur.name !== product.name))
     }
@@ -349,7 +349,7 @@ function App() {
       }}/>
       <Route path={Paths.stabilizers} render={ (props) => {
         setTheme('theme4')
-        return <Search category='stabilizers' addItem={addSelectedItem}/>
+        return <Search category='stabilizer' addItem={addSelectedItem}/>
       }}/>
       <Route path={Paths.switch} render={ (props) => {
         setTheme('theme5')
@@ -357,7 +357,7 @@ function App() {
       }}/>
       <Route path={Paths.keycaps} render={ (props) => {
         setTheme('theme6') 
-        return <Search category='keycaps' addItem={addSelectedItem}/>
+        return <Search category='keyset' addItem={addSelectedItem}/>
       }}/>
       {productKeys.includes(urlPath) ? <Route path={Paths.product} render={ (props) => <Product id={urlPath}/>} /> : null}
 

@@ -13,8 +13,6 @@ const SearchInput = () => {
     } else {
       setLastLetter('')
     }
-    console.log(lastLetter)
-    console.log(letterWidth)
   }, [inputText])
 
   useEffect(() => {
@@ -34,13 +32,12 @@ const SearchInput = () => {
       <div className="SearchInput__inner">
         {/** TODO: 
          * consider using contentEditable instead of text input
-        */}
-        <div className="testing" contentEditable="true">
+          <div className="testing" contentEditable="true">
           {inputText}
           <span>Test</span>
-        </div>
+        </div> */}
         <div className="SearchInput__input-letters --text">
-          {inputText.replace(/.$/, '')}
+          {inputText ? inputText.replace(/.$/, '') : 'search here:'}
           <span className="SearchInput__input-letters_last-letter">
             {lastLetter}
             <div 
