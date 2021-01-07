@@ -1,0 +1,37 @@
+.SearchInput {
+  position: relative;
+}
+
+.SearchInput__inputEl {
+  opacity: 0;
+  width: 100%;
+}
+
+.SearchInput__carot {
+  position: absolute;
+  left: 1rem;
+  bottom: 0.4rem;
+  background-color: red;
+  width: 1.2rem;
+  height: 0.2rem;
+}
+
+.SearchInput__carot.--inactive {
+  visibility: hidden;
+}
+
+.SearchInput__input-letters {
+  position: absolute;
+  margin: 0.3rem 0 0 0.4rem;
+}
+
+.SearchInput__input-letters_last-letter {
+  position: relative;
+}
+
+.--text {
+  font: 700 1.6rem Roboto;
+  /* letter-spacing: 0.15rem;
+  font-kerning: normal; */
+}
+

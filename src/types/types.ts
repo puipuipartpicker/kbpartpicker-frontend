@@ -22,7 +22,7 @@ export interface ThemeVariableValues {
 }
 
 
-export type IProductType = 'case' | 'pcb' | 'plate' | 'switch' | 'stabilizers' | 'keycaps'
+export type IProductType = 'case' | 'pcb' | 'plate' | 'switch' | 'stabilizer' | 'keyset'
 export type IProductSize = '7u' | '6.5u' | '2u' | undefined
 export type IProductLayout = 'forty_percent' | 'sixty_percent' | 'sixtyfive_percent' | 'seventyfive_percent' | 'tenkeyless' | undefined
 export type IStabMount = 'pcb' | 'plate' | undefined

@@ -360,7 +360,7 @@ export const ProductTestData: IProductDatabase = {
   485: {
     id: '485',
     name: 'GATERON PRE-LUBED PLATE MOUNTED STABILIZERS',
-    type: 'stabilizers',
+    type: 'stabilizer',
     size: '7u',
     mount: 'plate',
     imgURL: 'https://cdn.shopify.com/s/files/1/1473/3902/products/6_cb879946-a1a8-4a99-80f5-58b156e4c976_1800x1800.jpg',
@@ -424,7 +424,7 @@ export const ProductTestData: IProductDatabase = {
   333: {
     id: '333',
     name: 'Cherry PBT Vaporwave',
-    type: 'keycaps',
+    type: 'keyset',
     imgURL: 'https://cdn.shopify.com/s/files/1/3099/8088/products/PBTVaporwave_1024x1024@2x.png?v=1594660758',
     vendors: [{
       id: 12345,
