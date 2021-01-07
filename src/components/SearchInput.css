@@ -30,7 +30,7 @@
 }
 
 .--text {
-  font: 700 1.6rem Roboto;
+  font: 700 2.4rem 'IBM Plex Mono', monospace;
   /* letter-spacing: 0.15rem;
   font-kerning: normal; */
 }
