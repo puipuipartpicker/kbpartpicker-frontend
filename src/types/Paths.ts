@@ -1,11 +1,11 @@
 enum Paths {
   main = '/' ,
   switch = '/switch',
-  cases = '/cases',
+  cases = '/case',
   pcb = '/pcb',
-  plates = '/plates',
-  stabilizers = '/stabilizers',
-  keycaps = '/keycaps',
+  plates = '/plate',
+  stabilizers = '/stabilizer',
+  keycaps = '/keyset',
   product = '/:productid'
 }
 
