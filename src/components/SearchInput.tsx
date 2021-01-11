@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react'
+import React, { useEffect, useState, useRef, KeyboardEvent } from 'react'
 import './SearchInput.css'
 
 const SearchInput = () => {
@@ -18,8 +18,7 @@ const SearchInput = () => {
   }, [inputText])
 
   const handleInputChange = () => {
-    console.log(searchInputEl)
-    console.log(searchInputEl.current?.selectionStart)
+    console.log('selection start:', searchInputEl.current?.selectionStart)
     if(searchInputEl.current?.value.length) {
       setInputLength(searchInputEl.current?.value.length)
     }
@@ -36,21 +35,21 @@ const SearchInput = () => {
       if([...document.activeElement.classList].includes('SearchInput__inputEl')) {
         console.log(event)
         console.log('carot offset:', carotOffset)
-        if(event.code === 'ArrowLeft' && !event.metaKey) {
+        if(event.key === 'ArrowLeft' && !event.metaKey) {
           if(searchInputEl.current?.value.length && (searchInputEl.current.value.length - 1) >= 0) {
             setCarotOffset(curOffset => curOffset - 1)
           }
         }
-        if(event.code === 'ArrowLeft' && event.metaKey) {
+        if(event.key === 'ArrowLeft' && event.metaKey) {
           setCarotOffset(0)
         }
-        if(event.code === 'ArrowRight' && !event.metaKey) {
+        if(event.key === 'ArrowRight' && !event.metaKey) {
           if(searchInputEl.current?.value.length) {
             if(carotOffset + 1 <= searchInputEl.current?.value.length)
             setCarotOffset(curOffset => curOffset + 1)
           }
         }
-        if(event.code === 'ArrowRight' && event.metaKey) {
+        if(event.key === 'ArrowRight' && event.metaKey) {
           console.log(searchInputEl.current?.selectionEnd)
           if(searchInputEl.current?.selectionEnd) {
             console.log('search input length:', searchInputEl.current.value.length)
@@ -63,7 +62,7 @@ const SearchInput = () => {
   }
 
   useEffect(() => {
-    document.addEventListener('keydown', (event) => handleKeypress(event))
+    // document.addEventListener('keydown', (event) => handleKeypress(event))
   },[])
 
   return (
@@ -75,6 +74,7 @@ const SearchInput = () => {
         placeholder="placeholder or search input component"
         onChange={() => handleInputChange()}
         onClick={() => handleInputChange()}
+        onKeyDown={(event) => handleKeypress(event)}
         ref={searchInputEl}
         />
         <div 
