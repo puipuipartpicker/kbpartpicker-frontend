@@ -25,9 +25,9 @@ const SearchInput = () => {
     if (searchInputEl.current?.selectionStart) {
       setCarotOffset(searchInputEl.current?.selectionStart)
     }
-    // if (searchInputEl.current?.selectionStart === 0) {
-    //   setCarotOffset(0)
-    // }
+    if (searchInputEl.current?.selectionStart === 0) {
+      setCarotOffset(0)
+    }
   }
 
   const handleKeypress = (event:KeyboardEvent) => {
@@ -36,8 +36,8 @@ const SearchInput = () => {
         console.log(event)
         console.log('carot offset:', carotOffset)
         if(event.key === 'ArrowLeft' && !event.metaKey) {
-          if(searchInputEl.current?.value.length && (searchInputEl.current.value.length - 1) >= 0) {
-            setCarotOffset(curOffset => curOffset - 1)
+          if(searchInputEl.current?.value.length) {
+            setCarotOffset(curOffset => curOffset - 1 >= 0 ? curOffset - 1 : 0)
           }
         }
         if(event.key === 'ArrowLeft' && event.metaKey) {
@@ -51,7 +51,7 @@ const SearchInput = () => {
         }
         if(event.key === 'ArrowRight' && event.metaKey) {
           console.log(searchInputEl.current?.selectionEnd)
-          if(searchInputEl.current?.selectionEnd) {
+          if(searchInputEl.current?.value) {
             console.log('search input length:', searchInputEl.current.value.length)
             console.log('state input length', inputLength)
             setCarotOffset(searchInputEl.current.value.length)
