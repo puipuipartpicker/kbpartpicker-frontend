@@ -3,8 +3,9 @@
 }
 
 .SearchInput__inputEl {
-  opacity: 100%;
   width: 100%;
+  border: none;
+  caret-color: transparent;
 }
 
 .SearchInput__carot {

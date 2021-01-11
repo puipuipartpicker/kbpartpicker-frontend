@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef, KeyboardEvent } from 'react'
+import React, { useState, useRef, KeyboardEvent } from 'react'
 import './SearchInput.css'
 
 const SearchInput = () => {
@@ -7,15 +7,6 @@ const SearchInput = () => {
   const [carotOffset, setCarotOffset] = useState(0)
   const [inputLength, setInputLength] = useState(0)
   const searchInputEl = useRef<HTMLInputElement>(null)
-
-
-  useEffect(() => {
-    if (inputText.length > 0) {
-      setLastLetter(inputText[inputText.length - 1])
-    } else {
-      setLastLetter('')
-    }
-  }, [inputText])
 
   const handleInputChange = () => {
     console.log('selection start:', searchInputEl.current?.selectionStart)
@@ -31,39 +22,39 @@ const SearchInput = () => {
   }
 
   const handleKeypress = (event:KeyboardEvent) => {
-    if (document.activeElement) {
-      if([...document.activeElement.classList].includes('SearchInput__inputEl')) {
-        console.log(event)
-        console.log('carot offset:', carotOffset)
-        if(event.key === 'ArrowLeft' && !event.metaKey) {
-          if(searchInputEl.current?.value.length) {
-            setCarotOffset(curOffset => curOffset - 1 >= 0 ? curOffset - 1 : 0)
-          }
-        }
-        if(event.key === 'ArrowLeft' && event.metaKey) {
-          setCarotOffset(0)
-        }
-        if(event.key === 'ArrowRight' && !event.metaKey) {
-          if(searchInputEl.current?.value.length) {
-            if(carotOffset + 1 <= searchInputEl.current?.value.length)
-            setCarotOffset(curOffset => curOffset + 1)
-          }
-        }
-        if(event.key === 'ArrowRight' && event.metaKey) {
-          console.log(searchInputEl.current?.selectionEnd)
-          if(searchInputEl.current?.value) {
-            console.log('search input length:', searchInputEl.current.value.length)
-            console.log('state input length', inputLength)
-            setCarotOffset(searchInputEl.current.value.length)
-          }
-        }
+    console.log('carot offset:', carotOffset)
+    console.log(event)
+    if(event.key === 'ArrowLeft' && !event.metaKey) {
+      if(searchInputEl.current?.value.length) {
+        setCarotOffset(curOffset => curOffset - 1 >= 0 ? curOffset - 1 : 0)
       }
     }
+    if(event.key === 'ArrowLeft' && event.metaKey) {
+      setCarotOffset(0)
+    }
+    if(event.key === 'ArrowRight' && !event.metaKey) {
+      if(searchInputEl.current?.value.length) {
+        if(carotOffset + 1 <= searchInputEl.current?.value.length)
+        setCarotOffset(curOffset => curOffset + 1)
+      }
+    }
+    if(event.key === 'ArrowRight' && event.metaKey) {
+      console.log(searchInputEl.current?.selectionEnd)
+      if(searchInputEl.current?.value) {
+        console.log('search input length:', searchInputEl.current.value.length)
+        console.log('state input length', inputLength)
+        setCarotOffset(searchInputEl.current.value.length)
+      }
+    }
+    // TODO: add support for emacs 
+    // https://www.johndcook.com/blog/emacs_move_cursor/
+    // if((event.key === 'a' || event.key === 'b' || event.key === 'e' || event.key === 'f') && event.ctrlKey) {
+    //   if(searchInputEl.current?.selectionStart) {
+    //     console.log(searchInputEl.current?.selectionStart)
+    //     setCarotOffset(searchInputEl.current?.selectionStart)
+    //   }
+    // }
   }
-
-  useEffect(() => {
-    // document.addEventListener('keydown', (event) => handleKeypress(event))
-  },[])
 
   return (
     <div className="SearchInput">
@@ -71,7 +62,7 @@ const SearchInput = () => {
         <input 
         className="SearchInput__inputEl --text" 
         type="text" 
-        placeholder="placeholder or search input component"
+        placeholder="search here..."
         onChange={() => handleInputChange()}
         onClick={() => handleInputChange()}
         onKeyDown={(event) => handleKeypress(event)}
