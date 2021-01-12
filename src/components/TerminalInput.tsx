@@ -1,7 +1,13 @@
 import React, { useState, useRef, KeyboardEvent } from 'react'
 import './TerminalInput.css'
 
-const SearchInput = () => {
+interface TerminalInputProps {
+  passValue?: (curInputValue: string) => void
+  placeholder?: string
+  type: string
+}
+
+const TerminalInput = ({ passValue, placeholder, type }:TerminalInputProps) => {
   const [carotOffset, setCarotOffset] = useState(0)
   const terminalInputEl = useRef<HTMLInputElement>(null)
 
@@ -12,6 +18,11 @@ const SearchInput = () => {
     }
     if (terminalInputEl.current?.selectionStart === 0) {
       setCarotOffset(0)
+    }
+    if(passValue) {
+      if(terminalInputEl.current?.value) {
+        passValue(terminalInputEl.current?.value)
+      }
     }
   }
 
@@ -45,8 +56,8 @@ const SearchInput = () => {
     <div className="TerminalInput">
       <input 
       className="TerminalInput__inputEl" 
-      type="text" 
-      placeholder="search here..."
+      type={type}
+      placeholder={placeholder ? placeholder : "input text here..."}
       onChange={() => handleInputChange()}
       onClick={() => handleInputChange()}
       onKeyDown={(event) => handleKeypress(event)}
@@ -61,4 +72,4 @@ const SearchInput = () => {
   )
 }
 
-export default SearchInput
+export default TerminalInput

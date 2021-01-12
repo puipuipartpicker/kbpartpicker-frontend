@@ -1,4 +1,4 @@
-import React, {useState, useRef, useEffect} from 'react'
+import React, {useState, useEffect} from 'react'
 import { useHistory } from 'react-router-dom'
 import './Search.css'
 import Results from './Results'
@@ -20,7 +20,7 @@ const Search = ({ category, addItem }:SearchProps) => {
   const [loading, setLoading] = useState(false)
   const [searchResults, setSearchResults] = useState([])
   const [noResults, setNoResults] = useState(false)
-  const searchInputEl = useRef<HTMLInputElement>(null)
+  const [inputValue, setInputValue] = useState('')
   let history = useHistory()
   const curPath = history.location.pathname
 
@@ -53,13 +53,10 @@ const Search = ({ category, addItem }:SearchProps) => {
 
   const handleSearchRequest = (e:React.FormEvent):void => {
     e.preventDefault()
-    if (searchInputEl.current!.value.length) {
+    if (inputValue) {
       setNoResults(false)
-      // console.log('input ref', searchInputEl.current!.value)
-      sendQuery(searchInputEl.current?.value, category)
-
-      // console.log('url to push: ', curPath.replace(/\/(.+?)\/.+/, `/$1/${searchInputEl.current!.value}`))
-      history.push(curPath.replace(/(\/[^\/]+)\/?.*/, `$1/${searchInputEl.current!.value}`))
+      sendQuery(inputValue, category)
+      history.push(curPath.replace(/(\/[^\/]+)\/?.*/, `$1/${inputValue}`))
     }
   } 
 
@@ -79,13 +76,11 @@ const Search = ({ category, addItem }:SearchProps) => {
 
   return (
     <div className="Search">
-      <TerminalInput/>
       <form onSubmit={(e) => handleSearchRequest(e)}>
-        <input 
-          className="Search__search-input" 
-          type="text" 
-          placeholder={`Search for ${category}`} 
-          ref={searchInputEl}
+        <TerminalInput 
+          passValue={(value:string) => setInputValue(value)} 
+          placeholder={`Search for ${category}`}
+          type="text"
         />
         <button onSubmit={(e) => handleSearchRequest(e)}>search</button>
       </form>
