@@ -24,21 +24,21 @@ const SearchInput = () => {
   const handleKeypress = (event:KeyboardEvent) => {
     console.log('carot offset:', carotOffset)
     console.log(event)
-    if(event.key === 'ArrowLeft' && !event.metaKey) {
+    if((event.key === 'ArrowLeft' && !event.metaKey) || (event.key === 'b' && event.ctrlKey)) {
       if(searchInputEl.current?.value.length) {
         setCarotOffset(curOffset => curOffset - 1 >= 0 ? curOffset - 1 : 0)
       }
     }
-    if(event.key === 'ArrowLeft' && event.metaKey) {
+    if((event.key === 'ArrowLeft' && event.metaKey) || (event.key === 'a' && event.ctrlKey)) {
       setCarotOffset(0)
     }
-    if(event.key === 'ArrowRight' && !event.metaKey) {
+    if((event.key === 'ArrowRight' && !event.metaKey) || (event.key === 'f' && event.ctrlKey)) {
       if(searchInputEl.current?.value.length) {
         if(carotOffset + 1 <= searchInputEl.current?.value.length)
         setCarotOffset(curOffset => curOffset + 1)
       }
     }
-    if(event.key === 'ArrowRight' && event.metaKey) {
+    if((event.key === 'ArrowRight' && event.metaKey) || (event.key === 'e' && event.ctrlKey)) {
       console.log(searchInputEl.current?.selectionEnd)
       if(searchInputEl.current?.value) {
         console.log('search input length:', searchInputEl.current.value.length)
@@ -46,14 +46,7 @@ const SearchInput = () => {
         setCarotOffset(searchInputEl.current.value.length)
       }
     }
-    // TODO: add support for emacs 
-    // https://www.johndcook.com/blog/emacs_move_cursor/
-    // if((event.key === 'a' || event.key === 'b' || event.key === 'e' || event.key === 'f') && event.ctrlKey) {
-    //   if(searchInputEl.current?.selectionStart) {
-    //     console.log(searchInputEl.current?.selectionStart)
-    //     setCarotOffset(searchInputEl.current?.selectionStart)
-    //   }
-    // }
+    // TODO: support for skipping to next word
   }
 
   return (
@@ -70,7 +63,7 @@ const SearchInput = () => {
         />
         <div 
           className="SearchInput__carot"
-          style={{left: `${carotOffset ? (carotOffset * 14.45555) + 4 : 5}px`}}  
+          style={{left: `${carotOffset ? (carotOffset * 14.45555) + 4 : 2}px`}}  
         >
         </div>
       </div>
