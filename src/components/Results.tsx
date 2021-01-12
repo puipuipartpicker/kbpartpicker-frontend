@@ -45,21 +45,31 @@ const Results = ({results, addItem} : ResultsProps) => {
   const handleProductDisplay = (id: string): void => {
     console.log('ran handleProductDisplay')
     setProductDisplay(true)
-    setSelectedProduct(id)
+    if (id !== selectedProduct) {
+      setSelectedProduct(id)
+    }
   }
   
   return (
   <div className="Results">
     <div className="Results__items">
     {results.map((item, i) => (
-      <div className="Results__items-container" key={'result-item-' + i} onClick={() => handleProductDisplay(item.id)}>
-        <ProductListItem 
-          id={item.id}
-          name={item.name} 
-          imgURL={item.img_url}
-          stock={item.in_stock}
-          price={item.price}
-          key={`searchItem` + i} />
+      <div 
+        className="Results__items-container" 
+        key={'result-item-' + i}
+        tabIndex={0}
+        onClick={() => handleProductDisplay(item.id)}
+        onKeyDown={(event) => {
+          if ((event.key === ' ') || (event.key === 'Enter')) {
+            handleProductDisplay(item.id)
+          }}}>
+          <ProductListItem 
+            id={item.id}
+            name={item.name} 
+            imgURL={item.img_url}
+            stock={item.in_stock}
+            price={item.price}
+            key={`searchItem` + i} />
       </div>))}
     </div>
     {productDisplay && selectedProduct ? 
