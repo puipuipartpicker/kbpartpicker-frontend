@@ -2,7 +2,7 @@ import React, {useState, useRef, useEffect} from 'react'
 import { useHistory } from 'react-router-dom'
 import './Search.css'
 import Results from './Results'
-import SearchInput from './SearchInput'
+import TerminalInput from './TerminalInput'
 import { IProductType } from '../types/types'
 // import { sendQuery } from '../backendFunctions'
 import axios from 'axios'
@@ -79,7 +79,7 @@ const Search = ({ category, addItem }:SearchProps) => {
 
   return (
     <div className="Search">
-      <SearchInput/>
+      <TerminalInput/>
       <form onSubmit={(e) => handleSearchRequest(e)}>
         <input 
           className="Search__search-input" 
