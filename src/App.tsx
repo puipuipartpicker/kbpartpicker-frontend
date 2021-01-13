@@ -1,18 +1,18 @@
 import React, {useEffect, useState} from 'react';
 import './App.css';
-import { BrowserRouter as Router, Route, Link, useParams, useHistory } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Link, useHistory } from 'react-router-dom'
 import Paths from './types/Paths'
 import Search from './components/Search'
 import Product from './components/Product'
 import Warning from './components/Warning'
-import { Themes, ThemeVariableValues } from './types/types'
-import { IProductData, IProductType, IProductSize, IProductLayout, IStabMount } from './types/types'
+import { ThemeVariableValues } from './types/types'
+import { IProductData, IProductSize, IProductLayout, IStabMount } from './types/types'
 import updateThemeVariables from './updateThemeVariables'
 // import { getProductData } from './dbFunctions'
 import axios from 'axios' 
-import { profile } from 'console';
-import { link } from 'fs';
-import { privateDecrypt } from 'crypto';
+// import { profile } from 'console';
+// import { link } from 'fs';
+// import { privateDecrypt } from 'crypto';
 
 function App() {
   const [theme, setTheme] = useState<keyof ThemeVariableValues>('theme1')
@@ -261,7 +261,6 @@ function App() {
       setSwitches(switches.filter(cur => cur.name !== product.name))
     }
     if (product.type === 'keyset') {
-      const indexToRemove = keycaps.findIndex(cur => cur.name === product.name)
       setKeycaps(keycaps.filter(cur => cur.name !== product.name))
     }
     checkCompatibility()
@@ -307,27 +306,27 @@ function App() {
         <div className="App-categories">
           <div className="App-categories__button-cases">
             {cases ? cases.map((item, i) => <li className="App-categories__button-cases-selected" key={`case-${i}`}>{item.name} <span onClick={() => removeSelectedItem(item)}>remove x</span></li>) : null}
-            <button className="App-categories-button" onClick={() => setTheme('theme1')}><Link to={Paths.cases}>cases</Link></button>
+            <Link to={Paths.cases}>cases</Link>
           </div>
           <div className="App-categories__button-pcb">
             {pcbs ? pcbs.map((pcb, i) => <li className="App-categories__button-pcb-selected" key={`pcb-${i}`}>{pcb.name} <span onClick={() => removeSelectedItem(pcb)}>remove x</span></li>) : null}
-            <button className="App-categories-button" onClick={() => setTheme('theme2')}><Link to={Paths.pcb}>PCB</Link></button>
+            <Link to={Paths.pcb}>PCB</Link>
           </div>
           <div className="App-categories__button-plate">
             {plates ? plates.map((plate, i) => <li className="App-categories__button-plate-selected" key={`plate-${i}`}>{plate.name} <span onClick={() => removeSelectedItem(plate)}>remove x</span></li>) : null}
-            <button className="App-categories-button" onClick={() => setTheme('theme2')}><Link to={Paths.plates}>plates</Link></button>
+            <Link to={Paths.plates}>plates</Link>
           </div>
           <div className="App-categories__button-stabilizer">
             {stabilizers ? stabilizers.map((stabilizer, i) => <li className="App-categories__button-stabilizer-selected" key={`stab-${i}`}>{stabilizer.name} <span onClick={() => removeSelectedItem(stabilizer)}>remove x</span></li>) : null}
-            <button className="App-categories-button" onClick={() => setTheme('theme2')}><Link to={Paths.stabilizers}>stabilizers</Link></button>
+            <Link to={Paths.stabilizers}>stabilizers</Link>
           </div>
           <div className="App-categories__button-switch">
             {switches ? switches.map((item, i) => <li className="App-categories__button-switch-selected" key={`switch-${i}`}>{item.name} <span onClick={() => removeSelectedItem(item)}>remove x</span></li>) : null}
-            <button className="App-categories-button" onClick={() => setTheme('theme2')}><Link to={Paths.switch}>switches</Link></button>
+            <Link to={Paths.switch}>switches</Link>
           </div>
           <div className="App-categories__button-keycaps">
             {keycaps ? keycaps.map((item, i) => <li className="App-categories__button-keycaps-selected" key={`keycap-${i}`}>{item.name} <span onClick={() => removeSelectedItem(item)}>remove x</span></li>) : null}
-            <button className="App-categories-button" onClick={() => setTheme('theme2')}><Link to={Paths.keycaps}>keycaps</Link></button>
+            <Link to={Paths.keycaps}>keycaps</Link>
           </div>
         </div>
       </div>

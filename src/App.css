@@ -16,6 +16,11 @@
   color: var(--primary-color);
 }
 
+[class*="App-categories__"] {
+  display: inline-block;
+  padding-right: 2rem;
+}
+
 
 
 
