@@ -81,6 +81,7 @@ const Search = ({ category, addItem }:SearchProps) => {
           passValue={(value:string) => setInputValue(value)} 
           placeholder={`Search for ${category}`}
           type="text"
+          focus={true}
         />
         <button onSubmit={(e) => handleSearchRequest(e)}>search</button>
       </form>

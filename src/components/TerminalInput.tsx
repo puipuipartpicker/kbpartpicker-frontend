@@ -1,13 +1,14 @@
-import React, { useState, useRef, KeyboardEvent } from 'react'
+import React, { useState, useEffect, useRef, KeyboardEvent } from 'react'
 import './TerminalInput.css'
 
 interface TerminalInputProps {
   passValue?: (curInputValue: string) => void
   placeholder?: string
   type: string
+  focus: boolean
 }
 
-const TerminalInput = ({ passValue, placeholder, type }:TerminalInputProps) => {
+const TerminalInput = ({ passValue, placeholder, type, focus }:TerminalInputProps) => {
   const [carotOffset, setCarotOffset] = useState(0)
   const terminalInputEl = useRef<HTMLInputElement>(null)
 
@@ -51,6 +52,12 @@ const TerminalInput = ({ passValue, placeholder, type }:TerminalInputProps) => {
     }
     // TODO: support for skipping to next word
   }
+
+  useEffect(() => {
+    if (focus) {
+      terminalInputEl.current?.focus()
+    }
+  }, [])
 
   return (
     <div className="TerminalInput">

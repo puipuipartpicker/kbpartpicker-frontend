@@ -283,8 +283,7 @@ function App() {
   return (
     <div className={`App ${theme}`}>
       <div className="App__top-container">
-        <h1 className="App__header">KBPartPicker</h1>
-        <p>select a category: </p>
+        <h1 className="App__header">KBPartPicker <span className="App__header-cta">to start your search select a category</span></h1>
         {warningNotification ? 
           <div 
             className="App__warning-notification" 
