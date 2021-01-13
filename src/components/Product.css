@@ -1,3 +1,4 @@
 .Product__img {
+  display: block;
   width: 50%;
 }

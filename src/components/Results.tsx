@@ -74,9 +74,8 @@ const Results = ({results, addItem} : ResultsProps) => {
     </div>
     {productDisplay && selectedProduct ? 
     <div className="Results__product" style={{maxHeight: productPaneHeight}}>
-      <div className="Results__product-close" onClick={() => setProductDisplay(false)}>close x</div>
-      <div className="Results__product-add-select" onClick={() => addItem(selectedProduct)}>add to selected items</div>
-      <Product id={selectedProduct}/>
+      <button className="Results__product-close" onClick={() => setProductDisplay(false)}>close</button>
+      <Product id={selectedProduct} addItem={() => addItem(selectedProduct)}/>
     </div> : null}
   </div>
 )}

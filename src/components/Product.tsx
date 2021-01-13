@@ -6,9 +6,10 @@ import { IProductType, IProductSize, IProductLayout, IProductData, IVendor } fro
 
 interface ProductProps {
   id: string
+  addItem: (selectedProduct: string) => void
 }
 
-const Product = ({ id }:ProductProps) => {
+const Product = ({ id, addItem }:ProductProps) => {
   const [responce, setReponce] = useState(false)
   const [name, setName] = useState<String>('')
   const [type, setType] = useState('')
@@ -41,6 +42,7 @@ const Product = ({ id }:ProductProps) => {
   <div className="Product">
     {responce ? (
       <>
+      <button className="Results__product-add-select" onClick={() => addItem(id)}>add to selected items</button>
       <img className="Product__img" src={imgURL} alt={`product image of ${name}`}/>
       <h2 className="Product__name">{name}</h2> 
       <div className="Product__vendors">
@@ -54,7 +56,7 @@ const Product = ({ id }:ProductProps) => {
       </div>
       </>
     ) : (
-      <div>loading</div>
+      <div>loading...</div>
     )}
   </div>
 )}
