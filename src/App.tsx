@@ -306,27 +306,27 @@ function App() {
         <div className="App-categories">
           <div className="App-categories__button-cases">
             {cases ? cases.map((item, i) => <li className="App-categories__button-cases-selected" key={`case-${i}`}>{item.name} <span onClick={() => removeSelectedItem(item)}>remove x</span></li>) : null}
-            <Link to={Paths.cases}>cases</Link>
+            <Link to={Paths.cases} onClick={() => setTheme('theme1')}>cases</Link>
           </div>
           <div className="App-categories__button-pcb">
             {pcbs ? pcbs.map((pcb, i) => <li className="App-categories__button-pcb-selected" key={`pcb-${i}`}>{pcb.name} <span onClick={() => removeSelectedItem(pcb)}>remove x</span></li>) : null}
-            <Link to={Paths.pcb}>PCB</Link>
+            <Link to={Paths.pcb} onClick={() => setTheme('theme2')}>PCB</Link>
           </div>
           <div className="App-categories__button-plate">
             {plates ? plates.map((plate, i) => <li className="App-categories__button-plate-selected" key={`plate-${i}`}>{plate.name} <span onClick={() => removeSelectedItem(plate)}>remove x</span></li>) : null}
-            <Link to={Paths.plates}>plates</Link>
+            <Link to={Paths.plates} onClick={() => setTheme('theme3')}>plates</Link>
           </div>
           <div className="App-categories__button-stabilizer">
             {stabilizers ? stabilizers.map((stabilizer, i) => <li className="App-categories__button-stabilizer-selected" key={`stab-${i}`}>{stabilizer.name} <span onClick={() => removeSelectedItem(stabilizer)}>remove x</span></li>) : null}
-            <Link to={Paths.stabilizers}>stabilizers</Link>
+            <Link to={Paths.stabilizers} onClick={() => setTheme('theme4')}>stabilizers</Link>
           </div>
           <div className="App-categories__button-switch">
             {switches ? switches.map((item, i) => <li className="App-categories__button-switch-selected" key={`switch-${i}`}>{item.name} <span onClick={() => removeSelectedItem(item)}>remove x</span></li>) : null}
-            <Link to={Paths.switch}>switches</Link>
+            <Link to={Paths.switch} onClick={() => setTheme('theme5')}>switches</Link>
           </div>
           <div className="App-categories__button-keycaps">
             {keycaps ? keycaps.map((item, i) => <li className="App-categories__button-keycaps-selected" key={`keycap-${i}`}>{item.name} <span onClick={() => removeSelectedItem(item)}>remove x</span></li>) : null}
-            <Link to={Paths.keycaps}>keycaps</Link>
+            <Link to={Paths.keycaps} onClick={() => setTheme('theme6')}>keycaps</Link>
           </div>
         </div>
       </div>
@@ -334,30 +334,12 @@ function App() {
       // TODO: see if themes can be only managed by the App component so it doesn't need to be passed down as a prop
     }
       <Route path="/" />
-      <Route path={Paths.cases} render={ (props) => {
-        setTheme('theme1')
-        return <Search category='case' addItem={addSelectedItem}/>
-      }}/>
-      <Route path={Paths.pcb} render={ (props) => {
-        setTheme('theme2')
-        return <Search category='pcb' addItem={addSelectedItem}/>
-      }}/>
-      <Route path={Paths.plates} render={ (props) => {
-        setTheme('theme3')
-        return <Search category='plate' addItem={addSelectedItem}/>
-      }}/>
-      <Route path={Paths.stabilizers} render={ (props) => {
-        setTheme('theme4')
-        return <Search category='stabilizer' addItem={addSelectedItem}/>
-      }}/>
-      <Route path={Paths.switch} render={ (props) => {
-        setTheme('theme5')
-        return <Search category='switch' addItem={addSelectedItem}/>
-      }}/>
-      <Route path={Paths.keycaps} render={ (props) => {
-        setTheme('theme6') 
-        return <Search category='keyset' addItem={addSelectedItem}/>
-      }}/>
+      <Route path={Paths.cases} render={ (props) => <Search category='case' addItem={addSelectedItem}/>}/>
+      <Route path={Paths.pcb} render={ (props) => <Search category='pcb' addItem={addSelectedItem}/>}/>
+      <Route path={Paths.plates} render={ (props) => <Search category='plate' addItem={addSelectedItem}/>}/>
+      <Route path={Paths.stabilizers} render={ (props) => <Search category='stabilizer' addItem={addSelectedItem}/>}/>
+      <Route path={Paths.switch} render={ (props) => <Search category='switch' addItem={addSelectedItem}/>}/>
+      <Route path={Paths.keycaps} render={ (props) => <Search category='keyset' addItem={addSelectedItem}/>}/>
       {productKeys.includes(urlPath) ? <Route path={Paths.product} render={ (props) => <Product id={urlPath} addItem={addSelectedItem}/>} /> : null}
 
 
