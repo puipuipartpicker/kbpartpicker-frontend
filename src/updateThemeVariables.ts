@@ -8,7 +8,7 @@ const variableValues:ThemeVariableValues = {
   },
   theme2: {
     primaryColor: "red",
-    highlightColor: "#fa8cad;"
+    highlightColor: "red"
   },
   theme3: {
     primaryColor: "green",
@@ -16,7 +16,7 @@ const variableValues:ThemeVariableValues = {
   },
   theme4: {
     primaryColor: "pink",
-    highlightColor: "#fa8cad;"
+    highlightColor: "pink"
   },
   theme5: {
     primaryColor: "blue",

@@ -28,6 +28,7 @@ body {
   background-color: var(--bg-color);
   color: var(--primary-text-color);
 }
+
 body *:focus {
   outline: 1px dotted var(--primary-color) ;
 }
@@ -50,26 +51,33 @@ code {
 
 h1 {
   font-family: 'IBM Plex Mono', monospace;
+  color: var(--primary-color);
+  color: var(--primary-color);
 }
 
 h2 {
   font-family: 'IBM Plex Mono', monospace;
+  color: var(--primary-color);
 }
 
 h3 {
   font-family: 'IBM Plex Mono', monospace;
+  color: var(--primary-color);
 }
 
 h4 {
   font-family: 'IBM Plex Mono', monospace;
+  color: var(--primary-color);
 }
 
 h5 {
   font-family: 'IBM Plex Mono', monospace;
+  color: var(--primary-color);
 }
 
 h6 {
   font-family: 'IBM Plex Mono', monospace;
+  color: var(--primary-color);
 }
 
 
