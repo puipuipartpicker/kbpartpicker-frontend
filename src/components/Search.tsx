@@ -8,7 +8,7 @@ import { IProductType } from '../types/types'
 import axios from 'axios'
 
 // import { searchResults } from '../TestData' 
-import { setServers } from 'dns'
+// import { setServers } from 'dns'
 
 interface SearchProps {
   category: IProductType
@@ -56,13 +56,13 @@ const Search = ({ category, addItem }:SearchProps) => {
     if (inputValue) {
       setNoResults(false)
       sendQuery(inputValue, category)
-      history.push(curPath.replace(/(\/[^\/]+)\/?.*/, `$1/${inputValue}`))
+      history.push(curPath.replace(/(\/[^/]+)\/?.*/, `$1/${inputValue}`))
     }
   } 
 
   useEffect(() => {
     console.log('HISTORY', curPath)
-    const pathRegex = new RegExp(`\/${category}\/(.+)`, 'i')
+    const pathRegex = new RegExp(`/${category}/(.+)`, 'i')
     console.log('PATH REGEX', pathRegex)
     console.log(pathRegex.test(curPath))
     if(pathRegex.test(curPath)) {
@@ -72,7 +72,7 @@ const Search = ({ category, addItem }:SearchProps) => {
         sendQuery(queryValue![1], category)
       }
     }
-  }, [])
+  }, [category, curPath])
 
   return (
     <div className="Search">

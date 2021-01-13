@@ -11,7 +11,7 @@ interface ProductListItemProps {
 
 const ProductListItem = ({id, name, imgURL, stock, price }:ProductListItemProps) => (
   <div className="Results__items-item">
-    <img className="Results__items-item-img" src={imgURL} alt={`${name} product image`}/>
+    <img className="Results__items-item-img" src={imgURL} alt={name}/>
     <h3 className="Results__items-item-name">{name}</h3>
     <div className="Results__items-item-price-stock">
       <div className="Results__items-item-price-stock-price">{price}</div>

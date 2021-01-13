@@ -1,7 +1,9 @@
 import React, { useEffect, useState} from 'react'
-import axios, { AxiosResponse } from 'axios' 
+import axios from 'axios' 
+// import { AxiosResponse } from 'axios' 
 import './Product.css'
-import { IProductType, IProductSize, IProductLayout, IProductData, IVendor } from '../types/types'
+// import { IProductType, IProductSize, IProductLayout, IProductData } from '../types/types'
+import { IVendor } from '../types/types'
 
 
 interface ProductProps {
@@ -43,13 +45,19 @@ const Product = ({ id, addItem }:ProductProps) => {
     {responce ? (
       <>
       <button className="Results__product-add-select" onClick={() => addItem(id)}>add to selected items</button>
-      <img className="Product__img" src={imgURL} alt={`product image of ${name}`}/>
+      <img className="Product__img" src={imgURL} alt={`${name}`}/>
       <h2 className="Product__name">{name}</h2> 
       <div className="Product__vendors">
         {vendors.map((vendor, i) => (
           <div className="Product__vendors-vendor" key={`${vendor}-${i}`}>
-            <a href={vendor.product_url} target="_blank"><h3 className="Product__vendors-name">{vendor.name}</h3></a>
+            <a href={vendor.product_url} target="_blank" rel="noopener noreferrer">
+              <h3 className="Product__vendors-name">{vendor.name}</h3>
+            </a>
             <p>{vendor.price}</p>
+            {type ? <p>{type}</p> : null}
+            {size ? <p>{size}</p> : null}
+            {layout ? <p>{layout}</p> : null}
+            {hotswap ? <p>{hotswap}</p> : null}
             <span className="Product__vendors-status">In stock?{vendor.in_stock ? 'yes!' : 'nope'}</span>
           </div>
         ))}
