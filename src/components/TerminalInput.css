@@ -6,12 +6,14 @@
   width: 100%;
   padding: 0;
   border: none;
+  background-color: var(--bg-color);
+  color: var(--primary-text-color);
   caret-color: transparent;
   font: 700 2.4rem 'IBM Plex Mono', monospace;
 }
 
 .TerminalInput__inputEl:focus {
-  outline: 1px dotted red ;
+  outline: 1px dotted var(--primary-color) ;
 }
 
 .TerminalInput__inputEl::placeholder {
@@ -22,7 +24,7 @@
   position: absolute;
   left: 2rem;
   bottom: 0.4rem;
-  background-color: red;
+  background-color: var(--primary-color);
   width: 1.4rem;
   height: 0.2rem;
 }

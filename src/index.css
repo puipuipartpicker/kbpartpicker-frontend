@@ -3,9 +3,11 @@
 :root {
   --darkest-color: black;
   --lightest-color: white;
-  --primary-color: gray;
-  --secondary-color: gray;
-  --highlight-color: yellow;
+  --bg-color: #333a45;
+  --primary-text-color: #939eae;
+  --primary-color: #f44c7f;
+  --secondary-color:#e11251;
+  --highlight-color: #fa8cad;
 
   --margin-side: 1.5rem;
   --margin-bottom: 2rem;
@@ -23,6 +25,22 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-size: 1.6rem;
+  background-color: var(--bg-color);
+  color: var(--primary-text-color);
+}
+body *:focus {
+  outline: 1px dotted var(--primary-color) ;
+}
+
+body a {
+  color: var(--highlight-color);
+}
+
+body button {
+  color: var(--lightest-color);
+  background-color: var(--primary-color);
+  border: none;
+  border-radius: 2rem;
 }
 
 code {

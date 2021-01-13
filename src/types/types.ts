@@ -3,21 +3,27 @@ export type Themes = 'theme1'|'theme2'|'theme3'|'theme4'|'theme5'|'theme6'|'defa
 export interface ThemeVariableValues {
   theme1: {
     primaryColor: string
+    highlightColor: string
   }
   theme2: {
     primaryColor: string
+    highlightColor: string
   }
   theme3: {
     primaryColor: string
+    highlightColor: string
   }
   theme4: {
     primaryColor: string
+    highlightColor: string
   }
   theme5: {
     primaryColor: string
+    highlightColor: string
   }
   theme6: {
     primaryColor: string
+    highlightColor: string
   }
 }
 

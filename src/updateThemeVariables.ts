@@ -3,29 +3,38 @@ import { ThemeVariableValues } from './types/types'
 
 const variableValues:ThemeVariableValues = {
   theme1: {
-    primaryColor: "gray"
+    primaryColor: "#f44c7f",
+    highlightColor: "#fa8cad"
   },
   theme2: {
-    primaryColor: "red"
+    primaryColor: "red",
+    highlightColor: "#fa8cad;"
   },
   theme3: {
-    primaryColor: "green"
+    primaryColor: "green",
+    highlightColor: "#91ff91"
   },
   theme4: {
-    primaryColor: "pink"
+    primaryColor: "pink",
+    highlightColor: "#fa8cad;"
   },
   theme5: {
-    primaryColor: "blue"
+    primaryColor: "blue",
+    highlightColor: "#779aff"
   },
   theme6: {
-    primaryColor: "orange"
+    primaryColor: "orange",
+    highlightColor: "#fae98c"
   }
 }
 
 const updateThemeVariables = (theme: keyof ThemeVariableValues): void => {
   console.log('ran set theme')
   document.documentElement.style.setProperty('--primary-color', variableValues[theme].primaryColor)
-  //TODO: add the rest of the variables that need to change
+  if (typeof variableValues[theme].highlightColor === 'string') {
+    document.documentElement.style.setProperty('--highlight-color', variableValues[theme].highlightColor)
+  }
+  //TODO: add the rest of the variables that need to changes
 }
 
 export default updateThemeVariables
