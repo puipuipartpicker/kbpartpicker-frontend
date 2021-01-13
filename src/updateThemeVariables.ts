@@ -31,8 +31,8 @@ const variableValues:ThemeVariableValues = {
 const updateThemeVariables = (theme: keyof ThemeVariableValues): void => {
   console.log('ran set theme')
   document.documentElement.style.setProperty('--primary-color', variableValues[theme].primaryColor)
-  if (typeof variableValues[theme].highlightColor === 'string') {
-    document.documentElement.style.setProperty('--highlight-color', variableValues[theme].highlightColor)
+  if (variableValues[theme].highlightColor) {
+    document.documentElement.style.setProperty('--highlight-color', variableValues[theme].highlightColor!)
   }
   //TODO: add the rest of the variables that need to changes
 }

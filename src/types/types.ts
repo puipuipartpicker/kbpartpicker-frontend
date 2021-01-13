@@ -11,7 +11,7 @@ export interface ThemeVariableValues {
   }
   theme3: {
     primaryColor: string
-    highlightColor: string
+    highlightColor?: string
   }
   theme4: {
     primaryColor: string
