@@ -11,6 +11,8 @@ interface TerminalInputProps {
 const TerminalInput = ({ passValue, placeholder, type, focus }:TerminalInputProps) => {
   const [carotOffset, setCarotOffset] = useState(0)
   const terminalInputEl = useRef<HTMLInputElement>(null)
+  const inputPadding = '10'
+  const textWidth = 14.45555
 
   const handleInputChange = () => {
     console.log('selection start:', terminalInputEl.current?.selectionStart)
@@ -72,7 +74,7 @@ const TerminalInput = ({ passValue, placeholder, type, focus }:TerminalInputProp
       />
       <div 
         className="TerminalInput__carot"
-        style={{left: `${carotOffset ? carotOffset * 14.45555 : 0}px`}}  
+        style={{left: `${carotOffset ? (carotOffset * textWidth + +inputPadding) : inputPadding}px`}}  
       >
       </div>
     </div>

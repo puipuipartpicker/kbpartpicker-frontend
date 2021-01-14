@@ -4,7 +4,7 @@
 
 .TerminalInput__inputEl {
   width: 100%;
-  padding: 0;
+  padding: 1rem;
   border: none;
   background-color: var(--bg-color);
   color: var(--primary-text-color);
@@ -13,7 +13,8 @@
 }
 
 .TerminalInput__inputEl:focus {
-  outline: 1px dotted var(--primary-color) ;
+  outline: none ;
+  background-color: var(--darkest-color);
 }
 
 .TerminalInput__inputEl::placeholder {
@@ -23,10 +24,15 @@
 .TerminalInput__carot {
   position: absolute;
   left: 2rem;
-  bottom: 0.4rem;
+  bottom: 0.6rem;
   background-color: var(--primary-color);
-  width: 1.4rem;
-  height: 0.2rem;
+  border-radius: 0.4rem;
+  width: 1.8rem;
+  height: 0.4rem;
+  -webkit-transition: all 0.15s ease;
+  -moz-transition:    all 0.15s ease;
+  -ms-transition:     all 0.15s ease;
+  -o-transition:      all 0.15s ease;
 }
 
 .TerminalInput__carot.--inactive {

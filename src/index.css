@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,400;0,600;0,700;1,400&family=IBM+Plex+Sans:ital,wght@0,100;0,300;0,400;0,700;1,100;1,300;1,400;1,700&display=swap');
 
 :root {
-  --darkest-color: black;
+  --darkest-color: #161a1f;
   --lightest-color: white;
   --bg-color: #333a45;
   --primary-text-color: #939eae;
