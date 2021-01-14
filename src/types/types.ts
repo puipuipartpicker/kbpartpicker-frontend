@@ -29,7 +29,7 @@ export interface ThemeVariableValues {
     highlightColor: string
     secondHighlightColor: string
   }
-  theme3: {
+  modernDolch: {
     darkestColor: string
     lightestColor: string
     bgColor: string
@@ -39,7 +39,7 @@ export interface ThemeVariableValues {
     highlightColor: string
     secondHighlightColor: string
   }
-  theme4: {
+  superuser: {
     darkestColor: string
     lightestColor: string
     bgColor: string
@@ -49,7 +49,7 @@ export interface ThemeVariableValues {
     highlightColor: string
     secondHighlightColor: string
   }
-  theme5: {
+  taro: {
     darkestColor: string
     lightestColor: string
     bgColor: string

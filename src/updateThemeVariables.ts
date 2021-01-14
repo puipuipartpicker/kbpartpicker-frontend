@@ -30,35 +30,35 @@ const variableValues:ThemeVariableValues = {
     highlightColor: "#bf616a",
     secondHighlightColor: "#793e44"
   },
-  theme3: {
-    darkestColor: '#161a1f',
+  modernDolch: {
+    darkestColor: '#232425',
     lightestColor: 'white',
-    bgColor: '#333a45',
-    primaryTextColor: '#939eae',
-    primaryColor: "#f44c7f",
-    secondaryColor: "#e11251",
-    highlightColor: "#fa8cad",
-    secondHighlightColor: ''
+    bgColor: '#2d2e30',
+    primaryTextColor: '#e3e6eb',
+    primaryColor: "#7eddd3",
+    secondaryColor: "#54585c",
+    highlightColor: "#d36a7b",
+    secondHighlightColor: '#994154'
   },
-  theme4: {
-    darkestColor: '#161a1f',
+  superuser: {
+    darkestColor: '#21242c',
     lightestColor: 'white',
-    bgColor: '#333a45',
+    bgColor: '#262a33',
     primaryTextColor: '#939eae',
-    primaryColor: "#f44c7f",
-    secondaryColor: "#e11251",
-    highlightColor: "#fa8cad",
-    secondHighlightColor: ''
+    primaryColor: "#43ffaf",
+    secondaryColor: "#526777",
+    highlightColor: "#ff5f5f",
+    secondHighlightColor: '#ff5f5f'
   },
-  theme5: {
-    darkestColor: '#161a1f',
+  taro: {
+    darkestColor: '#9297c8',
     lightestColor: 'white',
-    bgColor: '#333a45',
-    primaryTextColor: '#939eae',
-    primaryColor: "#f44c7f",
-    secondaryColor: "#e11251",
-    highlightColor: "#fa8cad",
-    secondHighlightColor: ''
+    bgColor: '#b3baff',
+    primaryTextColor: '#130f1a',
+    primaryColor: "#130f1a",
+    secondaryColor: "#00e9e5",
+    highlightColor: "#ffe23e",
+    secondHighlightColor: '#fff1c3'
   },
   retrocast: {
     darkestColor: '#135459',

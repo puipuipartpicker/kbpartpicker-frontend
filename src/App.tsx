@@ -313,15 +313,15 @@ function App() {
           </div>
           <div className="App-categories__button-plate">
             {plates ? plates.map((plate, i) => <li className="App-categories__button-plate-selected" key={`plate-${i}`}>{plate.name} <span onClick={() => removeSelectedItem(plate)}>remove x</span></li>) : null}
-            <Link to={Paths.plates} onClick={() => setTheme('theme3')}>plates</Link>
+            <Link to={Paths.plates} onClick={() => setTheme('modernDolch')}>plates</Link>
           </div>
           <div className="App-categories__button-stabilizer">
             {stabilizers ? stabilizers.map((stabilizer, i) => <li className="App-categories__button-stabilizer-selected" key={`stab-${i}`}>{stabilizer.name} <span onClick={() => removeSelectedItem(stabilizer)}>remove x</span></li>) : null}
-            <Link to={Paths.stabilizers} onClick={() => setTheme('theme4')}>stabilizers</Link>
+            <Link to={Paths.stabilizers} onClick={() => setTheme('superuser')}>stabilizers</Link>
           </div>
           <div className="App-categories__button-switch">
             {switches ? switches.map((item, i) => <li className="App-categories__button-switch-selected" key={`switch-${i}`}>{item.name} <span onClick={() => removeSelectedItem(item)}>remove x</span></li>) : null}
-            <Link to={Paths.switch} onClick={() => setTheme('theme5')}>switches</Link>
+            <Link to={Paths.switch} onClick={() => setTheme('taro')}>switches</Link>
           </div>
           <div className="App-categories__button-keycaps">
             {keycaps ? keycaps.map((item, i) => <li className="App-categories__button-keycaps-selected" key={`keycap-${i}`}>{item.name} <span onClick={() => removeSelectedItem(item)}>remove x</span></li>) : null}
