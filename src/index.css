@@ -34,6 +34,10 @@ body *:focus {
   outline: 1px dotted var(--primary-color) ;
 }
 
+body *::placeholder {
+  font-style: italic;
+}
+
 body *{
   -webkit-transition: all 0.3s ease;
   -moz-transition:    all 0.3s ease;
@@ -46,10 +50,11 @@ body a {
 }
 
 body button {
-  color: var(--lightest-color);
+  color: var(--bg-color);
   background-color: var(--primary-color);
   border: none;
-  border-radius: 2rem;
+  border-radius: 0.3rem;
+  padding: 0.5rem 1rem;
 }
 
 code {

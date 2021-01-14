@@ -1,13 +1,4 @@
-// TODO: function to replace CSS variables with the theme corresponding to the category
 import { ThemeVariableValues } from './types/types'
-
-// --darkest-color: #161a1f;
-//   --lightest-color: white;
-//   --bg-color: #333a45;
-//   --primary-text-color: #939eae;
-//   --primary-color: #f44c7f;
-//   --secondary-color:#e11251;
-//   --highlight-color: #fa8cad;
 
 const variableValues:ThemeVariableValues = {
   "8008": {
@@ -73,7 +64,6 @@ const variableValues:ThemeVariableValues = {
 }
 
 const updateThemeVariables = (theme: keyof ThemeVariableValues): void => {
-  console.log('ran set theme')
   document.documentElement.style.setProperty('--darkest-color', variableValues[theme].darkestColor)
   document.documentElement.style.setProperty('--lightestColor', variableValues[theme].lightestColor)
   document.documentElement.style.setProperty('--bg-color', variableValues[theme].bgColor)
@@ -87,8 +77,6 @@ const updateThemeVariables = (theme: keyof ThemeVariableValues): void => {
   // if (variableValues[theme].secondaryColor) {
   //   document.documentElement.style.setProperty('--secondary-color', variableValues[theme].secondaryColor)
   // }
-
-  //TODO: add the rest of the variables that need to changes
 }
 
 export default updateThemeVariables

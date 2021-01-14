@@ -3,6 +3,10 @@
   margin-bottom: var(--margin-bottom);
 }
 
-.Search__search-input::placeholder {
-   font-style: italic;
+.Search input {
+  margin-bottom: var(--margin-bottom);
+}
+
+.Search .TerminalInput__carot {
+  bottom: 2.6rem;
 }
