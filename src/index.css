@@ -33,6 +33,13 @@ body *:focus {
   outline: 1px dotted var(--primary-color) ;
 }
 
+body *{
+  -webkit-transition: all 0.3s ease;
+  -moz-transition:    all 0.3s ease;
+  -ms-transition:     all 0.3s ease;
+  -o-transition:      all 0.3s ease;
+}
+
 body a {
   color: var(--highlight-color);
 }
@@ -49,36 +56,7 @@ code {
     monospace;
 }
 
-h1 {
-  font-family: 'IBM Plex Mono', monospace;
-  color: var(--primary-color);
-  color: var(--primary-color);
-}
-
-h2 {
+h1, h2, h3, h4, h5, h6{
   font-family: 'IBM Plex Mono', monospace;
   color: var(--primary-color);
 }
-
-h3 {
-  font-family: 'IBM Plex Mono', monospace;
-  color: var(--primary-color);
-}
-
-h4 {
-  font-family: 'IBM Plex Mono', monospace;
-  color: var(--primary-color);
-}
-
-h5 {
-  font-family: 'IBM Plex Mono', monospace;
-  color: var(--primary-color);
-}
-
-h6 {
-  font-family: 'IBM Plex Mono', monospace;
-  color: var(--primary-color);
-}
-
-
-
