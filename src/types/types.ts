@@ -1,29 +1,73 @@
 export type Themes = 'theme1'|'theme2'|'theme3'|'theme4'|'theme5'|'theme6'|'default'
 
+// --darkest-color: #161a1f;
+//   --lightest-color: white;
+//   --bg-color: #333a45;
+//   --primary-text-color: #939eae;
+//   --primary-color: #f44c7f;
+//   --secondary-color:#e11251;
+//   --highlight-color: #fa8cad;
+
 export interface ThemeVariableValues {
-  theme1: {
+  "8008": {
+    darkestColor: string
+    lightestColor: string
+    bgColor: string
+    primaryTextColor: string
     primaryColor: string
+    secondaryColor: string
     highlightColor: string
+    secondHighlightColor: string
   }
-  theme2: {
+  mizu: {
+    darkestColor: string
+    lightestColor: string
+    bgColor: string
+    primaryTextColor: string
     primaryColor: string
+    secondaryColor: string
     highlightColor: string
+    secondHighlightColor: string
   }
   theme3: {
+    darkestColor: string
+    lightestColor: string
+    bgColor: string
+    primaryTextColor: string
     primaryColor: string
-    highlightColor?: string
+    secondaryColor: string
+    highlightColor: string
+    secondHighlightColor: string
   }
   theme4: {
+    darkestColor: string
+    lightestColor: string
+    bgColor: string
+    primaryTextColor: string
     primaryColor: string
+    secondaryColor: string
     highlightColor: string
+    secondHighlightColor: string
   }
   theme5: {
+    darkestColor: string
+    lightestColor: string
+    bgColor: string
+    primaryTextColor: string
     primaryColor: string
+    secondaryColor: string
     highlightColor: string
+    secondHighlightColor: string
   }
-  theme6: {
+  retrocast: {
+    darkestColor: string
+    lightestColor: string
+    bgColor: string
+    primaryTextColor: string
     primaryColor: string
+    secondaryColor: string
     highlightColor: string
+    secondHighlightColor: string
   }
 }
 

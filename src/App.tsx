@@ -15,7 +15,7 @@ import axios from 'axios'
 // import { privateDecrypt } from 'crypto';
 
 function App() {
-  const [theme, setTheme] = useState<keyof ThemeVariableValues>('theme1')
+  const [theme, setTheme] = useState<keyof ThemeVariableValues>("8008")
   const [cases, setCase] = useState<IProductData[]>([])
   const [pcbs, setPCB] = useState<IProductData[]>([])
   const [plates, setPlate] = useState<IProductData[]>([])
@@ -305,11 +305,11 @@ function App() {
         <div className="App-categories">
           <div className="App-categories__button-cases">
             {cases ? cases.map((item, i) => <li className="App-categories__button-cases-selected" key={`case-${i}`}>{item.name} <span onClick={() => removeSelectedItem(item)}>remove x</span></li>) : null}
-            <Link to={Paths.cases} onClick={() => setTheme('theme1')}>cases</Link>
+            <Link to={Paths.cases} onClick={() => setTheme('8008')}>cases</Link>
           </div>
           <div className="App-categories__button-pcb">
             {pcbs ? pcbs.map((pcb, i) => <li className="App-categories__button-pcb-selected" key={`pcb-${i}`}>{pcb.name} <span onClick={() => removeSelectedItem(pcb)}>remove x</span></li>) : null}
-            <Link to={Paths.pcb} onClick={() => setTheme('theme2')}>PCB</Link>
+            <Link to={Paths.pcb} onClick={() => setTheme('mizu')}>PCB</Link>
           </div>
           <div className="App-categories__button-plate">
             {plates ? plates.map((plate, i) => <li className="App-categories__button-plate-selected" key={`plate-${i}`}>{plate.name} <span onClick={() => removeSelectedItem(plate)}>remove x</span></li>) : null}
@@ -325,7 +325,7 @@ function App() {
           </div>
           <div className="App-categories__button-keycaps">
             {keycaps ? keycaps.map((item, i) => <li className="App-categories__button-keycaps-selected" key={`keycap-${i}`}>{item.name} <span onClick={() => removeSelectedItem(item)}>remove x</span></li>) : null}
-            <Link to={Paths.keycaps} onClick={() => setTheme('theme6')}>keycaps</Link>
+            <Link to={Paths.keycaps} onClick={() => setTheme('retrocast')}>keycaps</Link>
           </div>
         </div>
       </div>
