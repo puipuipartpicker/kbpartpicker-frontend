@@ -1,11 +1,16 @@
 .TerminalInput {
   width: 100%;
   position: relative;
+  /* 
+  TODO: get inner box shadow working for input
+  -webkit-box-shadow: inset 0px 0px 5px 2px rgba(0,0,0,0.35);
+  -moz-box-shadow: inset 0px 0px 5px 2px rgba(0,0,0,0.35);
+  box-shadow: inset 0px 0px 5px 2px rgba(0,0,0,0.35); */
 }
 
 .TerminalInput__inputEl {
   width: calc(100% - 2rem);
-  padding: 1rem;
+  margin: 1rem;
   border: none;
   background-color: var(--bg-color);
   color: var(--primary-text-color);
