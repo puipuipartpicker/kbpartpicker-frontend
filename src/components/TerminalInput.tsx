@@ -10,6 +10,7 @@ interface TerminalInputProps {
 
 const TerminalInput = ({ passValue, placeholder, type, focus }:TerminalInputProps) => {
   const [carotOffset, setCarotOffset] = useState(0)
+  const [focusState, setFocusState] = useState(false)
   const terminalInputEl = useRef<HTMLInputElement>(null)
   const inputPadding = '10'
   const textWidth = 14.45555
@@ -70,10 +71,12 @@ const TerminalInput = ({ passValue, placeholder, type, focus }:TerminalInputProp
       onChange={() => handleInputChange()}
       onClick={() => handleInputChange()}
       onKeyDown={(event) => handleKeypress(event)}
+      onFocus={() => setFocusState(true)}
+      onBlur={() => setFocusState(false)}
       ref={terminalInputEl}
       />
       <div 
-        className="TerminalInput__carot"
+        className={`TerminalInput__carot ${focusState ? '--stop-animation' : ''}`}
         style={{left: `${carotOffset ? (carotOffset * textWidth + +inputPadding) : inputPadding}px`}}  
       >
       </div>
