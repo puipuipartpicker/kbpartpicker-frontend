@@ -60,6 +60,14 @@ const Search = ({ category, addItem }:SearchProps) => {
     }
   } 
 
+  const focusInput = () => {
+    if(document.querySelector('.TerminalInput__inputEl')) {
+      //@ts-ignore
+      const searchInput:HTMLInputElement = document.querySelector('.TerminalInput__inputEl')
+      setTimeout(() => searchInput.focus(), 1)
+    }
+  }
+
   useEffect(() => {
     console.log('HISTORY', curPath)
     const pathRegex = new RegExp(`/${category}/(.+)`, 'i')
@@ -73,6 +81,14 @@ const Search = ({ category, addItem }:SearchProps) => {
       }
     }
   }, [category, curPath])
+
+  useEffect(() => {
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'i') {
+        focusInput()
+      }
+    })
+  }, [])
 
   return (
     <div className="Search">
