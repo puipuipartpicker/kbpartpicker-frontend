@@ -92,14 +92,16 @@ const Search = ({ category, addItem }:SearchProps) => {
 
   return (
     <div className="Search">
-      <form onSubmit={(e) => handleSearchRequest(e)}>
-        <TerminalInput 
-          passValue={(value:string) => setInputValue(value)} 
-          placeholder={`search for ${category}`}
-          type="text"
-          focus={true}
-        />
-        <button onSubmit={(e) => handleSearchRequest(e)}>search</button>
+      <form className="Search__form" onSubmit={(e) => handleSearchRequest(e)}>
+        <div className="Search__form-inner">
+          <TerminalInput 
+            passValue={(value:string) => setInputValue(value)} 
+            placeholder={`search for ${category}`}
+            type="text"
+            focus={true}
+          />
+          <button onSubmit={(e) => handleSearchRequest(e)}>search</button>
+        </div>
       </form>
       {loading ? <div>searching...</div> : null}
       {noResults ? <div>we found no results</div> : null}

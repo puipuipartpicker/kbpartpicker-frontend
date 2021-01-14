@@ -3,10 +3,15 @@
   margin-bottom: var(--margin-bottom);
 }
 
-.Search input {
+.Search .TerminalInput__carot {
+  /* bottom: 2.6rem; */
+}
+
+.Search__form {
   margin-bottom: var(--margin-bottom);
 }
 
-.Search .TerminalInput__carot {
-  bottom: 2.6rem;
+.Search__form-inner {
+  display: flex;
+  align-content: stretch;
 }
