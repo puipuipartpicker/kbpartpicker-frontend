@@ -12,7 +12,9 @@
 }
 
 .Results__product {
-  border: 1px solid #ccc;
+  /* border: 1px solid #ccc; */
+  background-color: var(--darkest-color);
+  padding: 1rem;
   max-width: 50vw;
   height: fit-content;
   max-height: calc(100vh - 4rem);

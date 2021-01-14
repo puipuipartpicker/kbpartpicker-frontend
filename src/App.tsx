@@ -330,15 +330,27 @@ function App() {
         </div>
       </div>
       {
-      // TODO: see if themes can be only managed by the App component so it doesn't need to be passed down as a prop
     }
+    {/* running set theme in rout in order to make sure the theme sets based on URL params */}
       <Route path="/" />
-      <Route path={Paths.cases} render={ (props) => <Search category='case' addItem={addSelectedItem}/>}/>
-      <Route path={Paths.pcb} render={ (props) => <Search category='pcb' addItem={addSelectedItem}/>}/>
-      <Route path={Paths.plates} render={ (props) => <Search category='plate' addItem={addSelectedItem}/>}/>
-      <Route path={Paths.stabilizers} render={ (props) => <Search category='stabilizer' addItem={addSelectedItem}/>}/>
-      <Route path={Paths.switch} render={ (props) => <Search category='switch' addItem={addSelectedItem}/>}/>
-      <Route path={Paths.keycaps} render={ (props) => <Search category='keyset' addItem={addSelectedItem}/>}/>
+      <Route path={Paths.cases} render={ (props) => {
+        setTheme('8008')
+        return <Search category='case' addItem={addSelectedItem}/>}}/>
+      <Route path={Paths.pcb} render={ (props) => {
+        setTheme('mizu')
+        return <Search category='pcb' addItem={addSelectedItem}/>}}/>
+      <Route path={Paths.plates} render={ (props) => {
+        setTheme('modernDolch')
+        return <Search category='plate' addItem={addSelectedItem}/>}}/>
+      <Route path={Paths.stabilizers} render={ (props) => {
+        setTheme('superuser')
+        return <Search category='stabilizer' addItem={addSelectedItem}/>}}/>
+      <Route path={Paths.switch} render={ (props) => {
+        setTheme('taro')
+        return <Search category='switch' addItem={addSelectedItem}/>}}/>
+      <Route path={Paths.keycaps} render={ (props) => {
+        setTheme('retrocast')
+        return <Search category='keyset' addItem={addSelectedItem}/>}}/>
       {productKeys.includes(urlPath) ? <Route path={Paths.product} render={ (props) => <Product id={urlPath} addItem={addSelectedItem}/>} /> : null}
 
 
