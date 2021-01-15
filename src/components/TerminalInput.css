@@ -10,7 +10,7 @@
 
 .TerminalInput__inputEl {
   width: calc(100% - 2rem);
-  margin: 1rem;
+  padding: 1rem;
   border: none;
   background-color: var(--bg-color);
   color: var(--primary-text-color);
@@ -38,6 +38,9 @@
   border-radius: 0.4rem;
   width: 1.8rem;
   height: 0.4rem;
+  -webkit-animation: pulse 1.3s infinite;
+  -moz-animation: pulse 1.3s infinite;
+  -o-animation: pulse 1.3s infinite;
   animation: pulse 1.3s infinite;
   -webkit-transition: all 0.15s ease;
   -moz-transition:    all 0.15s ease;

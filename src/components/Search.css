@@ -8,6 +8,7 @@
 }
 
 .Search__form {
+  max-width: 80rem;
   margin-bottom: var(--margin-bottom);
 }
 
