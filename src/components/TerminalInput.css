@@ -38,10 +38,10 @@
   border-radius: 0.4rem;
   width: 1.8rem;
   height: 0.4rem;
-  -webkit-animation: pulse 1.3s infinite;
-  -moz-animation: pulse 1.3s infinite;
-  -o-animation: pulse 1.3s infinite;
-  animation: pulse 1.3s infinite;
+  -webkit-animation: pulse 1.3s ease-in-out infinite;
+  -moz-animation: pulse 1.3s ease-in-out infinite;
+  -o-animation: pulse 1.3s ease-in-out infinite;
+  animation: pulse 1.3s ease-in-out infinite;
   -webkit-transition: all 0.15s ease;
   -moz-transition:    all 0.15s ease;
   -ms-transition:     all 0.15s ease;
@@ -57,13 +57,7 @@
 }
 
 @keyframes pulse {
-  0% {
-    opacity: 0;
-  }
   50% {
-    opacity: 100%;
-  }
-  100% {
     opacity: 0;
   }
 }
