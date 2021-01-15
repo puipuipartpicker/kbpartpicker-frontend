@@ -11,6 +11,7 @@ interface TerminalInputProps {
 const TerminalInput = ({ passValue, placeholder, type, focus }:TerminalInputProps) => {
   const [carotOffset, setCarotOffset] = useState(0)
   const [focusState, setFocusState] = useState(false)
+  const [placeHolderState, setPleaceHolderState] = useState('')
   const terminalInputEl = useRef<HTMLInputElement>(null)
   const inputPadding = '10'
   const textWidth = 14.45555
@@ -59,6 +60,7 @@ const TerminalInput = ({ passValue, placeholder, type, focus }:TerminalInputProp
   useEffect(() => {
     if (focus) {
       terminalInputEl.current?.focus()
+      setTimeout(() => setPleaceHolderState(placeholder ? placeholder : "input text here..."), 1000)
     }
   }, [])
 
@@ -67,7 +69,7 @@ const TerminalInput = ({ passValue, placeholder, type, focus }:TerminalInputProp
       <input 
       className="TerminalInput__inputEl" 
       type={type}
-      placeholder={placeholder ? placeholder : "input text here..."}
+      placeholder={placeHolderState}
       onChange={() => handleInputChange()}
       onClick={() => handleInputChange()}
       onKeyDown={(event) => handleKeypress(event)}
