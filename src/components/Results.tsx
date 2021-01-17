@@ -21,6 +21,7 @@ const Results = ({results, addItem} : ResultsProps) => {
   const [productDisplay, setProductDisplay] = useState(false)
   const [selectedProduct, setSelectedProduct] = useState('')
   const [productPaneHeight, setProductPaneHeight] = useState('')
+  const [screenWidth, setScreenWidth] = useState(0)
 
   const handlePaneHeight = () => {
     const topAreaRect = document.querySelector('.App__top-container')?.getBoundingClientRect()
@@ -39,6 +40,8 @@ const Results = ({results, addItem} : ResultsProps) => {
     window.addEventListener('scroll', (event) => {
       handlePaneHeight()
     })
+    console.log('screen width:', window.screen.width)
+    setScreenWidth(window.screen.width)
   }, [])
 
 
@@ -70,9 +73,15 @@ const Results = ({results, addItem} : ResultsProps) => {
             stock={item.in_stock}
             price={item.price}
             key={`searchItem` + i} />
+        {(screenWidth < 600) && productDisplay && selectedProduct ? (
+            <div className="Results__product" style={{maxHeight: productPaneHeight}}>
+              <button className="Results__product-close" onClick={() => setProductDisplay(false)}>close</button>
+              <Product id={selectedProduct} addItem={() => addItem(selectedProduct)}/>
+            </div>
+        ) : null}
       </div>))}
     </div>
-    {productDisplay && selectedProduct ? 
+    {(screenWidth >= 600) && productDisplay && selectedProduct ? 
     <div className="Results__product" style={{maxHeight: productPaneHeight}}>
       <button className="Results__product-close" onClick={() => setProductDisplay(false)}>close</button>
       <Product id={selectedProduct} addItem={() => addItem(selectedProduct)}/>
