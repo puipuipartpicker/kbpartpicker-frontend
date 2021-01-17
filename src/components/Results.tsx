@@ -73,8 +73,8 @@ const Results = ({results, addItem} : ResultsProps) => {
             stock={item.in_stock}
             price={item.price}
             key={`searchItem` + i} />
-        {(screenWidth < 600) && productDisplay && selectedProduct ? (
-            <div className="Results__product" style={{maxHeight: productPaneHeight}}>
+        {(screenWidth < 600) && (item.id === selectedProduct) && productDisplay && selectedProduct ? (
+            <div className="Results__product">
               <button className="Results__product-close" onClick={() => setProductDisplay(false)}>close</button>
               <Product id={selectedProduct} addItem={() => addItem(selectedProduct)}/>
             </div>

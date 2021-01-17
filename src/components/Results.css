@@ -30,3 +30,17 @@
 .Results__product-add-select {
   cursor: pointer;
 }
+
+@media (max-width: 60rem) {
+  .Results__items {
+    max-width: 100%;
+  }
+
+  .Results__product {
+    max-width: 100%;
+  }
+
+  .Results__items-container {
+    margin-right: 0;
+  }
+}
