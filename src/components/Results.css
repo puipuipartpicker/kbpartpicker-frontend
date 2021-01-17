@@ -7,12 +7,10 @@
 }
 
 .Results__items-container {
-  cursor: pointer;
   margin-right: var(--margin-side);
 }
 
 .Results__product {
-  /* border: 1px solid #ccc; */
   background-color: var(--darkest-color);
   padding: 1rem;
   max-width: 50vw;

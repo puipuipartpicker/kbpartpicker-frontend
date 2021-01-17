@@ -61,7 +61,6 @@ const Results = ({results, addItem} : ResultsProps) => {
         className="Results__items-container" 
         key={'result-item-' + i}
         tabIndex={0}
-        onClick={() => handleProductDisplay(item.id)}
         onKeyDown={(event) => {
           if ((event.key === ' ') || (event.key === 'Enter')) {
             handleProductDisplay(item.id)
@@ -72,12 +71,13 @@ const Results = ({results, addItem} : ResultsProps) => {
             imgURL={item.img_url}
             stock={item.in_stock}
             price={item.price}
+            displayProduct={() => handleProductDisplay(item.id)}
             key={`searchItem` + i} />
         {(screenWidth < 600) && (item.id === selectedProduct) && productDisplay && selectedProduct ? (
-            <div className="Results__product">
-              <button className="Results__product-close" onClick={() => setProductDisplay(false)}>close</button>
-              <Product id={selectedProduct} addItem={() => addItem(selectedProduct)}/>
-            </div>
+          <div className="Results__product">
+            <button className="Results__product-close" onClick={() => setProductDisplay(false)}>close</button>
+            <Product id={selectedProduct} addItem={() => addItem(selectedProduct)}/>
+          </div>
         ) : null}
       </div>))}
     </div>

@@ -17,3 +17,7 @@
 .Results__items-item {
   margin-bottom: var(--margin-bottom);
 }
+
+.--link:hover {
+  cursor: pointer;
+}
