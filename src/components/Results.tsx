@@ -40,8 +40,8 @@ const Results = ({results, addItem} : ResultsProps) => {
     window.addEventListener('scroll', (event) => {
       handlePaneHeight()
     })
-    console.log('screen width:', window.screen.width)
-    setScreenWidth(window.screen.width)
+    window.addEventListener('resize', (event) => setScreenWidth(window.innerWidth))
+    setScreenWidth(window.innerWidth)
   }, [])
 
 

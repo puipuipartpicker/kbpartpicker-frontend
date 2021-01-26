@@ -89,7 +89,7 @@ const Search = ({ category, addItem }:SearchProps) => {
         focusInput()
       }
     })
-    window.addEventListener('resize', (event) => setScreenWidth(prevWidth => window.innerWidth))
+    window.addEventListener('resize', (event) => setScreenWidth(window.innerWidth))
     setScreenWidth(window.innerWidth)
   }, [])
 
