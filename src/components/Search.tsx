@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom'
 import './Search.css'
 import Results from './Results'
 import TerminalInput from './TerminalInput'
+import JumpTo from './JumpTo'
 import { IProductType } from '../types/types'
 // import { sendQuery } from '../backendFunctions'
 import axios from 'axios'
@@ -109,7 +110,7 @@ const Search = ({ category, addItem }:SearchProps) => {
       {loading ? <div>searching...</div> : null}
       {noResults ? <div>we found no results</div> : null}
       {resultDisplay ? <Results results={searchResults} addItem={addItem}/> : null}
-      {screenWidth <= 600 ? <>put button here</> : <>"i" to jump to search</>}
+      {screenWidth <= 600 ? <JumpTo action={focusInput}/> : <>"i" to jump to search</>}
     </div>
   )
 }

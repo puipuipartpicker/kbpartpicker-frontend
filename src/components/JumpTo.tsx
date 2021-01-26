@@ -1,8 +1,13 @@
 import React from 'react'
 
-const JumpTo = () => (
-  <>
-  </>
+interface JumpToProps {
+  action: () => void
+}
+
+const JumpTo = ({ action }) => (
+  <div className="JumpToButton" onClick={() => action()}>
+    Jump to search
+  </div>
 )
 
-export  default JumpTo
+export default JumpTo
