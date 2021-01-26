@@ -21,6 +21,7 @@ const Search = ({ category, addItem }:SearchProps) => {
   const [searchResults, setSearchResults] = useState([])
   const [noResults, setNoResults] = useState(false)
   const [inputValue, setInputValue] = useState('')
+  const [screenWidth, setScreenWidth] = useState(0)
   let history = useHistory()
   const curPath = history.location.pathname
 
@@ -88,6 +89,8 @@ const Search = ({ category, addItem }:SearchProps) => {
         focusInput()
       }
     })
+    window.addEventListener('resize', (event) => setScreenWidth(prevWidth => window.innerWidth))
+    setScreenWidth(window.innerWidth)
   }, [])
 
   return (
@@ -106,6 +109,7 @@ const Search = ({ category, addItem }:SearchProps) => {
       {loading ? <div>searching...</div> : null}
       {noResults ? <div>we found no results</div> : null}
       {resultDisplay ? <Results results={searchResults} addItem={addItem}/> : null}
+      {screenWidth <= 600 ? <>put button here</> : <>"i" to jump to search</>}
     </div>
   )
 }
