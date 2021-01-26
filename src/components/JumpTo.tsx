@@ -4,7 +4,7 @@ interface JumpToProps {
   action: () => void
 }
 
-const JumpTo = ({ action }) => (
+const JumpTo = ({ action }:JumpToProps) => (
   <div className="JumpToButton" onClick={() => action()}>
     Jump to search
   </div>
