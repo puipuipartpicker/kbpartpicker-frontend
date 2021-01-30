@@ -303,7 +303,15 @@ function App() {
             <Warning  layoutWarning={layoutWarning} solderWarning={solderWarning} stabSizeWarning={stabSizeWarning} stabMountWarning={stabMountWarning}/>
           </div>
           ) : null}
-        <Categories />
+        <Categories 
+          removeSelectedItem={removeSelectedItem}
+          selectedCases={cases}
+          selectedPcb={pcbs}
+          selectedPlates={plates}
+          selectedStabilizers={stabilizers}
+          selectedSwitches={switches}
+          selectedKeycaps={keycaps}
+        />
         <div className="App-categories">
           <div className="App-categories__button-cases">
             {cases ? cases.map((item, i) => <li className="App-categories__button-cases-selected" key={`case-${i}`}>{item.name} <span onClick={() => removeSelectedItem(item)}>remove x</span></li>) : null}
