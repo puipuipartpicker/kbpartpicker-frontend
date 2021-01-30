@@ -1,11 +1,20 @@
 .Categories {
-
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .Categories__category {
-
+  margin-right: var(--margin-side);
+  margin-bottom: var(--margin-bottom);
+  font-size: 2rem;
+  font-weight: 700;
+  /* text-transform: uppercase; */
 }
 
 .--active {
-  color: var(--primary-color)
+  padding: 0 0.6rem;
+  color: var(--primary-color);
+  border: 0.3rem solid var(--primary-color);
+  text-decoration: none;
+  border-radius: var(--rounded-corner);
 }
