@@ -1,4 +1,5 @@
 import React from 'react'
+import './JumpTo.css'
 
 interface JumpToProps {
   action: () => void

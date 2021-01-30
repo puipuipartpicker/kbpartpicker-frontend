@@ -1,0 +1,10 @@
+.JumpToButton {
+  position: absolute;
+  bottom: var(--margin-bottom);
+  right: var(--margin-bottom);
+  width: 5rem;
+  height: 5rem;
+  border-radius: 100%;
+  background-color: var(--primary-color);
+  color: var(--darkest-color);
+}
