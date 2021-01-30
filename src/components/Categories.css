@@ -3,5 +3,9 @@
 }
 
 .Categories__category {
-  
+
+}
+
+.--active {
+  color: var(--primary-color)
 }
