@@ -3,7 +3,7 @@
 }
 
 .Results__items {
-  max-width: 40vw;
+  width: 40vw;
 }
 
 .Results__items-container {
@@ -13,6 +13,7 @@
 .Results__product {
   background-color: var(--darkest-color);
   padding: 1rem;
+  margin-bottom: 1rem;
   max-width: 50vw;
   height: fit-content;
   max-height: calc(100vh - 4rem);
@@ -31,7 +32,7 @@
 
 @media (max-width: 60rem) {
   .Results__items {
-    max-width: 100%;
+    width: 100%;
   }
 
   .Results__product {
