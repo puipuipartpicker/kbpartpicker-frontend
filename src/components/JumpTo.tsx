@@ -6,7 +6,10 @@ interface JumpToProps {
 }
 
 const JumpTo = ({ action }:JumpToProps) => (
-  <div className="JumpToButton" onClick={() => action()}>
+  <div className="JumpToButton" onClick={() => {
+    window.scroll(0,0)
+    action()
+    }}>
     Jump to search
   </div>
 )

@@ -1,5 +1,5 @@
 .JumpToButton {
-  position: absolute;
+  position: fixed;
   bottom: var(--margin-bottom);
   right: var(--margin-bottom);
   width: 5rem;
