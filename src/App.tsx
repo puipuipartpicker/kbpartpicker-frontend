@@ -5,6 +5,7 @@ import Paths from './types/Paths'
 import Search from './components/Search'
 import Product from './components/Product'
 import Warning from './components/Warning'
+import Categories from './components/Categories'
 import { ThemeVariableValues } from './types/types'
 import { IProductData, IProductSize, IProductLayout, IStabMount } from './types/types'
 import updateThemeVariables from './updateThemeVariables'
@@ -302,6 +303,7 @@ function App() {
             <Warning  layoutWarning={layoutWarning} solderWarning={solderWarning} stabSizeWarning={stabSizeWarning} stabMountWarning={stabMountWarning}/>
           </div>
           ) : null}
+        <Categories />
         <div className="App-categories">
           <div className="App-categories__button-cases">
             {cases ? cases.map((item, i) => <li className="App-categories__button-cases-selected" key={`case-${i}`}>{item.name} <span onClick={() => removeSelectedItem(item)}>remove x</span></li>) : null}
