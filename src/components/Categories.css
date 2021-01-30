@@ -8,7 +8,6 @@
   margin-bottom: var(--margin-bottom);
   font-size: 2rem;
   font-weight: 700;
-  /* text-transform: uppercase; */
 }
 
 .--active {
@@ -18,4 +17,5 @@
   border: 0.3rem solid var(--primary-color);
   text-decoration: none;
   border-radius: var(--rounded-corner);
+  /* text-transform: uppercase; */
 }
