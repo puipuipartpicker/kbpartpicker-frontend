@@ -312,32 +312,6 @@ function App() {
           selectedSwitches={switches}
           selectedKeycaps={keycaps}
         />
-        <div className="App-categories">
-          <div className="App-categories__button-cases">
-            {cases ? cases.map((item, i) => <li className="App-categories__button-cases-selected" key={`case-${i}`}>{item.name} <span onClick={() => removeSelectedItem(item)}>remove x</span></li>) : null}
-            <Link tabIndex={0} to={Paths.cases} onClick={() => setTheme('8008')}>cases</Link>
-          </div>
-          <div className="App-categories__button-pcb">
-            {pcbs ? pcbs.map((pcb, i) => <li className="App-categories__button-pcb-selected" key={`pcb-${i}`}>{pcb.name} <span onClick={() => removeSelectedItem(pcb)}>remove x</span></li>) : null}
-            <Link tabIndex={0} to={Paths.pcb} onClick={() => setTheme('mizu')}>PCB</Link>
-          </div>
-          <div className="App-categories__button-plate">
-            {plates ? plates.map((plate, i) => <li className="App-categories__button-plate-selected" key={`plate-${i}`}>{plate.name} <span onClick={() => removeSelectedItem(plate)}>remove x</span></li>) : null}
-            <Link tabIndex={0} to={Paths.plates} onClick={() => setTheme('modernDolch')}>plates</Link>
-          </div>
-          <div className="App-categories__button-stabilizer">
-            {stabilizers ? stabilizers.map((stabilizer, i) => <li className="App-categories__button-stabilizer-selected" key={`stab-${i}`}>{stabilizer.name} <span onClick={() => removeSelectedItem(stabilizer)}>remove x</span></li>) : null}
-            <Link tabIndex={0} to={Paths.stabilizers} onClick={() => setTheme('superuser')}>stabilizers</Link>
-          </div>
-          <div className="App-categories__button-switch">
-            {switches ? switches.map((item, i) => <li className="App-categories__button-switch-selected" key={`switch-${i}`}>{item.name} <span onClick={() => removeSelectedItem(item)}>remove x</span></li>) : null}
-            <Link tabIndex={0} to={Paths.switch} onClick={() => setTheme('taro')}>switches</Link>
-          </div>
-          <div className="App-categories__button-keycaps">
-            {keycaps ? keycaps.map((item, i) => <li className="App-categories__button-keycaps-selected" key={`keycap-${i}`}>{item.name} <span onClick={() => removeSelectedItem(item)}>remove x</span></li>) : null}
-            <Link tabIndex={0} to={Paths.keycaps} onClick={() => setTheme('retrocast')}>keycaps</Link>
-          </div>
-        </div>
       </div>
       {
     }
