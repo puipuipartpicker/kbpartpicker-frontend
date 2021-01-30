@@ -30,7 +30,7 @@
   display: inline-block;
   padding: 0 0.8rem;
   border-radius: var(--rounded-corner);
-  background-color: var(--primary-color);
+  background-color: var(--secondary-color);
   color: var(--darkest-color);
   font-weight: 700;
 }
