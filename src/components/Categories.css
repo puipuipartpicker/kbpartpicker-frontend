@@ -12,6 +12,7 @@
 }
 
 .--active {
+  cursor: default;
   padding: 0 0.6rem;
   color: var(--primary-color);
   border: 0.3rem solid var(--primary-color);
