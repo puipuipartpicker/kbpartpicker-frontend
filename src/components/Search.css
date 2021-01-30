@@ -1,10 +1,5 @@
 .Search{
-  background-color: var(--testing-var);
   margin-bottom: var(--margin-bottom);
-}
-
-.Search .TerminalInput__carot {
-  /* bottom: 2.6rem; */
 }
 
 .Search__form {
@@ -15,4 +10,8 @@
 .Search__form-inner {
   display: flex;
   align-content: stretch;
+}
+
+.Search__form__search-button {
+  cursor: pointer;
 }

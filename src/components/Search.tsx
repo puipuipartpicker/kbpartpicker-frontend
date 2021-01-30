@@ -104,7 +104,7 @@ const Search = ({ category, addItem }:SearchProps) => {
             type="text"
             focus={true}
           />
-          <button onSubmit={(e) => handleSearchRequest(e)}>search</button>
+          <button className="Search__form__search-button" onSubmit={(e) => handleSearchRequest(e)}>search</button>
         </div>
       </form>
       {loading ? <div>searching...</div> : null}
