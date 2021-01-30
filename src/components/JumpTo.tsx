@@ -8,7 +8,7 @@ interface JumpToProps {
 const JumpTo = ({ action }:JumpToProps) => (
   <div className="JumpToButton" onClick={() => {
     window.scroll(0,0)
-    action()
+    setTimeout(() => action(), 1)
     }}>
     <div className="JumpToButton__content">^</div>
   </div>
