@@ -15,3 +15,22 @@
 .Search__form__search-button {
   cursor: pointer;
 }
+
+.Search__hint {
+  position: fixed;
+  bottom: var(--margin-bottom);
+  right: var(--margin-bottom);
+  color: var(--secondary-color);
+  font-size: 1.4rem;
+  font-weight: 700;
+  text-align: right;
+}
+
+.--highlight {
+  display: inline-block;
+  padding: 0 0.8rem;
+  border-radius: var(--rounded-corner);
+  background-color: var(--primary-color);
+  color: var(--darkest-color);
+  font-weight: 700;
+}

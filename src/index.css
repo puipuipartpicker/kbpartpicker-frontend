@@ -12,6 +12,7 @@
 
   --margin-side: 1.5rem;
   --margin-bottom: 2rem;
+  --rounded-corner: 0.3rem;
 }
 
 html {
@@ -57,7 +58,7 @@ body button {
   color: var(--bg-color);
   background-color: var(--primary-color);
   border: none;
-  border-radius: 0.3rem;
+  border-radius: var(--rounded-corner);
   padding: 0.5rem 1rem;
   font-weight: 700;
   font: 700 1.6rem 'IBM Plex Mono', monospace;
