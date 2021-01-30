@@ -10,7 +10,7 @@ const JumpTo = ({ action }:JumpToProps) => (
     window.scroll(0,0)
     action()
     }}>
-    Jump to search
+    <div className="JumpToButton__content">^</div>
   </div>
 )
 

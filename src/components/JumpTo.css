@@ -1,4 +1,7 @@
 .JumpToButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   position: fixed;
   bottom: var(--margin-bottom);
   right: var(--margin-bottom);
@@ -8,4 +11,10 @@
   background-color: var(--primary-color);
   color: var(--darkest-color);
   cursor: pointer;
+}
+
+.JumpToButton__content {
+  margin-top: 0.8rem;
+  font-weight: 900;
+  font-size: 3.5rem;
 }
