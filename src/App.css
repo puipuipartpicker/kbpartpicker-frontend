@@ -25,18 +25,3 @@
   display: inline-block;
   padding-right: 2rem;
 }
-
-
-
-
-
-/*** TESTING MEDIA QUERY 
-****
-
-@media (max-width: 30rem) {
-  .App-categories {
-    margin-bottom: 300px;
-  }
-} 
-
-****/
