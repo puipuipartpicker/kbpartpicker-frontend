@@ -152,60 +152,72 @@ function App() {
     // console.log(getProductData(selectedProductID))
     const getProductData = (id:string): any => {
       axios.get(`${process.env.REACT_APP_API_URL}/get`, {params: {id:id}})
-      .then(response => console.log(response))
+      .then(response => {
+        console.log('api response:', response)
+        const product = response.data
+        switch (product.type) {
+          case 'case' :
+            break
+        }
+        
+      })
       .catch(error => console.log(error))
     }
-    const product = getProductData(selectedProductID)
-    if (product.type === 'case') {
-      if (!checkAdded(product)) {
-        setCase(prevCases => [...prevCases, product])
-        if ( 'layout' in product) {
-          setCaseLayout(prevLayout => [...prevLayout, product.layout])
-        }
-      }
-    }
-    if (product.type === 'pcb') {
-      if (!checkAdded(product)) {
-        setPCB(prevPCB => [...prevPCB, product])
-        if ('layout' in product) {
-          setPcbLayout(prevLayout => [...prevLayout, product.layout])
-        }
-        if ('hotswap' in product) {
-          if (product.hotswap === (true || false)) {
-            setHotwap(prevHotswap => [...prevHotswap, product.hotswap])
-          }
-        }
-      }
-    }
-    if (product.type === 'plate') {
-      if (!checkAdded(product)) {
-        setPlate(prevPlates => [...prevPlates, product])
-        if ('layout' in product) {
-          setPlateLayout(prevLayout => [...prevLayout, product.layout])
-        }
-      }
-    }
-    if (product.type === 'stabilizers') {
-      if(!checkAdded(product)) {
-        setStabilizer(prevStabs => [...prevStabs, product])
-        if ('size' in product) {
-          setStabSize(prevSize => [...prevSize, product.size])
-        }
-        if ('mount' in product) {
-          setStabMount(prevMount => [...prevMount, product.mount])
-        }
-      }
-    } 
-    if (product.type === 'switch') {
-      if(!checkAdded(product)) {
-        setSwitches(prevSwitches => [...prevSwitches, product])
-      }
-    }
-    if (product.type === 'keycaps') {
-      if(!checkAdded(product)) {
-        setKeycaps(prevKeys => [...prevKeys, product])
-      }
-    }
+
+    getProductData(selectedProductID)
+
+
+
+    // if (product.type === 'case') {
+    //   if (!checkAdded(product)) {
+    //     setCase(prevCases => [...prevCases, product])
+    //     if ( 'layout' in product) {
+    //       setCaseLayout(prevLayout => [...prevLayout, product.layout])
+    //     }
+    //   }
+    // }
+    // if (product.type === 'pcb') {
+    //   if (!checkAdded(product)) {
+    //     setPCB(prevPCB => [...prevPCB, product])
+    //     if ('layout' in product) {
+    //       setPcbLayout(prevLayout => [...prevLayout, product.layout])
+    //     }
+    //     if ('hotswap' in product) {
+    //       if (product.hotswap === (true || false)) {
+    //         setHotwap(prevHotswap => [...prevHotswap, product.hotswap])
+    //       }
+    //     }
+    //   }
+    // }
+    // if (product.type === 'plate') {
+    //   if (!checkAdded(product)) {
+    //     setPlate(prevPlates => [...prevPlates, product])
+    //     if ('layout' in product) {
+    //       setPlateLayout(prevLayout => [...prevLayout, product.layout])
+    //     }
+    //   }
+    // }
+    // if (product.type === 'stabilizers') {
+    //   if(!checkAdded(product)) {
+    //     setStabilizer(prevStabs => [...prevStabs, product])
+    //     if ('size' in product) {
+    //       setStabSize(prevSize => [...prevSize, product.size])
+    //     }
+    //     if ('mount' in product) {
+    //       setStabMount(prevMount => [...prevMount, product.mount])
+    //     }
+    //   }
+    // } 
+    // if (product.type === 'switch') {
+    //   if(!checkAdded(product)) {
+    //     setSwitches(prevSwitches => [...prevSwitches, product])
+    //   }
+    // }
+    // if (product.type === 'keycaps') {
+    //   if(!checkAdded(product)) {
+    //     setKeycaps(prevKeys => [...prevKeys, product])
+    //   }
+    // }
   }
 
   const removeSelectedItem = (product: IProductData): void => {
