@@ -77,6 +77,7 @@ export type IProductSize = '7u' | '6.5u' | '2u' | undefined
 export type IProductLayout = 'forty_percent' | 'sixty_percent' | 'sixtyfive_percent' | 'seventyfive_percent' | 'tenkeyless' | undefined
 export type IStabMount = 'pcb' | 'plate' | undefined
 
+// TODO: update types besed on actual reponse from backend 
 export interface IProductData {
   id: string
   name: string 

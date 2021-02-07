@@ -37,6 +37,9 @@ function App() {
   const [stabMount, setStabMount] = useState<IStabMount[]>([])
   const [stabMountWarning, setStabMountWarning] = useState<boolean>(false)
 
+  const [allSelectedItems, setAllSelectedItems] = useState<string[]>([])
+
+
 
   const urlPath:string = useHistory().location.pathname.replace(/^\//, '')
   // TODO: make sure to aquire all product keys in an array from the db
@@ -94,69 +97,41 @@ function App() {
     }
   }
 
-  const checkAdded = (product:IProductData):boolean => {
-    let alreadyAdded:boolean = false
-    if (product.type === 'case') {
-      cases.forEach(item => {
-        if (item.name === product.name) {
-          alreadyAdded = true
-          return
-        }
-      })
-    }
-    if (product.type === 'keyset') {
-      keycaps.forEach(item => {
-        if (item.name === product.name) {
-          alreadyAdded = true
-          return
-        }
-      })
-    }
-    if (product.type === 'pcb') {
-      pcbs.forEach(item => {
-        if (item.name === product.name) {
-          alreadyAdded = true
-          return
-        }
-      })
-    }
-    if (product.type === 'plate') {
-      plates.forEach(item => {
-        if (item.name === product.name) {
-          alreadyAdded = true
-          return
-        }
-      })
-    }
-    if (product.type === 'stabilizer') {
-      stabilizers.forEach(item => {
-        if (item.name === product.name) {
-          alreadyAdded = true
-          return
-        }
-      })
-    }
-    if (product.type === 'switch') {
-      switches.forEach(item => {
-        if (item.name === product.name) {
-          alreadyAdded = true
-          return
-        }
-      })
-    }
-    return alreadyAdded
-  }
-
   const addSelectedItem = (selectedProductID: string) => {
-    // console.log('add item fired with product id: ', selectedProductID)
-    // console.log(getProductData(selectedProductID))
+
     const getProductData = (id:string): any => {
       axios.get(`${process.env.REACT_APP_API_URL}/get`, {params: {id:id}})
       .then(response => {
         console.log('api response:', response)
         const product = response.data
-        switch (product.type) {
+        switch (product.product_type) {
           case 'case' :
+            if (!allSelectedItems.includes(id)) {
+              setAllSelectedItems(prevIds => [...prevIds, id])
+              setCase(prevCases => [...prevCases, product])
+              if ( 'layout' in product) {
+                setCaseLayout(prevLayout => [...prevLayout, product.layout])
+              }
+            }
+            break
+          case 'pcb' :
+            console.log('selected product is pcb')
+            break
+          case 'plate' :
+            console.log('selected product is plate')
+            break
+          case 'stabilizers' :
+            console.log('selected product is stab')
+            break
+          case 'switch' :
+            console.log('selected product is switch')
+            if(!allSelectedItems.includes(id)) {
+              setAllSelectedItems(prevIds => [...prevIds, id])
+              setSwitches(prevSwitches => [...prevSwitches, product])
+            }
+            break
+          case 'keycaps' :
+            console.log('selected product is keycaps')
             break
         }
         
