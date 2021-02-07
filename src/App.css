@@ -20,8 +20,3 @@
   font-size: 1.6rem;
   color: var(--secondary-color);
 }
-
-[class*="App-categories__"] {
-  display: inline-block;
-  padding-right: 2rem;
-}
