@@ -16,6 +16,12 @@ interface CategoriesProps {
 
 const Categories = ({removeSelectedItem, selectedCases, selectedPcb, selectedPlates, selectedStabilizers, selectedSwitches, selectedKeycaps}:CategoriesProps) => {
   const [activeCategory, setActiveCategory] = useState('')
+  const [displaySelectedCase, setDisplaySelectedCase] = useState(false)
+  const [displaySelectedPCB, setDisplaySelectedPCB] = useState(false)
+  const [displaySelectedPlate, setDisplaySelectedPlate] = useState(false)
+  const [displaySelectedStab, setDisplaySelectedStab] = useState(false)
+  const [displaySelectedSwitch, setDisplaySelectedSwitch] = useState(false)
+  const [displaySelectedKeycaps, setDisplaySelectedKeycaps] = useState(false)
   
   return (
   <div className="Categories">
@@ -28,8 +34,11 @@ const Categories = ({removeSelectedItem, selectedCases, selectedPcb, selectedPla
         case
       </Link>
       {selectedCases.length > 0 ? (
+        <div className="Categories__category__button-selected-number-cases">{selectedCases.length}</div>
+      ) : null}
+      {selectedCases.length > 0 ? (
         selectedCases.map((item, i) => (
-          <li className="Categories__category__button-cases-selected" key={`case-${i}`}>
+          <li className="Categories__category__button-selected-cases" key={`case-${i}`}>
             {item.name} <span onClick={() => removeSelectedItem(item)}>remove x</span>
           </li>
         ))
@@ -45,7 +54,7 @@ const Categories = ({removeSelectedItem, selectedCases, selectedPcb, selectedPla
       </Link>
       {selectedPcb.length > 0 ? (
         selectedPcb.map((item, i) => (
-          <li className="Categories__category__button-pcb-selected" key={`pcb-${i}`}>
+          <li className="Categories__category__button-selected-pcb" key={`pcb-${i}`}>
             {item.name} <span onClick={() => removeSelectedItem(item)}>remove x</span>
           </li>
         ))
@@ -61,7 +70,7 @@ const Categories = ({removeSelectedItem, selectedCases, selectedPcb, selectedPla
       </Link>
       {selectedPlates.length > 0 ? (
         selectedPlates.map((item, i) => (
-          <li className="Categories__category__button-plate-selected" key={`plate-${i}`}>
+          <li className="Categories__category__button-selected-plate" key={`plate-${i}`}>
             {item.name} <span onClick={() => removeSelectedItem(item)}>remove x</span>
           </li>
         ))
@@ -77,7 +86,7 @@ const Categories = ({removeSelectedItem, selectedCases, selectedPcb, selectedPla
       </Link>
       {selectedStabilizers.length > 0 ? (
         selectedStabilizers.map((item, i) => (
-          <li className="Categories__category__button-stabilizer-selected" key={`stabilizer-${i}`}>
+          <li className="Categories__category__button-selected-stabilizer" key={`stabilizer-${i}`}>
             {item.name} <span onClick={() => removeSelectedItem(item)}>remove x</span>
           </li>
         ))
@@ -93,7 +102,7 @@ const Categories = ({removeSelectedItem, selectedCases, selectedPcb, selectedPla
       </Link>
       {selectedSwitches.length > 0 ? (
         selectedSwitches.map((item, i) => (
-          <li className="Categories__category__button-switch-selected" key={`switch-${i}`}>
+          <li className="Categories__category__button-selected-switch" key={`switch-${i}`}>
             {item.name} <span onClick={() => removeSelectedItem(item)}>remove x</span>
           </li>
         ))
@@ -109,7 +118,7 @@ const Categories = ({removeSelectedItem, selectedCases, selectedPcb, selectedPla
       </Link>
       {selectedKeycaps.length > 0 ? (
         selectedKeycaps.map((item, i) => (
-          <li className="Categories__category__button-keycaps-selected" key={`keycaps-${i}`}>
+          <li className="Categories__category__button-selected-keycaps" key={`keycaps-${i}`}>
             {item.name} <span onClick={() => removeSelectedItem(item)}>remove x</span>
           </li>
         ))
