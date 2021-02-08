@@ -73,22 +73,28 @@ export interface ThemeVariableValues {
 
 
 export type IProductType = 'case' | 'pcb' | 'plate' | 'switch' | 'stabilizer' | 'keyset'
-export type IProductSize = '7u' | '6.5u' | '2u' | undefined
-export type IProductLayout = 'forty_percent' | 'sixty_percent' | 'sixtyfive_percent' | 'seventyfive_percent' | 'tenkeyless' | undefined
 export type IStabMount = 'pcb' | 'plate' | undefined
-
+export type ISwitchType = 'linear' | 'tactile' | 'clicky'
+export type ISwitchProfile = 'low' | 'medium' | 'high'
+export type IStabilizerType = 'pcb_screw_in' | 'pcb_snap_in' | 'plate_mount'
+export type IStabilizerSize = 'six_point_25_u' | 'seven_u' | 'two_u' | 'full_kit' | 'sixty_kit'
+export type IKeyboardFormFactor = 'forty_percent' | 'fifty_percent' | 'sixty_percent'| 'sixtyfive_percent' | 'tenkeyless' | 'frowless' | 'full_size'
+export type IKeyboardLayout = 'ansi' | 'iso' | 'tsangan'
 
 export interface IProductData {
-  hotswap: boolean
   id: string
   img_url: string
-  name: string 
+  name: string
+  hotswap: boolean
   product_type: IProductType
-  size?: IProductSize
-  layout?: IProductLayout
-  mount?: IStabMount
+  switch_type: ISwitchType
+  switch_profile: ISwitchProfile
+  stabilizer_size: IStabilizerSize
+  keyboard_form_factor: IKeyboardFormFactor
+  keyboard_layout: IKeyboardLayout
   vendors: IVendor[]
 }
+
 
 export interface IVendor {
   id: number

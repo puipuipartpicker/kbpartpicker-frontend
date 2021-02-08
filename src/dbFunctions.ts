@@ -1,6 +1,7 @@
-import { IProductData } from './types/types'
-import { ProductTestData } from './TestData'
+// get product by id 
 
-// export const getProductData = (id: string): IProductData => {
-//   return ProductTestData[id]
-// }
+import axios from 'axios'
+
+export const getProductByID = (id:string) => {
+  axios.get(`${process.env.REACT_APP_API_URL}/get`, {params: {id:id}})
+}
