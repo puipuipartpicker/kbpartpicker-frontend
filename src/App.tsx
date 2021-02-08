@@ -246,10 +246,10 @@ function App() {
       // }
     }
     if(product.product_type === 'switch') {
-      setSwitches(switches.filter(cur => cur.name !== product.name))
+      setSwitches(switches.filter(cur => cur.id !== product.id))
     }
     if (product.product_type === 'keyset') {
-      setKeycaps(keycaps.filter(cur => cur.name !== product.name))
+      setKeycaps(keycaps.filter(cur => cur.id !== product.id))
     }
     checkCompatibility()
   }
