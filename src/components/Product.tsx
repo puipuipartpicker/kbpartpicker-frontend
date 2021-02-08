@@ -51,10 +51,10 @@ const Product = ({ id, addItem }:ProductProps) => {
         {vendors.map((vendor, i) => (
           <div className="Product__vendors-vendor" key={`${vendor}-${i}`}>
             <a href={vendor.url} target="_blank" rel="noopener noreferrer">
-              <h3 className="Product__vendors-name">{vendor.id}</h3>
+              <h3 className="Product__vendors-name">{vendor.name}</h3>
             </a>
             <p>{vendor.price}</p>
-            {type ? <p>{type}</p> : null}
+            {type ? <p>{type}</p> : null} 
             {size ? <p>{size}</p> : null}
             {layout ? <p>{layout}</p> : null}
             {hotswap ? <p>{hotswap}</p> : null}

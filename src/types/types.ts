@@ -98,6 +98,7 @@ export interface IProductData {
 
 export interface IVendor {
   id: number
+  name: string
   in_stock: boolean
   price: number
   product_id: number

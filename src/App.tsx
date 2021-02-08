@@ -7,7 +7,7 @@ import Product from './components/Product'
 import Warning from './components/Warning'
 import Categories from './components/Categories'
 import { ThemeVariableValues } from './types/types'
-import { IProductData, IProductSize, IProductLayout, IStabMount } from './types/types'
+import { IProductData, IKeyboardFormFactor,  IStabilizerSize, IStabilizerType} from './types/types'
 import updateThemeVariables from './updateThemeVariables'
 // import { getProductData } from './dbFunctions'
 import axios from 'axios' 
@@ -26,15 +26,15 @@ function App() {
 
   const [warningNotification, setWarningNotification] = useState<boolean>(false)
   const [warningDisp, setWarningDisp] = useState<boolean>(false)
-  const [caseLayout, setCaseLayout] = useState<IProductLayout[]>([])
-  const [pcbLayout, setPcbLayout] = useState<IProductLayout[]>([])
-  const [plateLayout, setPlateLayout] = useState<IProductLayout[]>([])
+  const [caseLayout, setCaseLayout] = useState<IKeyboardFormFactor[]>([])
+  const [pcbLayout, setPcbLayout] = useState<IKeyboardFormFactor[]>([])
+  const [plateLayout, setPlateLayout] = useState<IKeyboardFormFactor[]>([])
   const [layoutWarning, setLayoutWarning] = useState<boolean>(false)
   const [hotswap, setHotwap] = useState<(boolean | undefined)[]>([])
   const [solderWarning, setSolderWarning] = useState<boolean>(false)
-  const [stabSize, setStabSize] = useState<IProductSize[]>([])
+  const [stabSize, setStabSize] = useState<IStabilizerSize[]>([])
   const [stabSizeWarning, setStabSizeWarning] = useState<boolean>(false)
-  const [stabMount, setStabMount] = useState<IStabMount[]>([])
+  const [stabMount, setStabMount] = useState<IStabilizerType[]>([])
   const [stabMountWarning, setStabMountWarning] = useState<boolean>(false)
 
   const [allSelectedItems, setAllSelectedItems] = useState<string[]>([])
@@ -82,13 +82,13 @@ function App() {
       setSolderWarning(false)
     }
 
-    if (stabSize.includes('7u')) {
+    if (stabSize.includes('seven_u')) {
       setStabSizeWarning(true)
     } else {
       setStabSizeWarning(false)
     }
 
-    if (stabMount.includes('plate')) {
+    if (stabMount.includes('plate_mount')) {
       console.log('checkCompatability: stabMount', stabMount)
       setStabMountWarning(true)
     } else {
@@ -200,15 +200,15 @@ function App() {
     if(product.product_type === 'case') {
       setCase(cases.filter(item => item.name !== product.name))
       if ('layout' in product) {
-        const indexToRemove = caseLayout.findIndex(cur => cur === product.layout)
-        setCaseLayout(prevCaseLayout => prevCaseLayout.splice(indexToRemove, 1))
+        // const indexToRemove = caseLayout.findIndex(cur => cur === product.keyboard_form_factor)
+        // setCaseLayout(prevCaseLayout => prevCaseLayout.splice(indexToRemove, 1))
       }
     }
     if(product.product_type === 'pcb') {
       setPCB(pcbs.filter(item => item.name !== product.name))
       if ('layout' in product) {
-        const indexToRemove = pcbLayout.findIndex( layout => layout === product.layout)
-        setPcbLayout(prevLayout => prevLayout.splice(indexToRemove, 1))
+        // const indexToRemove = pcbLayout.findIndex( layout => layout === product.layout)
+        // setPcbLayout(prevLayout => prevLayout.splice(indexToRemove, 1))
       }
       if ('hotswap' in product) {
         if (product.hotswap === (true || false)) {
@@ -235,15 +235,15 @@ function App() {
     console.log('pcb LAYOUT', pcbLayout)
     if(product.product_type === 'stabilizer') {
       setStabilizer(stabilizers.filter(item => item.name !== product.name))
-      if (stabSize.includes(product.size)) {
-        const indexToRemove = stabSize.indexOf(product.size)
+      if (stabSize.includes(product.stabilizer_size)) {
+        const indexToRemove = stabSize.indexOf(product.stabilizer_size)
         setStabSize(prevStabSize => prevStabSize.splice(indexToRemove, 1))
         console.log('stab size' , stabSize)
       }
-      if (stabMount.includes(product.mount)) {
-        const indexToRemove = stabMount.indexOf(product.mount)
-        setStabMount(prevStabMount => prevStabMount.splice(indexToRemove, 1))
-      }
+      // if (stabMount.includes(product.mount)) {
+      //   const indexToRemove = stabMount.indexOf(product.mount)
+      //   setStabMount(prevStabMount => prevStabMount.splice(indexToRemove, 1))
+      // }
     }
     if(product.product_type === 'switch') {
       setSwitches(switches.filter(cur => cur.name !== product.name))
