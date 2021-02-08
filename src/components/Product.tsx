@@ -50,8 +50,8 @@ const Product = ({ id, addItem }:ProductProps) => {
       <div className="Product__vendors">
         {vendors.map((vendor, i) => (
           <div className="Product__vendors-vendor" key={`${vendor}-${i}`}>
-            <a href={vendor.product_url} target="_blank" rel="noopener noreferrer">
-              <h3 className="Product__vendors-name">{vendor.name}</h3>
+            <a href={vendor.url} target="_blank" rel="noopener noreferrer">
+              <h3 className="Product__vendors-name">{vendor.id}</h3>
             </a>
             <p>{vendor.price}</p>
             {type ? <p>{type}</p> : null}

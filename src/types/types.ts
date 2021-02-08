@@ -77,33 +77,26 @@ export type IProductSize = '7u' | '6.5u' | '2u' | undefined
 export type IProductLayout = 'forty_percent' | 'sixty_percent' | 'sixtyfive_percent' | 'seventyfive_percent' | 'tenkeyless' | undefined
 export type IStabMount = 'pcb' | 'plate' | undefined
 
-// TODO: update types besed on actual reponse from backend 
+
 export interface IProductData {
+  hotswap: boolean
   id: string
+  img_url: string
   name: string 
-  type: IProductType
+  product_type: IProductType
   size?: IProductSize
   layout?: IProductLayout
-  hotswap?: boolean
   mount?: IStabMount
-  imgURL: string
-  vendors: {
-    id: number
-    name: string
-    logoURL?: string
-    vendorURL: string
-    productURL: string
-    inStock: boolean
-    price: string
-  }[]
+  vendors: IVendor[]
 }
 
 export interface IVendor {
+  id: number
   in_stock: boolean
-  name: string
   price: number
-  product_url: string
-  vendor_url: string
+  product_id: number
+  url: string
+  vendor_id: string
 }
 
 export interface IProductDatabase {

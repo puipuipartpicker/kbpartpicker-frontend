@@ -197,14 +197,14 @@ function App() {
 
   const removeSelectedItem = (product: IProductData): void => {
     // case, pcb, plate, stabilizer, 
-    if(product.type === 'case') {
+    if(product.product_type === 'case') {
       setCase(cases.filter(item => item.name !== product.name))
       if ('layout' in product) {
         const indexToRemove = caseLayout.findIndex(cur => cur === product.layout)
         setCaseLayout(prevCaseLayout => prevCaseLayout.splice(indexToRemove, 1))
       }
     }
-    if(product.type === 'pcb') {
+    if(product.product_type === 'pcb') {
       setPCB(pcbs.filter(item => item.name !== product.name))
       if ('layout' in product) {
         const indexToRemove = pcbLayout.findIndex( layout => layout === product.layout)
@@ -219,7 +219,7 @@ function App() {
         }
       }
     }
-    if (product.type === 'plate') {
+    if (product.product_type === 'plate') {
       console.log('tried to remove plate')
       const indexToRemove = plates.findIndex(cur => cur.name === product.name)
       console.log('plate index', indexToRemove)
@@ -233,7 +233,7 @@ function App() {
     }
     console.log('CASE LAYOUT', caseLayout)
     console.log('pcb LAYOUT', pcbLayout)
-    if(product.type === 'stabilizer') {
+    if(product.product_type === 'stabilizer') {
       setStabilizer(stabilizers.filter(item => item.name !== product.name))
       if (stabSize.includes(product.size)) {
         const indexToRemove = stabSize.indexOf(product.size)
@@ -245,10 +245,10 @@ function App() {
         setStabMount(prevStabMount => prevStabMount.splice(indexToRemove, 1))
       }
     }
-    if(product.type === 'switch') {
+    if(product.product_type === 'switch') {
       setSwitches(switches.filter(cur => cur.name !== product.name))
     }
-    if (product.type === 'keyset') {
+    if (product.product_type === 'keyset') {
       setKeycaps(keycaps.filter(cur => cur.name !== product.name))
     }
     checkCompatibility()
