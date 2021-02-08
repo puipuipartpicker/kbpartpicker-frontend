@@ -116,12 +116,34 @@ function App() {
             break
           case 'pcb' :
             console.log('selected product is pcb')
+            if(!allSelectedItems.includes(id)) {
+              setPCB(prevPCB => [...prevPCB, product])
+              if ('keyboard_form_factor' in product) {
+                setPcbLayout(prevLayout => [...prevLayout, product.layout])
+              }
+              if ('hotswap' in product) {
+                setHotwap(prevHotswap => [...prevHotswap, product])
+              }
+            }
             break
           case 'plate' :
             console.log('selected product is plate')
+            setPlate(prevPlates => [...prevPlates, product])
+            if ('keyboard_form_factor' in product) {
+              setPlateLayout(prevLayout => [...prevLayout, product.layout])
+            }
             break
-          case 'stabilizers' :
+          case 'stabilizer' :
             console.log('selected product is stab')
+            if(!allSelectedItems.includes(id)) {
+              setStabilizer(prevStabs => [...prevStabs, product])
+              if ('stabilizer_size' in product) {
+                setStabSize(prevSize => [...prevSize, product.size])
+              }
+              if ('stabilizer_type' in product) {
+                setStabMount(prevMount => [...prevMount, product.mount])
+              }
+            }
             break
           case 'switch' :
             console.log('selected product is switch')
@@ -130,69 +152,17 @@ function App() {
               setSwitches(prevSwitches => [...prevSwitches, product])
             }
             break
-          case 'keycaps' :
+          case 'keyset' :
             console.log('selected product is keycaps')
+            if(!allSelectedItems.includes(id)) {
+              setKeycaps(prevKeys => [...prevKeys, product])
             break
+          }
         }
-        
       })
       .catch(error => console.log(error))
     }
-
     getProductData(selectedProductID)
-
-
-
-    // if (product.type === 'case') {
-    //   if (!checkAdded(product)) {
-    //     setCase(prevCases => [...prevCases, product])
-    //     if ( 'layout' in product) {
-    //       setCaseLayout(prevLayout => [...prevLayout, product.layout])
-    //     }
-    //   }
-    // }
-    // if (product.type === 'pcb') {
-    //   if (!checkAdded(product)) {
-    //     setPCB(prevPCB => [...prevPCB, product])
-    //     if ('layout' in product) {
-    //       setPcbLayout(prevLayout => [...prevLayout, product.layout])
-    //     }
-    //     if ('hotswap' in product) {
-    //       if (product.hotswap === (true || false)) {
-    //         setHotwap(prevHotswap => [...prevHotswap, product.hotswap])
-    //       }
-    //     }
-    //   }
-    // }
-    // if (product.type === 'plate') {
-    //   if (!checkAdded(product)) {
-    //     setPlate(prevPlates => [...prevPlates, product])
-    //     if ('layout' in product) {
-    //       setPlateLayout(prevLayout => [...prevLayout, product.layout])
-    //     }
-    //   }
-    // }
-    // if (product.type === 'stabilizers') {
-    //   if(!checkAdded(product)) {
-    //     setStabilizer(prevStabs => [...prevStabs, product])
-    //     if ('size' in product) {
-    //       setStabSize(prevSize => [...prevSize, product.size])
-    //     }
-    //     if ('mount' in product) {
-    //       setStabMount(prevMount => [...prevMount, product.mount])
-    //     }
-    //   }
-    // } 
-    // if (product.type === 'switch') {
-    //   if(!checkAdded(product)) {
-    //     setSwitches(prevSwitches => [...prevSwitches, product])
-    //   }
-    // }
-    // if (product.type === 'keycaps') {
-    //   if(!checkAdded(product)) {
-    //     setKeycaps(prevKeys => [...prevKeys, product])
-    //   }
-    // }
   }
 
   const removeSelectedItem = (product: IProductData): void => {
