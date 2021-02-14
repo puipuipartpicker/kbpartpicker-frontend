@@ -100,7 +100,7 @@ function App() {
   const addSelectedItem = (selectedProductID: string) => {
 
     const getProductData = (id:string): any => {
-      axios.get(`${process.env.REACT_APP_API_URL}/get`, {params: {id:id}})
+      axios.get(`${process.env.REACT_APP_API_URL}/products/${id}`)
       .then(response => {
         console.log('api response:', response)
         const product = response.data

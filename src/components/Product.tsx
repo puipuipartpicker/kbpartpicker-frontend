@@ -22,7 +22,7 @@ const Product = ({ id, addItem }:ProductProps) => {
   const [vendors, setVendors] = useState<IVendor[]>([])
 
   const getProductData = (id:string): any => {
-    axios.get(`${process.env.REACT_APP_API_URL}/get`, {params: {id:id}})
+    axios.get(`${process.env.REACT_APP_API_URL}/products/${id}`)
     .then(response => {
       setReponce(true)
       setName(response.data.name)

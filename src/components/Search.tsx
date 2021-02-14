@@ -27,7 +27,7 @@ const Search = ({ category, addItem }:SearchProps) => {
   const sendQuery = (query: string | undefined, category: IProductType):void => {
     setLoading(true)
     console.log("env", process.env.REACT_APP_API_URL)
-    axios.get(`${process.env.REACT_APP_API_URL}/search`, {params: {category: category, query: query}})
+    axios.get(`${process.env.REACT_APP_API_URL}/categories/${category}/search`, {params: {query: query}})
     .then(response => {
       console.log('got response for query from backends: \n', response)
       console.log('response data: \n', response.data)
