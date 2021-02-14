@@ -160,7 +160,18 @@ function App() {
           }
         }
       })
-      .catch(error => console.log(error))
+      .catch(error => {
+        if (error.response) {
+          const logDetails = {
+            "error message": error.response.data.message,
+            "http status": error.response.status,
+            "http error": error.response.statusText
+          }
+          console.dir('there was an error returning query results from backend: \n', logDetails)
+        } else {
+          console.log('there was an error making a request to the backend: \n', error)
+        }
+      })
     }
     getProductData(selectedProductID)
   }

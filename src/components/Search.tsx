@@ -46,8 +46,18 @@ const Search = ({ category, addItem }:SearchProps) => {
       setLoading(false)
     })
     .catch(error => {
-      setLoading(false)
-      console.log('there was an error returning query results from backend: \n', error)
+      if (error.response) {
+        setLoading(false)
+        const logDetails = {
+          "error message": error.response.data.message,
+          "http status": error.response.status,
+          "http error": error.response.statusText
+        }
+        console.dir('there was an error returning query results from backend: \n', logDetails)
+      } else {
+        setLoading(false)
+        console.log('there was an error making a request to the backend: \n', error)
+      }
     })
   }
 
