@@ -22,7 +22,7 @@ const Product = ({ id, addItem }:ProductProps) => {
   const [vendors, setVendors] = useState<IVendor[]>([])
 
   const getProductData = (id:string): any => {
-    axios.get(`${process.env.REACT_APP_API_URL}/get`, {params: {id:id}})
+    axios.get(`${process.env.REACT_APP_API_URL}/products/${id}`)
     .then(response => {
       setReponce(true)
       setName(response.data.name)
@@ -33,7 +33,18 @@ const Product = ({ id, addItem }:ProductProps) => {
       setImgURL(response.data.img_url)
       setVendors(response.data.vendors)
     })
-    .catch(error => console.log(error))
+    .catch(error => {
+      if (error.response) {
+        const logDetails = {
+          "error message": error.response.data.message,
+          "http status": error.response.status,
+          "http error": error.response.statusText
+        }
+        console.dir('there was an error returning query results from backend: \n', logDetails)
+      } else {
+        console.log('there was an error making a request to the backend: \n', error)
+      }
+    })
   }
   
   useEffect(() => {
