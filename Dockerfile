@@ -1,18 +1,19 @@
 # [multi-stage build] node, yarn runtime
 FROM node:12.2.0-slim
 
-ARG APP_HOME=/opt/frontend
+ARG APP_HOME=/app
 
 # set working directory
-WORKDIR /opt/frontend
+WORKDIR $APP_HOME
+
+EXPOSE 3000
 
 # add `/app/node_modules/.bin` to $PATH
-ENV PATH /opt/frontend/node_modules/.bin:$PATH
+ENV PATH /app/node_modules/.bin:$PATH
 
 # install app dependencies
 COPY ./package.json $APP_HOME/
 COPY ./yarn.lock $APP_HOME/
-RUN yarn
 
 RUN set -eux; \
   apt-get update; \
@@ -31,3 +32,4 @@ USER kbpp
 
 # start app
 CMD yarn dev
+# CMD ["serve", "-p", "3000", "-s", "."]

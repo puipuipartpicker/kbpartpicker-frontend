@@ -3,7 +3,13 @@ import {IProductType} from './types/types'
 
 export const sendQuery = (query: string | undefined, category: IProductType):void => {
   console.log("env", process.env.REACT_APP_API_URL)
-  axios.get(`${process.env.REACT_APP_API_URL}/categories/${category}/search`, { params: { query: query }})
+  console.log("ATTEMPTING TO CALL BACKEND")
+  axios.get(
+    `${process.env.REACT_APP_API_URL}/categories/${category}/search`,
+    {
+      params: { query: query }
+    }
+  )
   .then(response => {
     console.log('got response for query from backends: \n', response)
     console.log('response data: \n', response.data)
