@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import Paths from '../types/Paths'
 import { IProductData } from '../types/types'
@@ -22,6 +22,12 @@ const Categories = ({removeSelectedItem, selectedCases, selectedPcb, selectedPla
   const [displaySelectedStab, setDisplaySelectedStab] = useState(false)
   const [displaySelectedSwitch, setDisplaySelectedSwitch] = useState(false)
   const [displaySelectedKeycaps, setDisplaySelectedKeycaps] = useState(false)
+
+  useEffect(() => {
+    if (selectedSwitches.length === 0) {
+      setDisplaySelectedSwitch(false)
+    }
+  }, [selectedSwitches])
   
   return (
   <div className="Categories">
@@ -101,12 +107,24 @@ const Categories = ({removeSelectedItem, selectedCases, selectedPcb, selectedPla
         switch
       </Link>
       {selectedSwitches.length > 0 ? (
-        selectedSwitches.map((item, i) => (
-          <li className="Categories__category__button-selected-items-switch" key={`switch-${i}`}>
-            {item.name} <span onClick={() => removeSelectedItem(item)}>remove x</span>
-          </li>
-        ))
-      ) : null}
+          <div 
+            className={`Categories__category__button-selected-number-switch ${displaySelectedSwitch && '--shrink'}`}
+            onClick={() => setDisplaySelectedSwitch((prev => !prev))}>
+            {displaySelectedSwitch ? 'X' : selectedSwitches.length}
+          </div>
+        ) : null}
+      <div className={`Categories__category-selected ${displaySelectedSwitch && '--display'}`}>
+        {selectedSwitches.length > 0 && displaySelectedSwitch ? (
+          selectedSwitches.map((item, i) => (
+            <li className="Categories__category__button-selected-items-switch" key={`switch-${i}`}>
+              {item.name} <span onClick={() => {
+                removeSelectedItem(item)
+                if (selectedSwitches.length === 0) { setDisplaySelectedSwitch(false) }
+                }}>remove x</span>
+            </li>
+          ))
+        ) : null}
+      </div>
     </div>
     <div className="Categories__category">
       <Link
@@ -122,7 +140,10 @@ const Categories = ({removeSelectedItem, selectedCases, selectedPcb, selectedPla
       {selectedKeycaps.length > 0 && displaySelectedKeycaps ? (
             selectedKeycaps.map((item, i) => (
               <li className="Categories__category__button-selected-items-keycaps" key={`keycaps-${i}`}>
-                {item.name} <span onClick={() => removeSelectedItem(item)}>remove x</span>
+                {item.name} <span onClick={() => {
+                  removeSelectedItem(item)
+                  if (selectedKeycaps.length === 0) { setDisplaySelectedKeycaps(false) }
+                  }}>remove x</span>
               </li>
       ))) : null}
     </div>
