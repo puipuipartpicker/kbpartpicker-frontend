@@ -60,8 +60,9 @@
   transform: rotate(90deg);
 }
 
+/* TODO: style the list better */
 [class^="Categories__category__button-selected-items-"] {
-
+  font-size: 1.6rem;
 }
 
 .--active {
