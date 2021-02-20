@@ -230,6 +230,7 @@ function App() {
     }
     if(product.product_type === 'switch') {
       setSwitches(switches.filter(cur => cur.id !== product.id))
+      setAllSelectedItems(prev => prev)
     }
     if (product.product_type === 'keyset') {
       setKeycaps(keycaps.filter(cur => cur.id !== product.id))
