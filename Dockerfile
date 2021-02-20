@@ -29,12 +29,14 @@ WORKDIR $APP_HOME
 COPY ./package.json $APP_HOME/
 COPY ./yarn.lock $APP_HOME/
 
-RUN npm install --silent
-RUN npm install typescript@3.7.2 react-scripts@3.4.3 -g --silent
+ENV NODE_ENV=production
+
+# RUN npm install --silent
+# RUN npm install typescript@3.7.2 react-scripts@3.4.3 -g --silent
 
 USER kbpp
 
 # start app
 
-CMD yarn dev
+# CMD yarn dev
 # CMD ["serve", "-p", "3000", "-s", "."]
