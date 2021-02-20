@@ -37,7 +37,7 @@ function App() {
   const [stabMount, setStabMount] = useState<IStabilizerType[]>([])
   const [stabMountWarning, setStabMountWarning] = useState<boolean>(false)
 
-  const [allSelectedItems, setAllSelectedItems] = useState<string[]>([])
+  const [allSelectedItemIds, setAllSelectedItemIds] = useState<string[]>([])
 
 
 
@@ -108,8 +108,8 @@ function App() {
         const product = response.data
         switch (product.product_type) {
           case 'case' :
-            if (!allSelectedItems.includes(id)) {
-              setAllSelectedItems(prevIds => [...prevIds, id])
+            if (!allSelectedItemIds.includes(id)) {
+              setAllSelectedItemIds(prevIds => [...prevIds, id])
               setCase(prevCases => [...prevCases, product])
               if ( 'layout' in product) {
                 setCaseLayout(prevLayout => [...prevLayout, product.layout])
@@ -118,7 +118,7 @@ function App() {
             break
           case 'pcb' :
             console.log('selected product is pcb')
-            if(!allSelectedItems.includes(id)) {
+            if(!allSelectedItemIds.includes(id)) {
               setPCB(prevPCB => [...prevPCB, product])
               if ('keyboard_form_factor' in product) {
                 setPcbLayout(prevLayout => [...prevLayout, product.layout])
@@ -137,7 +137,7 @@ function App() {
             break
           case 'stabilizer' :
             console.log('selected product is stab')
-            if(!allSelectedItems.includes(id)) {
+            if(!allSelectedItemIds.includes(id)) {
               setStabilizer(prevStabs => [...prevStabs, product])
               if ('stabilizer_size' in product) {
                 setStabSize(prevSize => [...prevSize, product.size])
@@ -149,14 +149,14 @@ function App() {
             break
           case 'switch' :
             console.log('selected product is switch')
-            if(!allSelectedItems.includes(id)) {
-              setAllSelectedItems(prevIds => [...prevIds, id])
+            if(!allSelectedItemIds.includes(id)) {
+              setAllSelectedItemIds(prevIds => [...prevIds, id])
               setSwitches(prevSwitches => [...prevSwitches, product])
             }
             break
           case 'keyset' :
             console.log('selected product is keycaps')
-            if(!allSelectedItems.includes(id)) {
+            if(!allSelectedItemIds.includes(id)) {
               setKeycaps(prevKeys => [...prevKeys, product])
             break
           }
@@ -177,7 +177,7 @@ function App() {
     }
     getProductData(selectedProductID)
   }
-
+  // TODO: refactor to switch statement
   const removeSelectedItem = (product: IProductData): void => {
     // case, pcb, plate, stabilizer, 
     if(product.product_type === 'case') {
@@ -189,6 +189,7 @@ function App() {
     }
     if(product.product_type === 'pcb') {
       setPCB(pcbs.filter(item => item.name !== product.name))
+      setAllSelectedItemIds(prev => prev.filter(cur => cur !== product.id))
       if ('layout' in product) {
         // const indexToRemove = pcbLayout.findIndex( layout => layout === product.layout)
         // setPcbLayout(prevLayout => prevLayout.splice(indexToRemove, 1))
@@ -218,6 +219,7 @@ function App() {
     console.log('pcb LAYOUT', pcbLayout)
     if(product.product_type === 'stabilizer') {
       setStabilizer(stabilizers.filter(item => item.name !== product.name))
+      setAllSelectedItemIds(prev => prev.filter(cur => cur !== product.id))
       if (stabSize.includes(product.stabilizer_size)) {
         const indexToRemove = stabSize.indexOf(product.stabilizer_size)
         setStabSize(prevStabSize => prevStabSize.splice(indexToRemove, 1))
@@ -230,10 +232,11 @@ function App() {
     }
     if(product.product_type === 'switch') {
       setSwitches(switches.filter(cur => cur.id !== product.id))
-      setAllSelectedItems(prev => prev.filter(cur => cur !== product.id))
+      setAllSelectedItemIds(prev => prev.filter(cur => cur !== product.id))
     }
     if (product.product_type === 'keyset') {
       setKeycaps(keycaps.filter(cur => cur.id !== product.id))
+      setAllSelectedItemIds(prev => prev.filter(cur => cur !== product.id))
     }
     checkCompatibility()
   }
