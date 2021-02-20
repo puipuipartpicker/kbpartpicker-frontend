@@ -108,16 +108,16 @@ const Categories = ({removeSelectedItem, selectedCases, selectedPcb, selectedPla
       </Link>
       {selectedSwitches.length > 0 ? (
           <div 
-            className={`Categories__category__button-selected-number-switch ${displaySelectedSwitch && '--shrink'}`}
+            className={`Categories__category__button-selected-number-switch ${displaySelectedSwitch && '--open'}`}
             onClick={() => setDisplaySelectedSwitch((prev => !prev))}>
-            {displaySelectedSwitch ? 'X' : selectedSwitches.length}
+            {displaySelectedSwitch ? '>' : selectedSwitches.length}
           </div>
         ) : null}
       <div className={`Categories__category-selected ${displaySelectedSwitch && '--display'}`}>
         {selectedSwitches.length > 0 && displaySelectedSwitch ? (
           selectedSwitches.map((item, i) => (
             <li className="Categories__category__button-selected-items-switch" key={`switch-${i}`}>
-              {item.name} <span onClick={() => {
+              {item.name} <span className="--remove" onClick={() => {
                 removeSelectedItem(item)
                 if (selectedSwitches.length === 0) { setDisplaySelectedSwitch(false) }
                 }}>remove x</span>
