@@ -1,4 +1,5 @@
-# [multi-stage build] node, yarn runtime
+# TODO modify for all envs (dev, stg, prd) with multi-stage build
+# https://mherman.org/blog/dockerizing-a-react-app/
 FROM node:12.2.0-slim
 
 ARG APP_HOME=/app
@@ -19,17 +20,20 @@ RUN set -eux; \
   mkdir -p $APP_HOME &&\
   chown -R kbpp:kbpp $APP_HOME/
 
-WORKDIR /tmp
-COPY --chown=kbpp:kbpp ./ $APP_HOME/
-WORKDIR $APP_HOME
 
 # install app dependencies
 COPY ./package.json $APP_HOME/
 COPY ./yarn.lock $APP_HOME/
 
+RUN yarn
+
+WORKDIR /tmp
+COPY --chown=kbpp:kbpp ./ $APP_HOME/
+WORKDIR $APP_HOME
+
 USER kbpp
 
 # start app
 
-# CMD yarn dev
+CMD yarn dev
 # CMD ["serve", "-p", "3000", "-s", "."]
