@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, createContext} from 'react';
 import './App.css';
 import { BrowserRouter as Router, Route, Link, useHistory } from 'react-router-dom'
 import Paths from './types/Paths'
@@ -38,6 +38,7 @@ function App() {
   const [stabMountWarning, setStabMountWarning] = useState<boolean>(false)
 
   const [allSelectedItemIds, setAllSelectedItemIds] = useState<string[]>([])
+
 
 
 
@@ -97,7 +98,7 @@ function App() {
     }
   }
 
-  const addSelectedItem = (selectedProductID: string) => {
+  const addSelectedItem: (id: string) => void = (selectedProductID: string) => {
 
     const getProductData = (id:string): any => {
       axios.get(
@@ -255,6 +256,16 @@ function App() {
     handleWarningDisplay()
   }, [stabMountWarning, stabSizeWarning, solderWarning, layoutWarning])
 
+  type ContextType = {
+    addToSelected: (id: string) => void
+  }
+
+  const someContext = {
+    addToSelected: addSelectedItem
+  }
+
+  const AddSelectedContext = createContext<(id:string) => void>(addSelectedItem)
+
   return (
     <div className={`App ${theme}`}>
       <div className="App__top-container">
@@ -296,7 +307,9 @@ function App() {
         return <Search category='case' addItem={addSelectedItem}/>}}/>
       <Route path={Paths.pcb} render={ (props) => {
         setTheme('mizu')
-        return <Search category='pcb' addItem={addSelectedItem}/>}}/>
+        return (
+          <Search category='pcb' addItem={addSelectedItem}/>
+        )}}/>
       <Route path={Paths.plates} render={ (props) => {
         setTheme('modernDolch')
         return <Search category='plate' addItem={addSelectedItem}/>}}/>
@@ -305,7 +318,11 @@ function App() {
         return <Search category='stabilizer' addItem={addSelectedItem}/>}}/>
       <Route path={Paths.switch} render={ (props) => {
         setTheme('taro')
-        return <Search category='switch' addItem={addSelectedItem}/>}}/>
+        return (
+          <AddSelectedContext.Provider value={ addSelectedItem as (id:string) => void}>
+            <Search category='switch' addItem={addSelectedItem}/>
+          </AddSelectedContext.Provider>
+        )}}/>
       <Route path={Paths.keycaps} render={ (props) => {
         setTheme('retrocast')
         return <Search category='keyset' addItem={addSelectedItem}/>}}/>

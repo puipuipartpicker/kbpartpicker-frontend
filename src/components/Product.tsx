@@ -1,5 +1,6 @@
-import React, { useEffect, useState} from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import axios from 'axios' 
+import AddSelectedContext from '../App'
 // import { AxiosResponse } from 'axios' 
 import './Product.css'
 // import { IProductType, IProductSize, IProductLayout, IProductData } from '../types/types'
@@ -51,11 +52,21 @@ const Product = ({ id, addItem }:ProductProps) => {
     getProductData(id)
   }, [id])
 
+  type ContextType = {
+    addToSelected: (id: string) => void
+  }
+
+  
+  const addToSelected = useContext(AddSelectedContext) as (id: string) => void
+
   return (
   <div className="Product">
     {responce ? (
       <>
       <button className="Results__product-add-select" onClick={() => addItem(id)}>add to selected items</button>
+      {addToSelected && (
+        <button onClick={() => addToSelected(id)}>add from context</button>
+      )}
       <img className="Product__img" src={imgURL} alt={`${name}`}/>
       <h2 className="Product__name">{name}</h2> 
       <div className="Product__vendors">
