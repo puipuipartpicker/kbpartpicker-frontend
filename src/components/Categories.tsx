@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import Paths from '../types/Paths'
 import { IProductData } from '../types/types'
+import { useHistory } from 'react-router-dom'
 import './Categories.css'
 
 interface CategoriesProps {
@@ -23,6 +24,8 @@ const Categories = ({removeSelectedItem, selectedCases, selectedPcb, selectedPla
   const [displaySelectedSwitch, setDisplaySelectedSwitch] = useState(false)
   const [displaySelectedKeycaps, setDisplaySelectedKeycaps] = useState(false)
 
+  const curPath = useHistory().location.pathname
+
   useEffect(() => {
     if (selectedCases.length === 0) { setDisplaySelectedCase(false) }
     if (selectedPcb.length === 0) { setDisplaySelectedPCB(false) }
@@ -30,7 +33,16 @@ const Categories = ({removeSelectedItem, selectedCases, selectedPcb, selectedPla
     if (selectedStabilizers.length === 0) { setDisplaySelectedStab(false) }
     if (selectedSwitches.length === 0) { setDisplaySelectedSwitch(false) }
     if (selectedKeycaps.length === 0) { setDisplaySelectedKeycaps(false) }
+
   }, [selectedCases, selectedPcb, selectedPlates, selectedStabilizers, selectedSwitches, selectedKeycaps])
+
+  useEffect(() => {
+    const catRegex:RegExp = new RegExp('([^/]+)');
+    if (curPath.match(catRegex)![1]) {
+      console.log(curPath.match(catRegex)![1])
+      setActiveCategory(curPath.match(catRegex)![1])
+    }
+  },[])
   
   return (
   <div className="Categories">
