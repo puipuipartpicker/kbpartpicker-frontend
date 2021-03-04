@@ -5,17 +5,18 @@
 
 .Categories__category {
   position: relative;
-  margin-right: var(--margin-side);
+  margin-right: 2rem;
   margin-bottom: var(--margin-bottom);
   font-size: 2rem;
   font-weight: 700;
+  color: var(--highlight-color);
 }
 
 .Categories__category-selected {
   z-index: 100;
   position: absolute;
   margin-top: 0.5rem;
-  background-color: var(--primary-color);
+  background-color: var(--highlight-color);
   color: var(--darkest-color);
   border-radius: var(--rounded-corner);
   -webkit-transition: all 0.2s ease;
@@ -34,7 +35,7 @@
   position: absolute;
   bottom: -1rem;
   left: -1.4rem;
-  background-color: var(--primary-color);
+  background-color: var(--highlight-color);
   color: var(--bg-color);
   padding: 0.2rem 0.7rem;
   border-radius: 100%;
@@ -73,6 +74,10 @@
   text-decoration: none;
   border-radius: var(--rounded-corner);
   /* text-transform: uppercase; */
+}
+
+.--active-selected {
+  background-color: var(--primary-color);
 }
 
 .--remove {
