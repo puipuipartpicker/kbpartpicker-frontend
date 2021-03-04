@@ -43,15 +43,24 @@ const Categories = ({removeSelectedItem, selectedCases, selectedPcb, selectedPla
         case
       </Link>
       {selectedCases.length > 0 ? (
-        <div className="Categories__category__button-selected-number-cases">{selectedCases.length}</div>
-      ) : null}
-      {selectedCases.length > 0 ? (
-        selectedCases.map((item, i) => (
-          <li className="Categories__category__button-selected-items-cases" key={`case-${i}`}>
-            {item.name} <span onClick={() => removeSelectedItem(item)}>remove x</span>
-          </li>
-        ))
-      ) : null}      
+          <div 
+            className={`Categories__category__button-selected-number-case ${displaySelectedCase && '--open'}`}
+            onClick={() => setDisplaySelectedCase((prev => !prev))}>
+            {displaySelectedCase ? '>' : selectedCases.length}
+          </div>
+        ) : null}
+      <div className={`Categories__category-selected ${displaySelectedCase && '--display'}`}>
+        {selectedCases.length > 0 && displaySelectedCase ? (
+          selectedCases.map((item, i) => (
+            <li className="Categories__category__button-selected-items-case" key={`case-${i}`}>
+              {item.name} <span className="--remove" onClick={() => {
+                removeSelectedItem(item)
+                if (selectedCases.length === 0) { setDisplaySelectedCase(false) }
+                }}>remove x</span>
+            </li>
+          ))
+        ) : null}
+      </div>   
     </div>
     <div className="Categories__category">
       <Link
@@ -62,12 +71,24 @@ const Categories = ({removeSelectedItem, selectedCases, selectedPcb, selectedPla
         PCB
       </Link>
       {selectedPcb.length > 0 ? (
-        selectedPcb.map((item, i) => (
-          <li className="Categories__category__button-selected-items-pcb" key={`pcb-${i}`}>
-            {item.name} <span onClick={() => removeSelectedItem(item)}>remove x</span>
-          </li>
-        ))
-      ) : null}
+          <div 
+            className={`Categories__category__button-selected-number-pcb ${displaySelectedPCB && '--open'}`}
+            onClick={() => setDisplaySelectedPCB((prev => !prev))}>
+            {displaySelectedPCB ? '>' : selectedPcb.length}
+          </div>
+        ) : null}
+      <div className={`Categories__category-selected ${displaySelectedPCB && '--display'}`}>
+        {selectedPcb.length > 0 && displaySelectedPCB ? (
+          selectedPcb.map((item, i) => (
+            <li className="Categories__category__button-selected-items-pcb" key={`pcb-${i}`}>
+              {item.name} <span className="--remove" onClick={() => {
+                removeSelectedItem(item)
+                if (selectedPcb.length === 0) { setDisplaySelectedPCB(false) }
+                }}>remove x</span>
+            </li>
+          ))
+        ) : null}
+      </div>
     </div>
     <div className="Categories__category">
       <Link
@@ -78,12 +99,24 @@ const Categories = ({removeSelectedItem, selectedCases, selectedPcb, selectedPla
         plate
       </Link>
       {selectedPlates.length > 0 ? (
-        selectedPlates.map((item, i) => (
-          <li className="Categories__category__button-selected-items-plate" key={`plate-${i}`}>
-            {item.name} <span onClick={() => removeSelectedItem(item)}>remove x</span>
-          </li>
-        ))
-      ) : null}
+          <div 
+            className={`Categories__category__button-selected-number-plate ${displaySelectedPlate && '--open'}`}
+            onClick={() => setDisplaySelectedPlate((prev => !prev))}>
+            {displaySelectedPlate ? '>' : selectedPlates.length}
+          </div>
+        ) : null}
+      <div className={`Categories__category-selected ${displaySelectedPlate && '--display'}`}>
+        {selectedPlates.length > 0 && displaySelectedPlate ? (
+          selectedPlates.map((item, i) => (
+            <li className="Categories__category__button-selected-items-plate" key={`plate-${i}`}>
+              {item.name} <span className="--remove" onClick={() => {
+                removeSelectedItem(item)
+                if (selectedPlates.length === 0) { setDisplaySelectedPlate(false) }
+                }}>remove x</span>
+            </li>
+          ))
+        ) : null}
+      </div>
     </div>
     <div className="Categories__category">
       <Link
@@ -94,12 +127,24 @@ const Categories = ({removeSelectedItem, selectedCases, selectedPcb, selectedPla
         stabilizer
       </Link>
       {selectedStabilizers.length > 0 ? (
-        selectedStabilizers.map((item, i) => (
-          <li className="Categories__category__button-selected-items-stabilizer" key={`stabilizer-${i}`}>
-            {item.name} <span onClick={() => removeSelectedItem(item)}>remove x</span>
-          </li>
-        ))
-      ) : null}
+          <div 
+            className={`Categories__category__button-selected-number-stab ${displaySelectedStab && '--open'}`}
+            onClick={() => setDisplaySelectedStab((prev => !prev))}>
+            {displaySelectedStab ? '>' : selectedStabilizers.length}
+          </div>
+        ) : null}
+      <div className={`Categories__category-selected ${displaySelectedStab && '--display'}`}>
+        {selectedStabilizers.length > 0 && displaySelectedStab ? (
+          selectedStabilizers.map((item, i) => (
+            <li className="Categories__category__button-selected-items-stab" key={`stab-${i}`}>
+              {item.name} <span className="--remove" onClick={() => {
+                removeSelectedItem(item)
+                if (selectedStabilizers.length === 0) { setDisplaySelectedStab(false) }
+                }}>remove x</span>
+            </li>
+          ))
+        ) : null}
+      </div>
     </div>
     <div className="Categories__category">
       <Link
@@ -138,17 +183,24 @@ const Categories = ({removeSelectedItem, selectedCases, selectedPcb, selectedPla
         keycaps
       </Link>
       {selectedKeycaps.length > 0 ? (
-        <div className="Categories__category__button-selected-number-keycap" onClick={() => setDisplaySelectedKeycaps((prev => !prev))}>{selectedKeycaps.length}</div>
-      ) : null}
-      {selectedKeycaps.length > 0 && displaySelectedKeycaps ? (
-            selectedKeycaps.map((item, i) => (
-              <li className="Categories__category__button-selected-items-keycaps" key={`keycaps-${i}`}>
-                {item.name} <span onClick={() => {
-                  removeSelectedItem(item)
-                  if (selectedKeycaps.length === 0) { setDisplaySelectedKeycaps(false) }
-                  }}>remove x</span>
-              </li>
-      ))) : null}
+          <div 
+            className={`Categories__category__button-selected-number-keycaps ${displaySelectedKeycaps && '--open'}`}
+            onClick={() => setDisplaySelectedKeycaps((prev => !prev))}>
+            {displaySelectedKeycaps ? '>' : selectedKeycaps.length}
+          </div>
+        ) : null}
+      <div className={`Categories__category-selected ${displaySelectedKeycaps && '--display'}`}>
+        {selectedKeycaps.length > 0 && displaySelectedKeycaps ? (
+          selectedKeycaps.map((item, i) => (
+            <li className="Categories__category__button-selected-items-keycaps" key={`switch-${i}`}>
+              {item.name} <span className="--remove" onClick={() => {
+                removeSelectedItem(item)
+                if (selectedKeycaps.length === 0) { setDisplaySelectedKeycaps(false) }
+                }}>remove x</span>
+            </li>
+          ))
+        ) : null}
+      </div>
     </div>
   </div>
 )}
