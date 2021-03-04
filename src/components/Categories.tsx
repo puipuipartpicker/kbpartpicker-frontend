@@ -38,8 +38,7 @@ const Categories = ({removeSelectedItem, selectedCases, selectedPcb, selectedPla
 
   useEffect(() => {
     const catRegex:RegExp = new RegExp('([^/]+)');
-    if (curPath.match(catRegex)![1]) {
-      console.log(curPath.match(catRegex)![1])
+    if(catRegex.test(curPath)) {
       setActiveCategory(curPath.match(catRegex)![1])
     }
   },[])
