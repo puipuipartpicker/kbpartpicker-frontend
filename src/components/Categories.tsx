@@ -24,10 +24,13 @@ const Categories = ({removeSelectedItem, selectedCases, selectedPcb, selectedPla
   const [displaySelectedKeycaps, setDisplaySelectedKeycaps] = useState(false)
 
   useEffect(() => {
-    if (selectedSwitches.length === 0) {
-      setDisplaySelectedSwitch(false)
-    }
-  }, [selectedSwitches])
+    if (selectedCases.length === 0) { setDisplaySelectedCase(false) }
+    if (selectedPcb.length === 0) { setDisplaySelectedPCB(false) }
+    if (selectedPlates.length === 0) { setDisplaySelectedPlate(false) }
+    if (selectedStabilizers.length === 0) { setDisplaySelectedStab(false) }
+    if (selectedSwitches.length === 0) { setDisplaySelectedSwitch(false) }
+    if (selectedKeycaps.length === 0) { setDisplaySelectedKeycaps(false) }
+  }, [selectedCases, selectedPcb, selectedPlates, selectedStabilizers, selectedSwitches, selectedKeycaps])
   
   return (
   <div className="Categories">
