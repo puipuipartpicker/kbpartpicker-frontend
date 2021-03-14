@@ -53,3 +53,8 @@ workflows:
     jobs:
       - build-and-deploy:
           app-name: "${HEROKU_APP_NAME}"
+          filters:
+            branches:
+              only:
+                - /feat(ure)?\/.+/
+                - /fix\/.+/
