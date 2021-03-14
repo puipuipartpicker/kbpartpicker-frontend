@@ -27,7 +27,8 @@ COPY ./ $APP_HOME/
 WORKDIR $APP_HOME
 
 RUN yarn build
-CMD yarn start
+# CMD yarn start
+CMD serve -p $PORT -s build
 
 # # NGINX
 # FROM nginx:1.17-alpine
