@@ -2,10 +2,10 @@ import axios from 'axios'
 import {IProductType} from './types/types'
 
 export const sendQuery = (query: string | undefined, category: IProductType):void => {
-  console.log("env", process.env.REACT_APP_API_URL)
+  console.log("env", process.env.REACT_APP_API_URL || "https://kbpartpicker-api-dev.herokuapp.com")
   console.log("ATTEMPTING TO CALL BACKEND")
   axios.get(
-    `${process.env.REACT_APP_API_URL}/categories/${category}/search`,
+    `${process.env.REACT_APP_API_URL || "https://kbpartpicker-api-dev.herokuapp.com"}/categories/${category}/search`,
     {
       params: { query: query }
     }

@@ -101,7 +101,7 @@ function App() {
 
     const getProductData = (id:string): any => {
       axios.get(
-        `${process.env.REACT_APP_API_URL}/products/${id}`,
+        `${process.env.REACT_APP_API_URL || "https://kbpartpicker-api-dev.herokuapp.com"}/products/${id}`,
       )
       .then(response => {
         console.log('api response:', response)
