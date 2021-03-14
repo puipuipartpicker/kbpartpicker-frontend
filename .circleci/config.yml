@@ -1,0 +1,55 @@
+version: 2.1
+orbs:
+  heroku: circleci/heroku@1.0.1
+
+executors:
+   node:
+    docker:
+      - image: node:12.2.0
+
+jobs:
+  build-and-deploy:
+    executor: heroku/default
+    parameters:
+      app-name:
+        description: "The Heroku app name to which the application should be deployed"
+        type: string
+      app-type:
+        description: "The Heroku app type (web or worker) of the application to be deployed"
+        type: string
+        default: "web"
+    steps:
+      - checkout
+      - heroku/install
+      - setup_remote_docker:
+          version: 18.06.0-ce
+      - run:
+          name: Storing previous commit
+          command: |
+            git rev-parse HEAD > ./commit.txt
+      - run:
+          name: Build Docker Container
+          command: |
+            docker build --rm=false -t registry.heroku.com/<< parameters.app-name >>/<< parameters.app-type >> .
+      - run:
+          name: Login into Heroku Docker Repository
+          command: |
+            docker login --username=$HEROKU_EMAIL --password=$HEROKU_API_KEY registry.heroku.com
+      - run:
+          name: Verify Container Login
+          command: |
+            heroku container:login
+      - run:
+          name: Push Container To Heroku
+          command: |
+            heroku container:push web -a << parameters.app-name >>
+      - run:
+          name: Release Deployed Container
+          command: |
+            heroku container:release << parameters.app-type >> -a << parameters.app-name >>
+
+workflows:
+  deploy:
+    jobs:
+      - build-and-deploy:
+          app-name: "${HEROKU_APP_NAME}"
