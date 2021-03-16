@@ -6,6 +6,7 @@ import Search from './components/Search'
 import Product from './components/Product'
 import Warning from './components/Warning'
 import Categories from './components/Categories'
+import SelectedItems from './components/SelectedItems'
 import { ThemeVariableValues } from './types/types'
 import { IProductData, IKeyboardFormFactor,  IStabilizerSize, IStabilizerType} from './types/types'
 import updateThemeVariables from './updateThemeVariables'
@@ -38,6 +39,8 @@ function App() {
   const [stabMountWarning, setStabMountWarning] = useState<boolean>(false)
 
   const [allSelectedItemIds, setAllSelectedItemIds] = useState<string[]>([])
+
+  const [displaySelectedItems, setDisplaySelectedItems] = useState<boolean>(false)
 
 
 
@@ -286,6 +289,25 @@ function App() {
           selectedSwitches={switches}
           selectedKeycaps={keycaps}
         />
+        <button 
+          className="App__selected-items-button" 
+          onClick={() => setDisplaySelectedItems(prevDisp => !prevDisp)}>
+            my watch list
+        </button>
+        {displaySelectedItems && (
+          <div className="App__selected-items-container">
+            <SelectedItems 
+              ids={allSelectedItemIds}
+              selectedCases={cases}
+              selectedPcb={pcbs}
+              selectedPlates={plates}
+              selectedStabilizers={stabilizers}
+              selectedSwitches={switches}
+              selectedKeycaps={keycaps}
+              remove={removeSelectedItem}
+            />
+          </div>
+        )}
       </div>
       {
     }
