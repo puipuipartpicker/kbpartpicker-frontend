@@ -1,8 +1,8 @@
-.Selected-items__switch-item {
+[class^="Selected-items__item-"] {
   display: flex;
 }
 
-.remove {
+.Selected-items__remove {
   width: 2rem;
   height: 2rem;
   padding: 0 0 0.4rem 0;
