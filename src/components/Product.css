@@ -1,10 +1,16 @@
 .Product {
   max-width: 60rem;
   background-color: var(--darkest-color);
+  border-radius: var(--rounded-corner);
 }
 
 .Product__img-name-container {
   position: relative;
+}
+
+.Product__img-container {
+  overflow: hidden;
+  border-radius: var(--rounded-corner) var(--rounded-corner) 0 0;
 }
 
 .Product__img {
