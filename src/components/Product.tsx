@@ -55,24 +55,30 @@ const Product = ({ id, addItem }:ProductProps) => {
   <div className="Product">
     {responce ? (
       <>
-      <button className="Results__product-add-select" onClick={() => addItem(id)}>add to selected items</button>
-      <img className="Product__img" src={imgURL} alt={`${name}`}/>
-      <h2 className="Product__name">{name}</h2> 
-      <div className="Product__vendors">
-        {vendors.map((vendor, i) => (
-          <div className="Product__vendors-vendor" key={`${vendor}-${i}`}>
-            <a href={vendor.url} target="_blank" rel="noopener noreferrer">
-              <h3 className="Product__vendors-name">{vendor.name}</h3>
-            </a>
-            <p>{vendor.price}</p>
-            {type ? <p>{type}</p> : null} 
-            {size ? <p>{size}</p> : null}
-            {layout ? <p>{layout}</p> : null}
-            {hotswap ? <p>{hotswap}</p> : null}
-            <span className="Product__vendors-status">In stock?{vendor.in_stock ? 'yes!' : 'nope'}</span>
-          </div>
-        ))}
+      <div className="Product__img-name-container">
+        <img className="Product__img" src={imgURL} alt={`${name}`}/>
+        <div className="Product__name-container">
+          <h2 className="Product__name">{name}</h2> 
+        </div> 
       </div>
+      <div className="Product__vendors-container">
+        <div className="Product__vendors">
+          {vendors.map((vendor, i) => (
+            <div className="Product__vendors-vendor" key={`${vendor}-${i}`}>
+              <a href={vendor.url} target="_blank" rel="noopener noreferrer">
+                <h3 className="Product__vendors-name">{vendor.name}</h3>
+              </a>
+              <p>{vendor.price}</p>
+              {type ? <p>{type}</p> : null} 
+              {size ? <p>{size}</p> : null}
+              {layout ? <p>{layout}</p> : null}
+              {hotswap ? <p>{hotswap}</p> : null}
+              <span className="Product__vendors-status">In stock?{vendor.in_stock ? 'yes!' : 'nope'}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+      <button className="Results__product-add-select" onClick={() => addItem(id)}>add to selected items</button>
       </>
     ) : (
       <div>loading...</div>
