@@ -295,7 +295,8 @@ function App() {
             my watch list
         </button>
         {displaySelectedItems && (
-          <div className="App__selected-items-container">
+          <div className="App__selected-items-container scale-in-hor-right">
+            <button className="App__selected-items-close" onClick={() => setDisplaySelectedItems(prevDisp => !prevDisp)}>close</button>
             <SelectedItems 
               ids={allSelectedItemIds}
               selectedCases={cases}
