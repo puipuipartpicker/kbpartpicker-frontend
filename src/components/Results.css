@@ -19,13 +19,16 @@
   overflow: overlay;
   position: sticky;
   top: 2rem;
+  -webkit-box-shadow: -4px 4px 0px 0px #00000084;
+  -moz-box-shadow: -4px 4px 0px 0px #00000084;
+  box-shadow: -4px 4px 0px 0px #00000084;
 }
 
 .Results__product-close {
   cursor: pointer;
   position: absolute;
   top: 1.5rem;
-  right: 3rem;
+  right: 1.5rem;
   z-index: 100;
 }
 

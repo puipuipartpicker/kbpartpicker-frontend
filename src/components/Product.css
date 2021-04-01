@@ -1,5 +1,5 @@
 .Product {
-  max-width: 60rem;
+  max-width: 65rem;
   background-color: var(--darkest-color);
   border-radius: var(--rounded-corner);
 }
