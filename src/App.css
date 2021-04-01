@@ -48,7 +48,7 @@
 
 @media (max-width: 60rem) {
   .App__selected-items-container {
-    
+    width: calc(100vw - 4rem)
   }
 }
 
