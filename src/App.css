@@ -43,7 +43,7 @@
 }
 
 .App__selected-items-close {
-  
+  margin-bottom: var(--margin-bottom);
 }
 
 @media (max-width: 60rem) {
