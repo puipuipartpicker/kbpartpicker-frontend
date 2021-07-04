@@ -6,7 +6,8 @@ enum Paths {
   plates = '/plate',
   stabilizers = '/stabilizer',
   keycaps = '/keyset',
-  product = '/:productid'
+  product = '/:productid',
+  list = '/list'
 }
 
 export default Paths

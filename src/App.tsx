@@ -12,6 +12,7 @@ import { IProductData, IKeyboardFormFactor,  IStabilizerSize, IStabilizerType} f
 import updateThemeVariables from './updateThemeVariables'
 // import { getProductData } from './dbFunctions'
 import axios from 'axios' 
+import { url } from 'inspector';
 // import { profile } from 'console';
 // import { link } from 'fs';
 // import { privateDecrypt } from 'crypto';
@@ -244,6 +245,16 @@ function App() {
     checkCompatibility()
   }
 
+  const handleSelectedItemsParameter = ():void => {
+    console.log(urlPath)
+    const selectParameterRegex = /\?.*sel=([\d,])+/
+    if (selectParameterRegex.test(urlPath)) {
+      if(urlPath.match(selectParameterRegex)) {
+        
+      }
+    }
+  }
+
   useEffect(() => {
     updateThemeVariables(theme)
   }, [theme])
@@ -333,7 +344,19 @@ function App() {
         setTheme('retrocast')
         return <Search category='keyset' addItem={addSelectedItem}/>}}/>
       {productKeys.includes(urlPath) ? <Route path={Paths.product} render={ (props) => <Product id={urlPath} addItem={addSelectedItem}/>} /> : null}
-
+      <Route path={Paths.list} render={(props) => {
+        return (
+          <SelectedItems 
+            ids={allSelectedItemIds}
+            selectedCases={cases}
+            selectedPcb={pcbs}
+            selectedPlates={plates}
+            selectedStabilizers={stabilizers}
+            selectedSwitches={switches}
+            selectedKeycaps={keycaps}
+            remove={removeSelectedItem}
+        />)
+      }}/>
 
     </div>
   );
