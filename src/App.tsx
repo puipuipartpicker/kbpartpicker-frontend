@@ -47,6 +47,7 @@ function App() {
 
   const urlPath:string = useHistory().location.pathname.replace(/^\//, '')
   const urlParameters:string = useHistory().location.search
+  const history = useHistory()
   console.log('useHistory pathname', useHistory().location)
   // TODO: make sure to aquire all product keys in an array from the db
   const productKeys = ['123', '666', '456', '90', '398']
@@ -186,6 +187,7 @@ function App() {
   // TODO: refactor to switch statement
   const removeSelectedItem = (product: IProductData): void => {
     // case, pcb, plate, stabilizer, 
+    setAllSelectedItemIds(prev => prev.filter(id => id !== product.id))
     if(product.product_type === 'case') {
       setCase(cases.filter(item => item.name !== product.name))
       if ('layout' in product) {
@@ -259,10 +261,32 @@ function App() {
     }
   }
 
+  const updateSelectedItemsParameter = ():void => {
+    console.log('ran add id to url')
+    console.log(urlParameters)
+
+    if (urlParameters) {
+      if (/\?sel=/.test(urlParameters)) {
+        const appendedParameters = urlParameters.replace(/sel=[^&]*/, `sel=${allSelectedItemIds}`)
+        history.push(appendedParameters)
+      } else {
+        const appendedParameters = urlParameters.replace(/$/, `&sel=${allSelectedItemIds}`)
+        history.push(appendedParameters)          
+      }
+    } else {
+      const appendedParameters = urlParameters.replace(/$/, `?sel=${allSelectedItemIds}`)
+      history.push(appendedParameters)
+    }
+  }
+
   useEffect(() => {
     updateThemeVariables(theme)
     handleSelectedItemsParameter()
   }, [theme])
+
+  useEffect(() => {
+    updateSelectedItemsParameter()
+  }, [allSelectedItemIds])
 
   useEffect(() => {
     console.log('check compat from useEffect')
