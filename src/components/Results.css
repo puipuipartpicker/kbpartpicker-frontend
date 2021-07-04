@@ -1,6 +1,7 @@
 .Results {
   display: grid;
   grid-template-columns: 35% auto;
+  min-height: 60rem;
 }
 
 .Results__items {
