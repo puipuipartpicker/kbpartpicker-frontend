@@ -46,6 +46,8 @@ function App() {
 
 
   const urlPath:string = useHistory().location.pathname.replace(/^\//, '')
+  const urlParameters:string = useHistory().location.search
+  console.log('useHistory pathname', useHistory().location)
   // TODO: make sure to aquire all product keys in an array from the db
   const productKeys = ['123', '666', '456', '90', '398']
 
@@ -246,17 +248,20 @@ function App() {
   }
 
   const handleSelectedItemsParameter = ():void => {
-    console.log(urlPath)
-    const selectParameterRegex = /\?.*sel=([\d,])+/
-    if (selectParameterRegex.test(urlPath)) {
-      if(urlPath.match(selectParameterRegex)) {
-        
+    console.log(urlParameters)
+    const selectParameterRegex = /sel=(\d+[\d,]*)/
+    if (selectParameterRegex.test(urlParameters)) {
+      if(urlParameters.match(selectParameterRegex)![1]) {
+        const idsFromParam = urlParameters.match(selectParameterRegex)![1].split(',')
+        console.log('idsFromParam:', idsFromParam)
+        idsFromParam.forEach(id => addSelectedItem(id))
       }
     }
   }
 
   useEffect(() => {
     updateThemeVariables(theme)
+    handleSelectedItemsParameter()
   }, [theme])
 
   useEffect(() => {
