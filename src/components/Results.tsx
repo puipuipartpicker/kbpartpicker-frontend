@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react'
+import { useHistory } from 'react-router'
 import './Results.css'
 import Product from './Product'
 import ProductListItem from './ProductListItem'
@@ -14,6 +15,7 @@ interface searchItem {
 
 interface ResultsProps {
   results: searchItem[]
+  defaultDisplayId?: string
   addItem: (selectedProduct: string) => void
 }
 
@@ -22,6 +24,8 @@ const Results = ({results, addItem} : ResultsProps) => {
   const [selectedProduct, setSelectedProduct] = useState('')
   const [productPaneHeight, setProductPaneHeight] = useState('')
   const [screenWidth, setScreenWidth] = useState(0)
+
+  const history = useHistory()
 
   const handlePaneHeight = () => {
     const topAreaRect = document.querySelector('.App__top-container')?.getBoundingClientRect()
@@ -35,6 +39,18 @@ const Results = ({results, addItem} : ResultsProps) => {
     } 
   }
 
+  const handleProductDisplay = (id: string): void => {
+    console.log('ran handleProductDisplay')
+    setProductDisplay(true)
+    if (id !== selectedProduct) {
+      setSelectedProduct(id)
+      const pathRegexDisplay = /disp=([^&]+)/
+      if (pathRegexDisplay.test(history.location.search)) {
+        history.push(history.location.search.replace(pathRegexDisplay, `disp=${id}`))
+      }
+    }
+  }
+
   useEffect(() => {
     handlePaneHeight()
     window.addEventListener('scroll', (event) => {
@@ -42,16 +58,14 @@ const Results = ({results, addItem} : ResultsProps) => {
     })
     window.addEventListener('resize', (event) => setScreenWidth(window.innerWidth))
     setScreenWidth(window.innerWidth)
-  }, [])
-
-
-  const handleProductDisplay = (id: string): void => {
-    console.log('ran handleProductDisplay')
-    setProductDisplay(true)
-    if (id !== selectedProduct) {
-      setSelectedProduct(id)
+    
+    const pathRegexDisplay = /disp=([^&]+)/
+    if (pathRegexDisplay.test(history.location.search)) {
+      const selectedProductID = history.location.search.match(/disp=([^&]+)/)
+      console.log('displayID', selectedProductID![1])
+      handleProductDisplay(selectedProductID![1])
     }
-  }
+  }, [])
   
   return (
   <div className="Results">

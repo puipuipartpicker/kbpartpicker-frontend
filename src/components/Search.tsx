@@ -22,6 +22,7 @@ const Search = ({ bar, category, addItem }:SearchProps) => {
   const [noResults, setNoResults] = useState(false)
   const [inputValue, setInputValue] = useState('')
   const [screenWidth, setScreenWidth] = useState(0)
+  const [displayId, setDisplayId] = useState('')
   let history = useHistory()
   const curPath = history.location.pathname
   const curParameters = history.location.search
@@ -52,6 +53,12 @@ const Search = ({ bar, category, addItem }:SearchProps) => {
     .then(() => {
       setResultDisplay(true)
       setLoading(false)
+      const pathRegexDisplay = /disp=([^&]+)/
+      if (pathRegexDisplay.test(history.location.search)) {
+        const selectedProductID = history.location.search.match(/disp=([^&]+)/)
+        console.log('displayID', selectedProductID![1])
+        setDisplayId(selectedProductID![1])
+      }
     })
     .catch(error => {
       if (error.response) {
@@ -96,11 +103,11 @@ const Search = ({ bar, category, addItem }:SearchProps) => {
 
   useEffect(() => {
     console.log('HISTORY', curPath)
-    const pathRegex = /\?.*q=([^&]+)/
-    console.log('PATH REGEX', pathRegex)
-    console.log(pathRegex.test(curPath))
-    if(pathRegex.test(curParameters)) {
-      const queryValue = curParameters.match(pathRegex)
+    const pathRegexSearch = /\?.*q=([^&]+)/
+    console.log('PATH REGEX', pathRegexSearch)
+    console.log(pathRegexSearch.test(curPath))
+    if(pathRegexSearch.test(curParameters)) {
+      const queryValue = curParameters.match(pathRegexSearch)
       console.log('QUERY VALUE', queryValue)
       if(queryValue![1]) {
         sendQuery(queryValue![1].replace(/%20/, ' '), category)
@@ -136,7 +143,7 @@ const Search = ({ bar, category, addItem }:SearchProps) => {
       )}
       {loading ? <div>searching...</div> : null}
       {noResults ? <div>we found no results</div> : null}
-      {resultDisplay ? <Results results={searchResults} addItem={addItem}/> : null}
+      {resultDisplay ? <Results results={searchResults} defaultDisplayId={displayId} addItem={addItem}/> : null}
       {screenWidth <= 600 ? <JumpTo action={focusInput}/> : <div className="Search__hint"><span className="--highlight">i</span> to focus search</div>}
     </div>
   )
