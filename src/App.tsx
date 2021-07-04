@@ -271,7 +271,7 @@ function App() {
     console.log(urlParameters)
 
     if (urlParameters) {
-      if (/\?sel=/.test(urlParameters)) {
+      if (/sel=/.test(urlParameters)) {
         const appendedParameters = urlParameters.replace(/sel=[^&]*/, `sel=${allSelectedItemIds}`)
         history.push(appendedParameters)
       } else {
