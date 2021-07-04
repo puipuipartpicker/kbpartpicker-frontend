@@ -47,6 +47,12 @@ const Results = ({results, addItem} : ResultsProps) => {
       const pathRegexDisplay = /disp=([^&]+)/
       if (pathRegexDisplay.test(history.location.search)) {
         history.push(history.location.search.replace(pathRegexDisplay, `disp=${id}`))
+      } else {
+        if (history.location.search) {
+          history.push(history.location.search.replace(/$/, `&disp=${id}`))
+        } else {
+          history.push(history.location.search.replace(/$/, `?disp=${id}`))
+        }
       }
     }
   }
