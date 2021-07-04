@@ -10,11 +10,12 @@ import axios from 'axios'
 // import { setServers } from 'dns'
 
 interface SearchProps {
+  bar: boolean
   category: IProductType
   addItem: (selectedProduct: string) => void
 }
 
-const Search = ({ category, addItem }:SearchProps) => {
+const Search = ({ bar, category, addItem }:SearchProps) => {
   const [resultDisplay, setResultDisplay] = useState(false)
   const [loading, setLoading] = useState(false)
   const [searchResults, setSearchResults] = useState([])
@@ -23,6 +24,7 @@ const Search = ({ category, addItem }:SearchProps) => {
   const [screenWidth, setScreenWidth] = useState(0)
   let history = useHistory()
   const curPath = history.location.pathname
+  const curParameters = history.location.search
 
   const sendQuery = (query: string | undefined, category: IProductType):void => {
     setLoading(true)
@@ -72,7 +74,15 @@ const Search = ({ category, addItem }:SearchProps) => {
     if (inputValue) {
       setNoResults(false)
       sendQuery(inputValue, category)
-      history.push(curPath.replace(/(\/[^/]+)\/?.*/, `$1/${inputValue}`))
+      if (curParameters) {
+        if (/q=/.test(curParameters)) {
+          history.push(curParameters.replace(/q=[^&]*/, `q=${inputValue}`))
+        } else {
+          history.push(curParameters.replace(/$/, `&q=${inputValue}`))
+        }
+      } else {
+        history.push(curParameters.replace(/$/, `\?q=${inputValue}`))
+      }
     }
   } 
 
@@ -86,17 +96,17 @@ const Search = ({ category, addItem }:SearchProps) => {
 
   useEffect(() => {
     console.log('HISTORY', curPath)
-    const pathRegex = new RegExp(`/${category}/(.+)`, 'i')
+    const pathRegex = /\?.*q=([^&]+)/
     console.log('PATH REGEX', pathRegex)
     console.log(pathRegex.test(curPath))
-    if(pathRegex.test(curPath)) {
-      const queryValue = curPath.match(pathRegex)
+    if(pathRegex.test(curParameters)) {
+      const queryValue = curParameters.match(pathRegex)
       console.log('QUERY VALUE', queryValue)
       if(queryValue![1]) {
-        sendQuery(queryValue![1], category)
+        sendQuery(queryValue![1].replace(/%20/, ' '), category)
       }
     }
-  }, [category, curPath])
+  }, [category, curParameters])
 
   useEffect(() => {
     document.addEventListener('keydown', (event) => {
@@ -111,7 +121,8 @@ const Search = ({ category, addItem }:SearchProps) => {
 
   return (
     <div className="Search">
-      <form className="Search__form" onSubmit={(e) => handleSearchRequest(e)}>
+      {bar && (
+        <form className="Search__form" onSubmit={(e) => handleSearchRequest(e)}>
         <div className="Search__form-inner">
           <TerminalInput 
             passValue={(value:string) => setInputValue(value)} 
@@ -122,6 +133,7 @@ const Search = ({ category, addItem }:SearchProps) => {
           <button className="Search__form__search-button" onSubmit={(e) => handleSearchRequest(e)}>search</button>
         </div>
       </form>
+      )}
       {loading ? <div>searching...</div> : null}
       {noResults ? <div>we found no results</div> : null}
       {resultDisplay ? <Results results={searchResults} addItem={addItem}/> : null}

@@ -364,22 +364,22 @@ function App() {
       <Route path="/" />
       <Route path={Paths.cases} render={ (props) => {
         setTheme('8008')
-        return <Search category='case' addItem={addSelectedItem}/>}}/>
+        return <Search bar={true} category='case' addItem={addSelectedItem}/>}}/>
       <Route path={Paths.pcb} render={ (props) => {
         setTheme('mizu')
-        return <Search category='pcb' addItem={addSelectedItem}/>}}/>
+        return <Search bar={true} category='pcb' addItem={addSelectedItem}/>}}/>
       <Route path={Paths.plates} render={ (props) => {
         setTheme('modernDolch')
-        return <Search category='plate' addItem={addSelectedItem}/>}}/>
+        return <Search bar={true} category='plate' addItem={addSelectedItem}/>}}/>
       <Route path={Paths.stabilizers} render={ (props) => {
         setTheme('superuser')
-        return <Search category='stabilizer' addItem={addSelectedItem}/>}}/>
+        return <Search bar={true} category='stabilizer' addItem={addSelectedItem}/>}}/>
       <Route path={Paths.switch} render={ (props) => {
         setTheme('taro')
-        return <Search category='switch' addItem={addSelectedItem}/>}}/>
+        return <Search bar={true} category='switch' addItem={addSelectedItem}/>}}/>
       <Route path={Paths.keycaps} render={ (props) => {
         setTheme('retrocast')
-        return <Search category='keyset' addItem={addSelectedItem}/>}}/>
+        return <Search bar={true} category='keyset' addItem={addSelectedItem}/>}}/>
       {productKeys.includes(urlPath) ? <Route path={Paths.product} render={ (props) => <Product id={urlPath} addItem={addSelectedItem}/>} /> : null}
       <Route path={Paths.list} render={(props) => {
         return (
@@ -392,8 +392,8 @@ function App() {
             selectedSwitches={switches}
             selectedKeycaps={keycaps}
             remove={removeSelectedItem}
-        />)
-      }}/>
+          />
+        )}}/>
 
     </div>
   );
