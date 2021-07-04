@@ -115,9 +115,9 @@ function App() {
         const product = response.data
         switch (product.product_type) {
           case 'case' :
-            if (!allSelectedItemIds.includes(id)) {
-              setAllSelectedItemIds(prevIds => [...prevIds, id])
+            if (!allSelectedItemIds.includes(`${id}`)) {
               setCase(prevCases => [...prevCases, product])
+              setAllSelectedItemIds(prevIds => [...prevIds, `${id}`])
               if ( 'layout' in product) {
                 setCaseLayout(prevLayout => [...prevLayout, product.layout])
               }
@@ -125,8 +125,9 @@ function App() {
             break
           case 'pcb' :
             console.log('selected product is pcb')
-            if(!allSelectedItemIds.includes(id)) {
+            if(!allSelectedItemIds.includes(`${id}`)) {
               setPCB(prevPCB => [...prevPCB, product])
+              setAllSelectedItemIds(prevIds => [...prevIds, `${id}`])
               if ('keyboard_form_factor' in product) {
                 setPcbLayout(prevLayout => [...prevLayout, product.layout])
               }
@@ -138,14 +139,16 @@ function App() {
           case 'plate' :
             console.log('selected product is plate')
             setPlate(prevPlates => [...prevPlates, product])
+            setAllSelectedItemIds(prevIds => [...prevIds, `${id}`])
             if ('keyboard_form_factor' in product) {
               setPlateLayout(prevLayout => [...prevLayout, product.layout])
             }
             break
           case 'stabilizer' :
             console.log('selected product is stab')
-            if(!allSelectedItemIds.includes(id)) {
+            if(!allSelectedItemIds.includes(`${id}`)) {
               setStabilizer(prevStabs => [...prevStabs, product])
+              setAllSelectedItemIds(prevIds => [...prevIds, `${id}`])
               if ('stabilizer_size' in product) {
                 setStabSize(prevSize => [...prevSize, product.size])
               }
@@ -156,15 +159,16 @@ function App() {
             break
           case 'switch' :
             console.log('selected product is switch')
-            if(!allSelectedItemIds.includes(id)) {
-              setAllSelectedItemIds(prevIds => [...prevIds, id])
+            if(!allSelectedItemIds.includes(`${id}`)) {
+              setAllSelectedItemIds(prevIds => [...prevIds, `${id}`])
               setSwitches(prevSwitches => [...prevSwitches, product])
             }
             break
           case 'keyset' :
             console.log('selected product is keycaps')
-            if(!allSelectedItemIds.includes(id)) {
+            if(!allSelectedItemIds.includes(`${id}`)) {
               setKeycaps(prevKeys => [...prevKeys, product])
+              setAllSelectedItemIds(prevIds => [...prevIds, `${id}`])
             break
           }
         }
@@ -187,7 +191,6 @@ function App() {
   // TODO: refactor to switch statement
   const removeSelectedItem = (product: IProductData): void => {
     // case, pcb, plate, stabilizer, 
-    setAllSelectedItemIds(prev => prev.filter(id => id !== product.id))
     if(product.product_type === 'case') {
       setCase(cases.filter(item => item.name !== product.name))
       if ('layout' in product) {
@@ -240,7 +243,9 @@ function App() {
     }
     if(product.product_type === 'switch') {
       setSwitches(switches.filter(cur => cur.id !== product.id))
-      setAllSelectedItemIds(prev => prev.filter(cur => cur !== product.id))
+      console.log(allSelectedItemIds)
+      console.log(product.id)
+      setAllSelectedItemIds(allSelectedItemIds.filter(cur => cur !== `${product.id}`))
     }
     if (product.product_type === 'keyset') {
       setKeycaps(keycaps.filter(cur => cur.id !== product.id))
@@ -280,8 +285,11 @@ function App() {
   }
 
   useEffect(() => {
-    updateThemeVariables(theme)
     handleSelectedItemsParameter()
+  },[])
+
+  useEffect(() => {
+    updateThemeVariables(theme)
   }, [theme])
 
   useEffect(() => {
