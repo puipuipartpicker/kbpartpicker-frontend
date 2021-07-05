@@ -78,18 +78,27 @@ const Results = ({results, addItem} : ResultsProps) => {
             displayProduct={() => handleProductDisplay(item.id)}
             key={`searchItem` + i} />
         {(screenWidth < 600) && (item.id === selectedProduct) && productDisplay && selectedProduct ? (
-          <div className="Results__product">
-            <button className="Results__product-close" onClick={() => setProductDisplay(false)}>close</button>
-            <Product id={selectedProduct} addItem={() => addItem(selectedProduct)}/>
+          <div className="Results__product-container">
+            <div className="Results__product">
+              <button className="Results__product-close" onClick={() => setProductDisplay(false)}>close</button>
+              <Product id={selectedProduct} addItem={() => addItem(selectedProduct)}/>
+              <button className="Results__product-add-select" onClick={() => addItem(selectedProduct)}>add to selected items</button>
+            </div>
           </div>
         ) : null}
       </div>))}
     </div>
-    {(screenWidth >= 600) && productDisplay && selectedProduct ? 
-    <div className="Results__product" style={{maxHeight: productPaneHeight}}>
-      <button className="Results__product-close" onClick={() => setProductDisplay(false)}>close</button>
-      <Product id={selectedProduct} addItem={() => addItem(selectedProduct)}/>
-    </div> : null}
+    {(screenWidth >= 600) && productDisplay && selectedProduct ? (
+    <div className="Results__product-container">
+      <div className="Results__product" style={{maxHeight: productPaneHeight}}>
+        <div className="Results__product-close-container">
+          <button className="Results__product-close" onClick={() => setProductDisplay(false)}>close</button>
+        </div>
+        <Product id={selectedProduct} addItem={() => addItem(selectedProduct)}/>
+        <button className="Results__product-add-select" onClick={() => addItem(selectedProduct)}>add to selected items</button>
+      </div>
+    </div>
+    ) : null}
   </div>
 )}
 

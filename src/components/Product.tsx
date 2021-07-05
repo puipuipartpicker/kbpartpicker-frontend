@@ -80,7 +80,6 @@ const Product = ({ id, addItem }:ProductProps) => {
           ))}
         </div>
       </div>
-      <button className="Results__product-add-select" onClick={() => addItem(id)}>add to selected items</button>
       </>
     ) : (
       <div>loading...</div>

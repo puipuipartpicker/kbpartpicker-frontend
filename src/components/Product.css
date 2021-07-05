@@ -38,16 +38,11 @@
 }
 
 .Product__vendors {
-  margin: 3rem 1.5rem;
+  padding: 3rem 1.5rem;
 }
 
 .Product__vendors-name {
   color: var(--highlight-color)
-}
-
-.Results__product-add-select {
-  width: 100%;
-  border-radius: 0 0 var(--rounded-corner) var(--rounded-corner);
 }
 
 /* @media (max-width: 60rem) {

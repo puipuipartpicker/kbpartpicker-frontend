@@ -12,8 +12,11 @@
   margin-right: var(--margin-side);
 }
 
+.Results__product-container {
+  /* position: relative; */
+}
+
 .Results__product {
-  position: relative;
   margin-bottom: 1rem;
   height: fit-content;
   max-height: calc(100vh - 4rem);
@@ -34,7 +37,11 @@
 }
 
 .Results__product-add-select {
+  position: sticky;
+  bottom: 0;
   cursor: pointer;
+  width: 100%;
+  border-radius: 0 0 var(--rounded-corner) 0;
 }
 
 @media (max-width: 60rem) {
