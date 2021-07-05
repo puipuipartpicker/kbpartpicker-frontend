@@ -27,18 +27,6 @@ const Results = ({results, addItem} : ResultsProps) => {
 
   const history = useHistory()
 
-  const handlePaneHeight = () => {
-    const topAreaRect = document.querySelector('.App__top-container')?.getBoundingClientRect()
-    const viewPortHeight = window.innerHeight
-    if (topAreaRect?.height && topAreaRect.top && viewPortHeight) {
-      if ((viewPortHeight - 40) - (topAreaRect?.height + topAreaRect.top) <= viewPortHeight - 60) {
-        setProductPaneHeight(`${(viewPortHeight - 60) - (topAreaRect?.height + topAreaRect.top)}px`)
-      } else {
-        setProductPaneHeight('calc(100vh - 4rem)')
-      }
-    } 
-  }
-
   const handleProductDisplay = (id: string): void => {
     console.log('ran handleProductDisplay')
     setProductDisplay(true)
@@ -58,10 +46,6 @@ const Results = ({results, addItem} : ResultsProps) => {
   }
 
   useEffect(() => {
-    handlePaneHeight()
-    window.addEventListener('scroll', (event) => {
-      handlePaneHeight()
-    })
     window.addEventListener('resize', (event) => setScreenWidth(window.innerWidth))
     setScreenWidth(window.innerWidth)
     
