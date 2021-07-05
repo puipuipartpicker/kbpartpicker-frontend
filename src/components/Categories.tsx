@@ -7,6 +7,7 @@ import './Categories.css'
 
 interface CategoriesProps {
   removeSelectedItem: (product:IProductData) => void
+  displayWatch: () => void
   selectedCases: IProductData[]
   selectedPcb: IProductData[] 
   selectedPlates: IProductData[]
@@ -15,7 +16,7 @@ interface CategoriesProps {
   selectedKeycaps: IProductData[] 
 }
 
-const Categories = ({removeSelectedItem, selectedCases, selectedPcb, selectedPlates, selectedStabilizers, selectedSwitches, selectedKeycaps}:CategoriesProps) => {
+const Categories = ({removeSelectedItem, displayWatch, selectedCases, selectedPcb, selectedPlates, selectedStabilizers, selectedSwitches, selectedKeycaps}:CategoriesProps) => {
   const [activeCategory, setActiveCategory] = useState('')
   const [displaySelectedCase, setDisplaySelectedCase] = useState(false)
   const [displaySelectedPCB, setDisplaySelectedPCB] = useState(false)
@@ -213,6 +214,11 @@ const Categories = ({removeSelectedItem, selectedCases, selectedPcb, selectedPla
         ) : null}
       </div>
     </div>
+    <button 
+          className="App__selected-items-button" 
+          onClick={() => displayWatch()}>
+            watch list
+    </button>
   </div>
 )}
 

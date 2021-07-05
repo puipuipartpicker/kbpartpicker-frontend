@@ -330,6 +330,7 @@ function App() {
           ) : null}
         <Categories 
           removeSelectedItem={removeSelectedItem}
+          displayWatch={() => setDisplaySelectedItems(prevDisp => !prevDisp)}
           selectedCases={cases}
           selectedPcb={pcbs}
           selectedPlates={plates}
@@ -337,11 +338,6 @@ function App() {
           selectedSwitches={switches}
           selectedKeycaps={keycaps}
         />
-        <button 
-          className="App__selected-items-button" 
-          onClick={() => setDisplaySelectedItems(prevDisp => !prevDisp)}>
-            my watch list
-        </button>
         {displaySelectedItems && (
           <div className="App__selected-items-container scale-in-hor-right">
             <button className="App__selected-items-close" onClick={() => setDisplaySelectedItems(prevDisp => !prevDisp)}>close</button>

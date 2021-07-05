@@ -66,6 +66,10 @@
   font-size: 1.6rem;
 }
 
+.Categories__selected-items-button {
+  
+}
+
 .--active {
   cursor: default;
   padding: 0 0.6rem;

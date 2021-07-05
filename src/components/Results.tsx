@@ -82,7 +82,7 @@ const Results = ({results, addItem} : ResultsProps) => {
             <div className="Results__product">
               <button className="Results__product-close" onClick={() => setProductDisplay(false)}>close</button>
               <Product id={selectedProduct} addItem={() => addItem(selectedProduct)}/>
-              <button className="Results__product-add-select" onClick={() => addItem(selectedProduct)}>add to selected items</button>
+              <button className="Results__product-add-select" onClick={() => addItem(selectedProduct)}>add to watch list</button>
             </div>
           </div>
         ) : null}
@@ -95,7 +95,7 @@ const Results = ({results, addItem} : ResultsProps) => {
           <button className="Results__product-close" onClick={() => setProductDisplay(false)}>close</button>
         </div>
         <Product id={selectedProduct} addItem={() => addItem(selectedProduct)}/>
-        <button className="Results__product-add-select" onClick={() => addItem(selectedProduct)}>add to selected items</button>
+        <button className="Results__product-add-select" onClick={() => addItem(selectedProduct)}>add to watch list</button>
       </div>
     </div>
     ) : null}
