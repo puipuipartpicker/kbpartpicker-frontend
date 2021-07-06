@@ -257,15 +257,20 @@ function App() {
 
   const handleSelectedItemsParameter = ():void => {
     console.log(urlParameters)
-    const storedSelectedItems = localStorage.getItem('selectedItems')
-    const selectParameterRegex = /sel=(\d+[\d,]*)/
-    if (selectParameterRegex.test(urlParameters)) {
-      if(urlParameters.match(selectParameterRegex)![1]) {
-        const idsFromParam = urlParameters.match(selectParameterRegex)![1].split(',')
-        console.log('idsFromParam:', idsFromParam)
-        idsFromParam.forEach(id => addSelectedItem(id))
-      }
+    if (localStorage.getItem('selectedItems')) {
+      const idsfromStorage = localStorage.getItem('selectedItems')!.split(',')
+      idsfromStorage.forEach(id => addSelectedItem(id))
     }
+
+
+    // const selectParameterRegex = /sel=(\d+[\d,]*)/
+    // if (selectParameterRegex.test(urlParameters)) {
+    //   if(urlParameters.match(selectParameterRegex)![1]) {
+    //     const idsFromParam = urlParameters.match(selectParameterRegex)![1].split(',')
+    //     console.log('idsFromParam:', idsFromParam)
+    //     idsFromParam.forEach(id => addSelectedItem(id))
+    //   }
+    // }
   }
   
   
