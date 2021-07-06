@@ -6,6 +6,7 @@ import TerminalInput from './TerminalInput'
 import JumpTo from './JumpTo'
 import { IProductType } from '../types/types'
 import axios from 'axios'
+import { handleParameterUpdate } from '../helperFunctions'
 
 // import { setServers } from 'dns'
 
@@ -26,6 +27,8 @@ const Search = ({ bar, category, addItem }:SearchProps) => {
   let history = useHistory()
   const curPath = history.location.pathname
   const curParameters = history.location.search
+
+  // useUpdateUrlParameter('q', inputValue)
 
   const sendQuery = (query: string | undefined, category: IProductType):void => {
     setLoading(true)
@@ -81,15 +84,7 @@ const Search = ({ bar, category, addItem }:SearchProps) => {
     if (inputValue) {
       setNoResults(false)
       sendQuery(inputValue, category)
-      if (curParameters) {
-        if (/q=/.test(curParameters)) {
-          history.push(curParameters.replace(/q=[^&]*/, `q=${inputValue}`))
-        } else {
-          history.push(curParameters.replace(/$/, `&q=${inputValue}`))
-        }
-      } else {
-        history.push(curParameters.replace(/$/, `\?q=${inputValue}`))
-      }
+      history.push(handleParameterUpdate(history.location.search, 'q', inputValue))
     }
   } 
 

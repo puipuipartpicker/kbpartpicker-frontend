@@ -13,6 +13,7 @@ import updateThemeVariables from './updateThemeVariables'
 // import { getProductData } from './dbFunctions'
 import axios from 'axios' 
 import { url } from 'inspector';
+import { handleParameterUpdate } from './helperFunctions'
 // import { profile } from 'console';
 // import { link } from 'fs';
 // import { privateDecrypt } from 'crypto';
@@ -43,7 +44,7 @@ function App() {
 
   const [displaySelectedItems, setDisplaySelectedItems] = useState<boolean>(false)
 
-
+  // useUpdateUrlParameter('sel', `${allSelectedItemIds}`)
 
   const urlPath:string = useHistory().location.pathname.replace(/^\//, '')
   const urlParameters:string = useHistory().location.search
@@ -265,23 +266,25 @@ function App() {
       }
     }
   }
-
+  
+  
   const updateSelectedItemsParameter = ():void => {
-    console.log('ran add id to url')
-    console.log(urlParameters)
+    
+    // console.log('ran add id to url')
+    // console.log(urlParameters)
 
-    if (urlParameters) {
-      if (/sel=/.test(urlParameters)) {
-        const appendedParameters = urlParameters.replace(/sel=[^&]*/, `sel=${allSelectedItemIds}`)
-        history.push(appendedParameters)
-      } else {
-        const appendedParameters = urlParameters.replace(/$/, `&sel=${allSelectedItemIds}`)
-        history.push(appendedParameters)          
-      }
-    } else {
-      const appendedParameters = urlParameters.replace(/$/, `?sel=${allSelectedItemIds}`)
-      history.push(appendedParameters)
-    }
+    // if (urlParameters) {
+    //   if (/sel=/.test(urlParameters)) {
+    //     const appendedParameters = urlParameters.replace(/sel=[^&]*/, `sel=${allSelectedItemIds}`)
+    //     history.push(appendedParameters)
+    //   } else {
+    //     const appendedParameters = urlParameters.replace(/$/, `&sel=${allSelectedItemIds}`)
+    //     history.push(appendedParameters)          
+    //   }
+    // } else {
+    //   const appendedParameters = urlParameters.replace(/$/, `?sel=${allSelectedItemIds}`)
+    //   history.push(appendedParameters)
+    // }
   }
 
   useEffect(() => {
@@ -293,7 +296,7 @@ function App() {
   }, [theme])
 
   useEffect(() => {
-    updateSelectedItemsParameter()
+    history.push(handleParameterUpdate(history.location.search, 'sel', `${allSelectedItemIds}`))
   }, [allSelectedItemIds])
 
   useEffect(() => {

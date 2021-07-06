@@ -215,7 +215,7 @@ const Categories = ({removeSelectedItem, displayWatch, selectedCases, selectedPc
       </div>
     </div>
     <button 
-          className="App__selected-items-button" 
+          className="Categories__selected-items-button" 
           onClick={() => displayWatch()}>
             watch list
     </button>
