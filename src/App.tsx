@@ -257,6 +257,7 @@ function App() {
 
   const handleSelectedItemsParameter = ():void => {
     console.log(urlParameters)
+    const storedSelectedItems = localStorage.getItem('selectedItems')
     const selectParameterRegex = /sel=(\d+[\d,]*)/
     if (selectParameterRegex.test(urlParameters)) {
       if(urlParameters.match(selectParameterRegex)![1]) {
@@ -296,7 +297,8 @@ function App() {
   }, [theme])
 
   useEffect(() => {
-    history.push(handleParameterUpdate(history.location.search, 'sel', `${allSelectedItemIds}`))
+    // history.push(handleParameterUpdate(history.location.search, 'sel', `${allSelectedItemIds}`))
+    localStorage.setItem('selectedItems', `${allSelectedItemIds}`)
   }, [allSelectedItemIds])
 
   useEffect(() => {
