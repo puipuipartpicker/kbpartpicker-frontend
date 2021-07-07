@@ -1,5 +1,13 @@
 import axios from 'axios'
-import {IProductType} from './types/types'
+import { AxiosResponse } from 'axios'
+import {IProductType, IProductData} from './types/types'
+
+export const getProductDataByIds = async ( ids: string[] ):Promise<AxiosResponse<any>> => {
+  return await axios.get(`${process.env.REACT_APP_API_URL || "https://kbpartpicker-api-dev.herokuapp.com"}/products/${ids}`)
+    .then(result => result)
+}
+
+
 
 export const sendQuery = (query: string | undefined, category: IProductType):void => {
   console.log("env", process.env.REACT_APP_API_URL || "https://kbpartpicker-api-dev.herokuapp.com")

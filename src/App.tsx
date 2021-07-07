@@ -7,6 +7,7 @@ import Product from './components/Product'
 import Warning from './components/Warning'
 import Categories from './components/Categories'
 import SelectedItems from './components/SelectedItems'
+import WatchList from './components/WatchList'
 import { ThemeVariableValues } from './types/types'
 import { IProductData, IKeyboardFormFactor,  IStabilizerSize, IStabilizerType} from './types/types'
 import updateThemeVariables from './updateThemeVariables'
@@ -257,46 +258,15 @@ function App() {
     checkCompatibility()
   }
 
-  const handleSelectedItemsParameter = ():void => {
-    console.log(urlParameters)
+  const getWatchItemsFromLocalStorage = ():void => {
     if (localStorage.getItem('selectedItems')) {
       const idsfromStorage = localStorage.getItem('selectedItems')!.split(',')
       idsfromStorage.forEach(id => addSelectedItem(id))
     }
-
-
-    // const selectParameterRegex = /sel=(\d+[\d,]*)/
-    // if (selectParameterRegex.test(urlParameters)) {
-    //   if(urlParameters.match(selectParameterRegex)![1]) {
-    //     const idsFromParam = urlParameters.match(selectParameterRegex)![1].split(',')
-    //     console.log('idsFromParam:', idsFromParam)
-    //     idsFromParam.forEach(id => addSelectedItem(id))
-    //   }
-    // }
-  }
-  
-  
-  const updateSelectedItemsParameter = ():void => {
-    
-    // console.log('ran add id to url')
-    // console.log(urlParameters)
-
-    // if (urlParameters) {
-    //   if (/sel=/.test(urlParameters)) {
-    //     const appendedParameters = urlParameters.replace(/sel=[^&]*/, `sel=${allSelectedItemIds}`)
-    //     history.push(appendedParameters)
-    //   } else {
-    //     const appendedParameters = urlParameters.replace(/$/, `&sel=${allSelectedItemIds}`)
-    //     history.push(appendedParameters)          
-    //   }
-    // } else {
-    //   const appendedParameters = urlParameters.replace(/$/, `?sel=${allSelectedItemIds}`)
-    //   history.push(appendedParameters)
-    // }
   }
 
   useEffect(() => {
-    handleSelectedItemsParameter()
+    getWatchItemsFromLocalStorage()
   },[])
 
   useEffect(() => {
@@ -402,6 +372,14 @@ function App() {
             remove={removeSelectedItem}
           />
         )}}/>
+        <Route path={Paths.test} render={(props) => {
+          return (
+            <WatchList
+              storedItemIds={allSelectedItemIds} 
+              addItem={addSelectedItem} 
+              removeItem={removeSelectedItem}
+            />
+          )}}/>
 
     </div>
   );
