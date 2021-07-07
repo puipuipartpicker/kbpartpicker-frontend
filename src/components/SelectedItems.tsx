@@ -26,6 +26,7 @@ const SelectedItems = ({ids, remove, selectedCases, selectedPcb, selectedPlates,
         {selectedCases.length > 0 && (
           selectedCases.map((caseData, i) => (
             <div className="Selected-items__case" key={`selected-case-${i}`}>
+              <h1>Case</h1>
               <div className="Selected-items__item-case">
                 <ProductListItem
                   id={caseData.id}
@@ -94,6 +95,7 @@ const SelectedItems = ({ids, remove, selectedCases, selectedPcb, selectedPlates,
         {selectedSwitches.length > 0 && (
           selectedSwitches.map((switchData, i) => (
             <div className="Selected-items__switch" key={`selected-switch-${i}`}>
+              <h2>switches:</h2>
               <div className="Selected-items__item-switch">
                 <ProductListItem
                   id={switchData.id}

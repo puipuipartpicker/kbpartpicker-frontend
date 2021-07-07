@@ -44,6 +44,8 @@ function App() {
 
   const [displaySelectedItems, setDisplaySelectedItems] = useState<boolean>(false)
 
+  const allSelectedItemData = [cases, pcbs, plates, stabilizers, switches, keycaps]
+
   // useUpdateUrlParameter('sel', `${allSelectedItemIds}`)
 
   const urlPath:string = useHistory().location.pathname.replace(/^\//, '')
