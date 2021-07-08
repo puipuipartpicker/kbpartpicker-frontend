@@ -6,7 +6,7 @@ export const getProductDataByIds = async ( ids: string[] ):Promise<AxiosResponse
   console.log('ran getProductByIds with url:', `https://kbpartpicker-api-dev.herokuapp.com"/products/${ids}`)
   console.log('with these ids passed', ids)
   const productData = await axios.get(`${process.env.REACT_APP_API_URL || "https://kbpartpicker-api-dev.herokuapp.com"}/products/${ids}`)
-  console.log(productData)
+  console.log('Response from getProductByIds:', productData)
   return productData
 }
 
