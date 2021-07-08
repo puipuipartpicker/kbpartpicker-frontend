@@ -375,7 +375,6 @@ function App() {
         <Route path={Paths.test} render={(props) => {
           return (
             <WatchList
-              storedItemIds={allSelectedItemIds} 
               addItem={addSelectedItem} 
               removeItem={removeSelectedItem}
             />

@@ -3,8 +3,11 @@ import { AxiosResponse } from 'axios'
 import {IProductType, IProductData} from './types/types'
 
 export const getProductDataByIds = async ( ids: string[] ):Promise<AxiosResponse<any>> => {
-  return await axios.get(`${process.env.REACT_APP_API_URL || "https://kbpartpicker-api-dev.herokuapp.com"}/products/${ids}`)
-    .then(result => result)
+  console.log('ran getProductByIds with url:', `https://kbpartpicker-api-dev.herokuapp.com"/products/${ids}`)
+  console.log('with these ids passed', ids)
+  const productData = await axios.get(`${process.env.REACT_APP_API_URL || "https://kbpartpicker-api-dev.herokuapp.com"}/products/${ids}`)
+  console.log(productData)
+  return productData
 }
 
 

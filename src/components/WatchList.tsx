@@ -9,37 +9,45 @@ import { IProductData } from '../types/types'
 import { getProductDataByIds } from '../backendFunctions'
 
 interface WatchListProps {
-  storedItemIds: string[]
   addItem: (productId:string) => void
   removeItem: (productData:IProductData) => void
 }
 
-const WatchList = ({ storedItemIds, addItem, removeItem }:WatchListProps) => {
+const WatchList = ({ addItem, removeItem }:WatchListProps) => {
   const [products, setProducts] = useState([])
   const urlParameters = useHistory().location.search
 
   const getProductData = async (productIds:string[]) => {
     // query dp
-    // const productData = await getProductDataByIds(productIds)
-    // console.log('PRODUCOSIJDLKFJ',productData)
-    // setProducts(productData.data)
+    const productData = await getProductDataByIds(productIds)
+    console.log('PRODUCOSIJDLKFJ',productData)
+    setProducts(productData.data)
 
-    axios.get(`${process.env.REACT_APP_API_URL || "https://kbpartpicker-api-dev.herokuapp.com"}/products/${productIds}`)
-    .then(response => console.log(response.data))
+    // axios.get(`${process.env.REACT_APP_API_URL || "https://kbpartpicker-api-dev.herokuapp.com"}/products/${productIds}`)
+    // .then(response => console.log(response.data))
   }
 
   useEffect(() => {
     if (/share=\d+/.test(urlParameters)) {
-      getProductData(urlParameters.match(/share=\d+[\d\,]*/)![1].split(','))
+      const sharedIds = urlParameters.match(/share=(\d+[\d\,]*)/)![1].split(',')
+      getProductDataByIds(sharedIds)
+        .then(result => setProducts(result.data))
     } else {
-      getProductData(storedItemIds)
+      if (localStorage.getItem('selectedItems')) {
+        const idsfromStorage = localStorage.getItem('selectedItems')!.split(',')
+        getProductDataByIds(idsfromStorage)
+        .then(result => setProducts(result.data))
+      }
     }
   }, [])
 
   return (
     <div className="WatchList">
-      <div>this is the watch list component</div>
-      <Results results={products} addItem={addItem}/>
+      {products ? (
+        <Results results={products} addItem={addItem}/>
+        ) : (
+        <div>looks like you have no selected items</div>
+      )}
     </div>
   )
 }
