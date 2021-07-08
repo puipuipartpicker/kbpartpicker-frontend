@@ -1,8 +1,6 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
 import { useHistory } from 'react-router'
-import axios from 'axios'
-import { AxiosResponse } from 'axios'
 import './WatchList.css'
 import Results from './Results'
 import { IProductData } from '../types/types'
@@ -16,16 +14,6 @@ interface WatchListProps {
 const WatchList = ({ addItem, removeItem }:WatchListProps) => {
   const [products, setProducts] = useState([])
   const urlParameters = useHistory().location.search
-
-  const getProductData = async (productIds:string[]) => {
-    // query dp
-    const productData = await getProductDataByIds(productIds)
-    console.log('PRODUCOSIJDLKFJ',productData)
-    setProducts(productData.data)
-
-    // axios.get(`${process.env.REACT_APP_API_URL || "https://kbpartpicker-api-dev.herokuapp.com"}/products/${productIds}`)
-    // .then(response => console.log(response.data))
-  }
 
   useEffect(() => {
     if (/share=\d+/.test(urlParameters)) {
@@ -43,10 +31,10 @@ const WatchList = ({ addItem, removeItem }:WatchListProps) => {
 
   return (
     <div className="WatchList">
-      {products ? (
-        <Results results={products} addItem={addItem}/>
-        ) : (
-        <div>looks like you have no selected items</div>
+      {products.length > 0 ? (
+      <Results results={products} addItem={addItem}/>
+      ) : (
+      <div>looks like you have no selected items</div>
       )}
     </div>
   )
