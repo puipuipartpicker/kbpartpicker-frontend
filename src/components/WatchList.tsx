@@ -17,7 +17,7 @@ const WatchList = ({ allSelectedIds, addItem, removeItem }:WatchListProps) => {
   const urlParameters = useHistory().location.search
 
   useEffect(() => {
-    if (/share=\d+/.test(urlParameters)) {
+    if (/share=(\d+[\d\,]*)/.test(urlParameters)) {
       const sharedIds = urlParameters.match(/share=(\d+[\d\,]*)/)![1].split(',')
       getProductDataByIds(sharedIds)
         .then(result => setProducts(result.data))
@@ -35,7 +35,7 @@ const WatchList = ({ allSelectedIds, addItem, removeItem }:WatchListProps) => {
       {products.length > 0 ? (
       <Results results={products} addItem={addItem}/>
       ) : (
-      <div>looks like you have no selected items</div>
+      <div>looks like you have no items on your watch list</div>
       )}
     </div>
   )

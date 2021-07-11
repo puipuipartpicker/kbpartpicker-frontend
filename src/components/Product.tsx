@@ -4,6 +4,7 @@ import axios from 'axios'
 import './Product.css'
 // import { IProductType, IProductSize, IProductLayout, IProductData } from '../types/types'
 import { IVendor } from '../types/types'
+import { getProductDataByIds } from '../backendFunctions'
 
 
 interface ProductProps {
@@ -21,19 +22,45 @@ const Product = ({ id, addItem }:ProductProps) => {
   const [imgURL, setImgURL] = useState('')
   const [vendors, setVendors] = useState<IVendor[]>([])
 
-  const getProductData = (id:string): any => {
-    axios.get(`${process.env.REACT_APP_API_URL || "https://kbpartpicker-api-dev.herokuapp.com"}/products/${id}`)
-    .then(response => {
+  // const getProductData = (id:string): any => {
+  //   axios.get(`${process.env.REACT_APP_API_URL || "https://kbpartpicker-api-dev.herokuapp.com"}/products/${id}`)
+  //   .then(response => {
+  //     setReponce(true)
+  //     setName(response.data.name)
+  //     if (response.data.type) {setType(response.data.type)}
+  //     if (response.data.size) {setSize(response.data.size)}
+  //     if (response.data.layout) {setLayout(response.data.layout)}
+  //     if (response.data.hotswap) {setHotwap(response.data.hotswap)}
+  //     setImgURL(response.data.img_url)
+  //     setVendors(response.data.vendors)
+  //   })
+  //   .catch(error => {
+  //     if (error.response) {
+  //       const logDetails = {
+  //         "error message": error.response.data.message,
+  //         "http status": error.response.status,
+  //         "http error": error.response.statusText
+  //       }
+  //       console.dir('there was an error returning query results from backend: \n', logDetails)
+  //     } else {
+  //       console.log('there was an error making a request to the backend: \n', error)
+  //     }
+  //   })
+  // }
+  
+  useEffect(() => {
+    // getProductData(id)
+    getProductDataByIds([id]).then(response => {
+      const productData = response.data[0]
       setReponce(true)
-      setName(response.data.name)
-      if (response.data.type) {setType(response.data.type)}
-      if (response.data.size) {setSize(response.data.size)}
-      if (response.data.layout) {setLayout(response.data.layout)}
-      if (response.data.hotswap) {setHotwap(response.data.hotswap)}
-      setImgURL(response.data.img_url)
-      setVendors(response.data.vendors)
-    })
-    .catch(error => {
+      setName(productData.name)
+      if (productData.type) {setType(productData.type)}
+      if (productData.size) {setSize(productData.size)}
+      if (productData.layout) {setLayout(productData.layout)}
+      if (productData.hotswap) {setHotwap(productData.hotswap)}
+      setImgURL(productData.img_url)
+      setVendors(productData.vendors)
+    }).catch(error => {
       if (error.response) {
         const logDetails = {
           "error message": error.response.data.message,
@@ -45,10 +72,6 @@ const Product = ({ id, addItem }:ProductProps) => {
         console.log('there was an error making a request to the backend: \n', error)
       }
     })
-  }
-  
-  useEffect(() => {
-    getProductData(id)
   }, [id])
 
   return (
