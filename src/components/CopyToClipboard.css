@@ -1,0 +1,12 @@
+.Copy-to-clip-board {
+  
+}
+
+.Copy-to-clip-board-confirmation {
+  position: absolute;
+  top: 0;
+  background-color: var(--primary-color);
+  color: var(--lightest-color);
+  padding: 1rem 2rem;
+  border-radius: var(--rounded-corner);
+}

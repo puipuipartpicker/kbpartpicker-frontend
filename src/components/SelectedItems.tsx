@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import ProductListItem from './ProductListItem'
 import { IProductData } from '../types/types'
+import CopyToClipboard from './CopyToClipboard'
 import './SelectedItems.css'
 
 interface SelectedItemsPorps {
@@ -126,7 +127,7 @@ const SelectedItems = ({ids, remove, selectedCases, selectedPcb, selectedPlates,
             </div>
           ))
         )}
-
+      <CopyToClipboard buttonText="sharable link" stringToCopy={`${process.env.REACT_APP_URL || 'http://localhost:3000'}/test?share=${ids}`}/>
       </div>
   )
 }

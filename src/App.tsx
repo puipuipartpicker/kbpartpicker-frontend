@@ -11,10 +11,9 @@ import WatchList from './components/WatchList'
 import { ThemeVariableValues } from './types/types'
 import { IProductData, IKeyboardFormFactor,  IStabilizerSize, IStabilizerType} from './types/types'
 import updateThemeVariables from './updateThemeVariables'
-// import { getProductData } from './dbFunctions'
 import axios from 'axios' 
 import { url } from 'inspector';
-import { handleParameterUpdate } from './helperFunctions'
+import { getProductDataByIds } from './backendFunctions'
 // import { profile } from 'console';
 // import { link } from 'fs';
 // import { privateDecrypt } from 'crypto';
@@ -109,89 +108,85 @@ function App() {
   }
 
   const addSelectedItem = (selectedProductID: string) => {
-
-    const getProductData = (id:string): any => {
-      axios.get(
-        `${process.env.REACT_APP_API_URL || "https://kbpartpicker-api-dev.herokuapp.com"}/products/${id}`,
-      )
-      .then(response => {
-        console.log('api response:', response)
-        const product = response.data
-        switch (product.product_type) {
-          case 'case' :
-            if (!allSelectedItemIds.includes(`${id}`)) {
-              setCase(prevCases => [...prevCases, product])
-              setAllSelectedItemIds(prevIds => [...prevIds, `${id}`])
-              if ( 'layout' in product) {
-                setCaseLayout(prevLayout => [...prevLayout, product.layout])
-              }
+    getProductDataByIds([selectedProductID])
+    .then(response => {
+      console.log('api response:', response)
+      const product = response.data[0]
+      switch (product.product_type) {
+        case 'case' :
+          if (!allSelectedItemIds.includes(`${selectedProductID}`)) {
+            setCase(prevCases => [...prevCases, product])
+            setAllSelectedItemIds(prevIds => [...prevIds, `${selectedProductID}`])
+            if ( 'layout' in product) {
+              setCaseLayout(prevLayout => [...prevLayout, product.layout])
             }
-            break
-          case 'pcb' :
-            console.log('selected product is pcb')
-            if(!allSelectedItemIds.includes(`${id}`)) {
-              setPCB(prevPCB => [...prevPCB, product])
-              setAllSelectedItemIds(prevIds => [...prevIds, `${id}`])
-              if ('keyboard_form_factor' in product) {
-                setPcbLayout(prevLayout => [...prevLayout, product.layout])
-              }
-              if ('hotswap' in product) {
-                setHotwap(prevHotswap => [...prevHotswap, product])
-              }
-            }
-            break
-          case 'plate' :
-            console.log('selected product is plate')
-            setPlate(prevPlates => [...prevPlates, product])
-            setAllSelectedItemIds(prevIds => [...prevIds, `${id}`])
+          }
+          break
+        case 'pcb' :
+          console.log('selected product is pcb')
+          if(!allSelectedItemIds.includes(`${selectedProductID}`)) {
+            setPCB(prevPCB => [...prevPCB, product])
+            setAllSelectedItemIds(prevIds => [...prevIds, `${selectedProductID}`])
             if ('keyboard_form_factor' in product) {
-              setPlateLayout(prevLayout => [...prevLayout, product.layout])
+              setPcbLayout(prevLayout => [...prevLayout, product.layout])
             }
-            break
-          case 'stabilizer' :
-            console.log('selected product is stab')
-            if(!allSelectedItemIds.includes(`${id}`)) {
-              setStabilizer(prevStabs => [...prevStabs, product])
-              setAllSelectedItemIds(prevIds => [...prevIds, `${id}`])
-              if ('stabilizer_size' in product) {
-                setStabSize(prevSize => [...prevSize, product.size])
-              }
-              if ('stabilizer_type' in product) {
-                setStabMount(prevMount => [...prevMount, product.mount])
-              }
+            if ('hotswap' in product) {
+              setHotwap(prevHotswap => [...prevHotswap, product])
             }
-            break
-          case 'switch' :
-            console.log('selected product is switch')
-            if(!allSelectedItemIds.includes(`${id}`)) {
-              setAllSelectedItemIds(prevIds => [...prevIds, `${id}`])
-              setSwitches(prevSwitches => [...prevSwitches, product])
-            }
-            break
-          case 'keyset' :
-            console.log('selected product is keycaps')
-            if(!allSelectedItemIds.includes(`${id}`)) {
-              setKeycaps(prevKeys => [...prevKeys, product])
-              setAllSelectedItemIds(prevIds => [...prevIds, `${id}`])
-            break
           }
-        }
-      })
-      .catch(error => {
-        if (error.response) {
-          const logDetails = {
-            "error message": error.response.data.message,
-            "http status": error.response.status,
-            "http error": error.response.statusText
+          break
+        case 'plate' :
+          console.log('selected product is plate')
+          setPlate(prevPlates => [...prevPlates, product])
+          setAllSelectedItemIds(prevIds => [...prevIds, `${selectedProductID}`])
+          if ('keyboard_form_factor' in product) {
+            setPlateLayout(prevLayout => [...prevLayout, product.layout])
           }
-          console.dir('there was an error returning query results from backend: \n', logDetails)
-        } else {
-          console.log('there was an error making a request to the backend: \n', error)
+          break
+        case 'stabilizer' :
+          console.log('selected product is stab')
+          if(!allSelectedItemIds.includes(`${selectedProductID}`)) {
+            setStabilizer(prevStabs => [...prevStabs, product])
+            setAllSelectedItemIds(prevIds => [...prevIds, `${selectedProductID}`])
+            if ('stabilizer_size' in product) {
+              setStabSize(prevSize => [...prevSize, product.size])
+            }
+            if ('stabilizer_type' in product) {
+              setStabMount(prevMount => [...prevMount, product.mount])
+            }
+          }
+          break
+        case 'switch' :
+          console.log('selected product is switch')
+          if(!allSelectedItemIds.includes(`${selectedProductID}`)) {
+            setAllSelectedItemIds(prevIds => [...prevIds, `${selectedProductID}`])
+            setSwitches(prevSwitches => [...prevSwitches, product])
+          }
+          break
+        case 'keyset' :
+          console.log('selected product is keycaps')
+          if(!allSelectedItemIds.includes(`${selectedProductID}`)) {
+            setKeycaps(prevKeys => [...prevKeys, product])
+            setAllSelectedItemIds(prevIds => [...prevIds, `${selectedProductID}`])
+          break
         }
-      })
-    }
-    getProductData(selectedProductID)
+      }
+    })
+    .catch(error => {
+      if (error.response) {
+        const logDetails = {
+          "error message": error.response.data.message,
+          "http status": error.response.status,
+          "http error": error.response.statusText
+        }
+        console.dir('there was an error returning query results from backend: \n', logDetails)
+      } else {
+        console.log('there was an error making a request to the backend: \n', error)
+      }
+    })
+
   }
+
   // TODO: refactor to switch statement
   const removeSelectedItem = (product: IProductData): void => {
     // case, pcb, plate, stabilizer, 
