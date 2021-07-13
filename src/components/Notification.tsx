@@ -1,8 +1,10 @@
 import React from "react";
 import './Notification.css'
 
-const Notification = () => (
-  <div className="Notificati"></div>
-)
+interface NotificationProps {
+  message: string
+}
+
+const Notification = ({ message }:NotificationProps) => <div className="Notification">{message}</div>
 
 export default Notification

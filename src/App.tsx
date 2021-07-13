@@ -8,6 +8,7 @@ import Warning from './components/Warning'
 import Categories from './components/Categories'
 import SelectedItems from './components/SelectedItems'
 import WatchList from './components/WatchList'
+import Notification from './components/Notification'
 import { ThemeVariableValues } from './types/types'
 import { IProductData, IKeyboardFormFactor,  IStabilizerSize, IStabilizerType} from './types/types'
 import updateThemeVariables from './updateThemeVariables'
@@ -43,6 +44,8 @@ function App() {
   const [allSelectedItemIds, setAllSelectedItemIds] = useState<string[]>([])
 
   const [displaySelectedItems, setDisplaySelectedItems] = useState<boolean>(false)
+
+  const [notificationMessage, setNotificationMessage] = useState<string>('')
 
   const allSelectedItemData = [cases, pcbs, plates, stabilizers, switches, keycaps]
 
@@ -285,6 +288,7 @@ function App() {
 
   return (
     <div className={`App ${theme}`}>
+      <Notification message={''}/>
       <div className="App__top-container">
         <h1 className="App__header">KBPartPicker <span className="App__header-cta">to start your search select a category</span></h1>
         {warningNotification ? 
