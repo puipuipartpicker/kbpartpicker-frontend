@@ -278,6 +278,12 @@ function App() {
   }, [allSelectedItemIds])
 
   useEffect(() => {
+    setTimeout(() => {
+      setNotifcationDisplay(false)
+    }, 2500);
+  }, [notificationDisplay])
+
+  useEffect(() => {
     console.log('check compat from useEffect')
     checkCompatibility()
   }, [caseLayout, pcbLayout, plateLayout, hotswap, stabSize, stabMount])
