@@ -46,6 +46,7 @@ function App() {
   const [displaySelectedItems, setDisplaySelectedItems] = useState<boolean>(false)
 
   const [notificationMessage, setNotificationMessage] = useState<string>('')
+  const [notificationDisplay, setNotifcationDisplay] = useState<boolean>(false)
 
   const allSelectedItemData = [cases, pcbs, plates, stabilizers, switches, keycaps]
 
@@ -288,7 +289,7 @@ function App() {
 
   return (
     <div className={`App ${theme}`}>
-      <Notification message={''}/>
+      {notificationDisplay ? <Notification message={notificationMessage}/> : null}
       <div className="App__top-container">
         <h1 className="App__header">KBPartPicker <span className="App__header-cta">to start your search select a category</span></h1>
         {warningNotification ? 
@@ -331,6 +332,8 @@ function App() {
               selectedSwitches={switches}
               selectedKeycaps={keycaps}
               remove={removeSelectedItem}
+              setNotificationMessage={setNotificationMessage}
+              setNotificationDisplay={() => setNotifcationDisplay(true)}
             />
           </div>
         )}
@@ -369,6 +372,8 @@ function App() {
             selectedSwitches={switches}
             selectedKeycaps={keycaps}
             remove={removeSelectedItem}
+            setNotificationMessage={setNotificationMessage}
+            setNotificationDisplay={() => setNotifcationDisplay(true)}
           />
         )}}/>
         <Route path={Paths.test} render={(props) => {
