@@ -1,6 +1,7 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useContext} from 'react';
 import './App.css';
 import { BrowserRouter as Router, Route, Link, useHistory } from 'react-router-dom'
+import { MessageContext } from './MessageContext'
 import Paths from './types/Paths'
 import Search from './components/Search'
 import Product from './components/Product'
@@ -15,6 +16,7 @@ import updateThemeVariables from './updateThemeVariables'
 import axios from 'axios' 
 import { url } from 'inspector';
 import { getProductDataByIds } from './backendFunctions'
+
 // import { profile } from 'console';
 // import { link } from 'fs';
 // import { privateDecrypt } from 'crypto';
@@ -50,6 +52,7 @@ function App() {
 
   const allSelectedItemData = [cases, pcbs, plates, stabilizers, switches, keycaps]
 
+  const {messageText, setMessageText, displayMessage, setDisplayMessage} = useContext(MessageContext)
   // useUpdateUrlParameter('sel', `${allSelectedItemIds}`)
 
   const urlPath:string = useHistory().location.pathname.replace(/^\//, '')
@@ -279,9 +282,9 @@ function App() {
 
   useEffect(() => {
     setTimeout(() => {
-      setNotifcationDisplay(false)
+      setDisplayMessage(false)
     }, 2500);
-  }, [notificationDisplay])
+  }, [messageText, displayMessage])
 
   useEffect(() => {
     console.log('check compat from useEffect')
@@ -295,7 +298,7 @@ function App() {
 
   return (
     <div className={`App ${theme}`}>
-      {notificationDisplay ? <Notification message={notificationMessage}/> : null}
+      {displayMessage ? <Notification message={messageText}/> : null}
       <div className="App__top-container">
         <h1 className="App__header">KBPartPicker <span className="App__header-cta">to start your search select a category</span></h1>
         {warningNotification ? 

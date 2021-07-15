@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import { MessageContext } from "../MessageContext";
 import './CopyToClipboard.css'
 
 interface CopyToClipboardProps {
@@ -14,13 +15,15 @@ const copyOnClick = async (toCopy:string) => {
 
 const CopyToClipboard = ({ buttonText, stringToCopy, setNotificationMessage, setNotificationDisplay }:CopyToClipboardProps) => {
   const [copyConfirmation, setCopyConfirmation] = useState(false)
+  const {messageText, setMessageText, displayMessage, setDisplayMessage} = useContext(MessageContext) 
+  
   return (
     <div className="Copy-to-clip-board">
       <button className="Copy-to-clip-board-button" 
         onClick={() => copyOnClick(stringToCopy).then(res => {
           setCopyConfirmation(true)
-          setNotificationMessage(`${buttonText} copied to clipboard`)
-          setNotificationDisplay()
+          setMessageText(`${buttonText} copied to clipboard`)
+          setDisplayMessage(true)
         })}>
         Copy {`${buttonText}`} to clipboard
       </button>
