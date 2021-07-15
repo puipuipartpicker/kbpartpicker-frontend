@@ -13,11 +13,9 @@ interface SelectedItemsPorps {
   selectedStabilizers:IProductData[]
   selectedSwitches:IProductData[]
   selectedKeycaps:IProductData[]
-  setNotificationMessage: (message:string) => void
-  setNotificationDisplay: () => void
 }
 
-const SelectedItems = ({ids, remove, setNotificationMessage, setNotificationDisplay, selectedCases, selectedPcb, selectedPlates, selectedStabilizers, selectedSwitches, selectedKeycaps}:SelectedItemsPorps) => {
+const SelectedItems = ({ids, remove, selectedCases, selectedPcb, selectedPlates, selectedStabilizers, selectedSwitches, selectedKeycaps}:SelectedItemsPorps) => {
   
   useEffect(() => {
 
@@ -132,8 +130,6 @@ const SelectedItems = ({ids, remove, setNotificationMessage, setNotificationDisp
       <CopyToClipboard 
         buttonText="sharable link" 
         stringToCopy={`${process.env.REACT_APP_URL || 'http://localhost:3000'}/test?share=${ids}`}
-        setNotificationMessage={setNotificationMessage}
-        setNotificationDisplay={setNotificationDisplay}
       />
       </div>
   )

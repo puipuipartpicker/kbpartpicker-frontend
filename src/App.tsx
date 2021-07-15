@@ -47,9 +47,6 @@ function App() {
 
   const [displaySelectedItems, setDisplaySelectedItems] = useState<boolean>(false)
 
-  const [notificationMessage, setNotificationMessage] = useState<string>('')
-  const [notificationDisplay, setNotifcationDisplay] = useState<boolean>(false)
-
   const allSelectedItemData = [cases, pcbs, plates, stabilizers, switches, keycaps]
 
   const {messageText, setMessageText, displayMessage, setDisplayMessage} = useContext(MessageContext)
@@ -341,8 +338,6 @@ function App() {
               selectedSwitches={switches}
               selectedKeycaps={keycaps}
               remove={removeSelectedItem}
-              setNotificationMessage={setNotificationMessage}
-              setNotificationDisplay={() => setNotifcationDisplay(true)}
             />
           </div>
         )}
@@ -381,8 +376,6 @@ function App() {
             selectedSwitches={switches}
             selectedKeycaps={keycaps}
             remove={removeSelectedItem}
-            setNotificationMessage={setNotificationMessage}
-            setNotificationDisplay={() => setNotifcationDisplay(true)}
           />
         )}}/>
         <Route path={Paths.test} render={(props) => {

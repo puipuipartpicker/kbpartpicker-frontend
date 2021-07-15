@@ -5,18 +5,16 @@ import './CopyToClipboard.css'
 interface CopyToClipboardProps {
   buttonText: string
   stringToCopy: string
-  setNotificationMessage: (message:string) => void
-  setNotificationDisplay: () => void
 }
 
 const copyOnClick = async (toCopy:string) => {
   await navigator.clipboard.writeText(toCopy);
 }
 
-const CopyToClipboard = ({ buttonText, stringToCopy, setNotificationMessage, setNotificationDisplay }:CopyToClipboardProps) => {
+const CopyToClipboard = ({ buttonText, stringToCopy }:CopyToClipboardProps) => {
   const [copyConfirmation, setCopyConfirmation] = useState(false)
   const {messageText, setMessageText, displayMessage, setDisplayMessage} = useContext(MessageContext) 
-  
+
   return (
     <div className="Copy-to-clip-board">
       <button className="Copy-to-clip-board-button" 
