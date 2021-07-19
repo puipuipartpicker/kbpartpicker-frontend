@@ -13,10 +13,9 @@ import { handleParameterUpdate } from '../helperFunctions'
 interface SearchProps {
   bar: boolean
   category: IProductType
-  addItem: (selectedProduct: string) => void
 }
 
-const Search = ({ bar, category, addItem }:SearchProps) => {
+const Search = ({ bar, category }:SearchProps) => {
   const [resultDisplay, setResultDisplay] = useState(false)
   const [loading, setLoading] = useState(false)
   const [searchResults, setSearchResults] = useState([])
@@ -138,7 +137,7 @@ const Search = ({ bar, category, addItem }:SearchProps) => {
       )}
       {loading ? <div>searching...</div> : null}
       {noResults ? <div>we found no results</div> : null}
-      {resultDisplay ? <Results results={searchResults} defaultDisplayId={displayId} addItem={addItem}/> : null}
+      {resultDisplay ? <Results results={searchResults} defaultDisplayId={displayId} /> : null}
       {screenWidth <= 600 ? <JumpTo action={focusInput}/> : <div className="Search__hint"><span className="--highlight">i</span> to focus search</div>}
     </div>
   )

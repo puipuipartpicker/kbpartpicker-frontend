@@ -1,18 +1,15 @@
-import React, { useEffect, useState} from 'react'
-import axios from 'axios' 
-// import { AxiosResponse } from 'axios' 
+import React, { useEffect, useState, useContext} from 'react'
 import './Product.css'
-// import { IProductType, IProductSize, IProductLayout, IProductData } from '../types/types'
 import { IVendor } from '../types/types'
 import { getProductDataByIds } from '../backendFunctions'
+import { WatchListContext } from '../WatchListContext'
 
 
 interface ProductProps {
   id: string
-  addItem: (selectedProduct: string) => void
 }
 
-const Product = ({ id, addItem }:ProductProps) => {
+const Product = ({ id }:ProductProps) => {
   const [responce, setReponce] = useState(false)
   const [name, setName] = useState<String>('')
   const [type, setType] = useState('')
@@ -22,34 +19,9 @@ const Product = ({ id, addItem }:ProductProps) => {
   const [imgURL, setImgURL] = useState('')
   const [vendors, setVendors] = useState<IVendor[]>([])
 
-  // const getProductData = (id:string): any => {
-  //   axios.get(`${process.env.REACT_APP_API_URL || "https://kbpartpicker-api-dev.herokuapp.com"}/products/${id}`)
-  //   .then(response => {
-  //     setReponce(true)
-  //     setName(response.data.name)
-  //     if (response.data.type) {setType(response.data.type)}
-  //     if (response.data.size) {setSize(response.data.size)}
-  //     if (response.data.layout) {setLayout(response.data.layout)}
-  //     if (response.data.hotswap) {setHotwap(response.data.hotswap)}
-  //     setImgURL(response.data.img_url)
-  //     setVendors(response.data.vendors)
-  //   })
-  //   .catch(error => {
-  //     if (error.response) {
-  //       const logDetails = {
-  //         "error message": error.response.data.message,
-  //         "http status": error.response.status,
-  //         "http error": error.response.statusText
-  //       }
-  //       console.dir('there was an error returning query results from backend: \n', logDetails)
-  //     } else {
-  //       console.log('there was an error making a request to the backend: \n', error)
-  //     }
-  //   })
-  // }
+  const { addItem } = useContext(WatchListContext)
   
   useEffect(() => {
-    // getProductData(id)
     getProductDataByIds([id]).then(response => {
       const productData = response.data[0]
       setReponce(true)

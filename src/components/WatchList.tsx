@@ -8,11 +8,10 @@ import { getProductDataByIds } from '../backendFunctions'
 
 interface WatchListProps {
   allSelectedIds: string[]
-  addItem: (productId:string) => void
   removeItem: (productData:IProductData) => void
 }
 
-const WatchList = ({ allSelectedIds, addItem, removeItem }:WatchListProps) => {
+const WatchList = ({ allSelectedIds, removeItem }:WatchListProps) => {
   const [products, setProducts] = useState([])
   const urlParameters = useHistory().location.search
 
@@ -33,7 +32,7 @@ const WatchList = ({ allSelectedIds, addItem, removeItem }:WatchListProps) => {
   return (
     <div className="WatchList">
       {products.length > 0 ? (
-      <Results results={products} addItem={addItem}/>
+      <Results results={products}/>
       ) : (
       <div>looks like you have no items on your watch list</div>
       )}

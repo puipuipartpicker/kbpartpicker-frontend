@@ -138,7 +138,7 @@ export const WatchListProvider = ({children}:WatchListProps) => {
   }
 
   useEffect(() => {
-
+    getWatchItemsFromLocalStorage()
   }, [])
 
   return (

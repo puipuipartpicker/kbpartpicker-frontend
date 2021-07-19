@@ -1,4 +1,5 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useContext} from 'react'
+import { WatchListContext } from '../WatchListContext'
 import { useHistory } from 'react-router'
 import './Results.css'
 import Product from './Product'
@@ -16,14 +17,14 @@ interface searchItem {
 interface ResultsProps {
   results: searchItem[]
   defaultDisplayId?: string
-  addItem: (selectedProduct: string) => void
 }
 
-const Results = ({results, addItem} : ResultsProps) => {
+const Results = ({results} : ResultsProps) => {
   const [productDisplay, setProductDisplay] = useState(false)
   const [selectedProduct, setSelectedProduct] = useState('')
   const [productPaneHeight, setProductPaneHeight] = useState('')
   const [screenWidth, setScreenWidth] = useState(0)
+  const { addItem } = useContext(WatchListContext)
 
   const history = useHistory()
 
@@ -81,7 +82,7 @@ const Results = ({results, addItem} : ResultsProps) => {
           <div className="Results__product-container">
             <div className="Results__product">
               <button className="Results__product-close" onClick={() => setProductDisplay(false)}>close</button>
-              <Product id={selectedProduct} addItem={() => addItem(selectedProduct)}/>
+              <Product id={selectedProduct}/>
               <button className="Results__product-add-select" onClick={() => addItem(selectedProduct)}>add to watch list</button>
             </div>
           </div>
@@ -94,7 +95,7 @@ const Results = ({results, addItem} : ResultsProps) => {
         <div className="Results__product-close-container">
           <button className="Results__product-close" onClick={() => setProductDisplay(false)}>close</button>
         </div>
-        <Product id={selectedProduct} addItem={() => addItem(selectedProduct)}/>
+        <Product id={selectedProduct}/>
         <button className="Results__product-add-select" onClick={() => addItem(selectedProduct)}>add to watch list</button>
       </div>
     </div>
