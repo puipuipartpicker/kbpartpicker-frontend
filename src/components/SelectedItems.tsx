@@ -17,7 +17,7 @@ interface SelectedItemsPorps {
 
 const SelectedItems = ({ids, selectedCases, selectedPcb, selectedPlates, selectedStabilizers, selectedSwitches, selectedKeycaps}:SelectedItemsPorps) => {
   
-  const { removeItem } = useContext(WatchListContext)
+  const { allWatchListIds,removeItem } = useContext(WatchListContext)
 
   return (
       <div className="Selected-Items">
@@ -125,10 +125,12 @@ const SelectedItems = ({ids, selectedCases, selectedPcb, selectedPlates, selecte
             </div>
           ))
         )}
-      <CopyToClipboard 
+      {allWatchListIds.length > 0 && (
+        <CopyToClipboard 
         buttonText="sharable link" 
         stringToCopy={`${process.env.REACT_APP_URL || 'http://localhost:3000'}/test?share=${ids}`}
-      />
+        />
+      )}
       </div>
   )
 }

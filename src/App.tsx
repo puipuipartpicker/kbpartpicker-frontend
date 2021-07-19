@@ -14,13 +14,8 @@ import Notification from './components/Notification'
 import { ThemeVariableValues } from './types/types'
 import { IProductData, IKeyboardFormFactor,  IStabilizerSize, IStabilizerType} from './types/types'
 import updateThemeVariables from './updateThemeVariables'
-import axios from 'axios' 
-import { url } from 'inspector';
 import { getProductDataByIds } from './backendFunctions'
 
-// import { profile } from 'console';
-// import { link } from 'fs';
-// import { privateDecrypt } from 'crypto';
 
 function App() {
   const {messageText, setMessageText, displayMessage, setDisplayMessage} = useContext(MessageContext)
