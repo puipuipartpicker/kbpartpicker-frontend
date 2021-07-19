@@ -90,11 +90,12 @@ const SelectedItems = ({ids, selectedCases, selectedPcb, selectedPlates, selecte
             </div>
           ))
         )}
-
+        {selectedSwitches.length > 0 && (
+          <h2>switches:</h2>
+        )}
         {selectedSwitches.length > 0 && (
           selectedSwitches.map((switchData, i) => (
             <div className="Selected-items__switch" key={`selected-switch-${i}`}>
-              <h2>switches:</h2>
               <div className="Selected-items__item-switch">
                 <ProductListItem
                   id={switchData.id}
