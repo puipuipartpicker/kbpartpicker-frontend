@@ -27,12 +27,6 @@ function App() {
   const { cases, pcbs, plates, stabilizers, switches, keycaps, allWatchListIds, addItem } = useContext(WatchListContext)
 
   const [theme, setTheme] = useState<keyof ThemeVariableValues>("8008")
-  // const [cases, setCase] = useState<IProductData[]>([])
-  // const [pcbs, setPCB] = useState<IProductData[]>([])
-  // const [plates, setPlate] = useState<IProductData[]>([])
-  // const [stabilizers, setStabilizer] = useState<IProductData[]>([])
-  // const [switches, setSwitches] = useState<IProductData[]>([])
-  // const [keycaps, setKeycaps] = useState<IProductData[]>([])
 
   const [warningNotification, setWarningNotification] = useState<boolean>(false)
   const [warningDisp, setWarningDisp] = useState<boolean>(false)
@@ -47,7 +41,6 @@ function App() {
   const [stabMount, setStabMount] = useState<IStabilizerType[]>([])
   const [stabMountWarning, setStabMountWarning] = useState<boolean>(false)
 
-  // const [allSelectedItemIds, setAllSelectedItemIds] = useState<string[]>([])
 
   const [displaySelectedItems, setDisplaySelectedItems] = useState<boolean>(false)
 
@@ -114,155 +107,6 @@ function App() {
     }
   }
 
-  // const addSelectedItem = (selectedProductID: string) => {
-  //   getProductDataByIds([selectedProductID])
-  //   .then(response => {
-  //     console.log('api response:', response)
-  //     const productData:IProductData[] = response.data
-  //     productData.forEach(product => {
-  //       switch (product.product_type) {
-  //         case 'case' :
-  //           if (!allSelectedItemIds.includes(`${selectedProductID}`)) {
-  //             setCase(prevCases => [...prevCases, product])
-  //             setAllSelectedItemIds(prevIds => [...prevIds, `${selectedProductID}`])
-  //             if ( 'keyboard_form_factor' in product) {
-  //               setCaseLayout(prevLayout => [...prevLayout, product.keyboard_form_factor])
-  //             }
-  //           }
-  //           break
-  //         case 'pcb' :
-  //           console.log('selected product is pcb')
-  //           if(!allSelectedItemIds.includes(`${selectedProductID}`)) {
-  //             setPCB(prevPCB => [...prevPCB, product])
-  //             setAllSelectedItemIds(prevIds => [...prevIds, `${selectedProductID}`])
-  //             if ('keyboard_form_factor' in product) {
-  //               setPcbLayout(prevLayout => [...prevLayout, product.keyboard_form_factor])
-  //             }
-  //             if ('hotswap' in product) {
-  //               setHotwap(prevHotswap => [...prevHotswap, product.hotswap])
-  //             }
-  //           }
-  //           break
-  //         case 'plate' :
-  //           console.log('selected product is plate')
-  //           setPlate(prevPlates => [...prevPlates, product])
-  //           setAllSelectedItemIds(prevIds => [...prevIds, `${selectedProductID}`])
-  //           if ('keyboard_form_factor' in product) {
-  //             setPlateLayout(prevLayout => [...prevLayout, product.keyboard_form_factor])
-  //           }
-  //           break
-  //         case 'stabilizer' :
-  //           console.log('selected product is stab')
-  //           if(!allSelectedItemIds.includes(`${selectedProductID}`)) {
-  //             setStabilizer(prevStabs => [...prevStabs, product])
-  //             setAllSelectedItemIds(prevIds => [...prevIds, `${selectedProductID}`])
-  //             if ('stabilizer_size' in product) {
-  //               setStabSize(prevSize => [...prevSize, product.stabilizer_size])
-  //             }
-  //             if ('stabilizer_type' in product) {
-  //               setStabMount(prevMount => [...prevMount, product.stabilizer_type])
-  //             }
-  //           }
-  //           break
-  //         case 'switch' :
-  //           console.log('selected product is switch')
-  //           if(!allSelectedItemIds.includes(`${selectedProductID}`)) {
-  //             setAllSelectedItemIds(prevIds => [...prevIds, `${selectedProductID}`])
-  //             setSwitches(prevSwitches => [...prevSwitches, product])
-  //           }
-  //           break
-  //         case 'keyset' :
-  //           console.log('selected product is keycaps')
-  //           if(!allSelectedItemIds.includes(`${selectedProductID}`)) {
-  //             setKeycaps(prevKeys => [...prevKeys, product])
-  //             setAllSelectedItemIds(prevIds => [...prevIds, `${selectedProductID}`])
-  //           break
-  //         }
-  //       }
-  //     });
-  //   })
-  //   .catch(error => {
-  //     if (error.response) {
-  //       const logDetails = {
-  //         "error message": error.response.data.message,
-  //         "http status": error.response.status,
-  //         "http error": error.response.statusText
-  //       }
-  //       console.dir('there was an error returning query results from backend: \n', logDetails)
-  //     } else {
-  //       console.log('there was an error making a request to the backend: \n', error)
-  //     }
-  //   })
-
-  // }
-
-  // TODO: refactor to switch statement
-  const removeSelectedItem = (product: IProductData): void => {
-    // // case, pcb, plate, stabilizer, 
-    // if(product.product_type === 'case') {
-    //   // TODO: extract to watchListContext
-    //   setCase(cases.filter(item => item.name !== product.name))
-    //   if ('layout' in product) {
-    //     // const indexToRemove = caseLayout.findIndex(cur => cur === product.keyboard_form_factor)
-    //     // setCaseLayout(prevCaseLayout => prevCaseLayout.splice(indexToRemove, 1))
-    //   }
-    // }
-    // if(product.product_type === 'pcb') {
-    //   setPCB(pcbs.filter(item => item.name !== product.name))
-    //   setAllSelectedItemIds(prev => prev.filter(cur => cur !== product.id))
-    //   if ('layout' in product) {
-    //     // const indexToRemove = pcbLayout.findIndex( layout => layout === product.layout)
-    //     // setPcbLayout(prevLayout => prevLayout.splice(indexToRemove, 1))
-    //   }
-    //   if ('hotswap' in product) {
-    //     if (product.hotswap === (true || false)) {
-    //       if (hotswap.includes(product.hotswap)) {
-    //         const indexToRemove = hotswap.indexOf(product.hotswap)
-    //         setHotwap(prevHotswap => prevHotswap.splice(indexToRemove, 1))
-    //       }
-    //     }
-    //   }
-    // }
-    // if (product.product_type === 'plate') {
-    //   console.log('tried to remove plate')
-    //   const indexToRemove = plates.findIndex(cur => cur.name === product.name)
-    //   console.log('plate index', indexToRemove)
-    //   setPlate(plates.filter(cur => cur.name !== product.name))
-    //   if ('layout' in product) {
-    //     setPlateLayout(prevPlateLayout => {
-    //       prevPlateLayout.splice(indexToRemove, 1)
-    //       return prevPlateLayout
-    //     })
-    //   }
-    // }
-    // console.log('CASE LAYOUT', caseLayout)
-    // console.log('pcb LAYOUT', pcbLayout)
-    // if(product.product_type === 'stabilizer') {
-    //   setStabilizer(stabilizers.filter(item => item.name !== product.name))
-    //   setAllSelectedItemIds(prev => prev.filter(cur => cur !== product.id))
-    //   if (stabSize.includes(product.stabilizer_size)) {
-    //     const indexToRemove = stabSize.indexOf(product.stabilizer_size)
-    //     setStabSize(prevStabSize => prevStabSize.splice(indexToRemove, 1))
-    //     console.log('stab size' , stabSize)
-    //   }
-    //   // if (stabMount.includes(product.mount)) {
-    //   //   const indexToRemove = stabMount.indexOf(product.mount)
-    //   //   setStabMount(prevStabMount => prevStabMount.splice(indexToRemove, 1))
-    //   // }
-    // }
-    // if(product.product_type === 'switch') {
-    //   setSwitches(switches.filter(cur => cur.id !== product.id))
-    //   console.log(allSelectedItemIds)
-    //   console.log(product.id)
-    //   setAllSelectedItemIds(allSelectedItemIds.filter(cur => cur !== `${product.id}`))
-    // }
-    // if (product.product_type === 'keyset') {
-    //   setKeycaps(keycaps.filter(cur => cur.id !== product.id))
-    //   setAllSelectedItemIds(prev => prev.filter(cur => cur !== product.id))
-    // }
-    // checkCompatibility()
-  }
-
 
   useEffect(() => {
     updateThemeVariables(theme)
@@ -310,7 +154,6 @@ function App() {
           </div>
           ) : null}
         <Categories 
-          removeSelectedItem={removeSelectedItem}
           displayWatch={() => setDisplaySelectedItems(prevDisp => !prevDisp)}
           selectedCases={cases}
           selectedPcb={pcbs}
@@ -330,7 +173,6 @@ function App() {
               selectedStabilizers={stabilizers}
               selectedSwitches={switches}
               selectedKeycaps={keycaps}
-              remove={removeSelectedItem}
             />
           </div>
         )}
@@ -368,14 +210,12 @@ function App() {
             selectedStabilizers={stabilizers}
             selectedSwitches={switches}
             selectedKeycaps={keycaps}
-            remove={removeSelectedItem}
           />
         )}}/>
         <Route path={Paths.test} render={(props) => {
           return (
             <WatchList
               allSelectedIds={allWatchListIds}
-              removeItem={removeSelectedItem}
             />
           )}}/>
 

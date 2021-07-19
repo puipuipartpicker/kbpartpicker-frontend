@@ -8,10 +8,9 @@ import { getProductDataByIds } from '../backendFunctions'
 
 interface WatchListProps {
   allSelectedIds: string[]
-  removeItem: (productData:IProductData) => void
 }
 
-const WatchList = ({ allSelectedIds, removeItem }:WatchListProps) => {
+const WatchList = ({ allSelectedIds }:WatchListProps) => {
   const [products, setProducts] = useState([])
   const urlParameters = useHistory().location.search
 

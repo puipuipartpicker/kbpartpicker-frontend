@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
+import { WatchListContext } from '../WatchListContext'
 import { Link } from 'react-router-dom'
 import Paths from '../types/Paths'
 import { IProductData } from '../types/types'
@@ -6,7 +7,6 @@ import { useHistory } from 'react-router-dom'
 import './Categories.css'
 
 interface CategoriesProps {
-  removeSelectedItem: (product:IProductData) => void
   displayWatch: () => void
   selectedCases: IProductData[]
   selectedPcb: IProductData[] 
@@ -16,7 +16,7 @@ interface CategoriesProps {
   selectedKeycaps: IProductData[] 
 }
 
-const Categories = ({removeSelectedItem, displayWatch, selectedCases, selectedPcb, selectedPlates, selectedStabilizers, selectedSwitches, selectedKeycaps}:CategoriesProps) => {
+const Categories = ({ displayWatch, selectedCases, selectedPcb, selectedPlates, selectedStabilizers, selectedSwitches, selectedKeycaps}:CategoriesProps) => {
   const [activeCategory, setActiveCategory] = useState('')
   const [displaySelectedCase, setDisplaySelectedCase] = useState(false)
   const [displaySelectedPCB, setDisplaySelectedPCB] = useState(false)
@@ -26,6 +26,8 @@ const Categories = ({removeSelectedItem, displayWatch, selectedCases, selectedPc
   const [displaySelectedKeycaps, setDisplaySelectedKeycaps] = useState(false)
 
   const curPath = useHistory().location.pathname
+
+  const { removeItem } = useContext(WatchListContext)
 
   useEffect(() => {
     if (selectedCases.length === 0) { setDisplaySelectedCase(false) }
@@ -66,7 +68,7 @@ const Categories = ({removeSelectedItem, displayWatch, selectedCases, selectedPc
           selectedCases.map((item, i) => (
             <li className="Categories__category__button-selected-items-case" key={`case-${i}`}>
               {item.name} <span className="--remove" onClick={() => {
-                removeSelectedItem(item)
+                removeItem(item)
                 if (selectedCases.length === 0) { setDisplaySelectedCase(false) }
                 }}>remove x</span>
             </li>
@@ -94,7 +96,7 @@ const Categories = ({removeSelectedItem, displayWatch, selectedCases, selectedPc
           selectedPcb.map((item, i) => (
             <li className="Categories__category__button-selected-items-pcb" key={`pcb-${i}`}>
               {item.name} <span className="--remove" onClick={() => {
-                removeSelectedItem(item)
+                removeItem(item)
                 if (selectedPcb.length === 0) { setDisplaySelectedPCB(false) }
                 }}>remove x</span>
             </li>
@@ -122,7 +124,7 @@ const Categories = ({removeSelectedItem, displayWatch, selectedCases, selectedPc
           selectedPlates.map((item, i) => (
             <li className="Categories__category__button-selected-items-plate" key={`plate-${i}`}>
               {item.name} <span className="--remove" onClick={() => {
-                removeSelectedItem(item)
+                removeItem(item)
                 if (selectedPlates.length === 0) { setDisplaySelectedPlate(false) }
                 }}>remove x</span>
             </li>
@@ -150,7 +152,7 @@ const Categories = ({removeSelectedItem, displayWatch, selectedCases, selectedPc
           selectedStabilizers.map((item, i) => (
             <li className="Categories__category__button-selected-items-stab" key={`stab-${i}`}>
               {item.name} <span className="--remove" onClick={() => {
-                removeSelectedItem(item)
+                removeItem(item)
                 if (selectedStabilizers.length === 0) { setDisplaySelectedStab(false) }
                 }}>remove x</span>
             </li>
@@ -178,7 +180,7 @@ const Categories = ({removeSelectedItem, displayWatch, selectedCases, selectedPc
           selectedSwitches.map((item, i) => (
             <li className="Categories__category__button-selected-items-switch" key={`switch-${i}`}>
               {item.name} <span className="--remove" onClick={() => {
-                removeSelectedItem(item)
+                removeItem(item)
                 if (selectedSwitches.length === 0) { setDisplaySelectedSwitch(false) }
                 }}>remove x</span>
             </li>
@@ -206,7 +208,7 @@ const Categories = ({removeSelectedItem, displayWatch, selectedCases, selectedPc
           selectedKeycaps.map((item, i) => (
             <li className="Categories__category__button-selected-items-keycaps" key={`switch-${i}`}>
               {item.name} <span className="--remove" onClick={() => {
-                removeSelectedItem(item)
+                removeItem(item)
                 if (selectedKeycaps.length === 0) { setDisplaySelectedKeycaps(false) }
                 }}>remove x</span>
             </li>

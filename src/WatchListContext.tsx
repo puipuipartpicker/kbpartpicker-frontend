@@ -129,27 +129,27 @@ export const WatchListProvider = ({children}:WatchListProps) => {
     switch (item.product_type) {
       case 'case' : 
         setCase(prev => prev.filter(cur => cur.id !== item.id))
-        setAllWatchListIds(prev => prev.filter(cur => cur !== item.id))
+        setAllWatchListIds(prev => prev.filter(cur => cur !== `${item.id}`))
         break
       case 'pcb' : 
         setPCB(prev => prev.filter(cur => cur.id !== item.id))
-        setAllWatchListIds(prev => prev.filter(cur => cur !== item.id))
+        setAllWatchListIds(prev => prev.filter(cur => cur !== `${item.id}`))
         break
       case 'plate' :
         setPlate(prev => prev.filter(cur => cur.id !== item.id))
-        setAllWatchListIds(prev => prev.filter(cur => cur !== item.id))
+        setAllWatchListIds(prev => prev.filter(cur => cur !== `${item.id}`))
         break
       case 'stabilizer' :
         setStabilizer(prev => prev.filter(cur => cur.id !== item.id))
-        setAllWatchListIds(prev => prev.filter(cur => cur !== item.id))
+        setAllWatchListIds(prev => prev.filter(cur => cur !== `${item.id}`))
         break
       case 'switch' :
         setSwitches(prev => prev.filter(cur => cur.id !== item.id))
-        setAllWatchListIds(prev => prev.filter(cur => cur !== item.id))
+        setAllWatchListIds(prev => prev.filter(cur => cur !== `${item.id}`))
         break
       case 'keyset' :
         setKeycaps(prev => prev.filter(cur => cur.id !== item.id))
-        setAllWatchListIds(prev => prev.filter(cur => cur !== item.id))
+        setAllWatchListIds(prev => prev.filter(cur => cur !== `${item.id}`))
         break
     }
   }
@@ -165,7 +165,7 @@ export const WatchListProvider = ({children}:WatchListProps) => {
   useEffect(() => {
     getWatchItemsFromLocalStorage()
   }, [])
-  
+
   useEffect(() => {
     localStorage.setItem('selectedItems', `${allWatchListIds}`)
   }, [allWatchListIds])

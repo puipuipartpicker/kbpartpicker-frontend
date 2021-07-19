@@ -1,4 +1,5 @@
-import React, { useEffect } from 'react'
+import React, { useContext } from 'react'
+import { WatchListContext } from '../WatchListContext'
 import ProductListItem from './ProductListItem'
 import { IProductData } from '../types/types'
 import CopyToClipboard from './CopyToClipboard'
@@ -6,7 +7,6 @@ import './SelectedItems.css'
 
 interface SelectedItemsPorps {
   ids: string[]
-  remove: (productData:IProductData) => void
   selectedCases:IProductData[]
   selectedPcb:IProductData[]
   selectedPlates:IProductData[]
@@ -15,11 +15,9 @@ interface SelectedItemsPorps {
   selectedKeycaps:IProductData[]
 }
 
-const SelectedItems = ({ids, remove, selectedCases, selectedPcb, selectedPlates, selectedStabilizers, selectedSwitches, selectedKeycaps}:SelectedItemsPorps) => {
+const SelectedItems = ({ids, selectedCases, selectedPcb, selectedPlates, selectedStabilizers, selectedSwitches, selectedKeycaps}:SelectedItemsPorps) => {
   
-  useEffect(() => {
-
-  }, [])
+  const { removeItem } = useContext(WatchListContext)
 
   return (
       <div className="Selected-Items">
@@ -36,7 +34,7 @@ const SelectedItems = ({ids, remove, selectedCases, selectedPcb, selectedPlates,
                   stock={true}
                   price={6}
                 />
-                <button className="Selected-items__remove" onClick={() => remove(caseData)}>x</button>
+                <button className="Selected-items__remove" onClick={() => removeItem(caseData)}>x</button>
               </div>
             </div>
           ))
@@ -53,7 +51,7 @@ const SelectedItems = ({ids, remove, selectedCases, selectedPcb, selectedPlates,
                   stock={true}
                   price={6}
                 />
-                <button className="Selected-items__remove" onClick={() => remove(pdbData)}>x</button>
+                <button className="Selected-items__remove" onClick={() => removeItem(pdbData)}>x</button>
               </div>
             </div>
           ))
@@ -70,7 +68,7 @@ const SelectedItems = ({ids, remove, selectedCases, selectedPcb, selectedPlates,
                   stock={true}
                   price={6}
                 />
-                <button className="Selected-items__remove" onClick={() => remove(plateData)}>x</button>
+                <button className="Selected-items__remove" onClick={() => removeItem(plateData)}>x</button>
               </div>
             </div>
           ))
@@ -87,7 +85,7 @@ const SelectedItems = ({ids, remove, selectedCases, selectedPcb, selectedPlates,
                   stock={true}
                   price={6}
                 />
-                <button className="Selected-items__remove" onClick={() => remove(stabData)}>x</button>
+                <button className="Selected-items__remove" onClick={() => removeItem(stabData)}>x</button>
               </div>
             </div>
           ))
@@ -105,7 +103,7 @@ const SelectedItems = ({ids, remove, selectedCases, selectedPcb, selectedPlates,
                   stock={true}
                   price={6}
                 />
-                <button className="Selected-items__remove" onClick={() => remove(switchData)}>x</button>
+                <button className="Selected-items__remove" onClick={() => removeItem(switchData)}>x</button>
               </div>
             </div>
           ))
@@ -122,7 +120,7 @@ const SelectedItems = ({ids, remove, selectedCases, selectedPcb, selectedPlates,
                   stock={true}
                   price={6}
                 />
-                <button className="Selected-items__remove" onClick={() => remove(keycapData)}>x</button>
+                <button className="Selected-items__remove" onClick={() => removeItem(keycapData)}>x</button>
               </div>
             </div>
           ))
