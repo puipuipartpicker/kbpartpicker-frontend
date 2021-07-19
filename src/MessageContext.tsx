@@ -1,7 +1,7 @@
 import React from "react";
 import { createContext, useState } from 'react'
 
-export type NotificationMessage = {
+interface NotificationMessage {
   messageText: string,
   setMessageText: (m: string) => void
   displayMessage: boolean,
