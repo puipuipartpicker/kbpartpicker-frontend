@@ -263,25 +263,24 @@ function App() {
     // checkCompatibility()
   }
 
-  const getWatchItemsFromLocalStorage = ():void => {
-    if (localStorage.getItem('selectedItems')) {
-      const idsfromStorage = localStorage.getItem('selectedItems')!.split(',')
-      idsfromStorage.forEach(id => addItem(id))
-    }
-  }
+  // const getWatchItemsFromLocalStorage = ():void => {
+  //   if (localStorage.getItem('selectedItems')) {
+  //     const idsfromStorage = localStorage.getItem('selectedItems')!.split(',')
+  //     idsfromStorage.forEach(id => addItem(id))
+  //   }
+  // }
 
-  useEffect(() => {
-    getWatchItemsFromLocalStorage()
-  },[])
+  // useEffect(() => {
+  //   getWatchItemsFromLocalStorage()
+  // },[])
 
   useEffect(() => {
     updateThemeVariables(theme)
   }, [theme])
 
-  useEffect(() => {
-    // history.push(handleParameterUpdate(history.location.search, 'sel', `${allSelectedItemIds}`))
-    localStorage.setItem('selectedItems', `${allWatchListIds}`)
-  }, [allWatchListIds])
+  // useEffect(() => {
+  //   localStorage.setItem('selectedItems', `${allWatchListIds}`)
+  // }, [allWatchListIds])
 
   useEffect(() => {
     if (displayMessage) {
