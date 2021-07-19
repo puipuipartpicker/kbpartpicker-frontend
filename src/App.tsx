@@ -115,66 +115,68 @@ function App() {
     getProductDataByIds([selectedProductID])
     .then(response => {
       console.log('api response:', response)
-      const product = response.data[0]
-      switch (product.product_type) {
-        case 'case' :
-          if (!allSelectedItemIds.includes(`${selectedProductID}`)) {
-            setCase(prevCases => [...prevCases, product])
-            setAllSelectedItemIds(prevIds => [...prevIds, `${selectedProductID}`])
-            if ( 'layout' in product) {
-              setCaseLayout(prevLayout => [...prevLayout, product.layout])
+      const productData:IProductData[] = response.data
+      productData.forEach(product => {
+        switch (product.product_type) {
+          case 'case' :
+            if (!allSelectedItemIds.includes(`${selectedProductID}`)) {
+              setCase(prevCases => [...prevCases, product])
+              setAllSelectedItemIds(prevIds => [...prevIds, `${selectedProductID}`])
+              if ( 'keyboard_form_factor' in product) {
+                setCaseLayout(prevLayout => [...prevLayout, product.keyboard_form_factor])
+              }
             }
-          }
-          break
-        case 'pcb' :
-          console.log('selected product is pcb')
-          if(!allSelectedItemIds.includes(`${selectedProductID}`)) {
-            setPCB(prevPCB => [...prevPCB, product])
+            break
+          case 'pcb' :
+            console.log('selected product is pcb')
+            if(!allSelectedItemIds.includes(`${selectedProductID}`)) {
+              setPCB(prevPCB => [...prevPCB, product])
+              setAllSelectedItemIds(prevIds => [...prevIds, `${selectedProductID}`])
+              if ('keyboard_form_factor' in product) {
+                setPcbLayout(prevLayout => [...prevLayout, product.keyboard_form_factor])
+              }
+              if ('hotswap' in product) {
+                setHotwap(prevHotswap => [...prevHotswap, product.hotswap])
+              }
+            }
+            break
+          case 'plate' :
+            console.log('selected product is plate')
+            setPlate(prevPlates => [...prevPlates, product])
             setAllSelectedItemIds(prevIds => [...prevIds, `${selectedProductID}`])
             if ('keyboard_form_factor' in product) {
-              setPcbLayout(prevLayout => [...prevLayout, product.layout])
+              setPlateLayout(prevLayout => [...prevLayout, product.keyboard_form_factor])
             }
-            if ('hotswap' in product) {
-              setHotwap(prevHotswap => [...prevHotswap, product])
+            break
+          case 'stabilizer' :
+            console.log('selected product is stab')
+            if(!allSelectedItemIds.includes(`${selectedProductID}`)) {
+              setStabilizer(prevStabs => [...prevStabs, product])
+              setAllSelectedItemIds(prevIds => [...prevIds, `${selectedProductID}`])
+              if ('stabilizer_size' in product) {
+                setStabSize(prevSize => [...prevSize, product.stabilizer_size])
+              }
+              if ('stabilizer_type' in product) {
+                setStabMount(prevMount => [...prevMount, product.stabilizer_type])
+              }
             }
-          }
-          break
-        case 'plate' :
-          console.log('selected product is plate')
-          setPlate(prevPlates => [...prevPlates, product])
-          setAllSelectedItemIds(prevIds => [...prevIds, `${selectedProductID}`])
-          if ('keyboard_form_factor' in product) {
-            setPlateLayout(prevLayout => [...prevLayout, product.layout])
-          }
-          break
-        case 'stabilizer' :
-          console.log('selected product is stab')
-          if(!allSelectedItemIds.includes(`${selectedProductID}`)) {
-            setStabilizer(prevStabs => [...prevStabs, product])
-            setAllSelectedItemIds(prevIds => [...prevIds, `${selectedProductID}`])
-            if ('stabilizer_size' in product) {
-              setStabSize(prevSize => [...prevSize, product.size])
+            break
+          case 'switch' :
+            console.log('selected product is switch')
+            if(!allSelectedItemIds.includes(`${selectedProductID}`)) {
+              setAllSelectedItemIds(prevIds => [...prevIds, `${selectedProductID}`])
+              setSwitches(prevSwitches => [...prevSwitches, product])
             }
-            if ('stabilizer_type' in product) {
-              setStabMount(prevMount => [...prevMount, product.mount])
-            }
+            break
+          case 'keyset' :
+            console.log('selected product is keycaps')
+            if(!allSelectedItemIds.includes(`${selectedProductID}`)) {
+              setKeycaps(prevKeys => [...prevKeys, product])
+              setAllSelectedItemIds(prevIds => [...prevIds, `${selectedProductID}`])
+            break
           }
-          break
-        case 'switch' :
-          console.log('selected product is switch')
-          if(!allSelectedItemIds.includes(`${selectedProductID}`)) {
-            setAllSelectedItemIds(prevIds => [...prevIds, `${selectedProductID}`])
-            setSwitches(prevSwitches => [...prevSwitches, product])
-          }
-          break
-        case 'keyset' :
-          console.log('selected product is keycaps')
-          if(!allSelectedItemIds.includes(`${selectedProductID}`)) {
-            setKeycaps(prevKeys => [...prevKeys, product])
-            setAllSelectedItemIds(prevIds => [...prevIds, `${selectedProductID}`])
-          break
         }
-      }
+      });
     })
     .catch(error => {
       if (error.response) {

@@ -89,6 +89,7 @@ export interface IProductData {
   product_type: IProductType
   switch_type: ISwitchType
   switch_profile: ISwitchProfile
+  stabilizer_type: IStabilizerType
   stabilizer_size: IStabilizerSize
   keyboard_form_factor: IKeyboardFormFactor
   keyboard_layout: IKeyboardLayout
