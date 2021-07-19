@@ -263,24 +263,10 @@ function App() {
     // checkCompatibility()
   }
 
-  // const getWatchItemsFromLocalStorage = ():void => {
-  //   if (localStorage.getItem('selectedItems')) {
-  //     const idsfromStorage = localStorage.getItem('selectedItems')!.split(',')
-  //     idsfromStorage.forEach(id => addItem(id))
-  //   }
-  // }
-
-  // useEffect(() => {
-  //   getWatchItemsFromLocalStorage()
-  // },[])
 
   useEffect(() => {
     updateThemeVariables(theme)
   }, [theme])
-
-  // useEffect(() => {
-  //   localStorage.setItem('selectedItems', `${allWatchListIds}`)
-  // }, [allWatchListIds])
 
   useEffect(() => {
     if (displayMessage) {
