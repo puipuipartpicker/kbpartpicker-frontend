@@ -279,7 +279,8 @@ function App() {
 
   useEffect(() => {
     setTimeout(() => {
-      setDisplayMessage(false)
+      // removing set timout while styling
+      // setDisplayMessage(false)
     }, 2500);
   }, [messageText, displayMessage])
 

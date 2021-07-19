@@ -1,8 +1,24 @@
 .Notification {
-  position: absolute;
-  top: 0;
+  position: fixed;
+  top: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 95rem;
+  margin: auto;
+  z-index: 10000
+}
+
+.Notification-container {
+  display: inline-block;
+}
+
+.Notification-message {
   background-color: var(--primary-color);
   color: var(--lightest-color);
   padding: 1rem 2rem;
+  margin-bottom: var(--margin-bottom);
   border-radius: var(--rounded-corner);
+  max-width: 70%;
 }
