@@ -7,7 +7,7 @@ interface NotificationProps {
 
 const Notification = ({ message }:NotificationProps) => (
   <div className="Notification">
-    <div className="Notification-message">{message}</div>
+    <div className="Notification-message slide-in-out">{message}</div>
   </div>
 )
 

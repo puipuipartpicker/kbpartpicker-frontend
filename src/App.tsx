@@ -278,10 +278,11 @@ function App() {
   }, [allSelectedItemIds])
 
   useEffect(() => {
-    setTimeout(() => {
-      // removing set timout while styling
-      // setDisplayMessage(false)
-    }, 2500);
+    if (displayMessage) {
+      setTimeout(() => {
+        setDisplayMessage(false)
+      }, 2500);
+    }
   }, [messageText, displayMessage])
 
   useEffect(() => {

@@ -18,11 +18,14 @@ const CopyToClipboard = ({ buttonText, stringToCopy }:CopyToClipboardProps) => {
   return (
     <div className="Copy-to-clip-board">
       <button className="Copy-to-clip-board-button" 
-        onClick={() => copyOnClick(stringToCopy).then(res => {
-          setCopyConfirmation(true)
-          setMessageText(`${buttonText} copied to clipboard`)
-          setDisplayMessage(true)
-        })}>
+        onClick={() => {
+          if (!displayMessage) {
+            copyOnClick(stringToCopy).then(res => {
+              setCopyConfirmation(true)
+              setMessageText(`${buttonText} copied to clipboard`)
+              setDisplayMessage(true)
+            })
+          }}}>
         Copy {`${buttonText}`} to clipboard
       </button>
     </div>
