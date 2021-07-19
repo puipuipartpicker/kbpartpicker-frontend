@@ -113,6 +113,7 @@ function App() {
     }
   }
 
+<<<<<<< HEAD
   // const addSelectedItem = (selectedProductID: string) => {
   //   getProductDataByIds([selectedProductID])
   //   .then(response => {
@@ -190,6 +191,87 @@ function App() {
   //       console.log('there was an error making a request to the backend: \n', error)
   //     }
   //   })
+=======
+  const addSelectedItem = (selectedProductID: string) => {
+    getProductDataByIds([selectedProductID])
+    .then(response => {
+      console.log('api response:', response)
+      const productData:IProductData[] = response.data
+      productData.forEach(product => {
+        switch (product.product_type) {
+          case 'case' :
+            if (!allSelectedItemIds.includes(`${selectedProductID}`)) {
+              setCase(prevCases => [...prevCases, product])
+              setAllSelectedItemIds(prevIds => [...prevIds, `${selectedProductID}`])
+              if ( 'keyboard_form_factor' in product) {
+                setCaseLayout(prevLayout => [...prevLayout, product.keyboard_form_factor])
+              }
+            }
+            break
+          case 'pcb' :
+            console.log('selected product is pcb')
+            if(!allSelectedItemIds.includes(`${selectedProductID}`)) {
+              setPCB(prevPCB => [...prevPCB, product])
+              setAllSelectedItemIds(prevIds => [...prevIds, `${selectedProductID}`])
+              if ('keyboard_form_factor' in product) {
+                setPcbLayout(prevLayout => [...prevLayout, product.keyboard_form_factor])
+              }
+              if ('hotswap' in product) {
+                setHotwap(prevHotswap => [...prevHotswap, product.hotswap])
+              }
+            }
+            break
+          case 'plate' :
+            console.log('selected product is plate')
+            setPlate(prevPlates => [...prevPlates, product])
+            setAllSelectedItemIds(prevIds => [...prevIds, `${selectedProductID}`])
+            if ('keyboard_form_factor' in product) {
+              setPlateLayout(prevLayout => [...prevLayout, product.keyboard_form_factor])
+            }
+            break
+          case 'stabilizer' :
+            console.log('selected product is stab')
+            if(!allSelectedItemIds.includes(`${selectedProductID}`)) {
+              setStabilizer(prevStabs => [...prevStabs, product])
+              setAllSelectedItemIds(prevIds => [...prevIds, `${selectedProductID}`])
+              if ('stabilizer_size' in product) {
+                setStabSize(prevSize => [...prevSize, product.stabilizer_size])
+              }
+              if ('stabilizer_type' in product) {
+                setStabMount(prevMount => [...prevMount, product.stabilizer_type])
+              }
+            }
+            break
+          case 'switch' :
+            console.log('selected product is switch')
+            if(!allSelectedItemIds.includes(`${selectedProductID}`)) {
+              setAllSelectedItemIds(prevIds => [...prevIds, `${selectedProductID}`])
+              setSwitches(prevSwitches => [...prevSwitches, product])
+            }
+            break
+          case 'keyset' :
+            console.log('selected product is keycaps')
+            if(!allSelectedItemIds.includes(`${selectedProductID}`)) {
+              setKeycaps(prevKeys => [...prevKeys, product])
+              setAllSelectedItemIds(prevIds => [...prevIds, `${selectedProductID}`])
+            break
+          }
+        }
+      });
+    })
+    .catch(error => {
+      if (error.response) {
+        const logDetails = {
+          "error message": error.response.data.message,
+          "http status": error.response.status,
+          "http error": error.response.statusText
+        }
+        console.dir('there was an error returning query results from backend: \n', logDetails)
+      } else {
+        console.log('there was an error making a request to the backend: \n', error)
+      }
+    })
+>>>>>>> b60c47c589aae07a38c4dd9bb838d007d7af84cd
 
   // }
 
