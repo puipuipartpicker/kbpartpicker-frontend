@@ -11,7 +11,7 @@ interface IWatchList {
   switches: IProductData[]
   keycaps: IProductData[]
   allWatchListIds: string[]
-  addItem: (id: string) => void
+  addItem: (id: number) => void
   removeItem: (item: IProductData) => void
 }
 
@@ -102,8 +102,8 @@ export const WatchListProvider = ({children}:WatchListProps) => {
     }
   }
 
-  const addItem = (selectedProductID: string) => {
-    getProductDataByIds([selectedProductID])
+  const addItem = (selectedProductID: number) => {
+    getProductDataByIds([`${selectedProductID}`])
     .then(response => {
       const productData:IProductData[] = response.data
       productData.forEach(product => {
@@ -158,7 +158,7 @@ export const WatchListProvider = ({children}:WatchListProps) => {
   const getWatchItemsFromLocalStorage = ():void => {
     if (localStorage.getItem('selectedItems')) {
       const idsfromStorage = localStorage.getItem('selectedItems')!.split(',')
-      idsfromStorage.forEach(id => addItem(id))
+      idsfromStorage.forEach(id => addItem(parseInt(id)))
     }
   }
 

@@ -2,7 +2,7 @@ import React from 'react'
 import './ProductListItem.css'
 
 interface ProductListItemProps {
-    id: string 
+    id: number 
     name: string
     imgURL: string
     stock: boolean

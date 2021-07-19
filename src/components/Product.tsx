@@ -6,7 +6,7 @@ import { WatchListContext } from '../WatchListContext'
 
 
 interface ProductProps {
-  id: string
+  id: number
 }
 
 const Product = ({ id }:ProductProps) => {
@@ -22,7 +22,7 @@ const Product = ({ id }:ProductProps) => {
   const { addItem } = useContext(WatchListContext)
   
   useEffect(() => {
-    getProductDataByIds([id]).then(response => {
+    getProductDataByIds([`${id}`]).then(response => {
       const productData = response.data[0]
       setReponce(true)
       setName(productData.name)

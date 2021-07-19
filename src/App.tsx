@@ -194,7 +194,7 @@ function App() {
       <Route path={Paths.keycaps} render={ (props) => {
         setTheme('retrocast')
         return <Search bar={true} category='keyset'/>}}/>
-      {productKeys.includes(urlPath) ? <Route path={Paths.product} render={ (props) => <Product id={urlPath}/>} /> : null}
+      {productKeys.includes(urlPath) ? <Route path={Paths.product} render={ (props) => <Product id={parseInt(urlPath)}/>} /> : null}
       <Route path={Paths.list} render={(props) => {
         return (
           <SelectedItems 

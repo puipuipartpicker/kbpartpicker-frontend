@@ -82,7 +82,7 @@ export type IKeyboardFormFactor = 'forty_percent' | 'fifty_percent' | 'sixty_per
 export type IKeyboardLayout = 'ansi' | 'iso' | 'tsangan'
 
 export interface IProductData {
-  id: string
+  id: number
   img_url: string
   name: string
   hotswap: boolean
