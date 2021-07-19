@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router } from 'react-router-dom'
 import { MessageProvider } from './MessageContext';
+import { WatchListProvider } from './WatchListContext';
 
 import './index.css';
 import App from './App';
@@ -12,9 +13,11 @@ dotenv.config()
 ReactDOM.render(
   <React.StrictMode>
     <Router>
-      <MessageProvider>
-        <App />
-      </MessageProvider>
+      <WatchListProvider>
+        <MessageProvider>
+          <App />
+        </MessageProvider>
+      </WatchListProvider>
     </Router>
   </React.StrictMode>,
   document.getElementById('root')
