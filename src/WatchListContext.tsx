@@ -27,11 +27,11 @@ export const WatchListContext = createContext<IWatchList>({
   removeItem: () => {}
 })
 
-interface WatchListProps {
+interface IWatchListProps {
   children: React.ReactChild
 }
 
-export const WatchListProvider = ({children}:WatchListProps) => {
+export const WatchListProvider = ({children}:IWatchListProps) => {
   const [cases, setCase] = useState<IProductData[]>([])
   const [pcbs, setPCB] = useState<IProductData[]>([])
   const [plates, setPlate] = useState<IProductData[]>([])
