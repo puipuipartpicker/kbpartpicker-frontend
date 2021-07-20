@@ -17,7 +17,7 @@ interface SelectedItemsPorps {
 
 const SelectedItems = ({ids, selectedCases, selectedPcb, selectedPlates, selectedStabilizers, selectedSwitches, selectedKeycaps}:SelectedItemsPorps) => {
   
-  const { allWatchListIds,removeItem } = useContext(WatchListContext)
+  const { allWatchListIds, removeItem } = useContext(WatchListContext)
 
   return (
       <div className="Selected-Items">
