@@ -1,15 +1,18 @@
 .Results {
   display: grid;
   grid-template-columns: 35% auto;
+  column-gap: var(--margin-side);
   min-height: 60rem;
 }
 
 .Results__items {
-  
+  border-top: 0.2rem solid var(--darkest-color);
+  border-left: 0.2rem solid var(--darkest-color);
+  border-right: 0.2rem solid var(--darkest-color);
 }
 
 .Results__items-container {
-  margin-right: var(--margin-side);
+  /* margin-right: var(--margin-side); */
 }
 
 .Results__product-container {

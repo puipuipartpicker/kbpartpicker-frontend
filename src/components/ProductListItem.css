@@ -1,3 +1,15 @@
+.Results__items-item {
+  margin: 2rem 1rem 1rem 1rem ;
+}
+
+.Results__items-container {
+  border-bottom: 0.2rem solid var(--darkest-color);
+}
+
+.Results__items-item:hover {
+  transform: scale(1.03);
+}
+
 .Results__items-item-img {
   width: 5rem;
   display: inline-block;
