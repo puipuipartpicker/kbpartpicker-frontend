@@ -45,8 +45,8 @@
   color: var(--highlight-color)
 }
 
-/* @media (max-width: 60rem) {
-  .Product__img {
-    width: 100%;
+@media (max-width: 60rem) {
+  h2.Product__name {
+    font-size: 1.8rem;
   }
-} */
+}
