@@ -1,3 +1,7 @@
+.Selected-Items {
+  width: 100%;
+}
+
 [class^="Selected-items__item-"] {
   display: flex;
 }

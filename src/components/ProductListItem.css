@@ -2,7 +2,7 @@
   margin: 2rem 1rem 1rem 1rem ;
 }
 
-.Results__items-container {
+.Results__items-container:not(:last-child) {
   border-bottom: 0.2rem solid var(--darkest-color);
 }
 

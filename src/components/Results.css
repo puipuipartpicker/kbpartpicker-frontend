@@ -6,9 +6,7 @@
 }
 
 .Results__items {
-  border-top: 0.2rem solid var(--darkest-color);
-  border-left: 0.2rem solid var(--darkest-color);
-  border-right: 0.2rem solid var(--darkest-color);
+  border: 0.2rem solid var(--darkest-color);
 }
 
 .Results__items-container {
