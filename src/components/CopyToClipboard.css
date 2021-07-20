@@ -1,5 +1,6 @@
 .Copy-to-clip-board {
-  
+  display: flex;
+  flex-direction: column;
 }
 
 .Copy-to-clip-board-confirmation {

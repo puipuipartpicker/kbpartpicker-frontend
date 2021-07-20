@@ -24,6 +24,10 @@
 .App__selected-items-container {
   overflow: scroll;
   position: fixed;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-items: flex-end;
   top: 0;
   right: 0;
   z-index: 1000;
@@ -42,6 +46,7 @@
 }
 
 .App__selected-items-close {
+  width: 25%;
   margin-bottom: var(--margin-bottom);
 }
 
