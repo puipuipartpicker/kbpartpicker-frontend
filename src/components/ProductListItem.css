@@ -1,9 +1,22 @@
 .Results__items-item-img {
-  width: 50px;
+  width: 5rem;
+  display: inline-block;
 }
 
 .Results__items-item-name {
   display: inline;
+}
+
+.Results__items-item-price-stock {
+  
+}
+
+.Results__items-item-price-stock * {
+  display: inline-block;
+}
+
+.Results__items-item-price-stock :not(:last-child) {
+  margin-right: 1rem;
 }
 
 .Results__items-item-price-stock-price {

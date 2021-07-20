@@ -12,16 +12,16 @@ interface ProductListItemProps {
 
 const ProductListItem = ({id, name, imgURL, stock, price, displayProduct }:ProductListItemProps) => (
   <div className="Results__items-item">
-    <img className="Results__items-item-img" src={imgURL} alt={name}/>
+    <div className="Results__items-item-price-stock">
+      <img className="Results__items-item-img" src={imgURL} alt={name}/>
+      {price && <div className="Results__items-item-price-stock-price">${price}</div>}
+      <div className="Results__items-item-price-stock-stock">in stock? {stock ? 'yes!' : 'nope :('}</div>
+    </div>
     {displayProduct ? (
     <h3 className="Results__items-item-name --link" onClick={() => displayProduct()}>{name}</h3>
     ) : (
     <h3 className="Results__items-item-name">{name}</h3>
     )}
-    <div className="Results__items-item-price-stock">
-      <div className="Results__items-item-price-stock-price">{price}</div>
-      <div className="Results__items-item-price-stock-stock">in stock? {stock ? 'yes!' : 'nope :('}</div>
-    </div>
   </div>
 )
 
