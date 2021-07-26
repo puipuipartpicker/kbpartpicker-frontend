@@ -3,7 +3,7 @@
   grid-template-columns: 25% auto;
   grid-column-gap: var(--margin-side);
   column-gap: var(--margin-side);
-  margin: 2rem 1rem 1rem 1rem ;
+  padding: 2rem 1rem 1rem 1rem ;
 }
 
 .List-item-left {

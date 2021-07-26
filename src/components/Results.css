@@ -6,7 +6,20 @@
 }
 
 .Results__items {
-  border: 0.2rem solid var(--darkest-color);
+  /* border: 0.2rem solid var(--darkest-color); */
+}
+
+.Results__items-container {
+  border-right: 0.2rem solid var(--darkest-color);
+  border-left: 0.2rem solid var(--darkest-color);
+}
+
+.Results__items-container:first-child {
+  border-top: 0.2rem solid var(--darkest-color);
+}
+
+.Results__items-container:last-child {
+  border-bottom: 0.2rem solid var(--darkest-color);
 }
 
 .Results__items-container:not(:last-child) {
