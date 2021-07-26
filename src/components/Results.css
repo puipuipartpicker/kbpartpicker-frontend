@@ -9,6 +9,10 @@
   border: 0.2rem solid var(--darkest-color);
 }
 
+.Results__items-container:not(:last-child) {
+  border-bottom: 0.2rem solid var(--darkest-color);
+}
+
 .Results__items-container {
   /* margin-right: var(--margin-side); */
 }
