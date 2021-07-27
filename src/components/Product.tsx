@@ -3,6 +3,7 @@ import './Product.css'
 import { IVendor } from '../types/types'
 import { getProductDataByIds } from '../backendFunctions'
 import { WatchListContext } from '../WatchListContext'
+import { MessageContext } from '../MessageContext'
 
 
 interface ProductProps {
@@ -19,17 +20,18 @@ const Product = ({ id }:ProductProps) => {
   const [imgURL, setImgURL] = useState('')
   const [vendors, setVendors] = useState<IVendor[]>([])
 
-  const { addItem } = useContext(WatchListContext)
+  const { addItem, allWatchListIds } = useContext(WatchListContext)
+  const { setDisplayMessage, setMessageText } = useContext(MessageContext)
   
   useEffect(() => {
     getProductDataByIds([`${id}`]).then(response => {
       const productData = response.data[0]
       setReponce(true)
       setName(productData.name)
-      if (productData.type) {setType(productData.type)}
-      if (productData.size) {setSize(productData.size)}
-      if (productData.layout) {setLayout(productData.layout)}
-      if (productData.hotswap) {setHotwap(productData.hotswap)}
+      if (productData.type) { setType(productData.type) }
+      if (productData.size) { setSize(productData.size) }
+      if (productData.layout) { setLayout(productData.layout) }
+      if (productData.hotswap) { setHotwap(productData.hotswap) }
       setImgURL(productData.img_url)
       setVendors(productData.vendors)
     }).catch(error => {
@@ -74,6 +76,18 @@ const Product = ({ id }:ProductProps) => {
             </div>
           ))}
         </div>
+        <button className="Product__add-to-watch-list" onClick={() => {
+          if(!allWatchListIds.includes(`${id}`)) {
+            addItem(id)
+            setMessageText(`${name} added to your watch list`)
+            setDisplayMessage(true)
+          } else {
+            setMessageText('already on your watch list')
+            setDisplayMessage(true)
+          }
+          }}>
+          add to watch list
+        </button>
       </div>
       </>
     ) : (

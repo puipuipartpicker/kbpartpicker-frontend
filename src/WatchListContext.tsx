@@ -52,7 +52,6 @@ export const WatchListProvider = ({children}:IWatchListProps) => {
         }
         break
       case 'pcb' :
-        console.log('selected product is pcb')
         if(!allWatchListIds.includes(`${product.id}`)) {
           setPCB(prevPCB => [...prevPCB, product])
           setAllWatchListIds(prevIds => [...prevIds, `${product.id}`])
@@ -65,7 +64,6 @@ export const WatchListProvider = ({children}:IWatchListProps) => {
         }
         break
       case 'plate' :
-        console.log('selected product is plate')
         setPlate(prevPlates => [...prevPlates, product])
         setAllWatchListIds(prevIds => [...prevIds, `${product.id}`])
         // if ('keyboard_form_factor' in product) {
@@ -73,7 +71,6 @@ export const WatchListProvider = ({children}:IWatchListProps) => {
         // }
         break
       case 'stabilizer' :
-        console.log('selected product is stab')
         if(!allWatchListIds.includes(`${product.id}`)) {
           setStabilizer(prevStabs => [...prevStabs, product])
           setAllWatchListIds(prevIds => [...prevIds, `${product.id}`])
@@ -86,14 +83,12 @@ export const WatchListProvider = ({children}:IWatchListProps) => {
         }
         break
       case 'switch' :
-        console.log('selected product is switch')
         if(!allWatchListIds.includes(`${product.id}`)) {
           setAllWatchListIds(prevIds => [...prevIds, `${product.id}`])
           setSwitches(prevSwitches => [...prevSwitches, product])
         }
         break
       case 'keyset' :
-        console.log('selected product is keycaps')
         if(!allWatchListIds.includes(`${product.id}`)) {
           setKeycaps(prevKeys => [...prevKeys, product])
           setAllWatchListIds(prevIds => [...prevIds, `${product.id}`])
