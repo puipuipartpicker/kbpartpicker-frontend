@@ -1,9 +1,8 @@
 .List-item {
   display: grid;
   grid-template-columns: 25% auto;
-  grid-column-gap: var(--margin-side);
   column-gap: var(--margin-side);
-  padding: 2rem 1rem 1rem 1rem ;
+  padding: 1rem;
 }
 
 .List-item-left {
@@ -25,6 +24,7 @@
 .List-item-img {
   display: block;
   width: 100%;
+  margin-top: 0.4rem;
 }
 
 /* .Results__items-item-name {
