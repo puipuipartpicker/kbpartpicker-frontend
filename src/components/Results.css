@@ -31,7 +31,7 @@
 }
 
 .Results__product-container {
-  /* position: relative; */
+  position: relative;
 }
 
 .Results__product {
@@ -52,6 +52,18 @@
   top: 1.5rem;
   right: 1.5rem;
   z-index: 100;
+}
+
+.Results__product-close-container {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  width: 3rem;
+  z-index: 100;
+}
+
+.Results__product-close-container svg {
+  cursor: pointer;
 }
 
 .Results__product-add-select {

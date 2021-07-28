@@ -5,7 +5,7 @@ import { useHistory } from 'react-router'
 import './Results.css'
 import Product from './Product'
 import ProductListItem from './ProductListItem'
-import { ReactComponent as CloseCircle } from '../svg/icon-add-circle.svg'
+import { ReactComponent as CloseCircle } from '../svg/icon-close-circle.svg'
 
 interface searchItem {
   id: number
@@ -85,7 +85,7 @@ const Results = ({results} : ResultsProps) => {
           <div className="Results__product-container">
             <div className="Results__product">
             <div className="Results__product-close-container" onClick={() => setProductDisplay(false)}>
-              <CloseCircle/>
+              <CloseCircle />
             </div>
               <Product id={selectedProductId}/>
             </div>
@@ -97,7 +97,7 @@ const Results = ({results} : ResultsProps) => {
     <div className="Results__product-container">
       <div className="Results__product" style={{maxHeight: productPaneHeight}}>
         <div className="Results__product-close-container" onClick={() => setProductDisplay(false)}>
-          <CloseCircle/>
+          <CloseCircle />
         </div>
         <Product id={selectedProductId}/>
       </div>

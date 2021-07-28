@@ -4,6 +4,7 @@ import { IVendor } from '../types/types'
 import { getProductDataByIds } from '../backendFunctions'
 import { WatchListContext } from '../WatchListContext'
 import { MessageContext } from '../MessageContext'
+import { ReactComponent as AddCircle } from '../svg/icon-add-circle.svg'
 
 
 interface ProductProps {
@@ -86,6 +87,7 @@ const Product = ({ id }:ProductProps) => {
             setDisplayMessage(true)
           }
           }}>
+          <AddCircle />
           add to watch list
         </button>
       </div>
