@@ -3,6 +3,7 @@ import { WatchListContext } from '../WatchListContext'
 import ProductListItem from './ProductListItem'
 import { IProductData } from '../types/types'
 import CopyToClipboard from './CopyToClipboard'
+import { ReactComponent as CloseCircle } from '../svg/icon-close-circle.svg'
 import './SelectedItems.css'
 
 interface SelectedItemsPorps {
@@ -36,7 +37,7 @@ const SelectedItems = ({ids, selectedCases, selectedPcb, selectedPlates, selecte
                     stock={true}
                     price={6}
                   />
-                  <button className="Selected-items__remove" onClick={() => removeItem(caseData)}>x</button>
+                  <div className="Selected-items__remove" onClick={() => removeItem(caseData)}><CloseCircle /></div>
                 </div>
               </div>
             ))
@@ -58,7 +59,7 @@ const SelectedItems = ({ids, selectedCases, selectedPcb, selectedPlates, selecte
                     stock={true}
                     price={6}
                   />
-                  <button className="Selected-items__remove" onClick={() => removeItem(pdbData)}>x</button>
+                  <div className="Selected-items__remove" onClick={() => removeItem(pdbData)}><CloseCircle /></div>
                 </div>
               </div>
             ))
@@ -80,7 +81,7 @@ const SelectedItems = ({ids, selectedCases, selectedPcb, selectedPlates, selecte
                     stock={true}
                     price={6}
                   />
-                  <button className="Selected-items__remove" onClick={() => removeItem(plateData)}>x</button>
+                  <div className="Selected-items__remove" onClick={() => removeItem(plateData)}><CloseCircle /></div>
                 </div>
               </div>
             ))
@@ -102,7 +103,7 @@ const SelectedItems = ({ids, selectedCases, selectedPcb, selectedPlates, selecte
                     stock={true}
                     price={6}
                   />
-                  <button className="Selected-items__remove" onClick={() => removeItem(stabData)}>x</button>
+                  <div className="Selected-items__remove" onClick={() => removeItem(stabData)}><CloseCircle /></div>
                 </div>
               </div>
             ))
@@ -124,7 +125,7 @@ const SelectedItems = ({ids, selectedCases, selectedPcb, selectedPlates, selecte
                     stock={true}
                     price={6}
                   />
-                  <button className="Selected-items__remove" onClick={() => removeItem(switchData)}>x</button>
+                  <div className="Selected-items__remove" onClick={() => removeItem(switchData)}><CloseCircle /></div>
                 </div>
               </div>
             ))
@@ -145,7 +146,7 @@ const SelectedItems = ({ids, selectedCases, selectedPcb, selectedPlates, selecte
                     stock={true}
                     price={6}
                   />
-                  <button className="Selected-items__remove" onClick={() => removeItem(keycapData)}>x</button>
+                  <div className="Selected-items__remove" onClick={() => removeItem(keycapData)}><CloseCircle /></div>
                 </div>
               </div>
             ))

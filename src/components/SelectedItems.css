@@ -23,8 +23,9 @@
   align-items: center;
   justify-content: center;
   position: absolute;
-  top: 2rem;
+  top: 1.2rem;
   right: 0;
+  cursor: pointer;
 }
 
 h2[class^="Selected-items__header-"] {

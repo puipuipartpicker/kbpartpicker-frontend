@@ -1,5 +1,7 @@
 import React from 'react'
 import './ProductListItem.css'
+import { ReactComponent as TrendingUp } from '../svg/icon-trending-up.svg'
+import { ReactComponent as TrendingDown } from '../svg/icon-trending-down.svg'
 
 interface ProductListItemProps {
     id: number 
@@ -11,6 +13,8 @@ interface ProductListItemProps {
 }
 
 const ProductListItem = ({ id, name, imgURL, stock, price, displayProduct }:ProductListItemProps) => {
+  const stockSvg = stock ? <TrendingUp /> : <TrendingDown />
+  
   return displayProduct ? (
     <div className="List-item --link" onClick={() => displayProduct()}>
     <div className="List-item-left">
@@ -22,8 +26,10 @@ const ProductListItem = ({ id, name, imgURL, stock, price, displayProduct }:Prod
       ) : (
       <h3 className="List-item-name">{name}</h3>
       )}
-      {price && <div className="List-item-price-stock-price">${price}</div>}
-      <div className="List-item-price-stock-stock">in stock? {stock ? 'yes!' : 'nope :('}</div>
+      <div className="List-item-price-stock">
+        {price && <div className="List-item-price-stock-price">${price}</div>}
+        <div className="List-item-price-stock-stock">{stockSvg}</div>
+      </div>
     </div>
   </div>
   ) : (
@@ -33,8 +39,10 @@ const ProductListItem = ({ id, name, imgURL, stock, price, displayProduct }:Prod
     </div>
     <div className="List-item-right">
       <h3 className="List-item-name">{name}</h3>
-      {price && <div className="List-item-price-stock-price">${price}</div>}
-      <div className="List-item-price-stock-stock">in stock? {stock ? 'yes!' : 'nope :('}</div>
+      <div className="List-item-price-stock">
+        {price && <div className="List-item-price-stock-price">${price}</div>}
+        <div className="List-item-price-stock-stock">{stockSvg}</div>
+      </div>
     </div>
   </div>
   )
