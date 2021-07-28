@@ -67,8 +67,26 @@
 }
 
 .Categories__selected-items-button {
+  position: relative;
   margin-bottom: 1rem;
+  /* -webkit-box-shadow: 0px 5px 0px -2px rgba(0,0,0,1);
+  -moz-box-shadow: 0px 5px 0px -2px rgba(0,0,0,1);
+  box-shadow: 0px 5px 0px -2px rgba(0,0,0,1); */
 }
+
+.Categories__selected-items-button:before {
+  content: '';
+  position: absolute;
+  border-radius: var(--rounded-corner);
+  bottom: -0.2rem;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--darkest-color);
+  z-index: -1;
+}
+
+
 
 .--active {
   cursor: default;
@@ -87,3 +105,5 @@
 .--remove {
   cursor: pointer;
 }
+
+
