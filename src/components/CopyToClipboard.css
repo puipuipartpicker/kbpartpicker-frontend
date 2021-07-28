@@ -3,6 +3,16 @@
   flex-direction: column;
 }
 
+.Copy-to-clip-board-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.Copy-to-clip-board svg {
+  margin-right: var(--margin-side);
+}
+
 .Copy-to-clip-board-confirmation {
   position: absolute;
   top: 0;

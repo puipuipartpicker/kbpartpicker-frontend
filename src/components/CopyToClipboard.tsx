@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { MessageContext } from "../MessageContext";
+import { ReactComponent as LinkIcon } from '../svg/icon-link.svg'
 import './CopyToClipboard.css'
 
 interface CopyToClipboardProps {
@@ -26,7 +27,7 @@ const CopyToClipboard = ({ buttonText, stringToCopy }:CopyToClipboardProps) => {
               setDisplayMessage(true)
             })
           }}}>
-        Copy {`${buttonText}`} to clipboard
+        <LinkIcon className="--inverse" /> Copy {`${buttonText}`} to clipboard
       </button>
     </div>
   )
