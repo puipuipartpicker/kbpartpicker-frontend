@@ -5,6 +5,7 @@ import { useHistory } from 'react-router'
 import './Results.css'
 import Product from './Product'
 import ProductListItem from './ProductListItem'
+import { ReactComponent as CloseCircle } from '../svg/icon-add-circle.svg'
 
 interface searchItem {
   id: number
@@ -83,7 +84,9 @@ const Results = ({results} : ResultsProps) => {
         {(screenWidth < 600) && (item.id === selectedProductId) && productDisplay && selectedProductId ? (
           <div className="Results__product-container">
             <div className="Results__product">
-              <button className="Results__product-close" onClick={() => setProductDisplay(false)}>close</button>
+            <div className="Results__product-close-container" onClick={() => setProductDisplay(false)}>
+              <CloseCircle/>
+            </div>
               <Product id={selectedProductId}/>
               <button className="Results__product-add-select" onClick={() => {
                 if (!allWatchListIds.includes(`${selectedProductId}`)) { 
@@ -105,8 +108,8 @@ const Results = ({results} : ResultsProps) => {
     {(screenWidth >= 600) && productDisplay && selectedProductId && results ? (
     <div className="Results__product-container">
       <div className="Results__product" style={{maxHeight: productPaneHeight}}>
-        <div className="Results__product-close-container">
-          <button className="Results__product-close" onClick={() => setProductDisplay(false)}>close</button>
+        <div className="Results__product-close-container" onClick={() => setProductDisplay(false)}>
+          <CloseCircle/>
         </div>
         <Product id={selectedProductId}/>
       </div>
