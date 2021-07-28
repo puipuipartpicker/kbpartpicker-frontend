@@ -87,7 +87,7 @@ const Product = ({ id }:ProductProps) => {
             setDisplayMessage(true)
           }
           }}>
-          <AddCircle />
+          <AddCircle className="--inverse"/>
           add to watch list
         </button>
       </div>

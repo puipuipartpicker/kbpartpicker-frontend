@@ -39,10 +39,18 @@
 
 .Product__add-to-watch-list {
   position: sticky;
-    bottom: 0;
-    cursor: pointer;
-    width: 100%;
-    border-radius: 0 0 var(--rounded-corner) 0;
+  bottom: 0;
+  cursor: pointer;
+  width: 100%;
+  border-radius: 0 0 var(--rounded-corner) 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.Product__add-to-watch-list svg {
+  margin-right: var(--margin-side);
+  width: 2.5rem;
 }
 
 .Product__vendors {

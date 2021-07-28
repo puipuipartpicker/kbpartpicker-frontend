@@ -75,10 +75,22 @@ h1, h2, h3, h4, h5, h6{
   color: var(--primary-color);
 }
 
+svg {
+  width: 3rem
+}
+
 svg .primary {
   fill: var(--primary-color)
 }
 
 svg .secondary{
   fill: var(--bg-color)
+}
+
+svg.--inverse .primary {
+  fill: var(--bg-color)
+}
+
+svg.--inverse .secondary{
+  fill: var(--primary-color)
 }
