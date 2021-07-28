@@ -85,18 +85,6 @@ const Results = ({results} : ResultsProps) => {
             <div className="Results__product">
               <button className="Results__product-close" onClick={() => setProductDisplay(false)}>close</button>
               <Product id={selectedProductId}/>
-              <button className="Results__product-add-select" onClick={() => {
-                if (!allWatchListIds.includes(`${selectedProductId}`)) { 
-                  addItem(selectedProductId)
-                  setMessageText(`added ${item.name} to your Watch List`)
-                  setDisplayMessage(true)
-                  } else {
-                    if (results.find(item => item.id === selectedProductId)?.name) {
-                      setMessageText(`${results.find(item => item.id === selectedProductId)?.name} is already on your watch list`)
-                      setDisplayMessage(true)
-                      }
-                  }
-                }}>add to watch list</button>
             </div>
           </div>
         ) : null}
