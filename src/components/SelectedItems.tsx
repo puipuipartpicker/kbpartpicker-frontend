@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import { WatchListContext } from '../WatchListContext'
-import ProductListItem from './ProductListItem'
+import ListItem from './ListItem'
 import { IProductData } from '../types/types'
 import CopyToClipboard from './CopyToClipboard'
 import { ReactComponent as CloseCircle } from '../svg/icon-close-circle.svg'
@@ -30,7 +30,7 @@ const SelectedItems = ({ids, selectedCases, selectedPcb, selectedPlates, selecte
             selectedCases.map((caseData, i) => (
               <div className="Selected-items__case" key={`selected-case-${i}`}>
                 <div className="Selected-items__item-case">
-                  <ProductListItem
+                  <ListItem
                     id={caseData.id}
                     name={caseData.name}
                     imgURL={caseData.img_url}
@@ -52,7 +52,7 @@ const SelectedItems = ({ids, selectedCases, selectedPcb, selectedPlates, selecte
             selectedPcb.map((pdbData, i) => (
               <div className="Selected-items__pcb" key={`selected-pcb-${i}`}>
                 <div className="Selected-items__item-pcb">
-                  <ProductListItem
+                  <ListItem
                     id={pdbData.id}
                     name={pdbData.name}
                     imgURL={pdbData.img_url}
@@ -74,7 +74,7 @@ const SelectedItems = ({ids, selectedCases, selectedPcb, selectedPlates, selecte
             selectedPlates.map((plateData, i) => (
               <div className="Selected-items__plate" key={`selected-plate-${i}`}>
                 <div className="Selected-items__item-pcb">
-                  <ProductListItem
+                  <ListItem
                     id={plateData.id}
                     name={plateData.name}
                     imgURL={plateData.img_url}
@@ -96,7 +96,7 @@ const SelectedItems = ({ids, selectedCases, selectedPcb, selectedPlates, selecte
             selectedStabilizers.map((stabData, i) => (
               <div className="Selected-items__stab" key={`selected-stab-${i}`}>
                 <div className="Selected-items__item-stab">
-                  <ProductListItem
+                  <ListItem
                     id={stabData.id}
                     name={stabData.name}
                     imgURL={stabData.img_url}
@@ -118,7 +118,7 @@ const SelectedItems = ({ids, selectedCases, selectedPcb, selectedPlates, selecte
             selectedSwitches.map((switchData, i) => (
               <div className="Selected-items__switch" key={`selected-switch-${i}`}>
                 <div className="Selected-items__item-switch">
-                  <ProductListItem
+                  <ListItem
                     id={switchData.id}
                     name={switchData.name}
                     imgURL={switchData.img_url}
@@ -139,7 +139,7 @@ const SelectedItems = ({ids, selectedCases, selectedPcb, selectedPlates, selecte
             selectedKeycaps.map((keycapData, i) => (
               <div className="Selected-items__header-keycap" key={`selected-keycap-${i}`}>
                 <div className="Selected-items__item-keycap">
-                  <ProductListItem
+                  <ListItem
                     id={keycapData.id}
                     name={keycapData.name}
                     imgURL={keycapData.img_url}

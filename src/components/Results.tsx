@@ -4,7 +4,7 @@ import { MessageContext } from '../MessageContext'
 import { useHistory } from 'react-router'
 import './Results.css'
 import Product from './Product'
-import ProductListItem from './ProductListItem'
+import ListItem from './ListItem'
 import { ReactComponent as CloseCircle } from '../svg/icon-close-circle.svg'
 
 interface searchItem {
@@ -73,7 +73,7 @@ const Results = ({results} : ResultsProps) => {
           if ((event.key === ' ') || (event.key === 'Enter')) {
             handleProductDisplay(item.id)
           }}}>
-          <ProductListItem 
+          <ListItem 
             id={item.id}
             name={item.name} 
             imgURL={item.img_url}
