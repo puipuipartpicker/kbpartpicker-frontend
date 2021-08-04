@@ -54,9 +54,7 @@ const Product = ({ id }:ProductProps) => {
     {responce ? (
       <>
       <div className="Product__img-name-container">
-        <div className="Product__img-container">
-          <img className="Product__img" src={imgURL} alt={`${name}`}/>
-        </div>
+        <div className="Product__img-container" style={{backgroundImage: `url(${imgURL})`}}></div>
         <div className="Product__name-container">
           <h2 className="Product__name">{name}</h2> 
         </div> 

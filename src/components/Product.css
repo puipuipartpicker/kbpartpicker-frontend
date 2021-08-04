@@ -11,6 +11,10 @@
 .Product__img-container {
   overflow: hidden;
   border-radius: var(--rounded-corner) var(--rounded-corner) 0 0;
+  height: 50vh;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 .Product__img {
