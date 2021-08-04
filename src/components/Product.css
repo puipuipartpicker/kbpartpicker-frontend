@@ -11,6 +11,7 @@
 .Product__img-container {
   overflow: hidden;
   border-radius: var(--rounded-corner) var(--rounded-corner) 0 0;
+  max-height: 50vh;
 }
 
 .Product__img {
