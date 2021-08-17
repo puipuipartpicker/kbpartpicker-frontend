@@ -38,6 +38,7 @@
 
 .List-item-price-stock-stock-icon {
   display: flex;
+  margin-right: 0.4rem;
 }
 
 .List-item-price-stock-price {

@@ -42,12 +42,20 @@
 }
 
 .App__selected-items-container * {
-  color: var(--lightest-color)
+  color: var(--lightest-color);
+}
+
+.App__selected-items-container button {
+  color: var(--bg-color);
 }
 
 .App__selected-items-close {
   width: 25%;
   margin-bottom: var(--margin-bottom);
+}
+
+.App__selected-items-container .Copy-to-clip-board {
+  margin-top: 2rem;
 }
 
 @media (max-width: 60rem) {

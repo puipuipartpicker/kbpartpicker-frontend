@@ -10,7 +10,16 @@
 }
 
 .Copy-to-clip-board svg {
-  margin-right: var(--margin-side);
+  margin-right: calc(var(--margin-side) * 0.6666);
+  width: 2rem;
+}
+
+.Copy-to-clip-board-button .secondary {
+  fill: var(--secondary-color)
+}
+
+.Copy-to-clip-board-button svg.--inverse .secondary {
+  fill: var(--secondary-color)
 }
 
 .Copy-to-clip-board-confirmation {
