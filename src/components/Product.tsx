@@ -64,16 +64,16 @@ const Product = ({ id }:ProductProps) => {
       </div>
       <div className="Product__vendors-container">
         <div className="Product__vendors">
+          {type ? <p>{type}</p> : null} 
+          {size ? <p>{size}</p> : null}
+          {layout ? <p>{layout}</p> : null}
+          {hotswap ? <p>hotswap</p> : null}
           {vendors.map((vendor, i) => (
             <div className="Product__vendors-vendor" key={`${vendor}-${i}`}>
               <a href={vendor.url} target="_blank" rel="noopener noreferrer">
                 <h3 className="Product__vendors-name">{vendor.name}</h3>
               </a>
               <PriceStock price={vendor.price} stock={vendor.in_stock}/>
-              {type ? <p>{type}</p> : null} 
-              {size ? <p>{size}</p> : null}
-              {layout ? <p>{layout}</p> : null}
-              {hotswap ? <p>{hotswap}</p> : null}
             </div>
           ))}
         </div>
