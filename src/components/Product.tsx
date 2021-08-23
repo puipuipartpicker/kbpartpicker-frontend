@@ -5,6 +5,7 @@ import { getProductDataByIds } from '../backendFunctions'
 import { WatchListContext } from '../WatchListContext'
 import { MessageContext } from '../MessageContext'
 import { ReactComponent as AddCircle } from '../svg/icon-add-circle.svg'
+import PriceStock from './PriceStock'
 
 
 interface ProductProps {
@@ -68,12 +69,11 @@ const Product = ({ id }:ProductProps) => {
               <a href={vendor.url} target="_blank" rel="noopener noreferrer">
                 <h3 className="Product__vendors-name">{vendor.name}</h3>
               </a>
-              <p>{vendor.price}</p>
+              <PriceStock price={vendor.price} stock={vendor.in_stock}/>
               {type ? <p>{type}</p> : null} 
               {size ? <p>{size}</p> : null}
               {layout ? <p>{layout}</p> : null}
               {hotswap ? <p>{hotswap}</p> : null}
-              <span className="Product__vendors-status">In stock?{vendor.in_stock ? 'yes!' : 'nope'}</span>
             </div>
           ))}
         </div>

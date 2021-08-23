@@ -4,6 +4,11 @@
   margin-top: 0.4rem;
 }
 
+.PriceStock-price {
+  font-weight: 700;
+  color: var(--primary-color)
+}
+
 .PriceStock svg {
   width: 1.8rem;
   padding: 0;
@@ -20,6 +25,5 @@
 }
 
 .PriceStock-stock-message {
-  font-weight: 700;
   margin-right: var(--margin-side);
 }
