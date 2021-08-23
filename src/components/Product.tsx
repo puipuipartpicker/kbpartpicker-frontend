@@ -5,6 +5,8 @@ import { getProductDataByIds } from '../backendFunctions'
 import { WatchListContext } from '../WatchListContext'
 import { MessageContext } from '../MessageContext'
 import { ReactComponent as AddCircle } from '../svg/icon-add-circle.svg'
+import PriceStock from './PriceStock'
+import Farts from './Farts'
 
 
 interface ProductProps {
@@ -74,6 +76,8 @@ const Product = ({ id }:ProductProps) => {
               {layout ? <p>{layout}</p> : null}
               {hotswap ? <p>{hotswap}</p> : null}
               <span className="Product__vendors-status">In stock?{vendor.in_stock ? 'yes!' : 'nope'}</span>
+              <Farts poop={'ass poop'}/>
+              
             </div>
           ))}
         </div>

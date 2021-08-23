@@ -24,7 +24,7 @@ const ListItem = ({ id, name, imgURL, stock, price, displayProduct }:ListItemPro
       ) : (
       <h3 className="List-item-name">{name}</h3>
       )}
-      <PriceStock price={price} stock={stock}/>
+      
     </div>
   </div>
   ) : (
@@ -34,7 +34,7 @@ const ListItem = ({ id, name, imgURL, stock, price, displayProduct }:ListItemPro
     </div>
     <div className="List-item-right">
       <h3 className="List-item-name">{name}</h3>
-      <PriceStock price={price} stock={stock}/>
+      
     </div>
   </div>
   )
