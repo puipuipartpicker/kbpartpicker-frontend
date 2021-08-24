@@ -1,4 +1,7 @@
-import { ThemeVariableValues } from "../types/types"
+import { ThemeVariableValues } from "@/types/types"
+import { searchResults } from "@/types/TestData"
+
+
 
 const themeCssVariableValues:ThemeVariableValues = {
   "8008": {

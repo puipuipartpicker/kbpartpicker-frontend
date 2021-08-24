@@ -1,5 +1,5 @@
-import { ThemeVariableValues } from '../types/types'
-import themeCssVariableValues from './themeCssVariableValues'
+import { ThemeVariableValues } from '@/types/types'
+import themeCssVariableValues from "@/utils/themeCssVariableValues"
 
 const updateThemeVariables = (theme: keyof ThemeVariableValues): void => {
   document.documentElement.style.setProperty('--darkest-color', themeCssVariableValues[theme].darkestColor)
