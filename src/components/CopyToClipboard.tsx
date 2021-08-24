@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import { MessageContext } from "../MessageContext";
+import { MessageContext } from "../context/MessageContext";
 import { ReactComponent as ClipBoard } from '../svg/icon-clipboard.svg'
 import './CopyToClipboard.css'
 

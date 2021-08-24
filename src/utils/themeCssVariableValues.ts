@@ -1,6 +1,6 @@
-import { ThemeVariableValues } from './types/types'
+import { ThemeVariableValues } from "../types/types"
 
-const variableValues:ThemeVariableValues = {
+const themeCssVariableValues:ThemeVariableValues = {
   "8008": {
     darkestColor: '#2a303a',
     lightestColor: 'white',
@@ -63,20 +63,4 @@ const variableValues:ThemeVariableValues = {
   }
 }
 
-const updateThemeVariables = (theme: keyof ThemeVariableValues): void => {
-  document.documentElement.style.setProperty('--darkest-color', variableValues[theme].darkestColor)
-  document.documentElement.style.setProperty('--lightestColor', variableValues[theme].lightestColor)
-  document.documentElement.style.setProperty('--bg-color', variableValues[theme].bgColor)
-  document.documentElement.style.setProperty('--primary-text-color', variableValues[theme].primaryTextColor)
-  document.documentElement.style.setProperty('--primary-color', variableValues[theme].primaryColor)
-  document.documentElement.style.setProperty('--secondary-color', variableValues[theme].secondaryColor)
-  document.documentElement.style.setProperty('--highlight-color', variableValues[theme].highlightColor)
-  // if (variableValues[theme].highlightColor) {
-  //   document.documentElement.style.setProperty('--highlight-color', variableValues[theme].highlightColor!)
-  // }
-  // if (variableValues[theme].secondaryColor) {
-  //   document.documentElement.style.setProperty('--secondary-color', variableValues[theme].secondaryColor)
-  // }
-}
-
-export default updateThemeVariables
+export default themeCssVariableValues

@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react'
 import { useHistory } from 'react-router'
 import './WatchList.css'
 import Results from './Results'
-import { getProductDataByIds } from '../backendFunctions'
+import { getProductDataByIds } from '../utils/backendFunctions'
 
 interface WatchListProps {
   allSelectedIds: string[]

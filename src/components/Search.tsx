@@ -6,7 +6,7 @@ import TerminalInput from './TerminalInput'
 import JumpTo from './JumpTo'
 import { IProductType } from '../types/types'
 import axios from 'axios'
-import { handleParameterUpdate } from '../helperFunctions'
+import { handleParameterUpdate } from '../utils/parameterHandlers'
 
 // import { setServers } from 'dns'
 

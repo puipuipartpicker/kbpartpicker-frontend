@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router } from 'react-router-dom'
-import { MessageProvider } from './MessageContext';
-import { WatchListProvider } from './WatchListContext';
+import { MessageProvider } from './context/MessageContext';
+import { WatchListProvider } from './context/WatchListContext';
 
 import './index.css';
 import App from './App';

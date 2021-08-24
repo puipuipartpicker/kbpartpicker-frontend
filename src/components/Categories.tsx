@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react'
-import { WatchListContext } from '../WatchListContext'
+import { WatchListContext } from '../context/WatchListContext'
 import { Link } from 'react-router-dom'
 import Paths from '../types/Paths'
 import { IProductData } from '../types/types'

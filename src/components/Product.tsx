@@ -1,9 +1,9 @@
 import React, { useEffect, useState, useContext} from 'react'
 import './Product.css'
 import { IVendor } from '../types/types'
-import { getProductDataByIds } from '../backendFunctions'
-import { WatchListContext } from '../WatchListContext'
-import { MessageContext } from '../MessageContext'
+import { getProductDataByIds } from '../utils/backendFunctions'
+import { WatchListContext } from '../context/WatchListContext'
+import { MessageContext } from '../context/MessageContext'
 import { ReactComponent as AddCircle } from '../svg/icon-add-circle.svg'
 import PriceStock from './PriceStock'
 

@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { WatchListContext } from '../WatchListContext'
+import { WatchListContext } from '../context/WatchListContext'
 import ListItem from './ListItem'
 import { IProductData } from '../types/types'
 import CopyToClipboard from './CopyToClipboard'

@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { AxiosResponse } from 'axios'
-import {IProductType, IProductData} from './types/types'
+import {IProductType, IProductData} from '../types/types'
 
 export const getProductDataByIds = async ( ids: string[] ):Promise<AxiosResponse<any>> => {
   console.log('ran getProductByIds with url:', `https://kbpartpicker-api-dev.herokuapp.com"/products/${ids}`)

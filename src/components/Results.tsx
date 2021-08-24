@@ -1,6 +1,6 @@
 import React, {useState, useEffect, useContext} from 'react'
-import { WatchListContext } from '../WatchListContext'
-import { MessageContext } from '../MessageContext'
+import { WatchListContext } from '../context/WatchListContext'
+import { MessageContext } from '../context/MessageContext'
 import { useHistory } from 'react-router'
 import './Results.css'
 import Product from './Product'

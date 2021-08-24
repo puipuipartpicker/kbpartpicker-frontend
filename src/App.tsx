@@ -1,8 +1,8 @@
 import React, {useEffect, useState, useContext} from 'react';
 import './App.css';
 import { BrowserRouter as Router, Route, Link, useHistory } from 'react-router-dom'
-import { MessageContext } from './MessageContext'
-import { WatchListContext } from './WatchListContext'
+import { MessageContext } from './context/MessageContext'
+import { WatchListContext } from './context/WatchListContext'
 import Paths from './types/Paths'
 import Search from './components/Search'
 import Product from './components/Product'
@@ -13,8 +13,8 @@ import WatchList from './components/WatchList'
 import Notification from './components/Notification'
 import { ThemeVariableValues } from './types/types'
 import { IProductData, IKeyboardFormFactor,  IStabilizerSize, IStabilizerType} from './types/types'
-import updateThemeVariables from './updateThemeVariables'
-import { getProductDataByIds } from './backendFunctions'
+import updateThemeVariables from './utils/updateThemeVariables'
+import { getProductDataByIds } from './utils/backendFunctions'
 
 
 function App() {
