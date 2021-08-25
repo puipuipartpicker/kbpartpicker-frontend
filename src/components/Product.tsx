@@ -30,7 +30,7 @@ const Product = ({ id }:ProductProps) => {
     getProductDataByIds([`${id}`]).then(response => {
       const productData = response.data[0]
       // testing longer response time
-      setTimeout(() => setReponce(true), 5000)
+      setTimeout(() => setReponce(true), 1500)
 
       setName(productData.name)
       if (productData.type) { setType(productData.type) }
