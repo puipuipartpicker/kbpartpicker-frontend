@@ -31,10 +31,6 @@ const Results = ({ results, defaultDisplayId } : ResultsProps) => {
 
   const history = useHistory()
 
-  // if (defaultDisplayId) {
-  //   setSelectedProduct(parseInt(defaultDisplayId))
-  // }
-
   const handleProductDisplay = (id: number): void => {
     console.log('ran handleProductDisplay')
     setProductDisplay(true)
