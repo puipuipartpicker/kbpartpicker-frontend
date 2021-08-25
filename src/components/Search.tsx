@@ -49,11 +49,9 @@ const Search = ({ bar, category }:SearchProps) => {
       return response
     })
     .then(() => {
-      // testing longer response time
-      setTimeout(() => {
-        setResultDisplay(true)
-        setLoading(false)
-      }, 5000)
+
+      setResultDisplay(true)
+      setLoading(false)
 
       const pathRegexDisplay = /disp=([^&]+)/
       if (pathRegexDisplay.test(history.location.search)) {
