@@ -1,7 +1,7 @@
 import React from 'react'
 import './ListItem.css'
-import { ReactComponent as ShoppingCart } from '../svg/icon-shopping-cart.svg'
-import { ReactComponent as Archive } from '../svg/icon-archive.svg'
+import { ReactComponent as ShoppingCart } from '../assets/svg/icon-shopping-cart.svg'
+import { ReactComponent as Archive } from '../assets/svg/icon-archive.svg'
 import PriceStock from './PriceStock'
 
 interface ListItemProps {

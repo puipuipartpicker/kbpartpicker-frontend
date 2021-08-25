@@ -5,7 +5,7 @@ import { useHistory } from 'react-router'
 import './Results.css'
 import Product from './Product'
 import ListItem from './ListItem'
-import { ReactComponent as CloseCircle } from '../svg/icon-close-circle.svg'
+import { ReactComponent as CloseCircle } from '../assets/svg/icon-close-circle.svg'
 
 interface searchItem {
   id: number

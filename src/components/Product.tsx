@@ -4,7 +4,7 @@ import { IVendor } from '../types/types'
 import { getProductDataByIds } from '../utils/backendFunctions'
 import { WatchListContext } from '../context/WatchListContext'
 import { MessageContext } from '../context/MessageContext'
-import { ReactComponent as AddCircle } from '../svg/icon-add-circle.svg'
+import { ReactComponent as AddCircle } from '../assets/svg/icon-add-circle.svg'
 import PriceStock from './PriceStock'
 
 

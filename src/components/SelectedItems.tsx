@@ -3,7 +3,7 @@ import { WatchListContext } from '../context/WatchListContext'
 import ListItem from './ListItem'
 import { IProductData } from '../types/types'
 import CopyToClipboard from './CopyToClipboard'
-import { ReactComponent as CloseCircle } from '../svg/icon-close-circle.svg'
+import { ReactComponent as CloseCircle } from '../assets/svg/icon-close-circle.svg'
 import './SelectedItems.css'
 
 interface SelectedItemsPorps {
