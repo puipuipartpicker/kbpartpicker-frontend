@@ -21,7 +21,7 @@ interface ResultsProps {
   defaultDisplayId?: string
 }
 
-const Results = ({results} : ResultsProps) => {
+const Results = ({ results, defaultDisplayId } : ResultsProps) => {
   const [productDisplay, setProductDisplay] = useState(false)
   const [selectedProductId, setSelectedProduct] = useState(0)
   const [productPaneHeight, setProductPaneHeight] = useState('')
@@ -30,6 +30,10 @@ const Results = ({results} : ResultsProps) => {
   const { setMessageText, setDisplayMessage } = useContext(MessageContext)
 
   const history = useHistory()
+
+  // if (defaultDisplayId) {
+  //   setSelectedProduct(parseInt(defaultDisplayId))
+  // }
 
   const handleProductDisplay = (id: number): void => {
     console.log('ran handleProductDisplay')
@@ -52,13 +56,12 @@ const Results = ({results} : ResultsProps) => {
   useEffect(() => {
     window.addEventListener('resize', (event) => setScreenWidth(window.innerWidth))
     setScreenWidth(window.innerWidth)
-    
-    const pathRegexDisplay = /disp=([^&]+)/
-    if (pathRegexDisplay.test(history.location.search)) {
-      const selectedProductID = history.location.search.match(/disp=([^&]+)/)
-      console.log('displayID', selectedProductID![1])
-      handleProductDisplay(parseInt(selectedProductID![1]))
+
+    if (defaultDisplayId) {
+      setSelectedProduct(parseInt(defaultDisplayId))
+      setProductDisplay(true)
     }
+  
   }, [])
   
   return (

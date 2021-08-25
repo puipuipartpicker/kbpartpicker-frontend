@@ -28,7 +28,9 @@ const Product = ({ id }:ProductProps) => {
   useEffect(() => {
     getProductDataByIds([`${id}`]).then(response => {
       const productData = response.data[0]
-      setReponce(true)
+      // testing longer response time
+      setTimeout(() => setReponce(true), 5000)
+
       setName(productData.name)
       if (productData.type) { setType(productData.type) }
       if (productData.size) { setSize(productData.size) }

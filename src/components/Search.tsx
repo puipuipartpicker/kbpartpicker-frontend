@@ -8,8 +8,6 @@ import { IProductType } from '../types/types'
 import axios from 'axios'
 import { handleParameterUpdate } from '../utils/parameterHandlers'
 
-// import { setServers } from 'dns'
-
 interface SearchProps {
   bar: boolean
   category: IProductType
@@ -26,8 +24,6 @@ const Search = ({ bar, category }:SearchProps) => {
   let history = useHistory()
   const curPath = history.location.pathname
   const curParameters = history.location.search
-
-  // useUpdateUrlParameter('q', inputValue)
 
   const sendQuery = (query: string | undefined, category: IProductType):void => {
     setLoading(true)
@@ -53,8 +49,12 @@ const Search = ({ bar, category }:SearchProps) => {
       return response
     })
     .then(() => {
-      setResultDisplay(true)
-      setLoading(false)
+      // testing longer response time
+      setTimeout(() => {
+        setResultDisplay(true)
+        setLoading(false)
+      }, 5000)
+
       const pathRegexDisplay = /disp=([^&]+)/
       if (pathRegexDisplay.test(history.location.search)) {
         const selectedProductID = history.location.search.match(/disp=([^&]+)/)
@@ -137,7 +137,7 @@ const Search = ({ bar, category }:SearchProps) => {
       )}
       {loading ? <div>searching...</div> : null}
       {noResults ? <div>we found no results</div> : null}
-      {resultDisplay ? <Results results={searchResults} defaultDisplayId={displayId} /> : null}
+      {resultDisplay ? <Results results={searchResults} defaultDisplayId={displayId}/> : null}
       {screenWidth <= 600 ? <JumpTo action={focusInput}/> : <div className="Search__hint"><span className="--highlight">i</span> to focus search</div>}
     </div>
   )
