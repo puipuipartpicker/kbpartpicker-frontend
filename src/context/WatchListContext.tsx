@@ -1,7 +1,7 @@
 import React from "react"
 import { useState, useEffect, createContext } from "react"
-import { IProductData } from "../types/types"
-import { getProductDataByIds } from '../utils/backendFunctions'
+import { IProductData } from "@/types/types"
+import { getProductDataByIds } from '@/utils/backendFunctions'
 
 interface IWatchList {
   cases: IProductData[]

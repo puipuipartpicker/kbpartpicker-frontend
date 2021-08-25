@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
-import { MessageContext } from "../context/MessageContext";
-import { ReactComponent as ClipBoard } from '../svg/icon-clipboard.svg'
+import { MessageContext } from "@/context/MessageContext";
+import { ReactComponent as ClipBoard } from '@/svg/icon-clipboard.svg'
 import './CopyToClipboard.css'
 
 interface CopyToClipboardProps {
