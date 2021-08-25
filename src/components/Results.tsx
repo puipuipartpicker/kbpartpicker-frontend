@@ -52,13 +52,14 @@ const Results = ({ results, defaultDisplayId } : ResultsProps) => {
   useEffect(() => {
     window.addEventListener('resize', (event) => setScreenWidth(window.innerWidth))
     setScreenWidth(window.innerWidth)
+  }, [])
 
+  useEffect(() => {
     if (defaultDisplayId) {
       setSelectedProduct(parseInt(defaultDisplayId))
       setProductDisplay(true)
     }
-  
-  }, [])
+  }, [defaultDisplayId])
   
   return (
   <div className="Results">
