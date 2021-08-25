@@ -107,7 +107,7 @@ const Search = ({ bar, category }:SearchProps) => {
         sendQuery(queryValue![1].replace(/%20/, ' '), category)
       }
     }
-  }, [category, curParameters])
+  }, [category])
 
   useEffect(() => {
     document.addEventListener('keydown', (event) => {
