@@ -5,6 +5,7 @@ import { getProductDataByIds } from '../utils/backendFunctions'
 import { WatchListContext } from '../context/WatchListContext'
 import { MessageContext } from '../context/MessageContext'
 import { ReactComponent as AddCircle } from '../assets/svg/icon-add-circle.svg'
+import ProductPlaceHolder from './ProductPlaceHolder'
 import PriceStock from './PriceStock'
 
 
@@ -95,7 +96,7 @@ const Product = ({ id }:ProductProps) => {
       </div>
       </>
     ) : (
-      <div>loading...</div>
+      <ProductPlaceHolder />
     )}
   </div>
 )}
