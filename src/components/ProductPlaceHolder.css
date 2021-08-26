@@ -51,3 +51,9 @@
   background-color: var(--primary-color);
   border-radius: 0 0 var(--rounded-corner) var(--rounded-corner);
 }
+
+@media (max-width: 60rem) {
+  .ProductPlaceHolder__image {
+    width: 28rem;
+  }
+}
