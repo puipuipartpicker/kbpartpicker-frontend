@@ -154,10 +154,13 @@ const SelectedItems = ({ids, selectedCases, selectedPcb, selectedPlates, selecte
         </div>
 
       {allWatchListIds.length > 0 && (
-        <CopyToClipboard 
-        buttonText="sharable link" 
-        stringToCopy={`${process.env.REACT_APP_URL || 'http://localhost:3000'}/test?share=${ids}`}
-        />
+        <div>
+          <CopyToClipboard 
+          buttonText="sharable link" 
+          stringToCopy={`${process.env.REACT_APP_URL || 'http://localhost:3000'}/test?share=${ids}`}
+          />
+          <button onClick={() => console.log(process.env.REACT_APP_URL)}></button>
+        </div>
       )}
       </div>
   )
