@@ -53,6 +53,12 @@ const Product = ({ id }:ProductProps) => {
     })
   }, [id])
 
+  useEffect(() => {
+    if (/300x300/.test(imgURL)) {
+      setImgURL(prevUrl => prevUrl.replace(/300x300/, '600x600'))
+    }
+  }, [imgURL])
+
   return (
   <div className="Product">
     {responce ? (
