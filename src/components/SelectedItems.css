@@ -15,6 +15,10 @@
   position: relative;
 }
 
+.Search__form__search-button {
+  border-radius: 0 var(--rounded-corner) var(--rounded-corner) 0;
+}
+
 .Selected-items__remove {
   width: 2rem;
   height: 2rem;
