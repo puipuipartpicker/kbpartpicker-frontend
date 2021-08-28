@@ -2,6 +2,7 @@ import React, { useEffect, useState, useContext} from 'react'
 import './Product.css'
 import { IVendor } from '../types/types'
 import { getProductDataByIds } from '../utils/backendFunctions'
+import checkIfImageLoads from '../utils/checkIfImageLoads'
 import { WatchListContext } from '../context/WatchListContext'
 import { MessageContext } from '../context/MessageContext'
 import { ReactComponent as AddCircle } from '../assets/svg/icon-add-circle.svg'
@@ -54,6 +55,9 @@ const Product = ({ id }:ProductProps) => {
   }, [id])
 
   useEffect(() => {
+    if (imgURL) {
+      checkIfImageLoads(imgURL).then(resp => console.log('checkImg:', resp))
+    }
     if (/300x300/.test(imgURL)) {
       setImgURL(prevUrl => prevUrl.replace(/300x300/, '600x600'))
     }
