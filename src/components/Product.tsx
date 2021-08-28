@@ -8,6 +8,7 @@ import { MessageContext } from '../context/MessageContext'
 import { ReactComponent as AddCircle } from '../assets/svg/icon-add-circle.svg'
 import ProductPlaceHolder from './ProductPlaceHolder'
 import PriceStock from './PriceStock'
+import { directive } from '@babel/types'
 
 
 interface ProductProps {
@@ -15,13 +16,14 @@ interface ProductProps {
 }
 
 const Product = ({ id }:ProductProps) => {
-  const [responce, setReponce] = useState(false)
+  const [responce, setResponse] = useState(false)
   const [name, setName] = useState<String>('')
   const [type, setType] = useState('')
   const [size, setSize] = useState('')
   const [layout, setLayout] = useState('')
   const [hotswap, setHotwap] = useState('')
   const [imgURL, setImgURL] = useState('')
+  const [validImg, setValidImg] = useState(false)
   const [vendors, setVendors] = useState<IVendor[]>([])
 
   const { addItem, allWatchListIds } = useContext(WatchListContext)
@@ -31,7 +33,7 @@ const Product = ({ id }:ProductProps) => {
     getProductDataByIds([`${id}`]).then(response => {
       const productData = response.data[0]
       
-      setReponce(true)
+      setTimeout(() => setResponse(true), 1000)
 
       setName(productData.name)
       if (productData.type) { setType(productData.type) }
@@ -56,10 +58,19 @@ const Product = ({ id }:ProductProps) => {
 
   useEffect(() => {
     if (imgURL) {
-      checkIfImageLoads(imgURL).then(resp => console.log('checkImg:', resp))
+      checkIfImageLoads(imgURL).then(resp => {
+        // resp ? setTimeout(() => setValidImg(true), 1000) : setValidImg(false)
+        setValidImg(resp)
+      })
     }
     if (/300x300/.test(imgURL)) {
-      setImgURL(prevUrl => prevUrl.replace(/300x300/, '600x600'))
+      checkIfImageLoads(imgURL.replace(/300x300/, '600x600')).then(resp => {
+        if (resp) {
+          setImgURL(prevUrl => prevUrl.replace(/300x300/, '600x600'))
+          // setTimeout(() => setValidImg(true), 1000)
+          setValidImg(true)
+        }
+      })
     }
   }, [imgURL])
 
@@ -69,7 +80,10 @@ const Product = ({ id }:ProductProps) => {
       <>
       <div className="Product__img-name-container">
         <div className="Product__img-container">
-          <img className="Product__img" src={imgURL} alt={`${name}`}/>
+        {validImg ? 
+          <img className="Product__img" src={imgURL} alt={`${name}`}/> : 
+          <div className="Product__img-placeholder"></div>
+        }
         </div>
         <div className="Product__name-container">
           <h2 className="Product__name">{name}</h2> 
