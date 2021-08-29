@@ -1,8 +1,8 @@
 import React from 'react'
-import './ListItem.css'
-import { ReactComponent as ShoppingCart } from '../assets/svg/icon-shopping-cart.svg'
-import { ReactComponent as Archive } from '../assets/svg/icon-archive.svg'
+import { useState, useEffect } from 'react'
+import checkIfImageLoads from '../utils/checkIfImageLoads'
 import PriceStock from './PriceStock'
+import './ListItem.css'
 
 interface ListItemProps {
     id: number 
@@ -14,12 +14,18 @@ interface ListItemProps {
 }
 
 const ListItem = ({ id, name, imgURL, stock, price, displayProduct }:ListItemProps) => {
-  const stockSvg = stock ? <ShoppingCart /> : <Archive />
+
+  const [validImg, setValidImg] = useState(false)
+
+  useEffect(() => {
+    setTimeout(() => checkIfImageLoads(imgURL).then(resp => setValidImg(resp)), 750)
+    // checkIfImageLoads(imgURL).then(resp => setValidImg(resp))
+  },[])
   
   return displayProduct ? (
     <div className={`List-item --link ${!stock ? '--out-of-stock': ''}`} onClick={() => displayProduct()}>
     <div className="List-item-left">
-      <img className="List-item-img" src={imgURL} alt={name}/>
+      {validImg ? <img className="List-item-img" src={imgURL} alt={name}/> : <div className="List-item-img-placeholder"></div>}
     </div>
     <div className="List-item-right">
       {displayProduct ? (
@@ -33,7 +39,7 @@ const ListItem = ({ id, name, imgURL, stock, price, displayProduct }:ListItemPro
   ) : (
     <div className="List-item">
     <div className="List-item-left">
-      <img className="List-item-img" src={imgURL} alt={name}/>
+    {validImg ? <img className="List-item-img" src={imgURL} alt={name}/> : <div className="List-item-img-placeholder"></div>}
     </div>
     <div className="List-item-right">
       <h3 className="List-item-name">{name}</h3>
