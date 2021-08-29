@@ -12,7 +12,7 @@ const TerminalInput = ({ passValue, placeholder, type, focus }:TerminalInputProp
   const [carotOffset, setCarotOffset] = useState(0)
   const [focusState, setFocusState] = useState(false)
   const terminalInputEl = useRef<HTMLInputElement>(null)
-  const inputPadding = '10'
+  const inputPadding = '20'
   const textWidth = 14.45555
 
   const handleInputChange = () => {
