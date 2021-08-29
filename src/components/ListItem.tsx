@@ -16,7 +16,7 @@ interface ListItemProps {
 
 const ListItem = ({ id, name, imgURL, stock, price, displayProduct }:ListItemProps) => {
 
- const validImage = useValidImage(imgURL)
+ const { validImage } = useValidImage(imgURL)
   
   return displayProduct ? (
     <div className={`List-item --link ${!stock ? '--out-of-stock': ''}`} onClick={() => displayProduct()}>
