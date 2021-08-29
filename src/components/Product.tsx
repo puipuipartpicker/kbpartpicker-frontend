@@ -32,10 +32,11 @@ const Product = ({ id }:ProductProps) => {
   const { setDisplayMessage, setMessageText } = useContext(MessageContext)
   
   useEffect(() => {
+    setResponse(false)
     getProductDataByIds([`${id}`]).then(response => {
       const productData = response.data[0]
       
-      setTimeout(() => setResponse(true), 1000)
+      setTimeout(() => setResponse(true), 500)
 
       setName(productData.name)
       if (productData.type) { setType(productData.type) }

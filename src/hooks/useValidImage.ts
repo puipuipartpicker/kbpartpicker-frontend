@@ -8,6 +8,7 @@ const useValidImage = (imgUrl:string, replaceRegex?:RegExp, replaceTo?:string) =
 
   useEffect(() => {
     setNewUrl('')
+    setValidImage(false)
     if (replaceRegex?.test(imgUrl) && replaceTo) {
       // sees if the image src can be augmented to return a different resolution image
       axios.get(imgUrl.replace(replaceRegex, replaceTo))
