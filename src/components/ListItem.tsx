@@ -1,6 +1,7 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
 import checkIfImageLoads from '../utils/checkIfImageLoads'
+import useValidImage from '../hooks/useValidImage'
 import PriceStock from './PriceStock'
 import './ListItem.css'
 
@@ -15,17 +16,12 @@ interface ListItemProps {
 
 const ListItem = ({ id, name, imgURL, stock, price, displayProduct }:ListItemProps) => {
 
-  const [validImg, setValidImg] = useState(false)
-
-  useEffect(() => {
-    setTimeout(() => checkIfImageLoads(imgURL).then(resp => setValidImg(resp)), 750)
-    // checkIfImageLoads(imgURL).then(resp => setValidImg(resp))
-  },[])
+ const validImage = useValidImage(imgURL)
   
   return displayProduct ? (
     <div className={`List-item --link ${!stock ? '--out-of-stock': ''}`} onClick={() => displayProduct()}>
     <div className="List-item-left">
-      {validImg ? <img className="List-item-img" src={imgURL} alt={name}/> : <div className="List-item-img-placeholder"></div>}
+      {validImage ? <img className="List-item-img" src={imgURL} alt={name}/> : <div className="List-item-img-placeholder"></div>}
     </div>
     <div className="List-item-right">
       {displayProduct ? (
@@ -39,7 +35,7 @@ const ListItem = ({ id, name, imgURL, stock, price, displayProduct }:ListItemPro
   ) : (
     <div className="List-item">
     <div className="List-item-left">
-    {validImg ? <img className="List-item-img" src={imgURL} alt={name}/> : <div className="List-item-img-placeholder"></div>}
+    {validImage ? <img className="List-item-img" src={imgURL} alt={name}/> : <div className="List-item-img-placeholder"></div>}
     </div>
     <div className="List-item-right">
       <h3 className="List-item-name">{name}</h3>

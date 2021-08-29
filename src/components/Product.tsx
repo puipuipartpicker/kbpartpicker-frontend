@@ -3,6 +3,7 @@ import './Product.css'
 import { IVendor } from '../types/types'
 import { getProductDataByIds } from '../utils/backendFunctions'
 import checkIfImageLoads from '../utils/checkIfImageLoads'
+import useValidImage from '../hooks/useValidImage'
 import { WatchListContext } from '../context/WatchListContext'
 import { MessageContext } from '../context/MessageContext'
 import { ReactComponent as AddCircle } from '../assets/svg/icon-add-circle.svg'
@@ -23,8 +24,9 @@ const Product = ({ id }:ProductProps) => {
   const [layout, setLayout] = useState('')
   const [hotswap, setHotwap] = useState('')
   const [imgURL, setImgURL] = useState('')
-  const [validImg, setValidImg] = useState(false)
   const [vendors, setVendors] = useState<IVendor[]>([])
+
+  const { validImage, returnUrl } = useValidImage(imgURL, /300x300/, '600x600')
 
   const { addItem, allWatchListIds } = useContext(WatchListContext)
   const { setDisplayMessage, setMessageText } = useContext(MessageContext)
@@ -56,32 +58,14 @@ const Product = ({ id }:ProductProps) => {
     })
   }, [id])
 
-  useEffect(() => {
-    if (imgURL) {
-      checkIfImageLoads(imgURL).then(resp => {
-        // resp ? setTimeout(() => setValidImg(true), 1000) : setValidImg(false)
-        setValidImg(resp)
-      })
-    }
-    if (/300x300/.test(imgURL)) {
-      checkIfImageLoads(imgURL.replace(/300x300/, '600x600')).then(resp => {
-        if (resp) {
-          setImgURL(prevUrl => prevUrl.replace(/300x300/, '600x600'))
-          // setTimeout(() => setValidImg(true), 1000)
-          setValidImg(true)
-        }
-      })
-    }
-  }, [imgURL])
-
   return (
   <div className="Product">
     {responce ? (
       <>
       <div className="Product__img-name-container">
         <div className="Product__img-container">
-        {validImg ? 
-          <img className="Product__img" src={imgURL} alt={`${name}`}/> : 
+        {validImage ? 
+          <img className="Product__img" src={returnUrl} alt={`${name}`}/> : 
           <div className="Product__img-placeholder"></div>
         }
         </div>
