@@ -34,7 +34,7 @@ const Results = ({ results, defaultDisplayId } : ResultsProps) => {
   const history = useHistory()
 
   const paginateResults = (itemsPerPage:number) => {
-    let numberOfPages = Math.floor(results.length / itemsPerPage)
+    const numberOfPages = Math.floor(results.length / itemsPerPage)
     let i = 0
     while (i < numberOfPages) {
       const page = results.splice(0, itemsPerPage)
