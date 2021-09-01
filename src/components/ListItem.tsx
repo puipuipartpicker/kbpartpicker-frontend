@@ -1,6 +1,5 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
-import checkIfImageLoads from '../utils/checkIfImageLoads'
 import useValidImage from '../hooks/useValidImage'
 import PriceStock from './PriceStock'
 import './ListItem.css'
