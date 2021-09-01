@@ -27,6 +27,7 @@ const Results = ({ results, defaultDisplayId } : ResultsProps) => {
   const [productPaneHeight, setProductPaneHeight] = useState('')
   const [screenWidth, setScreenWidth] = useState(0)
   const [pages, setPages] = useState<searchItem[][]>([])
+  const [currentPage, setCurrentPage] = useState(0)
   const { allWatchListIds , addItem } = useContext(WatchListContext)
   const { setMessageText, setDisplayMessage } = useContext(MessageContext)
 
@@ -81,7 +82,7 @@ const Results = ({ results, defaultDisplayId } : ResultsProps) => {
   return (
   <div className="Results">
     <div className="Results__items">
-    {pages.length > 0 && pages[0].map((item, i) => (
+    {pages.length > 0 && pages[currentPage].map((item, i) => (
       <div 
         className="Results__items-container" 
         key={'result-item-' + i}
@@ -120,6 +121,8 @@ const Results = ({ results, defaultDisplayId } : ResultsProps) => {
       </div>
     </div>
     ) : null}
+    {(pages.length > 0) && ((currentPage + 1) < pages.length) && <button onClick={() => setCurrentPage(prev => prev + 1)}>next</button>}
+    {(pages.length > 0) && ((currentPage - 1) >= 0) && <button onClick={() => setCurrentPage(prev => prev - 1)}>prev</button>}
   </div>
 )}
 
