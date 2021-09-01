@@ -41,7 +41,7 @@ const Results = ({ results, defaultDisplayId } : ResultsProps) => {
       setPages(prev => [...prev, page])
       i++
     }
-    if (results.length > 0) {
+    if (results.length > 0 && results.length > 0) {
       setPages(prev => [...prev, results])
     }
   }
