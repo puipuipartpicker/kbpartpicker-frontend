@@ -72,6 +72,20 @@
   border-radius: 0 0 var(--rounded-corner) 0;
 }
 
+.Results__pagination {
+  display: flex;
+  justify-content: space-between;
+  margin: 1rem 0;
+}
+
+.Results__pagination-prev , .Results__pagination-next {
+  
+}
+
+.Results__pagination-next {
+  margin-left: auto;
+}
+
 @media (max-width: 60rem) {
   
   .Results {
@@ -89,5 +103,9 @@
 
   .Results__items-container {
     margin-right: 0;
+  }
+
+  .Results__pagination-prev , .Results__pagination-next {
+    width: 49%;
   }
 }

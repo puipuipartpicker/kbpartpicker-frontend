@@ -110,6 +110,20 @@ const Results = ({ results, defaultDisplayId } : ResultsProps) => {
           </div>
         ) : null}
       </div>))}
+      {pages.length > 0 && (
+      <div className="Results__pagination">
+        {((currentPage - 1) >= 0) && 
+        <button className="Results__pagination-prev" onClick={() => {
+            setCurrentPage(prev => prev - 1)
+            window.scroll({ top: 0, behavior: 'smooth' })
+          }}>_&lt;</button>}
+        {((currentPage + 1) < pages.length) && 
+          <button className="Results__pagination-next" onClick={() => {
+            setCurrentPage(prev => prev + 1)
+            window.scroll({ top: 0, behavior: 'smooth' })
+          }}>&gt;_</button>}
+      </div>
+      )}
     </div>
     {(screenWidth >= 600) && productDisplay && selectedProductId && results ? (
     <div className="Results__product-container">
@@ -121,8 +135,6 @@ const Results = ({ results, defaultDisplayId } : ResultsProps) => {
       </div>
     </div>
     ) : null}
-    {(pages.length > 0) && ((currentPage + 1) < pages.length) && <button onClick={() => setCurrentPage(prev => prev + 1)}>next</button>}
-    {(pages.length > 0) && ((currentPage - 1) >= 0) && <button onClick={() => setCurrentPage(prev => prev - 1)}>prev</button>}
   </div>
 )}
 
