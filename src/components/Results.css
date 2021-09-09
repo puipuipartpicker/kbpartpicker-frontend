@@ -82,8 +82,22 @@
   
 }
 
-.Results__pagination-next {
+.Results__pagination-next:first-child {
   margin-left: auto;
+}
+
+.Results__pagination-current-page {
+  font-weight: 700;
+  font-size: 1.6rem;
+  padding: 0.6rem 1.2rem;
+  background-color: var(--primary-color);
+  color: var(--bg-color);
+  border-radius: var(--rounded-corner);
+}
+
+.Results__pagination-current-page:last-child {
+  margin-right: calc(50% - 2.5rem);
+  transition: none;
 }
 
 @media (max-width: 60rem) {
