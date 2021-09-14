@@ -26,10 +26,25 @@ const Results = ({ results, defaultDisplayId } : ResultsProps) => {
   const [selectedProductId, setSelectedProduct] = useState(0)
   const [productPaneHeight, setProductPaneHeight] = useState('')
   const [screenWidth, setScreenWidth] = useState(0)
+  const [pages, setPages] = useState<searchItem[][]>([])
+  const [currentPage, setCurrentPage] = useState(0)
   const { allWatchListIds , addItem } = useContext(WatchListContext)
   const { setMessageText, setDisplayMessage } = useContext(MessageContext)
 
   const history = useHistory()
+
+  const paginateResults = (itemsPerPage:number) => {
+    const numberOfPages = Math.floor(results.length / itemsPerPage)
+    let i = 0
+    while (i < numberOfPages) {
+      const page = results.splice(0, itemsPerPage)
+      setPages(prev => [...prev, page])
+      i++
+    }
+    if (results.length > 0 && results.length > 0) {
+      setPages(prev => [...prev, results])
+    }
+  }
 
   const handleProductDisplay = (id: number): void => {
     console.log('ran handleProductDisplay')
@@ -52,6 +67,9 @@ const Results = ({ results, defaultDisplayId } : ResultsProps) => {
   useEffect(() => {
     window.addEventListener('resize', (event) => setScreenWidth(window.innerWidth))
     setScreenWidth(window.innerWidth)
+
+    paginateResults(20)
+    
   }, [])
 
   useEffect(() => {
@@ -64,7 +82,7 @@ const Results = ({ results, defaultDisplayId } : ResultsProps) => {
   return (
   <div className="Results">
     <div className="Results__items">
-    {results.map((item, i) => (
+    {pages.length > 0 && pages[currentPage].map((item, i) => (
       <div 
         className="Results__items-container" 
         key={'result-item-' + i}
@@ -92,6 +110,21 @@ const Results = ({ results, defaultDisplayId } : ResultsProps) => {
           </div>
         ) : null}
       </div>))}
+      {pages.length > 0 && (
+      <div className="Results__pagination">
+        {((currentPage - 1) >= 0) && 
+        <button className="Results__pagination-prev" onClick={() => {
+            setCurrentPage(prev => prev - 1)
+            window.scroll({ top: 0, behavior: 'smooth' })
+          }}>_&lt;</button>}
+        {currentPage + 1 > 1 && <div className="Results__pagination-current-page">p_{currentPage + 1}</div>}
+        {((currentPage + 1) < pages.length) && 
+          <button className="Results__pagination-next" onClick={() => {
+            setCurrentPage(prev => prev + 1)
+            window.scroll({ top: 0, behavior: 'smooth' })
+          }}>&gt;_</button>}
+      </div>
+      )}
     </div>
     {(screenWidth >= 600) && productDisplay && selectedProductId && results ? (
     <div className="Results__product-container">
