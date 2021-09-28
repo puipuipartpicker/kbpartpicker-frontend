@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router } from 'react-router-dom'
-import { MessageProvider } from './context/MessageContext';
 import { WatchListProvider } from './context/WatchListContext';
 
 import './index.css';
@@ -14,9 +13,7 @@ ReactDOM.render(
   <React.StrictMode>
     <Router>
       <WatchListProvider>
-        <MessageProvider>
-          <App />
-        </MessageProvider>
+        <App />
       </WatchListProvider>
     </Router>
   </React.StrictMode>,

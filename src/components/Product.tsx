@@ -4,7 +4,8 @@ import { IVendor } from '../types/types'
 import { getProductDataByIds } from '../utils/backendFunctions'
 import useValidImage from '../hooks/useValidImage'
 import { WatchListContext } from '../context/WatchListContext'
-import { MessageContext } from '../context/MessageContext'
+// import { MessageContext } from '../context/MessageContext'
+import useMessage from '../hooks/useMessage'
 import { ReactComponent as AddCircle } from '../assets/svg/icon-add-circle.svg'
 import ProductPlaceHolder from './ProductPlaceHolder'
 import PriceStock from './PriceStock'
@@ -28,7 +29,8 @@ const Product = ({ id }:ProductProps) => {
   const { validImage, returnUrl } = useValidImage(imgURL, /300x300/, '600x600')
 
   const { addItem, allWatchListIds } = useContext(WatchListContext)
-  const { setDisplayMessage, setMessageText } = useContext(MessageContext)
+  // const { setDisplayMessage, setMessageText } = useContext(MessageContext)
+  const { setDisplayMessage, setMessageText } = useMessage()
   
   useEffect(() => {
     setResponse(false)

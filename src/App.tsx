@@ -1,7 +1,7 @@
 import React, {useEffect, useState, useContext} from 'react';
 import './App.css';
 import { BrowserRouter as Router, Route, Link, useHistory } from 'react-router-dom'
-import { MessageContext } from './context/MessageContext'
+// import { MessageContext } from './context/MessageContext'
 import { WatchListContext } from './context/WatchListContext'
 import Paths from './types/Paths'
 import Search from './components/Search'
@@ -15,11 +15,14 @@ import { ThemeVariableValues } from './types/types'
 import { IProductData, IKeyboardFormFactor,  IStabilizerSize, IStabilizerType} from './types/types'
 import updateThemeVariables from './utils/updateThemeVariables'
 import { getProductDataByIds } from './utils/backendFunctions'
+import useMessage from './hooks/useMessage'
 
 
 function App() {
-  const {messageText, setMessageText, displayMessage, setDisplayMessage} = useContext(MessageContext)
+  // const { messageText, setMessageText, displayMessage, setDisplayMessage } = useContext(MessageContext)
   const { cases, pcbs, plates, stabilizers, switches, keycaps, allWatchListIds, addItem } = useContext(WatchListContext)
+
+  const { messageText, setMessageText, displayMessage, setDisplayMessage } = useMessage()
 
   const [theme, setTheme] = useState<keyof ThemeVariableValues>("8008")
 
