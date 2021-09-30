@@ -60,6 +60,36 @@ const themeCssVariableValues:ThemeVariableValues = {
     secondaryColor: "#f3e03b",
     highlightColor: "#ff585d",
     secondHighlightColor: ''
+  },
+  dark: {
+    darkestColor: '#111',
+    lightestColor: '#eee',
+    bgColor: '#242424',
+    primaryTextColor: '#eee',
+    primaryColor: "#eee",
+    secondaryColor: "#444",
+    highlightColor: "#da3333",
+    secondHighlightColor: '#791717'
+  },
+  olivia: {
+    darkestColor: '#0d0c0d',
+    lightestColor: '#eee',
+    bgColor: '#1c1b1d',
+    primaryTextColor: '#f2efed',
+    primaryColor: "#deaf9d",
+    secondaryColor: "#4e3e3e",
+    highlightColor: "#bf616a",
+    secondHighlightColor: '#793e44'
+  },
+  pulse: {
+    darkestColor: '#000',
+    lightestColor: '#e5f4f4',
+    bgColor: '#181818',
+    primaryTextColor: '#e5f4f4',
+    primaryColor: "#17b8bd",
+    secondaryColor: "#53565a",
+    highlightColor: "#da3333",
+    secondHighlightColor: '#791717'
   }
 }
 

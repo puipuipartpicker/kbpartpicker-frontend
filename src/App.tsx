@@ -180,7 +180,7 @@ function App() {
         setTheme('8008')
         return <Search bar={true} category='case'/>}}/>
       <Route path={Paths.pcb} render={ (props) => {
-        setTheme('mizu')
+        setTheme('dark')
         return <Search bar={true} category='pcb'/>}}/>
       <Route path={Paths.plates} render={ (props) => {
         setTheme('modernDolch')
@@ -189,10 +189,10 @@ function App() {
         setTheme('superuser')
         return <Search bar={true} category='stabilizer'/>}}/>
       <Route path={Paths.switch} render={ (props) => {
-        setTheme('taro')
+        setTheme('olivia')
         return <Search bar={true} category='switch'/>}}/>
       <Route path={Paths.keycaps} render={ (props) => {
-        setTheme('retrocast')
+        setTheme('pulse')
         return <Search bar={true} category='keyset'/>}}/>
       {productKeys.includes(urlPath) ? <Route path={Paths.product} render={ (props) => <Product id={parseInt(urlPath)}/>} /> : null}
       <Route path={Paths.list} render={(props) => {

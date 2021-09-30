@@ -69,6 +69,36 @@ export interface ThemeVariableValues {
     highlightColor: string
     secondHighlightColor: string
   }
+  dark: {
+    darkestColor: string
+    lightestColor: string
+    bgColor: string
+    primaryTextColor: string
+    primaryColor: string
+    secondaryColor: string
+    highlightColor: string
+    secondHighlightColor: string
+  }
+  olivia: {
+    darkestColor: string
+    lightestColor: string
+    bgColor: string
+    primaryTextColor: string
+    primaryColor: string
+    secondaryColor: string
+    highlightColor: string
+    secondHighlightColor: string
+  }
+  pulse: {
+    darkestColor: string
+    lightestColor: string
+    bgColor: string
+    primaryTextColor: string
+    primaryColor: string
+    secondaryColor: string
+    highlightColor: string
+    secondHighlightColor: string
+  }
 }
 
 
