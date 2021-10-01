@@ -9,14 +9,18 @@
   margin-bottom: var(--margin-bottom);
   font-size: 2rem;
   font-weight: 700;
-  color: var(--highlight-color);
+  color: var(--secondary-color);
+}
+
+.Categories__category a{
+  color: var(--secondary-color);
 }
 
 .Categories__category-selected {
   z-index: 100;
   position: absolute;
   margin-top: 0.5rem;
-  background-color: var(--highlight-color);
+  background-color: var(--secondary-color);
   color: var(--darkest-color);
   border-radius: var(--rounded-corner);
   -webkit-transition: all 0.2s ease;
@@ -35,7 +39,7 @@
   position: absolute;
   bottom: -1rem;
   left: -1.4rem;
-  background-color: var(--highlight-color);
+  background-color: var(--secondary-color);
   color: var(--bg-color);
   padding: 0.2rem 0.7rem;
   border-radius: 100%;
@@ -69,9 +73,14 @@
 .Categories__selected-items-button {
   position: relative;
   margin-bottom: 1rem;
-  /* -webkit-box-shadow: 0px 5px 0px -2px rgba(0,0,0,1);
-  -moz-box-shadow: 0px 5px 0px -2px rgba(0,0,0,1);
-  box-shadow: 0px 5px 0px -2px rgba(0,0,0,1); */
+  margin-left: auto;
+  background-color: var(--bg-color);
+  border: 1px solid var(--primary-color);
+  color: var(--primary-color);
+  -webkit-box-shadow: 0px 5px 2px -2px rgba(0,0,0,0.85);
+  -moz-box-shadow: 0px 5px 2px -2px rgba(0,0,0,0.85);
+  box-shadow: 0px 5px 2px -2px rgba(0, 0, 0, 0.85);
+  /* TODO: refactor to use primary color with lower opacity as the box shadow */
 }
 
 .Categories__selected-items-button:before {
@@ -91,7 +100,7 @@
 .--active {
   cursor: default;
   padding: 0 0.6rem;
-  color: var(--primary-color);
+  color: var(--primary-color) !important;
   border: 0.3rem solid var(--primary-color);
   text-decoration: none;
   border-radius: var(--rounded-corner);
@@ -99,7 +108,7 @@
 }
 
 .--active-selected {
-  background-color: var(--primary-color);
+  background-color: var(--primary-color) !important;
 }
 
 .--remove {
