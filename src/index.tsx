@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter as Router } from 'react-router-dom'
 import { MessageProvider } from './context/MessageContext';
 import { WatchListProvider } from './context/WatchListContext';
+import { LoadingProvider } from './context/LoadingContext';
 
 import './index.css';
 import App from './App';
@@ -14,9 +15,11 @@ ReactDOM.render(
   <React.StrictMode>
     <Router>
       <WatchListProvider>
-        <MessageProvider>
-          <App />
-        </MessageProvider>
+        <LoadingProvider>
+          <MessageProvider>
+            <App />
+          </MessageProvider>
+        </LoadingProvider>
       </WatchListProvider>
     </Router>
   </React.StrictMode>,

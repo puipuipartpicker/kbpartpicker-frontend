@@ -2,6 +2,7 @@ import React, {useEffect, useState, useContext} from 'react';
 import './App.css';
 import { BrowserRouter as Router, Route, Link, useHistory } from 'react-router-dom'
 import { MessageContext } from './context/MessageContext'
+import { LoadingContext } from './context/LoadingContext';
 import { WatchListContext } from './context/WatchListContext'
 import Paths from './types/Paths'
 import Search from './components/Search'
@@ -20,6 +21,7 @@ import { getProductDataByIds } from './utils/backendFunctions'
 function App() {
   const {messageText, setMessageText, displayMessage, setDisplayMessage} = useContext(MessageContext)
   const { cases, pcbs, plates, stabilizers, switches, keycaps, allWatchListIds, addItem } = useContext(WatchListContext)
+  const { searchLoading, setSearchLoading, productLoading, setProductLoading } = useContext(LoadingContext)
 
   const [theme, setTheme] = useState<keyof ThemeVariableValues>("8008")
 
@@ -106,6 +108,12 @@ function App() {
       setStabMountWarning(false)
     }
   }
+
+  useEffect(() => {
+    if (searchLoading) {
+      // check url params for search and product display
+    }
+  }, [])
 
 
   useEffect(() => {
