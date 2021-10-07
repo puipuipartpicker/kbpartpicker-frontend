@@ -99,6 +99,14 @@
   transition: none;
 }
 
+.icon-close-circle .primary {
+  fill: var(--primary-color)
+}
+
+.icon-close-circle .secondary {
+  fill: var(--bg-color)
+}
+
 @media (max-width: 60rem) {
   
   .Results {
