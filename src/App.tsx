@@ -13,6 +13,7 @@ import SelectedItems from './components/SelectedItems'
 import WatchList from './components/WatchList'
 import Notification from './components/Notification'
 import { ThemeVariableValues } from './types/types'
+import Loading from './components/Loading';
 import { IProductData, IKeyboardFormFactor,  IStabilizerSize, IStabilizerType} from './types/types'
 import updateThemeVariables from './utils/updateThemeVariables'
 import { getProductDataByIds } from './utils/backendFunctions'
@@ -110,6 +111,12 @@ function App() {
   }
 
   useEffect(() => {
+    if(/q=.+/.test(urlParameters)) {
+      setSearchLoading(true)
+    }
+    if(/disp=.+/.test(urlParameters)) {
+      setProductLoading(true)
+    }
     if (searchLoading) {
       // check url params for search and product display
     }
@@ -140,6 +147,7 @@ function App() {
 
   return (
     <div className={`App ${theme}`}>
+      {searchLoading || productLoading ? <Loading /> : null}
       {displayMessage ? <Notification message={messageText}/> : null}
       <div className="App__top-container">
         <h1 className="App__header">KBPartPicker <span className="App__header-cta">to start your search select a category</span></h1>

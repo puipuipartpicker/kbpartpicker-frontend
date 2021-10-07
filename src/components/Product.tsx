@@ -5,6 +5,8 @@ import { getProductDataByIds } from '../utils/backendFunctions'
 import useValidImage from '../hooks/useValidImage'
 import { WatchListContext } from '../context/WatchListContext'
 import { MessageContext } from '../context/MessageContext'
+import { LoadingContext } from '../context/LoadingContext'
+import { useHistory } from 'react-router'
 import { ReactComponent as AddCircle } from '../assets/svg/icon-add-circle.svg'
 import ProductPlaceHolder from './ProductPlaceHolder'
 import PriceStock from './PriceStock'
@@ -25,10 +27,19 @@ const Product = ({ id }:ProductProps) => {
   const [imgURL, setImgURL] = useState('')
   const [vendors, setVendors] = useState<IVendor[]>([])
 
+  const params = useHistory().location.search
+
   const { validImage, returnUrl } = useValidImage(imgURL, /300x300/, '600x600')
 
   const { addItem, allWatchListIds } = useContext(WatchListContext)
   const { setDisplayMessage, setMessageText } = useContext(MessageContext)
+  const { productLoading, setProductLoading } = useContext(LoadingContext)
+  
+  useEffect(() => {
+    if(/disp=.+/.test(params)) {
+      setProductLoading(false)
+    }
+  }, [])
   
   useEffect(() => {
     setResponse(false)

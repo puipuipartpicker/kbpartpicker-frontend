@@ -1,6 +1,7 @@
 import React, {useState, useEffect, useContext} from 'react'
 import { WatchListContext } from '../context/WatchListContext'
 import { MessageContext } from '../context/MessageContext'
+import { LoadingContext } from '../context/LoadingContext'
 import { useHistory } from 'react-router'
 import './Results.css'
 import Product from './Product'
@@ -32,6 +33,8 @@ const Results = ({ results, defaultDisplayId } : ResultsProps) => {
   const { setMessageText, setDisplayMessage } = useContext(MessageContext)
 
   const history = useHistory()
+
+  const { searchLoading, setSearchLoading } = useContext(LoadingContext)
 
   const paginateResults = (itemsPerPage:number) => {
     const numberOfPages = Math.floor(results.length / itemsPerPage)
@@ -69,6 +72,10 @@ const Results = ({ results, defaultDisplayId } : ResultsProps) => {
     setScreenWidth(window.innerWidth)
 
     paginateResults(20)
+
+    if(/q=.+/.test(history.location.search)) {
+      setSearchLoading(false)
+    }
     
   }, [])
 
