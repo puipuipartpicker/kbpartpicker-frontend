@@ -38,6 +38,7 @@ function App() {
 
 
   const [displaySelectedItems, setDisplaySelectedItems] = useState<boolean>(false)
+  let watchListClassMod = displaySelectedItems ? '--display' : '--hidden'
 
   const allSelectedItemData = [cases, pcbs, plates, stabilizers, switches, keycaps]
 
@@ -49,6 +50,7 @@ function App() {
   console.log('useHistory pathname', useHistory().location)
   // TODO: make sure to aquire all product keys in an array from the db
   const productKeys = ['123', '666', '456', '90', '398']
+
 
   const handleWarningDisplay = () => {
     if (stabMountWarning || stabSizeWarning || solderWarning || layoutWarning) {
@@ -157,20 +159,18 @@ function App() {
           selectedSwitches={switches}
           selectedKeycaps={keycaps}
         />
-        {displaySelectedItems && (
-          <div className="App__selected-items-container scale-in-hor-right">
-            <button className="App__selected-items-close" onClick={() => setDisplaySelectedItems(prevDisp => !prevDisp)}>close</button>
-            <SelectedItems 
-              ids={allWatchListIds}
-              selectedCases={cases}
-              selectedPcb={pcbs}
-              selectedPlates={plates}
-              selectedStabilizers={stabilizers}
-              selectedSwitches={switches}
-              selectedKeycaps={keycaps}
-            />
-          </div>
-        )}
+        <div className={`App__selected-items-container scale-in-hor-right ${watchListClassMod}`}>
+          <button className="App__selected-items-close" onClick={() => setDisplaySelectedItems(prevDisp => !prevDisp)}>close</button>
+          <SelectedItems 
+            ids={allWatchListIds}
+            selectedCases={cases}
+            selectedPcb={pcbs}
+            selectedPlates={plates}
+            selectedStabilizers={stabilizers}
+            selectedSwitches={switches}
+            selectedKeycaps={keycaps}
+          />
+        </div>
       </div>
       {
     }
