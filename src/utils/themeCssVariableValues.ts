@@ -2,12 +2,12 @@ import { ThemeVariableValues } from "../types/types"
 
 const themeCssVariableValues:ThemeVariableValues = {
   "8008": {
-    darkestColor: '#2a303a',
+    darkestColor: '#171820',
     lightestColor: 'white',
-    bgColor: '#333a45',
+    bgColor: '#20222e',
     primaryTextColor: '#939eae',
     primaryColor: "#f44c7f",
-    secondaryColor: "#e11251",
+    secondaryColor: "#717a87",
     highlightColor: "#fa8cad",
     secondHighlightColor: ''
   },
@@ -27,7 +27,7 @@ const themeCssVariableValues:ThemeVariableValues = {
     bgColor: '#2d2e30',
     primaryTextColor: '#e3e6eb',
     primaryColor: "#7eddd3",
-    secondaryColor: "#54585c",
+    secondaryColor: "#62707d",
     highlightColor: "#d36a7b",
     secondHighlightColor: '#994154'
   },
@@ -37,7 +37,7 @@ const themeCssVariableValues:ThemeVariableValues = {
     bgColor: '#262a33',
     primaryTextColor: '#939eae',
     primaryColor: "#43ffaf",
-    secondaryColor: "#526777",
+    secondaryColor: "#627d91",
     highlightColor: "#ff5f5f",
     secondHighlightColor: '#ff5f5f'
   },
@@ -67,7 +67,7 @@ const themeCssVariableValues:ThemeVariableValues = {
     bgColor: '#242424',
     primaryTextColor: '#eee',
     primaryColor: "#eee",
-    secondaryColor: "#444",
+    secondaryColor: "#777",
     highlightColor: "#da3333",
     secondHighlightColor: '#791717'
   },
@@ -76,9 +76,19 @@ const themeCssVariableValues:ThemeVariableValues = {
     lightestColor: '#eee',
     bgColor: '#1c1b1d',
     primaryTextColor: '#f2efed',
-    primaryColor: "#deaf9d",
-    secondaryColor: "#4e3e3e",
-    highlightColor: "#bf616a",
+    primaryColor: "#e8c4b8",
+    secondaryColor: "#f0f0f0",
+    highlightColor: "#c75c66",
+    secondHighlightColor: '#793e44'
+  },
+  oliviaLight: {
+    darkestColor: '#0d0c0d',
+    lightestColor: '#eee',
+    bgColor: '#f0f0f0',
+    primaryTextColor: '#f2efed',
+    primaryColor: "#1c1b1d",
+    secondaryColor: "#e8c4b8",
+    highlightColor: "#c75c66",
     secondHighlightColor: '#793e44'
   },
   pulse: {
@@ -87,9 +97,9 @@ const themeCssVariableValues:ThemeVariableValues = {
     bgColor: '#181818',
     primaryTextColor: '#e5f4f4',
     primaryColor: "#17b8bd",
-    secondaryColor: "#53565a",
-    highlightColor: "#da3333",
-    secondHighlightColor: '#791717'
+    secondaryColor: "#79828d",
+    highlightColor: "#9d69dd",
+    secondHighlightColor: '#733eb3'
   }
 }
 
