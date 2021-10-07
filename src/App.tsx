@@ -23,6 +23,9 @@ function App() {
 
   const [theme, setTheme] = useState<keyof ThemeVariableValues>("8008")
 
+  const [loadingSearch, setLoadingSearch] = useState(false)
+  const [loadingDisplayProduct, setLoadingDisplayProduct] = useState(false)
+
   const [warningNotification, setWarningNotification] = useState<boolean>(false)
   const [warningDisp, setWarningDisp] = useState<boolean>(false)
   const [caseLayout, setCaseLayout] = useState<IKeyboardFormFactor[]>([])
