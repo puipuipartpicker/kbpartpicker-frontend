@@ -99,6 +99,11 @@
   transition: none;
 }
 
+.Results__pagination-current-page:first-child {
+  margin-left: calc(50% - 2.5rem);
+  transition: none;
+}
+
 .icon-close-circle .primary {
   fill: var(--primary-color)
 }
@@ -146,5 +151,8 @@
   }
   .Results__pagination-current-page:last-child {
     margin-right: 0;
+  }
+  .Results__pagination-current-page:first-child {
+    margin-left: 0;
   }
 }

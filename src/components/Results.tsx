@@ -124,7 +124,7 @@ const Results = ({ results, defaultDisplayId } : ResultsProps) => {
             setCurrentPage(prev => prev - 1)
             window.scroll({ top: 0, behavior: 'smooth' })
           }}>_&lt;</button>}
-        {currentPage + 1 > 1 && <div className="Results__pagination-current-page">p_{currentPage + 1}</div>}
+        {(((currentPage + 1) >= 1) && ((currentPage + 1) < pages.length)) && <div className="Results__pagination-current-page">p_{currentPage + 1}</div>}
         {((currentPage + 1) < pages.length) && 
           <button className="Results__pagination-next" onClick={() => {
             setCurrentPage(prev => prev + 1)
