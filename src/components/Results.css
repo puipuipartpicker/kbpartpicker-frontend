@@ -126,7 +126,25 @@
     margin-right: 0;
   }
 
+  .Results__pagination {
+    justify-content: center;
+  }
+
   .Results__pagination-prev , .Results__pagination-next {
-    width: 49%;
+    width: 15%;
+  }
+
+  .Results__pagination-prev {
+    margin-right: 2rem;
+  }
+
+  .Results__pagination-next {
+    margin-left: 2rem;
+  }
+  .Results__pagination-next:first-child {
+    margin-left: 0;
+  }
+  .Results__pagination-current-page:last-child {
+    margin-right: 0;
   }
 }
