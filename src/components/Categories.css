@@ -29,7 +29,7 @@
   -o-transition:      all 0.2s ease;
 }
 
-.--display {
+.Categories__category-selected.--display.--active-selected {
  width: 40rem;
  padding: 1rem;
 }

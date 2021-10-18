@@ -159,7 +159,7 @@ const SelectedItems = ({ids, selectedCases, selectedPcb, selectedPlates, selecte
           buttonText="sharable link" 
           stringToCopy={`${process.env.REACT_APP_URL || 'http://localhost:3000'}/test?share=${ids}`}
           />
-          <button className="testing-button" onClick={() => console.log(process.env.REACT_APP_URL)}>button</button>
+          {/* <button className="testing-button" onClick={() => console.log(process.env.REACT_APP_URL)}>button</button> */}
         </div>
       )}
       </div>
