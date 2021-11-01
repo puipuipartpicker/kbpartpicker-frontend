@@ -20,7 +20,7 @@ import { getProductDataByIds } from './utils/backendFunctions'
 
 
 function App() {
-  const {messageText, setMessageText, displayMessage, setDisplayMessage} = useContext(MessageContext)
+  const { messageText, setMessageText, displayMessage, setDisplayMessage } = useContext(MessageContext)
   const { cases, pcbs, plates, stabilizers, switches, keycaps, allWatchListIds, addItem } = useContext(WatchListContext)
   const { searchLoading, setSearchLoading, productLoading, setProductLoading } = useContext(LoadingContext)
 
@@ -28,6 +28,8 @@ function App() {
 
   const [loadingSearch, setLoadingSearch] = useState(false)
   const [loadingDisplayProduct, setLoadingDisplayProduct] = useState(false)
+
+  const [loadingApp, setLoadingApp] = useState(true)
 
   const [warningNotification, setWarningNotification] = useState<boolean>(false)
   const [warningDisp, setWarningDisp] = useState<boolean>(false)
@@ -111,6 +113,9 @@ function App() {
   }
 
   useEffect(() => {
+    if (urlParameters === '') {
+      setTimeout(() => setLoadingApp(false), 1500)
+    }
     if(/q=.+/.test(urlParameters)) {
       setSearchLoading(true)
     }
@@ -147,7 +152,7 @@ function App() {
 
   return (
     <div className={`App ${theme}`}>
-      {searchLoading || productLoading ? <Loading /> : null}
+      {(searchLoading || productLoading || loadingApp) ? <Loading /> : null}
       {displayMessage ? <Notification message={messageText}/> : null}
       <div className="App__top-container">
         <h1 className="App__header">KBPartPicker <span className="App__header-cta">to start your search select a category</span></h1>
