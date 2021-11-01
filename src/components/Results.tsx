@@ -74,7 +74,7 @@ const Results = ({ results, defaultDisplayId } : ResultsProps) => {
     paginateResults(20)
 
     if(/q=.+/.test(history.location.search)) {
-      setSearchLoading(false)
+      setTimeout(() => setSearchLoading(false), 1000)
     }
     
   }, [])

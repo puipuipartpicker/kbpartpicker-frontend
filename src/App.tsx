@@ -118,7 +118,7 @@ function App() {
       setProductLoading(true)
     }
     if (searchLoading) {
-      // check url params for search and product display
+      // TODO: check url params for search and product display
     }
   }, [])
 
