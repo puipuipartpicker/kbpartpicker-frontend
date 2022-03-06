@@ -27,10 +27,10 @@ const Search = ({ bar, category }:SearchProps) => {
 
   const sendQuery = (query: string | undefined, category: IProductType):void => {
     setLoading(true)
-    console.log("env", process.env.REACT_APP_API_URL || "https://kbpartpicker-api-dev.herokuapp.com")
+    console.log("env", process.env.REACT_APP_API_URL || "https://kbpartpicker-api-prd.herokuapp.com")
     console.log("ATTEMPTING TO CALL BACKEND")
     axios.get(
-      `${process.env.REACT_APP_API_URL || "https://kbpartpicker-api-dev.herokuapp.com"}/categories/${category}/search`,
+      `${process.env.REACT_APP_API_URL || "https://kbpartpicker-api-prd.herokuapp.com"}/categories/${category}/search`,
       {
         params: {query: query}
       }

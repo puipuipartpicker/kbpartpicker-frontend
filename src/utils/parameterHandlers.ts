@@ -3,7 +3,7 @@ import axios from 'axios'
 import { useHistory } from 'react-router'
 
 // export const getProductByID = (id:string) => {
-//   axios.get(`${process.env.REACT_APP_API_URL || "https://kbpartpicker-api-dev.herokuapp.com"}/products/${id}`)
+//   axios.get(`${process.env.REACT_APP_API_URL || "https://kbpartpicker-api-prd.herokuapp.com"}/products/${id}`)
 // }
 
 export function useUpdateUrlParameter(paramToSet:string, newParamValue: string):void {

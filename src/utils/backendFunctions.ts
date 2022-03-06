@@ -3,9 +3,9 @@ import { AxiosResponse } from 'axios'
 import {IProductType, IProductData} from '../types/types'
 
 export const getProductDataByIds = async ( ids: string[] ):Promise<AxiosResponse<any>> => {
-  console.log('ran getProductByIds with url:', `https://kbpartpicker-api-dev.herokuapp.com"/products/${ids}`)
+  console.log('ran getProductByIds with url:', `https://kbpartpicker-api-prd.herokuapp.com"/products/${ids}`)
   console.log('with these ids passed', ids)
-  const productData = await axios.get(`${process.env.REACT_APP_API_URL || "https://kbpartpicker-api-dev.herokuapp.com"}/products/${ids}`)
+  const productData = await axios.get(`${process.env.REACT_APP_API_URL || "https://kbpartpicker-api-prd.herokuapp.com"}/products/${ids}`)
   console.log('Response from getProductByIds:', productData)
   return productData
 }
@@ -13,10 +13,10 @@ export const getProductDataByIds = async ( ids: string[] ):Promise<AxiosResponse
 
 
 export const sendQuery = (query: string | undefined, category: IProductType):void => {
-  console.log("env", process.env.REACT_APP_API_URL || "https://kbpartpicker-api-dev.herokuapp.com")
+  console.log("env", process.env.REACT_APP_API_URL || "https://kbpartpicker-api-prd.herokuapp.com")
   console.log("ATTEMPTING TO CALL BACKEND")
   axios.get(
-    `${process.env.REACT_APP_API_URL || "https://kbpartpicker-api-dev.herokuapp.com"}/categories/${category}/search`,
+    `${process.env.REACT_APP_API_URL || "https://kbpartpicker-api-prd.herokuapp.com"}/categories/${category}/search`,
     {
       params: { query: query }
     }
